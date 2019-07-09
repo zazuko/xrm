@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.zazuko.rdfmapping.dsl
+Bundle-ManifestVersion: 2
+Bundle-Name: com.zazuko.rdfmapping.dsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.zazuko.rdfmapping.dsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.zazuko.rdfmapping.dsl.serializer,
+ com.zazuko.rdfmapping.dsl.generator,
+ com.zazuko.rdfmapping.dsl.services,
+ com.zazuko.rdfmapping.dsl.parser.antlr.internal,
+ com.zazuko.rdfmapping.dsl.rdfMapping.util,
+ com.zazuko.rdfmapping.dsl.scoping,
+ com.zazuko.rdfmapping.dsl.rdfMapping,
+ com.zazuko.rdfmapping.dsl.validation,
+ com.zazuko.rdfmapping.dsl.parser.antlr,
+ com.zazuko.rdfmapping.dsl,
+ com.zazuko.rdfmapping.dsl.rdfMapping.impl
+Import-Package: org.apache.log4j

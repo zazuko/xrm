@@ -1,0 +1,5 @@
+source-types {
+	xml referenceFormulation "ql:XPath"
+	rdb referenceFormulation "rr:SQL2008"
+	csv referenceFormulation "ql:CSV"
+}

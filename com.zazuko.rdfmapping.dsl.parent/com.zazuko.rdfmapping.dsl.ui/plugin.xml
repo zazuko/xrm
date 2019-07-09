@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+			default="true"
+			extensions="xrm"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping"
+			name="RdfMapping Editor">
+		</editor>
+	</extension>
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
+			<activeWhen>
+				<reference
+					definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+		<handler
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="com.zazuko.rdfmapping.dsl.RdfMapping.validate">
+		<activeWhen>
+			<reference
+					definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+			</reference>
+		</activeWhen>
+		</handler>
+		<!-- copy qualified name -->
+		<handler
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
+			<activeWhen>
+				<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened" />
+			</activeWhen>
+		</handler>
+		<handler
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
+			<activeWhen>
+				<and>
+					<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.XtextEditor.opened" />
+					<iterate>
+						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+					</iterate>
+				</and>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.core.expressions.definitions">
+		<definition id="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+			<and>
+				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
+				<with variable="activeEditor">
+					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
+						value="com.zazuko.rdfmapping.dsl.RdfMapping"
+						forcePluginActivation="true"/>
+				</with>
+			</and>
+		</definition>
+		<definition id="com.zazuko.rdfmapping.dsl.RdfMapping.XtextEditor.opened">
+			<and>
+				<reference definitionId="isXtextEditorActive"/>
+				<with variable="activeEditor">
+					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
+						value="com.zazuko.rdfmapping.dsl.RdfMapping"
+						forcePluginActivation="true"/>
+				</with>
+			</and>
+		</definition>
+	</extension>
+	<extension
+			point="org.eclipse.ui.preferencePages">
+		<page
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping"
+			name="RdfMapping">
+			<keywordReference id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"/>
+		</page>
+		<page
+			category="com.zazuko.rdfmapping.dsl.RdfMapping"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping.coloring"
+			name="Syntax Coloring">
+			<keywordReference id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"/>
+		</page>
+		<page
+			category="com.zazuko.rdfmapping.dsl.RdfMapping"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping.templates"
+			name="Templates">
+			<keywordReference id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"/>
+		</page>
+	</extension>
+	<extension
+			point="org.eclipse.ui.propertyPages">
+		<page
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping"
+			name="RdfMapping">
+			<keywordReference id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"/>
+			<enabledWhen>
+				<adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+			<filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+		</page>
+	</extension>
+	<extension
+		point="org.eclipse.ui.keywords">
+		<keyword
+			id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"
+			label="RdfMapping"/>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+	<command
+			description="Trigger expensive validation"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping.validate"
+			name="Validate">
+	</command>
+	<!-- copy qualified name -->
+	<command
+			id="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+			categoryId="org.eclipse.ui.category.edit"
+			description="Copy the qualified name for the selected element"
+			name="Copy Qualified Name">
+	</command>
+	<command
+			id="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
+			categoryId="org.eclipse.ui.category.edit"
+			description="Copy the qualified name for the selected element"
+			name="Copy Qualified Name">
+	</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			 <command
+				 commandId="com.zazuko.rdfmapping.dsl.RdfMapping.validate"
+				 style="push"
+				 tooltip="Trigger expensive validation">
+			<visibleWhen checkEnabled="false">
+				<reference
+					definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+				</reference>
+			</visibleWhen>
+		</command>
+		</menuContribution>
+		<!-- copy qualified name -->
+		<menuContribution locationURI="popup:#TextEditorContext?after=copy">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution locationURI="menu:edit?after=copy">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution locationURI="popup:org.eclipse.xtext.ui.outline?after=additions">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<and>
+						<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.XtextEditor.opened" />
+						<iterate>
+							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+						</iterate>
+					</and>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
+			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			commandId="org.eclipse.xtext.ui.editor.FindReferences">
+			<activeWhen>
+				<reference
+					definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type
+			base-type="org.eclipse.core.runtime.text"
+			file-extensions="xrm"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping.contenttype"
+			name="RdfMapping File"
+			priority="normal">
+		</content-type>
+	</extension>
+	<!-- adding resource factories -->
+	<extension
+		point="org.eclipse.emf.ecore.extension_parser">
+		<parser
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="xrm">
+		</parser>
+	</extension>
+	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
+		<resourceServiceProvider
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			uriExtension="xrm">
+		</resourceServiceProvider>
+	</extension>
+	<!-- marker definitions for com.zazuko.rdfmapping.dsl.RdfMapping -->
+	<extension
+			id="rdfmapping.check.fast"
+			name="RdfMapping Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.fast"/>
+		<persistent value="true"/>
+	</extension>
+	<extension
+			id="rdfmapping.check.normal"
+			name="RdfMapping Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.normal"/>
+		<persistent value="true"/>
+	</extension>
+	<extension
+			id="rdfmapping.check.expensive"
+			name="RdfMapping Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.expensive"/>
+		<persistent value="true"/>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="com.zazuko.rdfmapping.dsl.RdfMapping"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping.validator.preferencePage"
+			name="Errors/Warnings">
+			<keywordReference id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.xtext.builder.participant">
+		<participant
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			fileExtensions="xrm"/>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="com.zazuko.rdfmapping.dsl.RdfMapping"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping.compiler.preferencePage"
+			name="Compiler">
+			<keywordReference id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.ui.propertyPages">
+		<page
+			category="com.zazuko.rdfmapping.dsl.RdfMapping"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping.compiler.propertyPage"
+			name="Compiler">
+			<keywordReference id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"/>
+			<enabledWhen>
+				<adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+			<filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
+			<command
+				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
+				id="com.zazuko.rdfmapping.dsl.RdfMapping.OpenGeneratedCode"
+				style="push">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
+			<activeWhen>
+				<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened" />
+			</activeWhen>
+		</handler>
+	</extension>
+	<!-- Quick Outline -->
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler 
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
+			<activeWhen>
+				<reference
+					definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+		<command
+			description="Open the quick outline."
+			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+			name="Quick Outline">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.open">
+			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+				style="push"
+				tooltip="Open Quick Outline">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened"/>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<!-- quickfix marker resolution generator for com.zazuko.rdfmapping.dsl.RdfMapping -->
+	<extension
+			point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="com.zazuko.rdfmapping.dsl.ui.rdfmapping.check.fast">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="com.zazuko.rdfmapping.dsl.ui.rdfmapping.check.normal">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="com.zazuko.rdfmapping.dsl.ui.rdfmapping.check.expensive">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+	</extension>
+	<!-- Rename Refactoring -->
+	<extension point="org.eclipse.ui.handlers">
+		<handler 
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
+			<activeWhen>
+				<reference
+					definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			<command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+				style="push">
+				<visibleWhen checkEnabled="false">
+					<reference
+						definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="com.zazuko.rdfmapping.dsl.RdfMapping"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="com.zazuko.rdfmapping.dsl.RdfMapping.refactoring"
+			name="Refactoring">
+			<keywordReference id="com.zazuko.rdfmapping.dsl.ui.keyword_RdfMapping"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.compare.contentViewers">
+		<viewer id="com.zazuko.rdfmapping.dsl.RdfMapping.compare.contentViewers"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="xrm">
+		</viewer>
+		<contentTypeBinding
+			contentTypeId="com.zazuko.rdfmapping.dsl.RdfMapping.contenttype"
+			contentViewerId="com.zazuko.rdfmapping.dsl.RdfMapping.compare.contentViewers" />
+	</extension>
+	<extension point="org.eclipse.compare.contentMergeViewers">
+		<viewer id="com.zazuko.rdfmapping.dsl.RdfMapping.compare.contentMergeViewers"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="xrm" label="RdfMapping Compare">
+		</viewer>
+		<contentTypeBinding
+			contentTypeId="com.zazuko.rdfmapping.dsl.RdfMapping.contenttype"
+			contentMergeViewerId="com.zazuko.rdfmapping.dsl.RdfMapping.compare.contentMergeViewers" />
+	</extension>
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider id="com.zazuko.rdfmapping.dsl.RdfMapping.editors.documentProviders"
+			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+			extensions="xrm">
+		</provider>
+	</extension>
+	<extension point="org.eclipse.team.core.fileTypes">
+		<fileTypes
+			extension="xrm"
+			type="text">
+		</fileTypes>
+	</extension>
+</plugin>

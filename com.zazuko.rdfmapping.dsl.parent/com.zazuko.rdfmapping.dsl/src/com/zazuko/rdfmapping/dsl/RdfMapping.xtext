@@ -1,0 +1,115 @@
+grammar com.zazuko.rdfmapping.dsl.RdfMapping with org.eclipse.xtext.common.Terminals
+
+generate rdfMapping "http://www.zazuko.com/rdfmapping/dsl/RdfMapping"
+
+Domainmodel :
+    (elements+=Element)*;
+  
+Element:
+    SourceGroup | LogicalSource | PrefixHolder | Mapping | Import |
+    SourceTypesDefinition | LanguageTagDefinition ;
+
+SourceTypesDefinition: {SourceTypesDefinition}
+	'source-types' '{'
+		(types+=SourceType)*
+	'}';
+
+SourceType:
+	name=ID 'referenceFormulation' referenceFormulation=STRING;
+	
+DatatypesDefinition: {DatatypesDefinition}
+	'datatypes' '{'
+		prefix=Prefix
+		(types+=Datatype)*
+	'}';
+	
+Datatype:
+	name=ID;
+	
+LanguageTagDefinition: {LanguageTagDefinition}
+	'language-tags' '{'
+		(languageTags+=LanguageTag)*
+	'}';
+	
+LanguageTag:
+	name=ID;
+  
+SourceGroup:
+    'source-group' name=ID '{'
+    	'type' type=[SourceType]
+    	('source' source=STRING)?
+    	(logicalSources+=LogicalSource)*
+    '}';
+    
+LogicalSource:
+	'logical-source' name=ID '{'
+		('type' type=[SourceType])?
+		('source' source=STRING)?
+		('iterator' iterator=STRING)?
+		'referenceables' '{'
+			(referencables+=Referenceable)*
+	    '}'
+	'}';
+
+Referenceable:	
+    name=ID (value=STRING)?;
+    
+Vocabulary:	
+	'vocabulary' name=ID '{'
+    	prefix=Prefix
+		('classes' (classes+=RdfClass)*)?
+	    ('properties' (properties+=RdfProperty)*)?	
+    '}';
+   
+PrefixHolder:
+    DatatypesDefinition | Vocabulary;   
+    
+Prefix:
+	'prefix' label=STRING iri=STRING;
+    
+RdfProperty:
+	name=ID;
+	
+RdfClass:
+	name=ID;	
+    
+Mapping:
+	'map' name=ID 'from' source=[LogicalSource|QualifiedName] '{'
+		('use-vocabularies' (targetVocabularies+=[Vocabulary|QualifiedName])+ ';'?)?
+		'subject' subjectIriMapping=TemplateValuedTerm
+		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+ ';'?)?
+		 ('properties' (poMappings+=PredicateObjectMapping)+)?
+	'}';
+	
+SubjectTypeMapping:	
+	type=[RdfClass|QualifiedName];
+
+PredicateObjectMapping:	
+	property=[RdfProperty|QualifiedName] 
+	term=ValuedTerm;
+	
+ValuedTerm:
+	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm;
+// TODO: ConstantValuedTerm
+	
+ReferenceValuedTerm:
+	'from' reference=[Referenceable]
+	('with' 'datatype' datatype=[Datatype] | 'with' 'language-tag' languageTag=[LanguageTag])?
+	';'?;
+
+TemplateValuedTerm:
+	'template' template=STRING 'with' (references+=[Referenceable])+
+	';'?;
+	
+LinkedResourceTerm:
+	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
+	 ';'?;
+
+Import:
+    'import' importedNamespace=QualifiedNameWithWildcard;
+    
+QualifiedNameWithWildcard:
+    QualifiedName '.*'?;
+
+QualifiedName:
+    ID ('.' ID)*;
