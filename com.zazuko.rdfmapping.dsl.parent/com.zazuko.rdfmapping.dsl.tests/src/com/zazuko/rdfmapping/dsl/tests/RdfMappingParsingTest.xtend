@@ -21,7 +21,11 @@ class RdfMappingParsingTest {
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			Hello Xtext!
+			source-types {
+				xml referenceFormulation "ql:XPath"
+				rdb referenceFormulation "rr:SQL2008"
+				csv referenceFormulation "ql:CSV"
+			}
 		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
