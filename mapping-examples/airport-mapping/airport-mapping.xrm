@@ -15,10 +15,10 @@ logical-source airport {
 map AirportMapping from airport {
 	subject template "http://airport.example.com/{0}" with id
 	
-	types transit.Stop
+	types transit:Stop
 	
 	properties
-	transit.route from stop with datatype int
-	wgs84_pos.lat from latitude
-	wgs84_pos.long from longitude	
+	transit:route from stop with datatype int
+	wgs84_pos:lat from latitude
+	wgs84_pos:long from longitude	
 }

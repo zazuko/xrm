@@ -22,7 +22,6 @@ class RdfMappingScopeProvider extends AbstractRdfMappingScopeProvider {
 		if (context instanceof ReferenceValuedTerm &&
 			reference == RdfMappingPackage.Literals.REFERENCE_VALUED_TERM__REFERENCE) {
 			return scopeForReferenceables(context.eContainer.eContainer as Mapping)
-
 		} else if (context instanceof TemplateValuedTerm &&
 			reference == RdfMappingPackage.Literals.TEMPLATE_VALUED_TERM__REFERENCES) {
 			val mapping = switch context.eContainer {

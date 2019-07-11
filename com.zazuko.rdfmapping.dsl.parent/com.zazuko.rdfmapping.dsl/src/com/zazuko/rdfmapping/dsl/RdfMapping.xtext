@@ -82,10 +82,10 @@ Mapping:
 	'}';
 	
 SubjectTypeMapping:	
-	type=[RdfClass|QualifiedName];
+	type=[RdfClass|RdfQualifiedName];
 
 PredicateObjectMapping:	
-	property=[RdfProperty|QualifiedName] 
+	property=[RdfProperty|RdfQualifiedName] 
 	term=ValuedTerm;
 	
 ValuedTerm:
@@ -110,6 +110,9 @@ Import:
     
 QualifiedNameWithWildcard:
     QualifiedName '.*'?;
+
+RdfQualifiedName:
+	ID (':' ID)*;
 
 QualifiedName:
     ID ('.' ID)*;
