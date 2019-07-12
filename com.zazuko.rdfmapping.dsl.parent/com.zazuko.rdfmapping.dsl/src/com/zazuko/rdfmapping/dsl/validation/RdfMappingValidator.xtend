@@ -17,50 +17,6 @@ import org.eclipse.emf.ecore.EObject
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class RdfMappingValidator extends AbstractRdfMappingValidator {
-	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					RdfMappingPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
-	
-	/*
-	EList<LogicalSource> list
-	SourceType sourceGroupType = null;
-	
-	@Check
-    def void checkTypeDeclarations(SourceGroup sourceGroup) {
-    	list = sourceGroup.logicalSources;
-    	
-    	if(sourceGroup.type !== null){
-    		sourceGroupType = sourceGroup.type;
-    	}
-    	
-    	for (logicalSource : list) {
-    		
-    		if(sourceGroupType !== null){
- 	 			if(logicalSource.type !== null){
-    				warning("Type declared on Source Group and type declared on Logical Source.", 
-                		RdfMappingPackage.Literals.SOURCE_GROUP__TYPE);
-                	warning("Type declared on Source Group and type declared on Logical Source.", 
-                		RdfMappingPackage.Literals.LOGICAL_SOURCE__TYPE);
-	   			}
-    		}
-    		
-    		if(sourceGroupType == null){
-    			if(logicalSource.type == null){
-    				error("No, type declared for the logical source or source group", 
-                		RdfMappingPackage.Literals.LOGICAL_SOURCE__TYPE)
-    			}
-    		} 
-    	}
-    }
-	 */
 	 	
 	@Check
     def void checkTypeDeclarations(LogicalSource logicalSource) {
