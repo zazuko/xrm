@@ -1,0 +1,32 @@
+language-tags {
+	de en fr it
+}
+
+datatypes {
+	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
+	int
+}
+
+vocabulary schema {
+	prefix "schema:" "https://schema.org/"
+	
+	classes	
+		GovernmentPermit
+		GovernmentOrganization
+	
+	properties
+		name
+		alternateName
+		description
+}
+
+vocabulary ex {
+	prefix "ex:" "https://schema.example.org/"
+	
+	classes
+	
+	properties
+		agency
+		permitLevel
+		status
+}
