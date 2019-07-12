@@ -3,6 +3,13 @@
  */
 package com.zazuko.rdfmapping.dsl.validation
 
+import org.eclipse.xtext.validation.Check
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
+import org.eclipse.emf.common.util.EList
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
+import org.eclipse.emf.ecore.EObject
 
 /**
  * This class contains custom validation rules. 
@@ -22,4 +29,74 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 //		}
 //	}
 	
+	/*
+	EList<LogicalSource> list
+	SourceType sourceGroupType = null;
+	
+	@Check
+    def void checkTypeDeclarations(SourceGroup sourceGroup) {
+    	list = sourceGroup.logicalSources;
+    	
+    	if(sourceGroup.type !== null){
+    		sourceGroupType = sourceGroup.type;
+    	}
+    	
+    	for (logicalSource : list) {
+    		
+    		if(sourceGroupType !== null){
+ 	 			if(logicalSource.type !== null){
+    				warning("Type declared on Source Group and type declared on Logical Source.", 
+                		RdfMappingPackage.Literals.SOURCE_GROUP__TYPE);
+                	warning("Type declared on Source Group and type declared on Logical Source.", 
+                		RdfMappingPackage.Literals.LOGICAL_SOURCE__TYPE);
+	   			}
+    		}
+    		
+    		if(sourceGroupType == null){
+    			if(logicalSource.type == null){
+    				error("No, type declared for the logical source or source group", 
+                		RdfMappingPackage.Literals.LOGICAL_SOURCE__TYPE)
+    			}
+    		} 
+    	}
+    }
+	 */
+	 	
+	@Check
+    def void checkTypeDeclarations(LogicalSource logicalSource) {
+    	if(logicalSource.eContainer.eClass.name.equals("SourceGroup")){
+    		val sourceGroup = logicalSource.eContainer as SourceGroup;
+    		if(sourceGroup.type !== null){    		
+    			if(logicalSource.type !== null){
+                	warning("Type declared on Source Group and type declared on Logical Source.", 
+                		RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME);
+    			}
+    		}
+    		if(sourceGroup.type === null){    		
+    			if(logicalSource.type === null){
+    				error("No, type declared for the logical source or source group", 
+                		RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME)
+    			}
+    		}
+    	}
+    }
+    
+    @Check
+    def void checkSourceDeclarations(LogicalSource logicalSource) {
+    	if(logicalSource.eContainer.eClass.name.equals("SourceGroup")){
+    		val sourceGroup = logicalSource.eContainer as SourceGroup;
+    		if(sourceGroup.source !== null){    		
+    			if(logicalSource.source !== null){
+                	warning("Source declared on Source Group and type declared on Logical Source.", 
+                		RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME);
+    			}
+    		}
+    		if(sourceGroup.source === null){    		
+    			if(logicalSource.source === null){
+    				error("No, source declared for the logical source or source group", 
+                		RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME)
+    			}
+    		}
+    	}
+    }
 }

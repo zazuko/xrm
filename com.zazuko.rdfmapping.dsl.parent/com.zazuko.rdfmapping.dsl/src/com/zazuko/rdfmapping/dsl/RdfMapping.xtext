@@ -36,7 +36,7 @@ LanguageTag:
   
 SourceGroup:
     'source-group' name=ID '{'
-    	'type' type=[SourceType]
+    	('type' type=[SourceType])?
     	('source' source=STRING)?
     	(logicalSources+=LogicalSource)*
     '}';
