@@ -112,7 +112,7 @@ QualifiedNameWithWildcard:
     QualifiedName '.*'?;
 
 RdfQualifiedName:
-	ID (':' ID)*;
+	ID (':' ID);
 
 QualifiedName:
     ID ('.' ID)*;
