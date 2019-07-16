@@ -3,13 +3,10 @@
  */
 package com.zazuko.rdfmapping.dsl.validation
 
-import org.eclipse.xtext.validation.Check
-import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
-import org.eclipse.emf.common.util.EList
-import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
-import org.eclipse.emf.ecore.EObject
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
+import org.eclipse.xtext.validation.Check
 
 /**
  * This class contains custom validation rules. 

@@ -89,4 +89,28 @@ class ModelAccess {
 		}
 	}
 	
+	def static valueResolved(RdfClass it) {
+		if (value !== null) {
+			return value;
+		} else {
+			return name;
+		}
+	}
+	
+	def static valueResolved(RdfProperty it) {
+		if (value !== null) {
+			return value;
+		} else {
+			return name;
+		}
+	}
+	
+	def static valueResolved(Datatype it) {
+		if (value !== null) {
+			return value;
+		} else {
+			return name;
+		}
+	}
+	
 }

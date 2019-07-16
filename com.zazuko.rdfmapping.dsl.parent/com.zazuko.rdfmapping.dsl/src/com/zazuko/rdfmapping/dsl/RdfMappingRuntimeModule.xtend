@@ -3,13 +3,13 @@
  */
 package com.zazuko.rdfmapping.dsl
 
-import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class RdfMappingRuntimeModule extends AbstractRdfMappingRuntimeModule {
-	def Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
-		return RdfQualifiedNameConverter;
+	def Class<? extends IQualifiedNameProvider> ebindIQualifiedNameProvider() { 
+		return RdfQualifiedNameProvider;
 	}
 }
