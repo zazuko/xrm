@@ -24,7 +24,7 @@ DatatypesDefinition: {DatatypesDefinition}
 	'}';
 	
 Datatype:
-	name=ID;
+	name=ID (value=STRING)?;
 	
 LanguageTagDefinition: {LanguageTagDefinition}
 	'language-tags' '{'
@@ -68,10 +68,10 @@ Prefix:
 	'prefix' label=STRING iri=STRING;
     
 RdfProperty:
-	name=ID;
+	name=ID (value=STRING)?;
 	
 RdfClass:
-	name=ID;	
+	name=ID (value=STRING)?;	
     
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] '{'
