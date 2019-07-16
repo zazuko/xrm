@@ -17,8 +17,8 @@ SourceTypesDefinition: {SourceTypesDefinition}
 SourceType:
 	name=ID 'referenceFormulation' referenceFormulation=STRING;
 	
-DatatypesDefinition: {DatatypesDefinition}
-	'datatypes' '{'
+DatatypesDefinition: 
+	'datatypes' name=ID '{'
 		prefix=Prefix
 		(types+=Datatype)*
 	'}';
@@ -94,7 +94,7 @@ ValuedTerm:
 	
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
-	('with' 'datatype' datatype=[Datatype] | 'with' 'language-tag' languageTag=[LanguageTag])?
+	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	';'?;
 
 TemplateValuedTerm:
