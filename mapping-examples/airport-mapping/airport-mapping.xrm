@@ -18,7 +18,7 @@ map AirportMapping from airport {
 	types transit.Stop
 	
 	properties
-	transit.route from stop with datatype int
+	transit.route from stop with datatype xsd.int
 	wgs84_pos.lat from latitude
 	wgs84_pos.long from longitude	
 }

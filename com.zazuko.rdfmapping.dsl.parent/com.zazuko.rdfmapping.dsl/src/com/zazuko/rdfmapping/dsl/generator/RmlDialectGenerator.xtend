@@ -61,14 +61,14 @@ class RmlDialectGenerator {
 		rr:subjectMap [
 			rr:template "«m.subjectIri»";
 			«FOR stm : m.subjectTypeMappings»
-				rr:class «stm.type.vocabulary.prefix.label»«stm.type.name» ;
+				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
 			«ENDFOR»	
 		];
 	'''
 	
 	def predicateObjectMap(PredicateObjectMapping pom) '''
 		rr:predicateObjectMap [
-			rr:predicate «pom.property.vocabulary.prefix.label»«pom.property.name» ;
+			rr:predicate «pom.property.vocabulary.prefix.label»«pom.property.valueResolved» ;
 			rr:objectMap [
 				«pom.term.objectTermMap»
 			];
@@ -96,7 +96,7 @@ class RmlDialectGenerator {
 		«IF languageTag !== null»
 			rr:language "«languageTag.name»" ;
 		«ELSEIF datatype !== null»
-			rr:datatype «datatype.prefix.label»«datatype.name» ;
+			rr:datatype «datatype.prefix.label»«datatype.valueResolved» ;
 		«ENDIF»
 	'''
 	

@@ -2,11 +2,6 @@ language-tags {
 	de en fr it
 }
 
-datatypes {
-	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
-	int
-}
-
 vocabulary schema {
 	prefix "schema:" "https://schema.org/"
 	

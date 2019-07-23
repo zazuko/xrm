@@ -17,14 +17,14 @@ SourceTypesDefinition: {SourceTypesDefinition}
 SourceType:
 	name=ID 'referenceFormulation' referenceFormulation=STRING;
 	
-DatatypesDefinition: {DatatypesDefinition}
-	'datatypes' '{'
+DatatypesDefinition: 
+	'datatypes' name=ID '{'
 		prefix=Prefix
 		(types+=Datatype)*
 	'}';
 	
 Datatype:
-	name=ID;
+	name=ID (value=STRING)?;
 	
 LanguageTagDefinition: {LanguageTagDefinition}
 	'language-tags' '{'
@@ -68,10 +68,10 @@ Prefix:
 	'prefix' label=STRING iri=STRING;
     
 RdfProperty:
-	name=ID;
+	name=ID (value=STRING)?;
 	
 RdfClass:
-	name=ID;	
+	name=ID (value=STRING)?;	
     
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] '{'
@@ -94,7 +94,7 @@ ValuedTerm:
 	
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
-	('with' 'datatype' datatype=[Datatype] | 'with' 'language-tag' languageTag=[LanguageTag])?
+	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	';'?;
 
 TemplateValuedTerm:
