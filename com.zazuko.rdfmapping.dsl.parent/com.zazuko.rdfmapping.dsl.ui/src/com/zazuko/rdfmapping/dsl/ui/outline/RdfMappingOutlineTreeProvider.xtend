@@ -3,7 +3,13 @@
  */
 package com.zazuko.rdfmapping.dsl.ui.outline
 
+import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
 
 /**
  * Customization of the default outline structure.
@@ -11,5 +17,21 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
 class RdfMappingOutlineTreeProvider extends DefaultOutlineTreeProvider {
-
+	
+    def _createChildren(DocumentRootNode parentNode, Mapping mapping) {
+            createNode(parentNode,  mapping.subjectIriMapping);
+        }
+        
+	def _createChildren(DocumentRootNode parentNode, Vocabulary v) {
+	       createNode(parentNode,  v.prefix);
+	   }
+          
+    
+    def _createNode(IOutlineNode parentNode, Prefix modelElement) {
+    	
+    }
+    
+    def _createNode(IOutlineNode parentNode, TemplateValuedTerm modelElement) {
+    	
+    }
 }

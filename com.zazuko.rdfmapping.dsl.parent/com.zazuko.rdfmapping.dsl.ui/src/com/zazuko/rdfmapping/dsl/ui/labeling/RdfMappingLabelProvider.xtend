@@ -6,6 +6,10 @@ package com.zazuko.rdfmapping.dsl.ui.labeling
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceTypesDefinition
+import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
 
 /**
  * Provides labels for EObjects.
@@ -19,13 +23,17 @@ class RdfMappingLabelProvider extends DefaultEObjectLabelProvider {
 		super(delegate);
 	}
 
-	// Labels and icons can be computed like this:
+	def text(PredicateObjectMapping pom) {
+		val vocab = pom.property.eContainer as Vocabulary;
+		vocab.name + ":" + pom.property.name
+	}	
 	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	def text(SourceTypesDefinition std) {
+		"source-types"
+	}
+	
+	def text(LanguageTagDefinition ltd) {
+		"language-tags"
+	}	
+	
 }

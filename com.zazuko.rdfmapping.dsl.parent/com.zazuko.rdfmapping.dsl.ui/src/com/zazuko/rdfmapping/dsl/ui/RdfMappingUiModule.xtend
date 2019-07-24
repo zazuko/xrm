@@ -4,10 +4,21 @@
 package com.zazuko.rdfmapping.dsl.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider
+import com.zazuko.rdfmapping.dsl.ui.outline.RdfMappingOutlineTreeProvider
+import org.eclipse.jface.viewers.LabelProvider
+import com.zazuko.rdfmapping.dsl.ui.labeling.RdfMappingLabelProvider
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class RdfMappingUiModule extends AbstractRdfMappingUiModule {
+	override Class<? extends IOutlineTreeProvider> bindIOutlineTreeProvider() {
+    	return RdfMappingOutlineTreeProvider;
+	}
+	
+	def Class<? extends LabelProvider> bindLabelProvider() {
+    	return RdfMappingLabelProvider;
+	}
 }
