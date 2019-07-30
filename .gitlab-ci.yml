@@ -5,7 +5,6 @@ variables:
 
 stages: 
   - package
-  - deploy
 
 package: 
   stage: package
@@ -13,10 +12,4 @@ package:
     - master
   script: 
     - "mvn $MAVEN_CLI_OPTS package"
-
-show_updatesite_artifacts: 
-  stage: deploy
-  only: 
-    - master
-  script: 
     - "ls -l com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/"
