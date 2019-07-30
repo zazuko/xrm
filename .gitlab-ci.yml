@@ -1,0 +1,24 @@
+image: maven:3-jdk-8
+
+variables:
+  MAVEN_CLI_OPTS: "-f com.zazuko.rdfmapping.dsl.parent --batch-mode"
+
+stages:
+	- package
+	- deploy
+
+
+package:
+	stage: package
+	script:
+		- mvn $MAVEN_CLI_OPTS package
+	only:
+   	- master
+
+
+show_updatesite_artifacts:
+  stage: deploy
+  script:
+		- ls -l com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/
+	only:
+   	- master
