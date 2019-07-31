@@ -38,11 +38,11 @@ class RmlDialectGenerator {
 		«FOR prefixHolder:mappings.prefixesUsed.inDeterministicOrder»
 			PREFIX «prefixHolder.prefix.label» <«prefixHolder.prefix.iri»>
 		«ENDFOR»
-		
-		# debug output ..
-		«FOR m:mappings»
-			# «m.name» 
-		«ENDFOR»
+«««		
+«««		# debug output ..
+«««		«FOR m:mappings»
+«««			# «m.name» 
+«««		«ENDFOR»
 
 	'''
 	
