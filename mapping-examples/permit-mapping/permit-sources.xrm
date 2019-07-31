@@ -8,8 +8,8 @@ source-group permits {
     logical-source t_agency {
         source "t_agency"
 
-        referenceables {
-        	AGENCY_ID
+        referenceables
+	    	AGENCY_ID
 			AGENCY_NAME_DE
 			AGENCY_NAME_EN
 			AGENCY_NAME_FR
@@ -17,14 +17,13 @@ source-group permits {
 			AGENCY_ABBREV_DE
 			AGENCY_ABBREV_EN
 			AGENCY_ABBREV_FR
-			AGENCY_ABBREV_IT	
-        }
+			AGENCY_ABBREV_IT
     }
     
     logical-source t_permit {
     	source "t_permit"
     	
-    	referenceables {
+    	referenceables
 			PERMIT_ID
 			PERMIT_DESC_DE
 			PERMIT_DESC_EN
@@ -33,6 +32,5 @@ source-group permits {
 			PERMIT_LEVEL
 			PERMIT_STATUS
 			PERMIT_AGENCY_FK
-    	}
     }
 }

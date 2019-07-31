@@ -25,9 +25,8 @@ class ValidationRuleTest {
 			source-group WSD_STABS_SCP_ARCHIV_DBA {
 			    logical-source RECS_rico {
 			        source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
-			        referenceables {
+			        referenceables
 			            P2 "RIC_P2"
-			        }
 			    }
 			}
 		''')
@@ -48,9 +47,8 @@ class ValidationRuleTest {
 			    logical-source RECS_rico {
 			    	type xml
 			    	   source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
-			    	   referenceables {
+			    	   referenceables
 			    	       P2 "RIC_P2"
-			    	   }
 			    }
 			}
 		''')
@@ -70,9 +68,8 @@ class ValidationRuleTest {
 				type xml
 				   logical-source RECS_rico {
 				       source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
-				       referenceables {
+				       referenceables
 				           P2 "RIC_P2"
-				       }
 				   }
 			}
 		''')
@@ -90,9 +87,8 @@ class ValidationRuleTest {
 			}
 			logical-source RECS_rico {
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
-				referenceables {
+				referenceables
 					P2 "RIC_P2"
-				}
 			}
 		''')
 
@@ -111,9 +107,8 @@ class ValidationRuleTest {
 			logical-source RECS_rico {
 				type xml
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
-				referenceables {
+				referenceables
 					P2 "RIC_P2"
-				}
 			}
 		''')
 
@@ -135,9 +130,8 @@ class ValidationRuleTest {
 				type xml
 				       source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
 			
-			        referenceables {
+			        referenceables
 			            P2 "RIC_P2"
-			        }
 			    }
 			}
 		''')
@@ -158,9 +152,8 @@ class ValidationRuleTest {
 			source-group WSD_STABS_SCP_ARCHIV_DBA {
 			    logical-source RECS_rico {
 			        type xml
-			        referenceables {
+			        referenceables
 			            P2 "RIC_P2"
-			        }
 			    }
 			}
 		''')
@@ -181,9 +174,8 @@ class ValidationRuleTest {
 			    logical-source RECS_rico {
 			    	type xml
 			    	   source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
-			    	   referenceables {
+			    	   referenceables
 			    	       P2 "RIC_P2"
-			    	   }
 			    }
 			}
 		''')
@@ -203,9 +195,8 @@ class ValidationRuleTest {
 				type xml
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
 				   logical-source RECS_rico {
-				       referenceables {
+				       referenceables
 				           P2 "RIC_P2"
-				       }
 				   }
 			}
 		''')
@@ -223,9 +214,8 @@ class ValidationRuleTest {
 			}
 			logical-source RECS_rico {
 				type xml
-				referenceables {
+				referenceables
 					P2 "RIC_P2"
-				}
 			}
 		''')
 
@@ -244,9 +234,8 @@ class ValidationRuleTest {
 			logical-source RECS_rico {
 				type xml
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
-				referenceables {
+				referenceables
 					P2 "RIC_P2"
-				}
 			}
 		''')
 
@@ -268,9 +257,8 @@ class ValidationRuleTest {
 			    logical-source RECS_rico {
 			        source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
 			
-			        referenceables {
+			        referenceables
 			            P2 "RIC_P2"
-			        }
 			    }
 			}
 		''')

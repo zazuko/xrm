@@ -46,9 +46,8 @@ LogicalSource:
 		('type' type=[SourceType])?
 		('source' source=STRING)?
 		('iterator' iterator=STRING)?
-		'referenceables' '{'
-			(referencables+=Referenceable)*
-	    '}'
+		'referenceables'
+			(referenceables+=Referenceable)*
 	'}';
 
 Referenceable:	

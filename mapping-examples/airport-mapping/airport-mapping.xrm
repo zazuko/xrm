@@ -4,12 +4,11 @@ logical-source airport {
 	type csv
 	source "http://www.example.com/Airport.csv"
 	
-	referenceables {
+	referenceables
 		id "id"
 		stop "stop"
 		latitude "latitude"
 		longitude "longitude"
-	}
 }
 
 map AirportMapping from airport {
@@ -18,7 +17,7 @@ map AirportMapping from airport {
 	types transit.Stop
 	
 	properties
-	transit.route from stop with datatype xsd.int
-	wgs84_pos.lat from latitude
-	wgs84_pos.long from longitude	
+		transit.route from stop with datatype xsd.int
+		wgs84_pos.lat from latitude
+		wgs84_pos.long from longitude	
 }

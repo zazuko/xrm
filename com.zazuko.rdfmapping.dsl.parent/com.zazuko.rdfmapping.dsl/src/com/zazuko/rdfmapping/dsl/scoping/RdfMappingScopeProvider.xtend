@@ -40,6 +40,6 @@ class RdfMappingScopeProvider extends AbstractRdfMappingScopeProvider {
 	}
 
 	def scopeForReferenceables(Mapping mapping) {
-		return Scopes.scopeFor(mapping.source.referencables)
+		return Scopes.scopeFor(mapping.source.referenceables)
 	}
 }
