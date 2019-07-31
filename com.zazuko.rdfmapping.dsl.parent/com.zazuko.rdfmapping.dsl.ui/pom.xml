@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.zazuko.rdfmapping.dsl</groupId>
 		<artifactId>com.zazuko.rdfmapping.dsl.parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>0.9.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>com.zazuko.rdfmapping.dsl.ui</artifactId>
 	<packaging>eclipse-plugin</packaging>

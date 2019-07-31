@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 Automatic-Module-Name: com.zazuko.rdfmapping.dsl.tests
 Bundle-ManifestVersion: 2
 Bundle-Name: com.zazuko.rdfmapping.dsl.tests
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: zazuko.com
+Bundle-Version: 0.9.0.qualifier
 Bundle-SymbolicName: com.zazuko.rdfmapping.dsl.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.zazuko.rdfmapping.dsl,

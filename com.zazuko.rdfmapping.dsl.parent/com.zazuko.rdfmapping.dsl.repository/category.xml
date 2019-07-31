@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-	<feature id="com.zazuko.rdfmapping.dsl.feature" version="0.0.0">
-		<category name="main"/>
-	</feature>
-	<feature id="com.zazuko.rdfmapping.dsl.feature.source" version="0.0.0">
-		<category name="main.source"/>
-	</feature>
-	<category-def name="main" label="RdfMapping"/>
-	<category-def name="main.source" label="RdfMapping (Sources)"/>
+   <feature id="com.zazuko.rdfmapping.dsl.feature" version="0.0.0">
+      <category name="main"/>
+   </feature>
+   <category-def name="main" label="zazuko.com"/>
+   <repository-reference location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" enabled="true" />
 </site>
