@@ -6,7 +6,7 @@ Domainmodel :
     (elements+=Element)*;
   
 Element:
-    SourceGroup | LogicalSource | PrefixHolder | Mapping | Import |
+    SourceGroup | LogicalSource | PrefixHolder | Mapping |
     SourceTypesDefinition | LanguageTagDefinition ;
 
 SourceTypesDefinition: {SourceTypesDefinition}
@@ -45,7 +45,6 @@ LogicalSource:
 	'logical-source' name=ID '{'
 		('type' type=[SourceType])?
 		('source' source=STRING)?
-		('iterator' iterator=STRING)?
 		'referenceables'
 			(referenceables+=Referenceable)*
 	'}';
@@ -74,7 +73,6 @@ RdfClass:
     
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] '{'
-		('use-vocabularies' (targetVocabularies+=[Vocabulary|QualifiedName])+ ';'?)?
 		'subject' subjectIriMapping=TemplateValuedTerm
 		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+ ';'?)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
@@ -89,7 +87,6 @@ PredicateObjectMapping:
 	
 ValuedTerm:
 	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm;
-// TODO: ConstantValuedTerm
 	
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
@@ -103,12 +100,6 @@ TemplateValuedTerm:
 LinkedResourceTerm:
 	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
 	 ';'?;
-
-Import:
-    'import' importedNamespace=QualifiedNameWithWildcard;
-    
-QualifiedNameWithWildcard:
-    QualifiedName '.*'?;
 
 QualifiedName:
     ID ('.' ID)*;
