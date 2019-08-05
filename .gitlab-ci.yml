@@ -13,6 +13,7 @@ package:
   stage: package
   only: 
     - master
+    - tags
   script: 
     - "mvn $MAVEN_CLI_OPTS package"
     - "ls -l com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/"
