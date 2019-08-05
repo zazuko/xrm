@@ -1,0 +1,6 @@
+[default]
+host_base = $S3_ENDPOINT
+host_bucket = %(bucket)s.fra1.digitaloceanspaces.com
+access_key = $S3_ACCESS_KEY
+secret_key = $S3_SECRET_KEY
+use_https = True
