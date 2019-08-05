@@ -1,10 +1,13 @@
 image: maven:3-jdk-8
+before_script:
+  - apt-get update -qq && apt-get install -y -qq s3cmd
 
 variables: 
   MAVEN_CLI_OPTS: "-f com.zazuko.rdfmapping.dsl.parent --batch-mode"
 
 stages: 
   - package
+  - publish
 
 package: 
   stage: package
@@ -13,3 +16,14 @@ package:
   script: 
     - "mvn $MAVEN_CLI_OPTS package"
     - "ls -l com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/"
+  artifacts:
+    paths:
+      - com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/
+    expire_in: 60 minutes
+
+s3:
+  stage: publish
+  only:
+    - tags
+  script: 
+    - s3cmd -c config/s3cmd sync --delete-removed com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/repository/ s3://zazuko-download/rdf-mapping-dsl/releases/$CI_COMMIT_TAG/
