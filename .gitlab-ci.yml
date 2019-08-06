@@ -27,4 +27,4 @@ s3:
   only:
     - tags
   script: 
-    - s3cmd -c config/s3cmd sync --delete-removed com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/repository/ s3://zazuko-download/rdf-mapping-dsl/releases/$CI_COMMIT_TAG/
+    - s3cmd -c config/s3cmd sync --acl-public --delete-removed com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/repository/ s3://zazuko-download/rdf-mapping-dsl/releases/$CI_COMMIT_TAG/
