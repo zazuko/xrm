@@ -14,6 +14,8 @@ package:
   only: 
     - master
     - tags
+  except:
+    - composite
   script: 
     - "mvn $MAVEN_CLI_OPTS package"
     - "ls -l com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/"
@@ -22,9 +24,18 @@ package:
       - com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/
     expire_in: 60 minutes
 
-s3:
+s3-releases:
   stage: publish
   only:
     - tags
+  except:
+    - composite
   script: 
     - s3cmd -c config/s3cmd sync --acl-public --delete-removed com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository/target/repository/ s3://zazuko-download/rdf-mapping-dsl/releases/$CI_COMMIT_TAG/
+
+s3-updates-composite:
+  stage: publish
+  only:
+    - composite
+  script: 
+    - s3cmd -c config/s3cmd sync --acl-public --delete-removed com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.repository-composite/updates/ s3://zazuko-download/rdf-mapping-dsl/updates/
