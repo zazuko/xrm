@@ -11,6 +11,8 @@ import java.text.MessageFormat
 import java.util.List
 
 import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.*
+import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 
 class CsvwDialectGenerator {
 
@@ -29,22 +31,71 @@ class CsvwDialectGenerator {
 	def generateJson(Iterable<Mapping> mappings) '''
 		{
 			«context()»
-			«dialect()»
 			«mappings.map[tableSchema].join('\n')»
 		}
+	'''
+	def dialect(DialectGroup d) '''
+		"dialect": {
+			"delimiter": "«d.delimiter»"
+			«IF d.commentPrefix !== null»
+				,"commentPrefix": "«d.commentPrefix»"
+			«ENDIF»
+			«IF d.doubleQuote !== null»
+				,"doubleQuote": «d.doubleQuote.value»
+			«ENDIF»
+			«IF d.encoding !== null»
+				,"encoding": "«d.encoding»"
+			«ENDIF»
+			«IF d.header !== null»
+				,"header": «d.header.value»
+			«ENDIF»
+			«IF d.headerRowCount !== 0»
+				,"headerRowCount": "«d.headerRowCount»"
+			«ENDIF»
+			«IF d.lineTerminators !== null»
+				,"lineTerminators": "«d.lineTerminators»"
+			«ENDIF»
+			«IF d.quoteChar !== null»
+				,"quoteChar": "«d.quoteChar»"
+			«ENDIF»
+			«IF d.skipBlankRows !== null»
+				,"skipBlankRows": «d.skipBlankRows.value»
+			«ENDIF»
+			«IF d.skipColumns !== 0»
+				,"skipColumns": "«d.skipColumns»"
+			«ENDIF»
+			«IF d.skipInitialSpace != null»
+				,"skipInitialSpace": «d.skipInitialSpace.value»
+			«ENDIF»
+			«IF d.skipRows !== 0»
+				,"skipRows": "«d.skipRows»"
+			«ENDIF»
+			«IF d.trim !== null»
+				,"trim": «d.trim.value»
+			«ENDIF»
+		},
 	'''
 	
 	def tableSchema(Mapping m) '''
 		"url": "«m.source.source»",
+		«m.source.dialect.dialect()»
 		"tableSchema": {
 			«m.subjectMap()»
 			"columns": [
 				«m.subjectTypeMappings()»
-				«FOR pom : m.poMappings SEPARATOR ","»
-					«pom.column»
-				«ENDFOR»
+				«m.columns()»
+				«m.suppressOutput()»
 			] 
 		}
+	'''
+	
+	def suppressOutput(Mapping m)'''
+		«FOR ref : m.notUsedReferencables SEPARATOR "," AFTER ","»
+			{
+				"suppressOutput": true,
+				"titles": "«ref.valueResolved»"
+			}
+		«ENDFOR»
 	'''
 	
 	def subjectTypeMappings(Mapping m)'''
@@ -61,16 +112,23 @@ class CsvwDialectGenerator {
 		"aboutUrl": "«m.subjectIri»",
 	'''
 	
-	def column(PredicateObjectMapping pom) '''
-		{
-			"propertyUrl": "«pom.property.vocabulary.prefix.iri»«pom.property.valueResolved»",
-			«pom.term.valueReference»
-		}
+	def columns(Mapping m) '''
+		«FOR pom : m.poMappings SEPARATOR ","»
+			{
+				"propertyUrl": "«pom.property.vocabulary.prefix.iri»«pom.property.valueResolved»",
+				«pom.term.valueReference»
+			}
+		«ENDFOR»
 	'''
 	
 	def dispatch valueReference(ReferenceValuedTerm it) '''
 		«termMapAnnex»
 		"titles": "«reference.valueResolved»"
+	'''
+	
+	def dispatch valueReference(ConstantValuedTerm it) '''
+		"virtual": true,
+		"valueUrl": "«constant»"
 	'''
 	
 	def dispatch valueReference(TemplateValuedTerm it) '''

@@ -11,6 +11,7 @@ import java.text.MessageFormat
 import java.util.List
 
 import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.*
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 
 class RmlDialectGenerator {
 
@@ -38,12 +39,6 @@ class RmlDialectGenerator {
 		«FOR prefixHolder:mappings.prefixesUsed.inDeterministicOrder»
 			PREFIX «prefixHolder.prefix.label» <«prefixHolder.prefix.iri»>
 		«ENDFOR»
-«««		
-«««		# debug output ..
-«««		«FOR m:mappings»
-«««			# «m.name» 
-«««		«ENDFOR»
-
 	'''
 	
 	def triplesMap(Mapping m) '''
@@ -82,6 +77,10 @@ class RmlDialectGenerator {
 	def dispatch objectTermMap(ReferenceValuedTerm it) '''
 		«objectMapReferencePredicate» "«reference.valueResolved»" ;
 		«termMapAnnex»
+	'''
+	
+	def dispatch objectTermMap(ConstantValuedTerm it) '''
+		rr:constant «toConstantValue» ;
 	'''
 	
 	def dispatch objectTermMap(TemplateValuedTerm it) '''

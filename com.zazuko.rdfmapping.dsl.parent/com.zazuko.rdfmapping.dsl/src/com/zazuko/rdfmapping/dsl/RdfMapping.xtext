@@ -7,7 +7,7 @@ Domainmodel :
   
 Element:
     SourceGroup | LogicalSource | PrefixHolder | Mapping |
-    SourceTypesDefinition | LanguageTagDefinition ;
+    SourceTypesDefinition | LanguageTagDefinition | DialectGroup;
 
 SourceTypesDefinition: {SourceTypesDefinition}
 	'source-types' '{'
@@ -41,13 +41,34 @@ SourceGroup:
     	(logicalSources+=LogicalSource)*
     '}';
     
+DialectGroup:
+	'dialect' name=ID '{'
+		'delimiter' delimiter=STRING &
+		('commentPrefix' commentPrefix=STRING)? &
+		('doubleQuote' doubleQuote=BooleanLiteral)? &
+		('encoding' encoding=STRING)? &
+		('header' header=BooleanLiteral)? &
+		('headerRowCount' headerRowCount=INT)? & 
+		('lineTerminators' lineTerminators=STRING)? &
+		('quoteChar' quoteChar=STRING)? & 
+		('skipBlankRows' skipBlankRows=BooleanLiteral)? &
+		('skipColumns' skipColumns=INT)? &
+		('skipInitialSpace' skipInitialSpace=BooleanLiteral)? &
+		('skipRows' skipRows=INT)? &
+		('trim' trim=BooleanLiteral)? &
+	'}';
+    
 LogicalSource:
 	'logical-source' name=ID '{'
-		('type' type=[SourceType])?
-		('source' source=STRING)?
+		('type' type=[SourceType])? &
+		('source' source=STRING)? &
+		('dialect' dialect=[DialectGroup])? &
 		'referenceables'
 			(referenceables+=Referenceable)*
 	'}';
+
+BooleanLiteral:
+    value?='true' | 'false';
 
 Referenceable:	
     name=ID (value=STRING)?;
@@ -86,12 +107,15 @@ PredicateObjectMapping:
 	term=ValuedTerm;
 	
 ValuedTerm:
-	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm;
+	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm | ConstantValuedTerm;
 	
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	';'?;
+
+ConstantValuedTerm:
+	'constant' constant=STRING;
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+

@@ -13,6 +13,8 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import java.util.HashSet
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
+import java.net.URL
 
 class ModelAccess {
 	
@@ -47,6 +49,45 @@ class ModelAccess {
 	def static vocabulary(RdfProperty it) {
 		eContainer as Vocabulary;
 	}
+	
+	def static notUsedReferencables(Mapping it){
+		val result = new HashSet();
+		for (ref : source.referenceables) {
+			var refUsed = false;
+			for (poMapping : poMappings) {
+				val term = poMapping.term
+				if (term instanceof ReferenceValuedTerm) {				
+					if(ref.valueResolved == term.reference.valueResolved){
+						refUsed = true;	
+					}
+				}
+			}
+			if(refUsed == false){
+				result.add(ref);
+			}
+		}
+		return result
+	}
+	
+	def static toConstantValue(ConstantValuedTerm it) {
+		if(isValid(constant)){
+			return "<"+constant+">"
+		}else{
+			return "\""+constant+"\""
+		}
+	}
+	
+	def static boolean isValid(String url) 
+    { 
+        try { 
+            new URL(url).toURI(); 
+            return true; 
+        } 
+          
+        catch (Exception e) { 
+            return false; 
+        } 
+    } 
 	
 	def static prefixesUsed(Mapping it) {
 		val result = new HashSet();
