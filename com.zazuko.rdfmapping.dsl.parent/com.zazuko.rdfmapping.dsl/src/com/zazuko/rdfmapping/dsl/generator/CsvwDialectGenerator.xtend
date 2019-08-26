@@ -78,7 +78,13 @@ class CsvwDialectGenerator {
 	
 	def tableSchema(Mapping m) '''
 		"url": "«m.source.source»",
-		«m.source.dialect.dialect()»
+		«IF m.source.dialect !== null»
+			«m.source.dialect.dialect()»
+		«ELSE»
+			"dialect": {
+						"delimiter": ";"
+			}
+		«ENDIF»
 		"tableSchema": {
 			«m.subjectMap()»
 			"columns": [
