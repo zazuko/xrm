@@ -1,18 +1,16 @@
 package com.zazuko.rdfmapping.dsl.generator
 
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
-import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
-import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import java.text.MessageFormat
 import java.util.List
 
 import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.*
-import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
-import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 
 class CsvwDialectGenerator {
 
@@ -31,7 +29,7 @@ class CsvwDialectGenerator {
 	def generateJson(Iterable<Mapping> mappings) '''
 		{
 			«context()»
-			«mappings.map[tableSchema].join('\n')»
+			«mappings.map[tableSchema].join('\n,')»
 		}
 	'''
 	def dialect(DialectGroup d) '''
@@ -64,7 +62,7 @@ class CsvwDialectGenerator {
 			«IF d.skipColumns !== 0»
 				,"skipColumns": "«d.skipColumns»"
 			«ENDIF»
-			«IF d.skipInitialSpace != null»
+			«IF d.skipInitialSpace !== null»
 				,"skipInitialSpace": «d.skipInitialSpace.value»
 			«ENDIF»
 			«IF d.skipRows !== 0»
@@ -73,30 +71,30 @@ class CsvwDialectGenerator {
 			«IF d.trim !== null»
 				,"trim": «d.trim.value»
 			«ENDIF»
-		},
+		}
 	'''
 	
 	def tableSchema(Mapping m) '''
 		"url": "«m.source.source»",
 		«IF m.source.dialect !== null»
-			«m.source.dialect.dialect()»
+			«m.source.dialect.dialect()»,
 		«ELSE»
 			"dialect": {
-						"delimiter": ";"
-			}
+				"delimiter": ";"
+			},
 		«ENDIF»
 		"tableSchema": {
-			«m.subjectMap()»
+			«m.subjectMap()»,
 			"columns": [
-				«m.subjectTypeMappings()»
-				«m.columns()»
+				«m.subjectTypeMappings()»«IF ! m.subjectTypeMappings.empty && (m.poMappings.length + m.notUsedReferencables.length > 0)»,«ENDIF»
+				«m.columns()»«IF ! m.poMappings.empty && (m.notUsedReferencables.length > 0)»,«ENDIF»
 				«m.suppressOutput()»
 			] 
 		}
 	'''
 	
 	def suppressOutput(Mapping m)'''
-		«FOR ref : m.notUsedReferencables SEPARATOR "," AFTER ","»
+		«FOR ref : m.notUsedReferencables SEPARATOR ","»
 			{
 				"suppressOutput": true,
 				"titles": "«ref.valueResolved»"
@@ -105,7 +103,7 @@ class CsvwDialectGenerator {
 	'''
 	
 	def subjectTypeMappings(Mapping m)'''
-		«FOR stm : m.subjectTypeMappings SEPARATOR "," AFTER ","»
+		«FOR stm : m.subjectTypeMappings SEPARATOR ","»
 			{
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -114,9 +112,7 @@ class CsvwDialectGenerator {
 		«ENDFOR»
 	'''
 	
-	def subjectMap(Mapping m) '''
-		"aboutUrl": "«m.subjectIri»",
-	'''
+	def subjectMap(Mapping m) '''"aboutUrl": "«m.subjectIri»"'''
 	
 	def columns(Mapping m) '''
 		«FOR pom : m.poMappings SEPARATOR ","»
