@@ -29,7 +29,9 @@ class CsvwDialectGenerator {
 	def generateJson(Iterable<Mapping> mappings) '''
 		{
 			«context()»
-			«mappings.map[tableSchema].join('\n,')»
+			"tables": [
+				«mappings.map[tableSchema].join('\n,')»
+			]
 		}
 	'''
 	def dialect(DialectGroup d) '''
@@ -71,17 +73,14 @@ class CsvwDialectGenerator {
 			«IF d.trim !== null»
 				,"trim": «d.trim.value»
 			«ENDIF»
-		}
+		},
 	'''
 	
 	def tableSchema(Mapping m) '''
+	{
 		"url": "«m.source.source»",
 		«IF m.source.dialect !== null»
-			«m.source.dialect.dialect()»,
-		«ELSE»
-			"dialect": {
-				"delimiter": ";"
-			},
+			«m.source.dialect.dialect()»
 		«ENDIF»
 		"tableSchema": {
 			«m.subjectMap()»,
@@ -91,6 +90,7 @@ class CsvwDialectGenerator {
 				«m.suppressOutput()»
 			] 
 		}
+	}
 	'''
 	
 	def suppressOutput(Mapping m)'''
