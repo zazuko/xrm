@@ -6,6 +6,8 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 
+import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.typeResolved
+
 /**
  * Generates code from your model files on save.
  * 
@@ -16,7 +18,7 @@ class RdfMappingGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		
 		val Iterable<Mapping> mappings = resource.allContents.filter(Mapping).toList
-		val Iterable<Mapping> csvwMappings = mappings.filter[source.type.name == 'csv'].toList
+		val Iterable<Mapping> csvwMappings = mappings.filter[source.typeResolved?.name == 'csv'].toList
 		
 		val String dslFileName = resource.getURI().lastSegment.toString();
 		val String outFileBase = dslFileName.substring(0, dslFileName.lastIndexOf("."));
