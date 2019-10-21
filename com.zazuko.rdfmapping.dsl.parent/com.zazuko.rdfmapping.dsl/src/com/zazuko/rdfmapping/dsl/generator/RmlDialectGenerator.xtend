@@ -39,18 +39,19 @@ class RmlDialectGenerator {
 		«FOR prefixHolder:mappings.prefixesUsed.inDeterministicOrder»
 			PREFIX «prefixHolder.prefix.label» <«prefixHolder.prefix.iri»>
 		«ENDFOR»
+		
 	'''
 	
 	def triplesMap(Mapping m) '''
 		<#«m.name»>
 			«m.logicalSource»
 			
-			«m.subjectMap()»
+			«m.subjectMap()»«IF ! m.poMappings.empty»;«ENDIF»
 			
-			«FOR pom : m.poMappings SEPARATOR ";" AFTER "."»
+			«FOR pom : m.poMappings SEPARATOR ";"»
 				«pom.predicateObjectMap»
 			«ENDFOR»
-	'''
+		.'''
 	
 	def subjectMap(Mapping m) '''
 		rr:subjectMap [
@@ -58,8 +59,7 @@ class RmlDialectGenerator {
 			«FOR stm : m.subjectTypeMappings»
 				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
 			«ENDFOR»	
-		];
-	'''
+		]'''
 	
 	def predicateObjectMap(PredicateObjectMapping pom) '''
 		rr:predicateObjectMap [
