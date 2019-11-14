@@ -14,12 +14,6 @@ import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.*
 
 class CsvwDialectGenerator {
 
-	/*
-	 * RML broadens R2RML's scope of application beyond that of relational databases.
-	 * For details: http://rml.io/RML_R2RML.html
-	 * 
-	 * In places where RML and R2RML differ, this generator dispatches to the respective dialect. 
-	 */
 	final extension CsvwDialect dialect;
 
 	new(CsvwDialect dialect) {
