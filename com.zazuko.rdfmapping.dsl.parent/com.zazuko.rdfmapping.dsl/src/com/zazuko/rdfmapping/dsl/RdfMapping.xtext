@@ -68,7 +68,7 @@ LogicalSource:
 	'}';
 
 BooleanLiteral:
-    value?='true' | 'false';
+    value?='true' | {BooleanLiteral} 'false';
 
 Referenceable:	
     name=ID (value=STRING)?;
@@ -115,7 +115,8 @@ ReferenceValuedTerm:
 	';'?;
 
 ConstantValuedTerm:
-	'constant' constant=STRING;
+	'constant' constant=STRING
+	';'?;
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+
