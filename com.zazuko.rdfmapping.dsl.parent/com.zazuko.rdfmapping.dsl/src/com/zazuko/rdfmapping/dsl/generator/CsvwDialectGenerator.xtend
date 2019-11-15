@@ -20,11 +20,13 @@ class CsvwDialectGenerator {
 		this.dialect = dialect;
 	}
 	
-	def generateJson(Iterable<Mapping> mappings) '''
+	def generateJson(Iterable<Mapping> mappings, CsvwDialectContext ctx) '''
 		{
 			«context()»
 			"tables": [
-				«mappings.map[tableSchema].join('\n,')»
+				«FOR Mapping mapping : mappings»
+				«mapping.tableSchema(ctx)»				
+				«ENDFOR»
 			]
 		}
 	'''
@@ -70,25 +72,25 @@ class CsvwDialectGenerator {
 		},
 	'''
 	
-	def tableSchema(Mapping m) '''
+	def tableSchema(Mapping it, CsvwDialectContext ctx) '''
 	{
-		"url": "«m.source.source»",
-		«IF m.source.dialect !== null»
-			«m.source.dialect.dialect()»
+		"url": "«source.source»",
+		«IF source.dialect !== null»
+			«source.dialect.dialect()»
 		«ENDIF»
 		"tableSchema": {
-			«m.subjectMap()»,
+			«subjectMap()»,
 			"columns": [
-				«m.subjectTypeMappings()»«IF ! m.subjectTypeMappings.empty && (m.poMappings.length + m.notUsedReferencables.length > 0)»,«ENDIF»
-				«m.columns()»«IF ! m.poMappings.empty && (m.notUsedReferencables.length > 0)»,«ENDIF»
-				«m.suppressOutput()»
+				«subjectTypeMappings()»«IF ! subjectTypeMappings.empty && (poMappings.length + ctx.notUsedReferencables(it).length > 0)»,«ENDIF»
+				«columns()»«IF ! poMappings.empty && (ctx.notUsedReferencables(it).length > 0)»,«ENDIF»
+				«suppressOutput(ctx)»
 			] 
 		}
 	}
 	'''
 	
-	def suppressOutput(Mapping m)'''
-		«FOR ref : m.notUsedReferencables SEPARATOR ","»
+	def suppressOutput(Mapping it, CsvwDialectContext ctx)'''
+		«FOR ref : ctx.notUsedReferencables(it) SEPARATOR ","»
 			{
 				"suppressOutput": true,
 				"titles": "«ref.valueResolved»"
@@ -96,8 +98,8 @@ class CsvwDialectGenerator {
 		«ENDFOR»
 	'''
 	
-	def subjectTypeMappings(Mapping m)'''
-		«FOR stm : m.subjectTypeMappings SEPARATOR ","»
+	def subjectTypeMappings(Mapping it)'''
+		«FOR stm : subjectTypeMappings SEPARATOR ","»
 			{
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -106,10 +108,10 @@ class CsvwDialectGenerator {
 		«ENDFOR»
 	'''
 	
-	def subjectMap(Mapping m) '''"aboutUrl": "«m.subjectIri»"'''
+	def subjectMap(Mapping it) '''"aboutUrl": "«subjectIri»"'''
 	
-	def columns(Mapping m) '''
-		«FOR pom : m.poMappings SEPARATOR ","»
+	def columns(Mapping it) '''
+		«FOR pom : poMappings SEPARATOR ","»
 			{
 				"propertyUrl": "«pom.property.vocabulary.prefix.iri»«pom.property.valueResolved»",
 				«pom.term.valueReference»
