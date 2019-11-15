@@ -24,12 +24,18 @@ class CsvwDialectGenerator {
 		{
 			«context()»
 			"tables": [
-				«FOR Mapping mapping : mappings»
-				«mapping.tableSchema(ctx)»				
+				«FOR Mapping mapping : mappings SEPARATOR jsonListSeparator»
+				«mapping.tableSchema(ctx)»
 				«ENDFOR»
 			]
 		}
 	'''
+	
+	// includes newLine()
+	def jsonListSeparator() '''
+	,
+	'''
+	
 	def dialect(DialectGroup d) '''
 		"dialect": {
 			"delimiter": "«d.delimiter»"
@@ -90,33 +96,30 @@ class CsvwDialectGenerator {
 	'''
 	
 	def suppressOutput(Mapping it, CsvwDialectContext ctx)'''
-		«FOR ref : ctx.notUsedReferencables(it) SEPARATOR ","»
+		«FOR ref : ctx.notUsedReferencables(it) SEPARATOR jsonListSeparator»
 			{
 				"suppressOutput": true,
 				"titles": "«ref.valueResolved»"
-			}
-		«ENDFOR»
+			}«ENDFOR»
 	'''
 	
 	def subjectTypeMappings(Mapping it)'''
-		«FOR stm : subjectTypeMappings SEPARATOR ","»
+		«FOR stm : subjectTypeMappings SEPARATOR jsonListSeparator»
 			{
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 				"valueUrl": "«stm.type.vocabulary.prefix.iri»«stm.type.valueResolved»"
-			}
-		«ENDFOR»
+			}«ENDFOR»
 	'''
 	
 	def subjectMap(Mapping it) '''"aboutUrl": "«subjectIri»"'''
 	
 	def columns(Mapping it) '''
-		«FOR pom : poMappings SEPARATOR ","»
+		«FOR pom : poMappings SEPARATOR jsonListSeparator»
 			{
 				"propertyUrl": "«pom.property.vocabulary.prefix.iri»«pom.property.valueResolved»",
 				«pom.term.valueReference»
-			}
-		«ENDFOR»
+			}«ENDFOR»
 	'''
 	
 	def dispatch valueReference(ReferenceValuedTerm it) '''

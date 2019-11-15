@@ -25,7 +25,7 @@ public class CsvwDialectContext {
 	}
 
 	private LazyMap<Mapping, Set<Referenceable>> buildUnusedReferenceables(Collection<Mapping> mappings) {
-		LazyMap<Mapping, Set<Referenceable>> result = new LazyMap<>(new HashMap<>(), LinkedHashSet::new);
+		LazyMap<Mapping, Set<Referenceable>> result = new LazyMap<>(new HashMap<>(), LinkedHashSet::new);  // order matters, see issue_35
 
 		for (Mapping mapping : mappings) {
 			
