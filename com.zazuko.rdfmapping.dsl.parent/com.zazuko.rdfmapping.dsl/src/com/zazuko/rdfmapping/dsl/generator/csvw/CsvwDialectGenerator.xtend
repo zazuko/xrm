@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.generator
+package com.zazuko.rdfmapping.dsl.generator.csvw
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
@@ -10,7 +10,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import java.text.MessageFormat
 import java.util.List
 
-import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.*
+import static extension com.zazuko.rdfmapping.dsl.generator.common.ModelAccess.*
 
 class CsvwDialectGenerator {
 

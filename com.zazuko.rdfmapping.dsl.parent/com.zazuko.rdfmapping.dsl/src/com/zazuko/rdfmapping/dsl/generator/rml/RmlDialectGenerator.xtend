@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.generator
+package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
@@ -10,7 +10,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import java.text.MessageFormat
 import java.util.List
 
-import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.*
+import static extension com.zazuko.rdfmapping.dsl.generator.common.ModelAccess.*
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 
 class RmlDialectGenerator {

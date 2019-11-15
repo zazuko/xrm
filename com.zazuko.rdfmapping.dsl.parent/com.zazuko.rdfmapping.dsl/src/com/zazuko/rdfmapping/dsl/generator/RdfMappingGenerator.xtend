@@ -7,7 +7,13 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 
-import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.typeResolved
+import static extension com.zazuko.rdfmapping.dsl.generator.common.ModelAccess.typeResolved
+import com.zazuko.rdfmapping.dsl.generator.csvw.CsvwDialectContext
+import com.zazuko.rdfmapping.dsl.generator.csvw.CsvwDialectGenerator
+import com.zazuko.rdfmapping.dsl.generator.csvw.CsvwDialect
+import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialectGenerator
+import com.zazuko.rdfmapping.dsl.generator.rml.R2rmlDialect
+import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialect
 
 /**
  * Generates code from your model files on save.

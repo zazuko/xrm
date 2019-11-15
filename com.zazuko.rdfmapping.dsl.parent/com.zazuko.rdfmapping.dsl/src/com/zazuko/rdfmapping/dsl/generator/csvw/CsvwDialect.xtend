@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.generator
+package com.zazuko.rdfmapping.dsl.generator.csvw
 
 class CsvwDialect {
 	

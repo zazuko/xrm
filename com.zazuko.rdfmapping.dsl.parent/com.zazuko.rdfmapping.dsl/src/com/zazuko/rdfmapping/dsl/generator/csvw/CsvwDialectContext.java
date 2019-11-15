@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.generator;
+package com.zazuko.rdfmapping.dsl.generator.csvw;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
