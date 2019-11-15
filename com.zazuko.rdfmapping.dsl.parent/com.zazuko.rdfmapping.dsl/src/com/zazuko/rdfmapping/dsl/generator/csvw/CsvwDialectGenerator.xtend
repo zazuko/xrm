@@ -87,8 +87,8 @@ class CsvwDialectGenerator {
 		"tableSchema": {
 			«subjectMap()»,
 			"columns": [
-				«subjectTypeMappings()»«IF ! subjectTypeMappings.empty && (poMappings.length + ctx.notUsedReferencables(it).length > 0)»,«ENDIF»
-				«columns()»«IF ! poMappings.empty && (ctx.notUsedReferencables(it).length > 0)»,«ENDIF»
+				«subjectTypeMappings()»«IF ctx.needsColumnsGlueing(it)»,«ENDIF»
+				«columns()»«IF ctx.needsColumnsGlueing(it)»,«ENDIF»
 				«suppressOutput(ctx)»
 			] 
 		}
