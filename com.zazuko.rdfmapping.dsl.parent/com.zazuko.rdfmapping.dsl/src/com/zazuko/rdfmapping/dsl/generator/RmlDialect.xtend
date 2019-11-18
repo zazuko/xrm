@@ -14,10 +14,17 @@ class RmlDialect {
 
 	// TODO: rml:iterator
 	def logicalSource(Mapping m) '''
-		rml:logicalSource [
-			rml:source "«m.source.sourceResolved»" ;
-			rml:referenceFormulation «m.source.typeResolved?.referenceFormulation»
-		];
+		«IF m.source.sourceIsQueryResolved»
+			rml:logicalSource [
+				rml:query """«m.source.sourceResolved»""" ;
+				rml:referenceFormulation «m.source.typeResolved?.referenceFormulation»
+			];
+		«ELSE»
+			rml:logicalSource [
+				rml:source "«m.source.sourceResolved»" ;
+				rml:referenceFormulation «m.source.typeResolved?.referenceFormulation»
+			];
+		«ENDIF»		
 	'''
 
 	def objectMapReferencePredicate() '''rml:reference'''

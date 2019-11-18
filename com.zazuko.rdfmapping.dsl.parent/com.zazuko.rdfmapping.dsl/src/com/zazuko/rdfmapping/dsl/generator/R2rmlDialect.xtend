@@ -11,7 +11,11 @@ class R2rmlDialect extends RmlDialect {
 	'''
 
 	override logicalSource(Mapping m) '''
-		rr:logicalTable [ rr:tableName "«m.source.sourceResolved»" ];
+		«IF m.source.sourceIsQueryResolved»
+			rr:logicalTable [ rr:sqlQuery """«m.source.sourceResolved»""" ];
+		«ELSE»
+			rr:logicalTable [ rr:tableName "«m.source.sourceResolved»" ];
+		«ENDIF»	
 	'''
 
 	override objectMapReferencePredicate() '''rr:column'''
