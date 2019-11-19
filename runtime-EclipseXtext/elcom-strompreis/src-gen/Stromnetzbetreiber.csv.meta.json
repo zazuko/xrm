@@ -37,14 +37,6 @@
 					,
 					{
 						"suppressOutput": true,
-						"titles": "Gde-Nr."
-					},
-					{
-						"suppressOutput": true,
-						"titles": "gPLZ"
-					},
-					{
-						"suppressOutput": true,
 						"titles": "NameUrl"
 					},
 					{
@@ -53,15 +45,23 @@
 					},
 					{
 						"suppressOutput": true,
-						"titles": "kanton"
-					},
-					{
-						"suppressOutput": true,
 						"titles": "Ort"
 					},
 					{
 						"suppressOutput": true,
+						"titles": "Gde-Nr."
+					},
+					{
+						"suppressOutput": true,
+						"titles": "gPLZ"
+					},
+					{
+						"suppressOutput": true,
 						"titles": "Gemeinde"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "kanton"
 					}
 				] 
 			}

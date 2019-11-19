@@ -41,9 +41,9 @@
 					}
 				] 
 			}
-		}
+		},
 		
-		,{
+		{
 			"url": "http://www.example.com/City.csv",
 			"tableSchema": {
 				"aboutUrl": "http://city.example.com/{continent}/{country}/{city}",
@@ -60,11 +60,11 @@
 					},
 					{
 						"suppressOutput": true,
-						"titles": "city"
+						"titles": "country"
 					},
 					{
 						"suppressOutput": true,
-						"titles": "country"
+						"titles": "city"
 					}
 				] 
 			}

@@ -46,11 +46,15 @@
 					,
 					{
 						"suppressOutput": true,
-						"titles": "NetzbetreiberUrl"
+						"titles": "ID"
 					},
 					{
 						"suppressOutput": true,
-						"titles": "Netznutzung"
+						"titles": "Netzbetreiber"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "NetzbetreiberUrl"
 					},
 					{
 						"suppressOutput": true,
@@ -58,11 +62,7 @@
 					},
 					{
 						"suppressOutput": true,
-						"titles": "ID"
-					},
-					{
-						"suppressOutput": true,
-						"titles": "Netzbetreiber"
+						"titles": "Netznutzung"
 					}
 				] 
 			}
