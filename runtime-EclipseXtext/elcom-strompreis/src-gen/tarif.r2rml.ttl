@@ -1,0 +1,55 @@
+PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX elcom-attr: <http://elcom.zazuko.com/attribute/>
+PREFIX qb: <http://purl.org/linked-data/cube#>
+
+<#ElcomMapping>
+	rr:logicalTable [ rr:tableName "http://www.example.com/Rohdaten%20Tarife%202019.csv" ];
+	
+	rr:subjectMap [
+		rr:template "http://elcom.zazuko.com/observation/2019/{Kategorie}";
+		rr:class qb:Observation ;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate elcom-attr:kategorie ;
+		rr:objectMap [
+			rr:template "http://elcom.zazuko.com/category/{Kategorie}" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate elcom-attr:abgabe ;
+		rr:objectMap [
+			rr:column "Abgabe" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate elcom-attr:energie ;
+		rr:objectMap [
+			rr:column "Energie" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate elcom-attr:kev ;
+		rr:objectMap [
+			rr:column "KEV" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate elcom-attr:netznutzung ;
+		rr:objectMap [
+			rr:template "http://elcom.zazuko.com/stormnetz/{NetzbetreiberUrl}" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate elcom-attr:total ;
+		rr:objectMap [
+			rr:column "Total exkl. MWST" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate elcom-attr:refYear ;
+		rr:objectMap [
+			rr:constant <http://reference.data.gov.uk/id/year/2019> ;
+		];
+	]
+.

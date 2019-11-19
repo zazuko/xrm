@@ -1,0 +1,32 @@
+// http://rml.io/spec.html#example-CSV
+
+logical-source elcom {
+	type csv
+	source "http://www.example.com/Rohdaten%20Tarife%202019.csv"
+	
+	referenceables 
+		ID
+		Netzbetreiber
+		NetzbetreiberUrl
+		Kategorie
+		Netznutzung
+		Energie
+		Abgabe
+		KEV
+		total "Total exkl. MWST"
+}
+
+map ElcomMapping from elcom {
+	subject template "http://elcom.zazuko.com/observation/2019/{0}" with Kategorie
+	
+	types qb.Observation
+	 
+	properties
+	attr.kategorie template "http://elcom.zazuko.com/category/{0}" with Kategorie
+	attr.abgabe from Abgabe
+	attr.energie from Energie
+	attr.kev from KEV
+	attr.netznutzung template "http://elcom.zazuko.com/stormnetz/{0}" with NetzbetreiberUrl
+	attr.total from total
+	attr.refYear constant "http://reference.data.gov.uk/id/year/2019"
+}

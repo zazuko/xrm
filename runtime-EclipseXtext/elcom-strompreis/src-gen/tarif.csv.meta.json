@@ -1,0 +1,71 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"tables": [
+		{
+			"url": "http://www.example.com/Rohdaten%20Tarife%202019.csv",
+			"tableSchema": {
+				"aboutUrl": "http://elcom.zazuko.com/observation/2019/{Kategorie}",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://purl.org/linked-data/cube#Observation"
+					}
+					,
+					{
+						"propertyUrl": "http://elcom.zazuko.com/attribute/kategorie",
+						"titles": "Kategorie",
+						"valueUrl": "http://elcom.zazuko.com/category/{Kategorie}"
+					},
+					{
+						"propertyUrl": "http://elcom.zazuko.com/attribute/abgabe",
+						"titles": "Abgabe"
+					},
+					{
+						"propertyUrl": "http://elcom.zazuko.com/attribute/energie",
+						"titles": "Energie"
+					},
+					{
+						"propertyUrl": "http://elcom.zazuko.com/attribute/kev",
+						"titles": "KEV"
+					},
+					{
+						"propertyUrl": "http://elcom.zazuko.com/attribute/netznutzung",
+						"titles": "NetzbetreiberUrl",
+						"valueUrl": "http://elcom.zazuko.com/stormnetz/{NetzbetreiberUrl}"
+					},
+					{
+						"propertyUrl": "http://elcom.zazuko.com/attribute/total",
+						"titles": "Total exkl. MWST"
+					},
+					{
+						"propertyUrl": "http://elcom.zazuko.com/attribute/refYear",
+						"virtual": true,
+						"valueUrl": "http://reference.data.gov.uk/id/year/2019"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "NetzbetreiberUrl"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "Netznutzung"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "Kategorie"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "ID"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "Netzbetreiber"
+					}
+				] 
+			}
+		}
+	]
+}

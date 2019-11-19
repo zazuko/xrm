@@ -1,0 +1,45 @@
+PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+<#KategorienConceptMapping>
+	rr:logicalTable [ rr:tableName "http://www.example.com/usageCategories.csv" ];
+	
+	rr:subjectMap [
+		rr:template "http://elcom.zazuko.com/category/{id}";
+		rr:class skos:Concept ;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate skos:prefLabel ;
+		rr:objectMap [
+			rr:column "desc" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate skos:topConceptOf ;
+		rr:objectMap [
+			rr:constant <http://elcom.zazuko.com/category/conceptscheme> ;
+		];
+	]
+.
+<#KategorienConceptSchemeMapping>
+	rr:logicalTable [ rr:tableName "http://www.example.com/usageCategories.csv" ];
+	
+	rr:subjectMap [
+		rr:template "http://elcom.zazuko.com/category/conceptscheme/{id}";
+		rr:class skos:ConceptScheme ;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate skos:prefLabel ;
+		rr:objectMap [
+			rr:constant "Category concepts" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate skos:hasTopConcept ;
+		rr:objectMap [
+			rr:template "http://elcom.zazuko.com/category/{id}" ;
+		];
+	]
+.

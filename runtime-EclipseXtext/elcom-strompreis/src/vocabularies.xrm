@@ -1,0 +1,31 @@
+datatypes xsd {
+	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
+	integer
+} 
+
+vocabulary qb {
+	prefix "qb:" "http://purl.org/linked-data/cube#"	
+	classes Observation
+}
+
+vocabulary attr {
+	prefix "elcom-attr:" "http://elcom.zazuko.com/attribute/"
+	properties kategorie netznutzung energie abgabe kev total refYear
+}
+
+vocabulary schema {
+	prefix "schema:" "https://schema.org/"
+	classes Organization
+	properties address postalCode addressLocality areaServed
+}
+
+vocabulary rdfs {
+	prefix "rdfs:" "http://www.w3.org/2000/01/rdf-schema#"
+	properties label
+}
+
+vocabulary skos {
+	prefix "skos:" "http://www.w3.org/2004/02/skos/core#"
+	classes Concept ConceptScheme
+	properties prefLabel topConceptOf hasTopConcept
+}

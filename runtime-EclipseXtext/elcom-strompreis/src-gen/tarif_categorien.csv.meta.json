@@ -1,0 +1,67 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"tables": [
+		{
+			"url": "http://www.example.com/usageCategories.csv",
+			"tableSchema": {
+				"aboutUrl": "http://elcom.zazuko.com/category/{id}",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://www.w3.org/2004/02/skos/core#Concept"
+					}
+					,
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#prefLabel",
+						"titles": "desc"
+					},
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#topConceptOf",
+						"virtual": true,
+						"valueUrl": "http://elcom.zazuko.com/category/conceptscheme"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "id"
+					}
+				] 
+			}
+		}
+		
+		,{
+			"url": "http://www.example.com/usageCategories.csv",
+			"tableSchema": {
+				"aboutUrl": "http://elcom.zazuko.com/category/conceptscheme/{id}",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+					}
+					,
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#prefLabel",
+						"virtual": true,
+						"valueUrl": "Category concepts"
+					},
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#hasTopConcept",
+						"titles": "id",
+						"valueUrl": "http://elcom.zazuko.com/category/{id}"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "id"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "desc"
+					}
+				] 
+			}
+		}
+	]
+}
