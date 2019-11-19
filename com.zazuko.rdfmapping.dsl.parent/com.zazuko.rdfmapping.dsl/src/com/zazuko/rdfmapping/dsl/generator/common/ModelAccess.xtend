@@ -25,6 +25,14 @@ class ModelAccess {
 			sourceGroup?.source;
 		}
 	}
+	
+	def static sourceIsQueryResolved(LogicalSource it) {
+		if (source !== null) {
+			sourceIsQuery;
+		} else {
+			sourceGroup !== null ? sourceGroup.sourceIsQuery : false;
+		}
+	}
 
 	def static typeResolved(LogicalSource it) {
 		if (type !== null) {

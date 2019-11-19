@@ -1,0 +1,85 @@
+PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX bdb: <https://permits.ld.admin.ch/schema/>
+PREFIX ex: <http://schema.example.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+<#Profession>
+	rr:logicalTable [ rr:tableName "easygov_professions.csv" ];
+	
+	rr:subjectMap [
+		rr:template "https://permits.zazukoians.org/professions/{CODE}";
+		rr:class bdb:Profession ;
+		rr:class skos:Concept ;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate ex:internalKey ;
+		rr:objectMap [
+			rr:column "PK" ;
+			rr:datatype xsd:int ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate ex:position ;
+		rr:objectMap [
+			rr:column "POS" ;
+			rr:datatype xsd:int ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate ex:code ;
+		rr:objectMap [
+			rr:column "CODE" ;
+			rr:datatype xsd:int ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate skos:notation ;
+		rr:objectMap [
+			rr:template "{CODE}" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate ex:fkBranche ;
+		rr:objectMap [
+			rr:column "LN_BRANCHE" ;
+			rr:datatype xsd:int ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate ex:fkParent ;
+		rr:objectMap [
+			rr:column "LN_PARENT" ;
+			rr:datatype xsd:int ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate skos:prefLabel ;
+		rr:objectMap [
+			rr:column "DE" ;
+			rr:language "de" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate skos:prefLabel ;
+		rr:objectMap [
+			rr:column "EN" ;
+			rr:language "en" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate skos:prefLabel ;
+		rr:objectMap [
+			rr:column "FR" ;
+			rr:language "fr" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate skos:prefLabel ;
+		rr:objectMap [
+			rr:column "IT" ;
+			rr:language "it" ;
+		];
+	]
+.

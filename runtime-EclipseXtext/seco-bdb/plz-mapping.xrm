@@ -1,0 +1,41 @@
+
+map Ort from plz_verzeichnis {
+	subject template "http://example.org/ort/{0}" with ONRP;
+	
+	types exPLZ.Ort;
+	
+	properties
+		exPLZ.onrp from ONRP with datatype xsd.int;
+		exPLZ.bfsnr from BFSNR with datatype xsd.int;
+		exPLZ.plz from POSTLEITZAHL with datatype xsd.int;
+		exPLZ.zz from PLZ_ZZ with datatype xsd.int;
+		exPLZ.bezeichnung from ORTBEZ18;
+		exPLZ.bezeichnung from ORTBEZ27;
+}
+
+// for metadata, see https://swisspost.opendatasoft.com/explore/dataset/plz_verzeichnis_v2/information/
+logical-source plz_verzeichnis {
+	type csv
+	source "plz_verzeichnis_v2.csv"
+	referenceables
+	ONRP
+	BFSNR
+	POSTLEITZAHL
+	PLZ_ZZ
+	ORTBEZ18
+	ORTBEZ27
+	
+}
+
+vocabulary exPLZ {
+	prefix "ex:" "http://schema.example.org/"
+	classes
+		Ort
+		
+	properties
+		onrp
+		bfsnr
+		plz
+		zz
+		bezeichnung
+}

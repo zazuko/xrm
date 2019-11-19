@@ -1,0 +1,90 @@
+language-tags {
+	de en fr it
+}
+
+datatypes xsd {
+	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
+	int
+}
+
+vocabulary schema {
+	prefix "schema:" "https://schema.org/"
+	
+	classes	
+		GovernmentPermit
+		GovernmentOrganization
+		ContactPoint
+	
+	properties
+		permitAudience
+		dateModified
+		
+		description
+		name
+		alternateName
+		url
+		
+		contactPoint
+		email
+		faxNumber
+		telephone
+		address
+		
+		position
+}
+
+vocabulary skos {
+	prefix "skos:" "http://www.w3.org/2004/02/skos/core#"
+	classes
+		Concept
+		ConceptScheme
+		
+	properties
+		notation
+		prefLabel
+		inScheme
+		topConceptOf
+		hasTopConcept
+		broader
+		related
+}
+
+vocabulary bdb {
+	prefix "bdb:" "https://permits.ld.admin.ch/schema/"
+	
+	classes
+		Sector
+		Profession
+	
+	properties
+		agency
+		legalFoundation
+		permitLevel
+		status
+		contact
+		contactPointOf
+		position
+		code
+}
+
+vocabulary ex {
+	prefix "ex:" "http://schema.example.org/"	
+	classes
+		Gemeinde
+		KantonInfo
+		KontaktAusBewilligung
+		KontaktKantonInfo
+		
+	properties
+		id
+		kontaktDE
+		kontaktFR
+		kontaktIT
+		kontaktEN
+		gemeinde
+		ort
+		plz
+		bewilligung
+		kanton
+		kantonInfo
+}

@@ -37,9 +37,21 @@ LanguageTag:
 SourceGroup:
     'source-group' name=ID '{'
     	('type' type=[SourceType])?
-    	('source' source=STRING)?
+    	('source' (sourceIsQuery ?= 'query')? source=STRING)?
     	(logicalSources+=LogicalSource)*
     '}';
+    
+LogicalSource:
+	'logical-source' name=ID '{'
+		('type' type=[SourceType])?
+		('source' (sourceIsQuery ?= 'query')? source=STRING)?
+		('dialect' dialect=[DialectGroup])?
+		'referenceables'
+			(referenceables+=Referenceable)*
+	'}';
+
+Referenceable:	
+    name=ID (value=STRING)?;
     
 DialectGroup:
 	'dialect' name=ID '{'
@@ -57,21 +69,9 @@ DialectGroup:
 		('skipRows' skipRows=INT)? &
 		('trim' trim=BooleanLiteral)? &
 	'}';
-    
-LogicalSource:
-	'logical-source' name=ID '{'
-		('type' type=[SourceType])? &
-		('source' source=STRING)? &
-		('dialect' dialect=[DialectGroup])? &
-		'referenceables'
-			(referenceables+=Referenceable)*
-	'}';
 
 BooleanLiteral:
     value?='true' | {BooleanLiteral} 'false';
-
-Referenceable:	
-    name=ID (value=STRING)?;
     
 Vocabulary:	
 	'vocabulary' name=ID '{'

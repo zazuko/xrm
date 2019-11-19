@@ -1,0 +1,42 @@
+map Sector from easygov_sectors {
+	subject template "https://permits.zazukoians.org/sectors/{0}" with CODE;
+	
+	types bdb.Sector skos.Concept;
+	
+	properties
+		exSectors.internalKey from PK with datatype xsd.int;
+		exSectors.position from POS with datatype xsd.int;
+		exSectors.code from CODE with datatype xsd.int;
+				
+		skos.notation template "{0}" with CODE;		
+		exSectors.fkParent from LN_PARENT with datatype xsd.int;
+		
+		skos.prefLabel from DE with language-tag de;
+		skos.prefLabel from EN with language-tag en;
+		skos.prefLabel from FR with language-tag fr;
+		skos.prefLabel from IT with language-tag it;
+}
+
+logical-source easygov_sectors {
+	type csv
+	source "easygov-sectors.csv"
+	referenceables
+	PK "PK fiz"
+	CODE
+	POS
+	LN_PARENT
+	DE
+	FR
+	IT
+	EN
+}
+
+vocabulary exSectors {
+	prefix "ex:" "http://schema.example.org/"
+		
+	properties
+		internalKey
+		position
+		code
+		fkParent
+}

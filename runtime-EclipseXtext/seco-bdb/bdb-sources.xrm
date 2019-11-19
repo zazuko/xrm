@@ -1,0 +1,91 @@
+source-types {
+    rdb referenceFormulation "rr:SQL2008"
+    csv referenceFormulation "ql:CSV"
+}
+
+source-group bewilligungen {
+	type rdb
+
+    logical-source t_amt {
+        source "t_amt"
+
+        referenceables
+        	AMT_ID	
+			AMT_ABK_DE	
+			AMT_ABK_EN	
+			AMT_ABK_FR	
+			AMT_ABK_IT	
+			AMT_NAME_DE	
+			AMT_NAME_EN	
+			AMT_NAME_FR	
+			AMT_NAME_IT			
+    }
+    
+    logical-source t_bewilligung {
+    	source "t_bewilligung"
+    	
+    	referenceables
+			BEW_ID	
+
+			BEW_BESCHR_DE	
+			BEW_BESCHR_EN	
+			BEW_BESCHR_FR	
+			BEW_BESCHR_IT			
+			
+			BEW_BET_PERS_EVENT	// (BETRIEB|PERSON|EVENT|<NULL>)
+
+			BEW_KONTAKT_DE	
+			BEW_KONTAKT_EN	
+			BEW_KONTAKT_FR	
+			BEW_KONTAKT_IT
+	  
+			BEW_KONTAKT_ADR	
+			BEW_KONTAKT_FAX	
+			BEW_KONTAKT_MAIL	
+			BEW_KONTAKT_TEL	
+
+			BEW_KONTAKT_URL_DE	
+			BEW_KONTAKT_URL_FR	
+			BEW_KONTAKT_URL_IT	
+			BEW_KONTAKT_URL_EN	
+
+			BEW_LAST_CHANGED	
+
+			BEW_RECHT_GRUND_DE	
+			BEW_RECHT_GRUND_EN	
+			BEW_RECHT_GRUND_FR	
+			BEW_RECHT_GRUND_IT	
+
+			BEW_TITLE_DE	
+			BEW_TITLE_EN	
+			BEW_TITLE_FR	
+			BEW_TITLE_IT	
+
+			BEW_TYPE	   // (GEMEINDE|BUND|BUND_EXEC_KANTON)
+			BEW_STATUS	   // (PUBLISHED|<NULL>)
+			BEW_AMT_LNK	
+			BEW_GEMEINDE
+    }
+    
+    logical-source t_gemeinde {
+    	source "t_gemeinde"
+    	
+    	referenceables
+			GDE_PLZ		
+			GDE_ORT_PA	
+			GDE_PLZ_PA
+   	}
+
+	logical-source t_kt_info {
+		source "t_kt_info"
+		
+		referenceables
+			KTI_ID			
+			KTI_EMAIL	
+			KTI_INTERNET	
+			KTI_KANTON	
+			KTI_OFFICE	
+			KTI_TELEPHONE	
+			KTI_BEW_LNK
+	}
+}

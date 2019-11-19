@@ -1,0 +1,74 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"tables": [
+		{
+			"url": "easygov_professions.csv",
+			"tableSchema": {
+				"aboutUrl": "https://permits.zazukoians.org/professions/{CODE}",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "https://permits.ld.admin.ch/schema/Profession"
+					},
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://www.w3.org/2004/02/skos/core#Concept"
+					}
+					,
+					{
+						"propertyUrl": "http://schema.example.org/internalKey",
+						"datatype": "int",
+						"titles": "PK"
+					},
+					{
+						"propertyUrl": "http://schema.example.org/position",
+						"datatype": "int",
+						"titles": "POS"
+					},
+					{
+						"propertyUrl": "http://schema.example.org/code",
+						"datatype": "int",
+						"titles": "CODE"
+					},
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#notation",
+						"titles": "CODE",
+						"valueUrl": "{CODE}"
+					},
+					{
+						"propertyUrl": "http://schema.example.org/fkBranche",
+						"datatype": "int",
+						"titles": "LN_BRANCHE"
+					},
+					{
+						"propertyUrl": "http://schema.example.org/fkParent",
+						"datatype": "int",
+						"titles": "LN_PARENT"
+					},
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#prefLabel",
+						"lang": "de",
+						"titles": "DE"
+					},
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#prefLabel",
+						"lang": "en",
+						"titles": "EN"
+					},
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#prefLabel",
+						"lang": "fr",
+						"titles": "FR"
+					},
+					{
+						"propertyUrl": "http://www.w3.org/2004/02/skos/core#prefLabel",
+						"lang": "it",
+						"titles": "IT"
+					}
+				] 
+			}
+		}
+	]
+}

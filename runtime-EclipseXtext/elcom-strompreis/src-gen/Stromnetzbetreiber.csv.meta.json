@@ -1,0 +1,70 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"tables": [
+		{
+			"url": "http://www.example.com/Schweizerische Gemeinden und zust�ndige Stromnetzbetreiber (Stand 07.09.2018).csv",
+			"tableSchema": {
+				"aboutUrl": "http://elcom.zazuko.com/stormnetz/{NameUrl}",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "https://schema.org/Organization"
+					}
+					,
+					{
+						"propertyUrl": "http://www.w3.org/2000/01/rdf-schema#label",
+						"titles": "Name"
+					},
+					{
+						"propertyUrl": "https://schema.org/address",
+						"titles": "Adresse"
+					},
+					{
+						"propertyUrl": "https://schema.org/postalCode",
+						"titles": "PLZ"
+					},
+					{
+						"propertyUrl": "https://schema.org/addressLocality",
+						"titles": "Ort",
+						"valueUrl": "http://classifications.data.admin.ch/municipality/{Ort}"
+					},
+					{
+						"propertyUrl": "https://schema.org/areaServed",
+						"titles": "Gde-Nr.",
+						"valueUrl": "http://classifications.data.admin.ch/municipality/{Gde-Nr.}"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "Gde-Nr."
+					},
+					{
+						"suppressOutput": true,
+						"titles": "gPLZ"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "NameUrl"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "Adresszusatz"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "kanton"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "Ort"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "Gemeinde"
+					}
+				] 
+			}
+		}
+	]
+}
