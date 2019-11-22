@@ -4,18 +4,20 @@
 package com.zazuko.rdfmapping.dsl.formatting2
 
 import com.google.inject.Inject
-import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
+import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 
 @SuppressWarnings("discouragedAccess")
 class RdfMappingFormatter extends AbstractFormatter2 {
-	
-	@Inject extension RdfMappingGrammarAccess
+
+	@Inject RdfMappingGrammarAccess ga
+	RdfMappingPackage pkg = RdfMappingPackage.eINSTANCE;
 
 	def dispatch void format(Domainmodel domainmodel, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
@@ -24,21 +26,32 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		}
 	}
 
-	def dispatch void format(DatatypesDefinition datatypesDefinition, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		datatypesDefinition.prefix.format
-		for (datatype : datatypesDefinition.types) {
-			datatype.format;
+	def dispatch void format(SourceGroup it, extension IFormattableDocument document) {
+		for (LogicalSource current : logicalSources) {
+			current.format.append[newLine];
 		}
 	}
-	
-	def dispatch void format(SourceGroup it, extension IFormattableDocument document) {
-	 	for (LogicalSource current : logicalSources) {
-	 		logicalSources.format;
-	 	}
-	}
-	
+
 	def dispatch void format(LogicalSource it, extension IFormattableDocument document) {
-		append[newLine];
+		// regionFor.feature(RdfMappingPackage.eINSTANCE.getLogicalSource_TypeRef).append([newLine]);
+		interior[indent];
+
+		regionFor.keyword("type").prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword("source").prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword("dialect").prepend[setNewLines(1)];
+		regionFor.keyword("referenceables").prepend[setNewLines(2)].append[newLine];
+
+		// regionFor.feature(RdfMappingPackage.eINSTANCE.logicalSource_Referenceables).prepend[indent]
+		for (Referenceable current : referenceables) {
+			current.format;
+		}
+		
+		regionFor.keyword("}").prepend[setNewLines(1)].append[setNewLines(2)];
 	}
+
+	def dispatch void format(Referenceable it, extension IFormattableDocument document) {
+		prepend[setNewLines(1)]
+		regionFor.feature(RdfMappingPackage.eINSTANCE.referenceable_Name).append[oneSpace]
+	}
+
 }
