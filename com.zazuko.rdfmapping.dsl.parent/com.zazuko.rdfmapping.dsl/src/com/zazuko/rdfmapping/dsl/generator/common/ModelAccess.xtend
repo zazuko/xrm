@@ -16,6 +16,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import java.net.URL
 import java.util.HashSet
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceTypeRef
 
 class ModelAccess {
 
@@ -36,10 +37,10 @@ class ModelAccess {
 	}
 
 	def static typeResolved(LogicalSource it) {
-		if (type !== null) {
-			type;
+		if (typeRef !== null) {
+			typeRef.type;
 		} else {
-			sourceGroup?.type;
+			sourceGroup?.typeRef.type;
 		}
 	}
 
@@ -139,6 +140,10 @@ class ModelAccess {
 		} else {
 			return name;
 		}
+	}
+	
+	def static String referenceFormulation(SourceTypeRef it) {
+		return it?.type?.referenceFormulation
 	}
 	
 	def static String referenceFormulation(SourceType it) {

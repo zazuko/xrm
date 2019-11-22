@@ -14,6 +14,12 @@ enum SourceType:
 	| RDB = 'rdb'
 	| CSV = 'csv'
 	;
+
+// do not reference an enum directly - if no value is declared, EMF will initialize the 
+// reference with the first entry of the enum instead of null.
+SourceTypeRef:
+	type=SourceType
+;
 	
 DatatypesDefinition: 
 	'datatypes' name=ID '{'
@@ -34,14 +40,14 @@ LanguageTag:
   
 SourceGroup:
     'source-group' name=ID '{'
-    	('type' type=SourceType)?
+    	('type' typeRef=SourceTypeRef)?
     	('source' (sourceIsQuery ?= 'query')? source=STRING)?
     	(logicalSources+=LogicalSource)*
     '}';
     
 LogicalSource:
 	'logical-source' name=ID '{'
-		('type' type=SourceType)?
+		('type' typeRef=SourceTypeRef)?
 		('source' (sourceIsQuery ?= 'query')? source=STRING)?
 		('dialect' dialect=[DialectGroup])?
 		'referenceables'

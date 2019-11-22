@@ -17,22 +17,22 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Check
 	def void checkTypeDeclarations(LogicalSource logicalSource) {
-		if (logicalSource.eContainer.eClass.name.equals("SourceGroup")) {
-			val sourceGroup = logicalSource.eContainer as SourceGroup;
-			if (sourceGroup.type !== null) {
-				if (logicalSource.type !== null) {
+		if (logicalSource.eContainer instanceof SourceGroup) {
+			val SourceGroup sourceGroup = logicalSource.eContainer as SourceGroup;
+			if (sourceGroup.typeRef !== null) {
+				if (logicalSource.typeRef !== null) {
 					warning("Type declared on source-group level is shadowed by type declared on logical-source.",
-						RdfMappingPackage.Literals.LOGICAL_SOURCE__TYPE);
+						RdfMappingPackage.Literals.LOGICAL_SOURCE__TYPE_REF);
 				}
 			}
-			if (sourceGroup.type === null) {
-				if (logicalSource.type === null) {
+			if (sourceGroup.typeRef === null) {
+				if (logicalSource.typeRef === null) {
 					error("No type declared for the logical-source or source-group",
 						RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME)
 				}
 			}
 		} else {
-			if (logicalSource.type === null) {
+			if (logicalSource.typeRef === null) {
 				error("No type declared for the logical-source", RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME)
 			}
 		}
