@@ -3,9 +3,14 @@
  */
 package com.zazuko.rdfmapping.dsl.validation
 
+import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
+import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
+import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
 
 /**
@@ -14,6 +19,9 @@ import org.eclipse.xtext.validation.Check
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class RdfMappingValidator extends AbstractRdfMappingValidator {
+
+	@Inject
+	extension ModelAccess
 
 	@Check
 	def void checkTypeDeclarations(LogicalSource logicalSource) {
@@ -40,7 +48,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Check
 	def void checkSourceDeclarations(LogicalSource logicalSource) {
-		if (logicalSource.eContainer.eClass.name.equals("SourceGroup")) {
+		if (logicalSource.eContainer instanceof SourceGroup) {
 			val SourceGroup sourceGroup = logicalSource.eContainer as SourceGroup;
 			if (sourceGroup.source !== null) {
 				if (logicalSource.source !== null) {
@@ -51,14 +59,32 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			if (sourceGroup.source === null) {
 				if (logicalSource.source === null) {
 					error("No source declared for the logical-source or source-group",
-						RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME)
+						RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME);
 				}
 			}
 		} else {
 			if (logicalSource.source === null) {
-				error("No source declared for the logical-source",
-					RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME)
+				error("No source declared for the logical-source", RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME);
 			}
+		}
+	}
+
+	@Check
+	def void checkReferenceableDeclarationNullValueMarker(NullValueDeclaration it) {
+		val Referenceable ref = eContainer as Referenceable; 
+		if (ref === null) {
+			return;
+		}
+		if (ref.nullValueMarker === null) {
+			return;
+		}
+		val LogicalSource ls = ref.eContainer as LogicalSource;
+		if (ls === null) {
+			return;
+		}
+		val SourceType type = ls.typeResolved;
+		if (type !== null && !SourceType.CSV.equals(type)) {
+			error("Type 'csv' required for null value declaration, but was '" + type + "'", ref, RdfMappingPackage.Literals.REFERENCEABLE__NULL_VALUE_MARKER);
 		}
 	}
 }
