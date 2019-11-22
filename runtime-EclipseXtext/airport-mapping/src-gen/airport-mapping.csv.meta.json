@@ -24,10 +24,12 @@
 					{
 						"propertyUrl": "http://www.w3.org/2003/01/geo/wgs84_pos#long",
 						"titles": "longitude"
+						"null": "N/A"
 					},
 					{
 						"propertyUrl": "https://schema.example.org/owner",
 						"titles": "airport öwnership"
+						"null": "X"
 					},
 					{
 						"propertyUrl": "https://schema.example.org/marker",

@@ -126,6 +126,8 @@ class CsvwDialectGenerator {
 	def dispatch valueReference(ReferenceValuedTerm it) '''
 		«termMapAnnex»
 		"titles": "«reference.valueResolved»"
+		«IF reference.nullValueMarker !== null»"null": "«reference.nullValueMarker.nullValue»"
+		«ENDIF»
 	'''
 	
 	def dispatch valueReference(ConstantValuedTerm it) '''

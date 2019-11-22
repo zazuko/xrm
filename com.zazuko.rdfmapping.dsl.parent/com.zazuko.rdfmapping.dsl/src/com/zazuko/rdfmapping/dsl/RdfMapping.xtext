@@ -55,7 +55,10 @@ LogicalSource:
 	'}';
 
 Referenceable:	
-    name=ID (value=STRING)?;
+    name=ID (value=STRING)? (nullValueMarker=NullValueDeclaration)?;
+    
+NullValueDeclaration:
+	'null' nullValue=STRING;
     
 DialectGroup:
 	'dialect' name=ID '{'

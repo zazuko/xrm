@@ -6,8 +6,8 @@ logical-source airport {
 		id
 		stop
 		latitude
-		longitude
-		ownership "airport öwnership"
+		longitude null "N/A"
+		ownership "airport öwnership" null "X"
 }
 
 logical-source city {
