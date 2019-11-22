@@ -12,6 +12,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import java.net.URL
 import java.util.HashSet
@@ -138,6 +139,10 @@ class ModelAccess {
 		} else {
 			return name;
 		}
+	}
+	
+	def static String referenceFormulation(SourceType it) {
+		return GeneratorConstants.REFERENCE_FORMULATION.toStringValue(it);
 	}
 
 }

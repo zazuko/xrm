@@ -7,15 +7,13 @@ Domainmodel :
   
 Element:
     SourceGroup | LogicalSource | PrefixHolder | Mapping |
-    SourceTypesDefinition | LanguageTagDefinition | DialectGroup;
+    LanguageTagDefinition | DialectGroup;
 
-SourceTypesDefinition: {SourceTypesDefinition}
-	'source-types' '{'
-		(types+=SourceType)*
-	'}';
-
-SourceType:
-	name=ID 'referenceFormulation' referenceFormulation=STRING;
+enum SourceType:
+	XML='xml' 
+	| RDB = 'rdb'
+	| CSV = 'csv'
+	;
 	
 DatatypesDefinition: 
 	'datatypes' name=ID '{'
@@ -36,14 +34,14 @@ LanguageTag:
   
 SourceGroup:
     'source-group' name=ID '{'
-    	('type' type=[SourceType])?
+    	('type' type=SourceType)?
     	('source' (sourceIsQuery ?= 'query')? source=STRING)?
     	(logicalSources+=LogicalSource)*
     '}';
     
 LogicalSource:
 	'logical-source' name=ID '{'
-		('type' type=[SourceType])?
+		('type' type=SourceType)?
 		('source' (sourceIsQuery ?= 'query')? source=STRING)?
 		('dialect' dialect=[DialectGroup])?
 		'referenceables'

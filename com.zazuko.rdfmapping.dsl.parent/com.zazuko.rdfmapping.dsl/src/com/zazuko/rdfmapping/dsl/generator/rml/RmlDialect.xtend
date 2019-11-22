@@ -5,7 +5,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import static extension com.zazuko.rdfmapping.dsl.generator.common.ModelAccess.*
 
 class RmlDialect {
-
+	
 	def staticPrefixes() '''
 		PREFIX rr: <http://www.w3.org/ns/r2rml#>
 		PREFIX rml: <http://semweb.mmlab.be/ns/rml#>

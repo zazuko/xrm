@@ -14,6 +14,7 @@ import com.zazuko.rdfmapping.dsl.generator.csvw.CsvwDialect
 import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialectGenerator
 import com.zazuko.rdfmapping.dsl.generator.rml.R2rmlDialect
 import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialect
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 
 /**
  * Generates code from your model files on save.
@@ -25,7 +26,7 @@ class RdfMappingGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		
 		val List<Mapping> mappings = resource.allContents.filter(Mapping).toList
-		val List<Mapping> csvwMappings = mappings.filter[source.typeResolved?.name == 'csv'].toList
+		val List<Mapping> csvwMappings = mappings.filter[SourceType.CSV.equals(source.typeResolved)].toList
 		
 		val String dslFileName = resource.getURI().lastSegment.toString();
 		val String outFileBase = dslFileName.substring(0, dslFileName.lastIndexOf("."));
