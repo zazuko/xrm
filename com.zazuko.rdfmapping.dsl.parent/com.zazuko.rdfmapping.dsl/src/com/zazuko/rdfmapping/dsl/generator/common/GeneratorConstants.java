@@ -5,6 +5,9 @@ import com.zazuko.rdfmapping.dsl.util.EnumMapper;
 import com.zazuko.rdfmapping.dsl.util.EnumMapperBuilder;
 
 public class GeneratorConstants {
+	
+	public static final String DIALECT_RML = "RML";
+	public static final String DIALECT_R2RML = "R2RML";
 
 	public static final EnumMapper<SourceType> REFERENCE_FORMULATION = new EnumMapperBuilder<SourceType>() //
 			.add("ql:XPath", SourceType.XML) //

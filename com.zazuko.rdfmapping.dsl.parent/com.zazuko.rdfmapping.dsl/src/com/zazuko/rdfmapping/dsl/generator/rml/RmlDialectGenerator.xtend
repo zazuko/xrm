@@ -1,5 +1,7 @@
 package com.zazuko.rdfmapping.dsl.generator.rml
 
+import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
@@ -9,9 +11,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import java.text.MessageFormat
 import java.util.List
-
-import static extension com.zazuko.rdfmapping.dsl.generator.common.ModelAccess.*
-import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
+import javax.inject.Inject
 
 class RmlDialectGenerator {
 
@@ -21,9 +21,13 @@ class RmlDialectGenerator {
 	 * 
 	 * In places where RML and R2RML differ, this generator dispatches to the respective dialect. 
 	 */
-	final extension RmlDialect dialect;
+	
+	extension IRmlDialect dialect;
+	
+	@Inject
+	extension ModelAccess
 
-	new(RmlDialect dialect) {
+	new(IRmlDialect dialect) {
 		this.dialect = dialect;
 	}
 	

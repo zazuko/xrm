@@ -17,10 +17,13 @@ import com.zazuko.rdfmapping.dsl.util.LazyMap;
 
 public class CsvwDialectContext {
 
+	private final ModelAccess access;
+
 	private final LazyMap<Mapping, Set<Referenceable>> unusedReferenceables;
 	private final Map<Mapping, GlueingContext> columnsGlueing;
 
-	public CsvwDialectContext(Collection<Mapping> mappings) {
+	public CsvwDialectContext(ModelAccess access, Collection<Mapping> mappings) {
+		this.access = access;
 		this.unusedReferenceables = buildUnusedReferenceables(mappings);
 		this.columnsGlueing = buildColumnsGlueingCtx(mappings);
 	}
@@ -61,12 +64,12 @@ public class CsvwDialectContext {
 			for (PredicateObjectMapping poMapping : mapping.getPoMappings()) {
 				if (poMapping.getTerm() instanceof ReferenceValuedTerm) {
 					ReferenceValuedTerm cast = (ReferenceValuedTerm) poMapping.getTerm();
-					referencedValues.add(ModelAccess.valueResolved(cast.getReference()));
+					referencedValues.add(this.access.valueResolved(cast.getReference()));
 				}
 			}
 			
 			for (Referenceable refToCheck : mapping.getSource().getReferenceables()) {
-				if (!referencedValues.contains(ModelAccess.valueResolved(refToCheck))) {
+				if (!referencedValues.contains(this.access.valueResolved(refToCheck))) {
 					result.getOrInit(mapping).add(refToCheck);
 				}
 			}

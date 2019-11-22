@@ -41,7 +41,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	@Check
 	def void checkSourceDeclarations(LogicalSource logicalSource) {
 		if (logicalSource.eContainer.eClass.name.equals("SourceGroup")) {
-			val sourceGroup = logicalSource.eContainer as SourceGroup;
+			val SourceGroup sourceGroup = logicalSource.eContainer as SourceGroup;
 			if (sourceGroup.source !== null) {
 				if (logicalSource.source !== null) {
 					warning("Source declared on source-group level is shadowed by source declared on logical-source.",
