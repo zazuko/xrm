@@ -6,19 +6,25 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
 import com.zazuko.rdfmapping.dsl.rdfMapping.PrefixHolder
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceTypeRef
+import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import java.net.URL
-import java.util.HashSet
+import java.util.LinkedHashSet
+import java.util.List
+import java.util.Set
 
 class ModelAccess {
 
-	def static sourceResolved(LogicalSource it) {
+	def String sourceResolved(LogicalSource it) {
 		if (source !== null) {
 			source;
 		} else {
@@ -26,7 +32,7 @@ class ModelAccess {
 		}
 	}
 	
-	def static sourceIsQueryResolved(LogicalSource it) {
+	def boolean sourceIsQueryResolved(LogicalSource it) {
 		if (source !== null) {
 			sourceIsQuery;
 		} else {
@@ -34,15 +40,15 @@ class ModelAccess {
 		}
 	}
 
-	def static typeResolved(LogicalSource it) {
-		if (type !== null) {
-			type;
+	def SourceType typeResolved(LogicalSource it) {
+		if (typeRef !== null) {
+			typeRef.type;
 		} else {
-			sourceGroup?.type;
+			sourceGroup?.typeRef.type;
 		}
 	}
 
-	def static sourceGroup(LogicalSource it) {
+	def SourceGroup sourceGroup(LogicalSource it) {
 		if (eContainer instanceof SourceGroup) {
 			return eContainer as SourceGroup;
 		} else {
@@ -50,15 +56,15 @@ class ModelAccess {
 		}
 	}
 
-	def static vocabulary(RdfClass it) {
-		eContainer as Vocabulary;
+	def Vocabulary vocabulary(RdfClass it) {
+		return eContainer as Vocabulary;
 	}
 
-	def static vocabulary(RdfProperty it) {
-		eContainer as Vocabulary;
+	def Vocabulary vocabulary(RdfProperty it) {
+		return eContainer as Vocabulary;
 	}
 
-	def static toConstantValue(ConstantValuedTerm it) {
+	def String toConstantValue(ConstantValuedTerm it) {
 		if (constant.isValidURI()) {
 			return '''<«constant»>'''
 		} else {
@@ -66,7 +72,7 @@ class ModelAccess {
 		}
 	}
 
-	def static boolean isValidURI(String url) {
+	def boolean isValidURI(String url) {
 		try {
 			new URL(url).toURI();
 			return true;
@@ -75,13 +81,13 @@ class ModelAccess {
 		}
 	}
 
-	def static prefixesUsed(Mapping it) {
-		val result = new HashSet();
+	def Set<PrefixHolder> prefixesUsed(Mapping it) {
+		val Set<PrefixHolder> result = new LinkedHashSet();
 		result.addAll(subjectTypeMappings.map[m|m.type.vocabulary]);
 		result.addAll(poMappings.map[m|m.property.vocabulary]);
 
 		for (PredicateObjectMapping poMapping : poMappings) {
-			val term = poMapping.term
+			val ValuedTerm term = poMapping.term
 			if (term instanceof ReferenceValuedTerm) {
 				if (term.datatype !== null) {
 					result.add(term.datatype.datatypesDefinition)
@@ -92,23 +98,23 @@ class ModelAccess {
 		return result
 	}
 
-	def static prefixesUsed(Iterable<Mapping> mappings) {
-		mappings.map[m|m.prefixesUsed].flatten.toSet;
+	def Set<PrefixHolder> prefixesUsed(Iterable<Mapping> mappings) {
+		return mappings.map[m|m.prefixesUsed].flatten.toSet;
 	}
 
-	def static inDeterministicOrder(Iterable<PrefixHolder> prefixHolders) {
-		prefixHolders.toSet.toList.sortBy[s|s.prefix.label];
+	def List<PrefixHolder> inDeterministicOrder(Iterable<PrefixHolder> prefixHolders) {
+		return prefixHolders.toSet.toList.sortBy[s|s.prefix.label];
 	}
 
-	def static datatypesDefinition(Datatype it) {
-		eContainer as DatatypesDefinition
+	def DatatypesDefinition datatypesDefinition(Datatype it) {
+		return eContainer as DatatypesDefinition;
 	}
 
-	def static prefix(Datatype it) {
-		datatypesDefinition.prefix
+	def Prefix prefix(Datatype it) {
+		return datatypesDefinition.prefix;
 	}
 
-	def static valueResolved(Referenceable it) {
+	def String valueResolved(Referenceable it) {
 		if (value !== null) {
 			return value;
 		} else {
@@ -116,7 +122,7 @@ class ModelAccess {
 		}
 	}
 
-	def static valueResolved(RdfClass it) {
+	def String valueResolved(RdfClass it) {
 		if (value !== null) {
 			return value;
 		} else {
@@ -124,7 +130,7 @@ class ModelAccess {
 		}
 	}
 
-	def static valueResolved(RdfProperty it) {
+	def String valueResolved(RdfProperty it) {
 		if (value !== null) {
 			return value;
 		} else {
@@ -132,12 +138,20 @@ class ModelAccess {
 		}
 	}
 
-	def static valueResolved(Datatype it) {
+	def String valueResolved(Datatype it) {
 		if (value !== null) {
 			return value;
 		} else {
 			return name;
 		}
+	}
+	
+	def String referenceFormulation(SourceTypeRef it) {
+		return it?.type?.referenceFormulation;
+	}
+	
+	def String referenceFormulation(SourceType it) {
+		return GeneratorConstants.REFERENCE_FORMULATION.toStringValue(it);
 	}
 
 }

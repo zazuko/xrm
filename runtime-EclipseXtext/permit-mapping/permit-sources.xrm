@@ -1,7 +1,3 @@
-source-types {
-    rdb referenceFormulation "rr:SQL2008"
-}
-
 source-group permits {
 	type rdb
 

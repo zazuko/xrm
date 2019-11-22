@@ -8,7 +8,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
-import com.zazuko.rdfmapping.dsl.rdfMapping.SourceTypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
 
 /**
@@ -27,10 +26,6 @@ class RdfMappingLabelProvider extends DefaultEObjectLabelProvider {
 		val vocab = pom.property.eContainer as Vocabulary;
 		vocab.name + ":" + pom.property.name
 	}	
-	
-	def text(SourceTypesDefinition std) {
-		"source-types"
-	}
 	
 	def text(LanguageTagDefinition ltd) {
 		"language-tags"

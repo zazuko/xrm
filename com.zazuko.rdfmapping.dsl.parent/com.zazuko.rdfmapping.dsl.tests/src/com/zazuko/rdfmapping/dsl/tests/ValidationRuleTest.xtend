@@ -38,11 +38,6 @@ class ValidationRuleTest {
 	@Test
 	def void TypeDefinedOnLogicalSource() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			source-group WSD_STABS_SCP_ARCHIV_DBA {
 			    logical-source RECS_rico {
 			    	type xml
@@ -59,11 +54,6 @@ class ValidationRuleTest {
 	@Test
 	def void TypeDefinedOnSourceGroup() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			source-group WSD_STABS_SCP_ARCHIV_DBA {
 				type xml
 				   logical-source RECS_rico {
@@ -80,11 +70,6 @@ class ValidationRuleTest {
 	@Test
 	def void TypeNotDefinedOnNonEnclosedLogicalSource() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			logical-source RECS_rico {
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
 				referenceables
@@ -99,11 +84,6 @@ class ValidationRuleTest {
 	@Test
 	def void TypeDefinedOnNonEnclosedLogicalSource() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			logical-source RECS_rico {
 				type xml
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
@@ -118,11 +98,6 @@ class ValidationRuleTest {
 	@Test
 	def void TypeShadowed() {
 		val result = parseHelper.parse('''
-			source-types {
-							xml referenceFormulation "ql:XPath"
-							   rdb referenceFormulation "rr:SQL2008"
-							   csv referenceFormulation "ql:CSV"
-						}
 				source-group WSD_STABS_SCP_ARCHIV_DBA {
 				type rdb
 			
@@ -144,11 +119,6 @@ class ValidationRuleTest {
 	@Test
 	def void NoSourceDefined() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			source-group WSD_STABS_SCP_ARCHIV_DBA {
 			    logical-source RECS_rico {
 			        type xml
@@ -165,11 +135,6 @@ class ValidationRuleTest {
 	@Test
 	def void SourceDefinedOnLogicalSource() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			source-group WSD_STABS_SCP_ARCHIV_DBA {
 			    logical-source RECS_rico {
 			    	type xml
@@ -186,11 +151,6 @@ class ValidationRuleTest {
 	@Test
 	def void SourceDefinedOnSourceGroup() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			source-group WSD_STABS_SCP_ARCHIV_DBA {
 				type xml
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
@@ -207,11 +167,6 @@ class ValidationRuleTest {
 	@Test
 	def void SourceNotDefinedOnNonEnclosedLogicalSource() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			logical-source RECS_rico {
 				type xml
 				referenceables
@@ -226,11 +181,6 @@ class ValidationRuleTest {
 	@Test
 	def void SourceDefinedOnNonEnclosedLogicalSource() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				   rdb referenceFormulation "rr:SQL2008"
-				   csv referenceFormulation "ql:CSV"
-			}
 			logical-source RECS_rico {
 				type xml
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
@@ -245,12 +195,7 @@ class ValidationRuleTest {
 	@Test
 	def void SourceShadowed() {
 		val result = parseHelper.parse('''
-			source-types {
-							xml referenceFormulation "ql:XPath"
-							   rdb referenceFormulation "rr:SQL2008"
-							   csv referenceFormulation "ql:CSV"
-						}
-				source-group WSD_STABS_SCP_ARCHIV_DBA {
+			source-group WSD_STABS_SCP_ARCHIV_DBA {
 				type rdb
 				source "WSD_STABS_SCP_ARCHIV_DBA.RECS_rico"
 			

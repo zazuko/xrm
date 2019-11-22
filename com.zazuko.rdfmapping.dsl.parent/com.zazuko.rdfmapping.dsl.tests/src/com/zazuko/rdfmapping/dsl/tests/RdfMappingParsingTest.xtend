@@ -5,12 +5,19 @@ package com.zazuko.rdfmapping.dsl.tests
 
 import com.google.inject.Inject
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
+import java.util.List
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
 import org.eclipse.xtext.testing.util.ParseHelper
+import org.eclipse.xtext.util.CancelIndicator
+import org.eclipse.xtext.validation.CheckMode
+import org.eclipse.xtext.validation.IResourceValidator
+import org.eclipse.xtext.validation.Issue
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
+
+import static org.junit.Assert.assertEquals
 
 @ExtendWith(InjectionExtension)
 @InjectWith(RdfMappingInjectorProvider)
@@ -18,16 +25,66 @@ class RdfMappingParsingTest {
 	@Inject
 	ParseHelper<Domainmodel> parseHelper
 	
+	@Inject 
+	IResourceValidator resourceValidator
+	
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			source-types {
-				xml referenceFormulation "ql:XPath"
-				rdb referenceFormulation "rr:SQL2008"
-				csv referenceFormulation "ql:CSV"
+			logical-source city {
+				type csv
+				source "http://www.example.com/City.csv"
+				
+				referenceables
+					continent
+					country
+					city
 			}
 		''')
 		Assertions.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+	}
+
+	@Test
+	def void nullValueInstruction_csv_OK() {
+		val result = parseHelper.parse('''
+			logical-source EMPLOYEE {
+				type csv
+				source "EMP"
+			
+				referenceables
+					ENAME null "X"	
+			}
+		''')
+		Assertions.assertNotNull(result)
+		
+		val List<Issue> issues = resourceValidator.validate(result.eResource,
+            CheckMode.ALL, CancelIndicator.NullImpl)
+        assertEquals(0, issues.size);
+        
+		val errors = result.eResource.errors
+		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+	}
+
+	@Test
+	def void nullValueInstruction_rdb_fail() {
+		val result = parseHelper.parse('''
+			logical-source EMPLOYEE {
+				type rdb
+				source "EMP"
+			
+				referenceables
+					ENAME null "X"	
+			}
+		''')
+		Assertions.assertNotNull(result)
+		
+		val List<Issue> issues = resourceValidator.validate(result.eResource,
+            CheckMode.ALL, CancelIndicator.NullImpl)
+        assertEquals(1, issues.size);
+        assertEquals("Type 'csv' required for null value declaration, but was 'rdb'", issues.get(0).message);
+        
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 	}

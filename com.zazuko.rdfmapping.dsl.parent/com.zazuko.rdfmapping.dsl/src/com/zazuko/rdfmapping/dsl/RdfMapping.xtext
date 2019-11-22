@@ -7,15 +7,19 @@ Domainmodel :
   
 Element:
     SourceGroup | LogicalSource | PrefixHolder | Mapping |
-    SourceTypesDefinition | LanguageTagDefinition | DialectGroup;
+    LanguageTagDefinition | DialectGroup;
 
-SourceTypesDefinition: {SourceTypesDefinition}
-	'source-types' '{'
-		(types+=SourceType)*
-	'}';
+enum SourceType:
+	XML='xml' 
+	| RDB = 'rdb'
+	| CSV = 'csv'
+	;
 
-SourceType:
-	name=ID 'referenceFormulation' referenceFormulation=STRING;
+// do not reference an enum directly - if no value is declared, EMF will initialize the 
+// reference with the first entry of the enum instead of null.
+SourceTypeRef:
+	type=SourceType
+;
 	
 DatatypesDefinition: 
 	'datatypes' name=ID '{'
@@ -36,14 +40,14 @@ LanguageTag:
   
 SourceGroup:
     'source-group' name=ID '{'
-    	('type' type=[SourceType])?
+    	('type' typeRef=SourceTypeRef)?
     	('source' (sourceIsQuery ?= 'query')? source=STRING)?
     	(logicalSources+=LogicalSource)*
     '}';
     
 LogicalSource:
 	'logical-source' name=ID '{'
-		('type' type=[SourceType])?
+		('type' typeRef=SourceTypeRef)?
 		('source' (sourceIsQuery ?= 'query')? source=STRING)?
 		('dialect' dialect=[DialectGroup])?
 		'referenceables'
@@ -51,7 +55,10 @@ LogicalSource:
 	'}';
 
 Referenceable:	
-    name=ID (value=STRING)?;
+    name=ID (value=STRING)? (nullValueMarker=NullValueDeclaration)?;
+    
+NullValueDeclaration:
+	'null' nullValue=STRING;
     
 DialectGroup:
 	'dialect' name=ID '{'

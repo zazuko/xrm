@@ -3,9 +3,32 @@
  */
 package com.zazuko.rdfmapping.dsl
 
+import com.google.inject.Injector
+import com.google.inject.Provides
+import com.zazuko.rdfmapping.dsl.generator.common.GeneratorConstants
+import com.zazuko.rdfmapping.dsl.generator.rml.R2rmlDialect
+import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialect
+import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialectGenerator
+import javax.inject.Named
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class RdfMappingRuntimeModule extends AbstractRdfMappingRuntimeModule {
+
+	@Provides
+	@Named(GeneratorConstants.DIALECT_RML)
+	def RmlDialectGenerator rmlDialectGenerator(Injector injector, RmlDialect dialect) {
+		val RmlDialectGenerator result = new RmlDialectGenerator(dialect);
+		injector.injectMembers(result);
+		return result;
+	}
+
+	@Provides
+	@Named(GeneratorConstants.DIALECT_R2RML)
+	def RmlDialectGenerator r2rmlDialectGenerator(Injector injector, R2rmlDialect dialect) {
+		val RmlDialectGenerator result = new RmlDialectGenerator(dialect);
+		injector.injectMembers(result);
+		return result;
+	}
 }

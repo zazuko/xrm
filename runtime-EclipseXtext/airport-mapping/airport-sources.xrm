@@ -1,7 +1,3 @@
-source-types {
-	csv referenceFormulation "ql:CSV"
-}
-
 logical-source airport {
 	type csv
 	source "http://www.example.com/Airport.csv"
@@ -10,8 +6,8 @@ logical-source airport {
 		id
 		stop
 		latitude
-		longitude
-		ownership "airport öwnership"
+		longitude null "N/A"
+		ownership "airport öwnership" null "X"
 }
 
 logical-source city {

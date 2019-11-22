@@ -1,25 +1,26 @@
 package com.zazuko.rdfmapping.dsl.generator.csvw
 
+import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
+import com.zazuko.rdfmapping.dsl.rdfMapping.SubjectTypeMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import java.text.MessageFormat
 import java.util.List
-
-import static extension com.zazuko.rdfmapping.dsl.generator.common.ModelAccess.*
+import javax.inject.Inject
 
 class CsvwDialectGenerator {
 
-	final extension CsvwDialect dialect;
+	@Inject
+	extension ModelAccess;
 
-	new(CsvwDialect dialect) {
-		this.dialect = dialect;
-	}
-	
+	@Inject
+	extension CsvwDialect;
+
 	def generateJson(Iterable<Mapping> mappings, CsvwDialectContext ctx) '''
 		{
 			«context()»
@@ -96,7 +97,7 @@ class CsvwDialectGenerator {
 	'''
 	
 	def suppressOutput(Mapping it, CsvwDialectContext ctx)'''
-		«FOR ref : ctx.notUsedReferencables(it) SEPARATOR jsonListSeparator»
+		«FOR Referenceable ref : ctx.notUsedReferencables(it) SEPARATOR jsonListSeparator»
 			{
 				"suppressOutput": true,
 				"titles": "«ref.valueResolved»"
@@ -104,7 +105,7 @@ class CsvwDialectGenerator {
 	'''
 	
 	def subjectTypeMappings(Mapping it)'''
-		«FOR stm : subjectTypeMappings SEPARATOR jsonListSeparator»
+		«FOR SubjectTypeMapping stm : subjectTypeMappings SEPARATOR jsonListSeparator»
 			{
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -125,6 +126,8 @@ class CsvwDialectGenerator {
 	def dispatch valueReference(ReferenceValuedTerm it) '''
 		«termMapAnnex»
 		"titles": "«reference.valueResolved»"
+		«IF reference.nullValueMarker !== null»"null": "«reference.nullValueMarker.nullValue»"
+		«ENDIF»
 	'''
 	
 	def dispatch valueReference(ConstantValuedTerm it) '''
