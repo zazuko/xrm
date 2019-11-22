@@ -18,11 +18,6 @@ logical-source EMPLOYEE {
 		ENAME	
 }
 
-// rml:referenceFormulation for a relational database
-source-types {
-    rdb referenceFormulation "rr:SQL2008"
-}
-
 // vocabulary: classes and properties
 vocabulary ex {
 	prefix "ex:" "http://example.com/ns#"
