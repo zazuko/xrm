@@ -27,5 +27,6 @@ Export-Package: com.zazuko.rdfmapping.dsl.serializer,
  com.zazuko.rdfmapping.dsl.validation,
  com.zazuko.rdfmapping.dsl.parser.antlr,
  com.zazuko.rdfmapping.dsl,
+ com.zazuko.rdfmapping.dsl.util,
  com.zazuko.rdfmapping.dsl.rdfMapping.impl
 Import-Package: org.apache.log4j
