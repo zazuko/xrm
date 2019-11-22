@@ -36,16 +36,18 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		// regionFor.feature(RdfMappingPackage.eINSTANCE.getLogicalSource_TypeRef).append([newLine]);
 		interior[indent];
 
+		regionFor.keyword("logical-source").append[oneSpace];
+		regionFor.keyword("{").prepend[oneSpace];
 		regionFor.keyword("type").prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword("source").prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword("dialect").prepend[setNewLines(1)];
-		regionFor.keyword("referenceables").prepend[setNewLines(2)].append[newLine];
+		regionFor.keyword("dialect").prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword("referenceables").prepend[setNewLines(2)];
 
 		// regionFor.feature(RdfMappingPackage.eINSTANCE.logicalSource_Referenceables).prepend[indent]
 		for (Referenceable current : referenceables) {
 			current.format;
 		}
-		
+
 		regionFor.keyword("}").prepend[setNewLines(1)].append[setNewLines(2)];
 	}
 
