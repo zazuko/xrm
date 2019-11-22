@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.generator
+package com.zazuko.rdfmapping.dsl.generator.csvw
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
@@ -10,7 +10,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import java.text.MessageFormat
 import java.util.List
 
-import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.*
+import static extension com.zazuko.rdfmapping.dsl.generator.common.ModelAccess.*
 
 class CsvwDialectGenerator {
 
@@ -20,14 +20,22 @@ class CsvwDialectGenerator {
 		this.dialect = dialect;
 	}
 	
-	def generateJson(Iterable<Mapping> mappings) '''
+	def generateJson(Iterable<Mapping> mappings, CsvwDialectContext ctx) '''
 		{
 			«context()»
 			"tables": [
-				«mappings.map[tableSchema].join('\n,')»
+				«FOR Mapping mapping : mappings SEPARATOR jsonListSeparator»
+				«mapping.tableSchema(ctx)»
+				«ENDFOR»
 			]
 		}
 	'''
+	
+	// includes newLine()
+	def jsonListSeparator() '''
+	,
+	'''
+	
 	def dialect(DialectGroup d) '''
 		"dialect": {
 			"delimiter": "«d.delimiter»"
@@ -70,51 +78,48 @@ class CsvwDialectGenerator {
 		},
 	'''
 	
-	def tableSchema(Mapping m) '''
+	def tableSchema(Mapping it, CsvwDialectContext ctx) '''
 	{
-		"url": "«m.source.source»",
-		«IF m.source.dialect !== null»
-			«m.source.dialect.dialect()»
+		"url": "«source.source»",
+		«IF source.dialect !== null»
+			«source.dialect.dialect()»
 		«ENDIF»
 		"tableSchema": {
-			«m.subjectMap()»,
+			«subjectMap()»,
 			"columns": [
-				«m.subjectTypeMappings()»«IF ! m.subjectTypeMappings.empty && (m.poMappings.length + m.notUsedReferencables.length > 0)»,«ENDIF»
-				«m.columns()»«IF ! m.poMappings.empty && (m.notUsedReferencables.length > 0)»,«ENDIF»
-				«m.suppressOutput()»
+				«subjectTypeMappings()»«IF ctx.needsColumnsGlueing(it)»,«ENDIF»
+				«columns()»«IF ctx.needsColumnsGlueing(it)»,«ENDIF»
+				«suppressOutput(ctx)»
 			] 
 		}
 	}
 	'''
 	
-	def suppressOutput(Mapping m)'''
-		«FOR ref : m.notUsedReferencables SEPARATOR ","»
+	def suppressOutput(Mapping it, CsvwDialectContext ctx)'''
+		«FOR ref : ctx.notUsedReferencables(it) SEPARATOR jsonListSeparator»
 			{
 				"suppressOutput": true,
 				"titles": "«ref.valueResolved»"
-			}
-		«ENDFOR»
+			}«ENDFOR»
 	'''
 	
-	def subjectTypeMappings(Mapping m)'''
-		«FOR stm : m.subjectTypeMappings SEPARATOR ","»
+	def subjectTypeMappings(Mapping it)'''
+		«FOR stm : subjectTypeMappings SEPARATOR jsonListSeparator»
 			{
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 				"valueUrl": "«stm.type.vocabulary.prefix.iri»«stm.type.valueResolved»"
-			}
-		«ENDFOR»
+			}«ENDFOR»
 	'''
 	
-	def subjectMap(Mapping m) '''"aboutUrl": "«m.subjectIri»"'''
+	def subjectMap(Mapping it) '''"aboutUrl": "«subjectIri»"'''
 	
-	def columns(Mapping m) '''
-		«FOR pom : m.poMappings SEPARATOR ","»
+	def columns(Mapping it) '''
+		«FOR pom : poMappings SEPARATOR jsonListSeparator»
 			{
 				"propertyUrl": "«pom.property.vocabulary.prefix.iri»«pom.property.valueResolved»",
 				«pom.term.valueReference»
-			}
-		«ENDFOR»
+			}«ENDFOR»
 	'''
 	
 	def dispatch valueReference(ReferenceValuedTerm it) '''

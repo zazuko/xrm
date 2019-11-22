@@ -1,8 +1,8 @@
-package com.zazuko.rdfmapping.dsl.generator
+package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 
-import static extension com.zazuko.rdfmapping.dsl.generator.ModelAccess.*
+import static extension com.zazuko.rdfmapping.dsl.generator.common.ModelAccess.*
 
 class RmlDialect {
 

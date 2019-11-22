@@ -28,9 +28,9 @@
 					}
 				] 
 			}
-		}
+		},
 		
-		,{
+		{
 			"url": "http://www.example.com/usageCategories.csv",
 			"tableSchema": {
 				"aboutUrl": "http://elcom.zazuko.com/category/conceptscheme/{id}",

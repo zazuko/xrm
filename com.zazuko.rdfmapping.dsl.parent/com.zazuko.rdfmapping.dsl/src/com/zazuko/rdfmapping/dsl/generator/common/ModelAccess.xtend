@@ -1,5 +1,6 @@
-package com.zazuko.rdfmapping.dsl.generator
+package com.zazuko.rdfmapping.dsl.generator.common
 
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
@@ -12,9 +13,8 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
-import java.util.HashSet
-import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import java.net.URL
+import java.util.HashSet
 
 class ModelAccess {
 
@@ -56,25 +56,6 @@ class ModelAccess {
 
 	def static vocabulary(RdfProperty it) {
 		eContainer as Vocabulary;
-	}
-
-	def static notUsedReferencables(Mapping it) {
-		val result = new HashSet();
-		for (ref : source.referenceables) {
-			var refUsed = false;
-			for (poMapping : poMappings) {
-				val term = poMapping.term
-				if (term instanceof ReferenceValuedTerm) {
-					if (ref.valueResolved == term.reference.valueResolved) {
-						refUsed = true;
-					}
-				}
-			}
-			if (refUsed == false) {
-				result.add(ref);
-			}
-		}
-		return result
 	}
 
 	def static toConstantValue(ConstantValuedTerm it) {
