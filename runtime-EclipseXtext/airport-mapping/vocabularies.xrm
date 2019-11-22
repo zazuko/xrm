@@ -5,38 +5,32 @@ datatypes xsd {
 
 vocabulary transit {
 	prefix "transit:" "http://vocab.org/transit/terms/"
-		
-	classes
+	classes {
 		Stop
-	
+	}
 	properties
-		route
+	route
 }
 
 vocabulary wgs84_pos {
 	prefix "wgs84_pos:" "http://www.w3.org/2003/01/geo/wgs84_pos#"
-		
 	properties
-		lat
-		long
+	lat
+	long
 }
 
 vocabulary schema {
 	prefix "schema:" "https://schema.org/"
-	
-	classes
+	classes {
 		City
-	
+	}
 	properties
-
 }
 
 vocabulary ex {
 	prefix "ex:" "https://schema.example.org/"
-	
-	classes
-	
 	properties
-		owner
-		marker
+	owner
+	marker
 }
+

@@ -3,6 +3,7 @@
 map AirportMapping from airport {
 	subject template "http://airport.example.com/{0}" with id;
 	
+	
 	types transit.Stop;
 	
 	properties

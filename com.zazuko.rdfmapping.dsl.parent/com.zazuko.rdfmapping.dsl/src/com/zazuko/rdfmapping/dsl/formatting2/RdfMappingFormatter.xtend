@@ -4,14 +4,20 @@
 package com.zazuko.rdfmapping.dsl.formatting2
 
 import com.google.inject.Inject
+import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
+import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
+import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
+import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
+import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
+import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 
 @SuppressWarnings("discouragedAccess")
 class RdfMappingFormatter extends AbstractFormatter2 {
@@ -19,11 +25,8 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	@Inject RdfMappingGrammarAccess ga
 	RdfMappingPackage pkg = RdfMappingPackage.eINSTANCE;
 
-	def dispatch void format(Domainmodel domainmodel, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (element : domainmodel.elements) {
-			element.format
-		}
+	def dispatch void format(Domainmodel it, extension IFormattableDocument document) {
+		elements.forEach[format]; 
 	}
 
 	def dispatch void format(SourceGroup it, extension IFormattableDocument document) {
@@ -31,7 +34,67 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 			current.format.append[newLine];
 		}
 	}
+	
+	def dispatch void format(DatatypesDefinition it, extension IFormattableDocument document) {
+		interior[indent];
 
+		regionFor.keyword("datatypes").append[oneSpace];
+		regionFor.keyword("{").prepend[oneSpace];
+		
+		prefix?.format;
+		types.forEach[format];
+		
+		regionFor.keyword("}").prepend[setNewLines(1)].append[setNewLines(2)];
+	}
+	
+	def dispatch void format(Prefix it, extension IFormattableDocument document) {
+		prepend[setNewLines(1)];
+		regionFor.keyword("prefix").append[oneSpace];
+		regionFor.feature(pkg.prefix_Iri).prepend[oneSpace]
+	}
+	
+	def dispatch void format(Datatype it, extension IFormattableDocument document) {
+		prepend[setNewLines(1)]
+		regionFor.feature(pkg.referenceable_Value).prepend[oneSpace]
+	}
+	
+	def dispatch void format(Vocabulary it, extension IFormattableDocument document) {
+		interior(
+			regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_2),
+			regionFor.keyword(ga.vocabularyAccess.rightCurlyBracketKeyword_6)
+		)[indent];
+
+		regionFor.keyword("vocabulary").append[oneSpace];
+		regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_2).prepend[oneSpace];
+		
+		interior(
+			regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_4_1),
+			regionFor.keyword(ga.vocabularyAccess.rightCurlyBracketKeyword_4_3)
+		)[indent];
+		
+		prefix?.format
+
+		regionFor.keyword(ga.vocabularyAccess.classesKeyword_4_0).prepend[setNewLines(1)];
+		regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_4_1).prepend[oneSpace];
+		
+		classes.forEach[format];
+		
+		regionFor.keyword("properties").prepend[setNewLines(0, 1, 1)];
+		properties.forEach[format];
+
+		regionFor.keyword("}").prepend[setNewLines(1)].append[setNewLines(2)];
+	}
+
+	def dispatch void format(RdfClass it, extension IFormattableDocument document) {
+		prepend[setNewLines(1)];
+		regionFor.feature(pkg.rdfClass_Value).prepend[oneSpace];
+	}
+	
+	def dispatch void format(RdfProperty it, extension IFormattableDocument document) {
+		prepend[setNewLines(1)];
+		regionFor.feature(pkg.rdfClass_Value).prepend[oneSpace];
+	}
+	
 	def dispatch void format(LogicalSource it, extension IFormattableDocument document) {
 		// regionFor.feature(RdfMappingPackage.eINSTANCE.getLogicalSource_TypeRef).append([newLine]);
 		interior[indent];
@@ -44,16 +107,14 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword("referenceables").prepend[setNewLines(2)];
 
 		// regionFor.feature(RdfMappingPackage.eINSTANCE.logicalSource_Referenceables).prepend[indent]
-		for (Referenceable current : referenceables) {
-			current.format;
-		}
+		referenceables.forEach[format];
 
 		regionFor.keyword("}").prepend[setNewLines(1)].append[setNewLines(2)];
 	}
 
 	def dispatch void format(Referenceable it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)]
-		regionFor.feature(RdfMappingPackage.eINSTANCE.referenceable_Name).append[oneSpace]
+		regionFor.feature(pkg.referenceable_Name).append[oneSpace]
 	}
 
 }

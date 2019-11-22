@@ -83,7 +83,7 @@ BooleanLiteral:
 Vocabulary:	
 	'vocabulary' name=ID '{'
     	prefix=Prefix
-		('classes' (classes+=RdfClass)*)?
+		('classes' '{' (classes+=RdfClass)* '}' )?
 	    ('properties' (properties+=RdfProperty)*)?	
     '}';
    
