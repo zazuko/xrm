@@ -5,6 +5,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SubjectTypeMapping
@@ -143,6 +144,11 @@ class CsvwDialectGenerator {
 	def dispatch valueReference(LinkedResourceTerm it) '''
 		"titles": "«references.toList.get(0).valueResolved»",
 		"valueUrl": "«toTemplateString»"
+	'''
+	
+	def dispatch valueReference(ParentTriplesMapTerm it) '''
+		"virtual": true,
+		"valueUrl": "unsupported"
 	'''
 	
 	def termMapAnnex(ReferenceValuedTerm it) '''

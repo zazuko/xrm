@@ -114,7 +114,7 @@ PredicateObjectMapping:
 	term=ValuedTerm;
 	
 ValuedTerm:
-	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm | ConstantValuedTerm;
+	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm | ConstantValuedTerm | ParentTriplesMapTerm;
 	
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
@@ -132,6 +132,10 @@ TemplateValuedTerm:
 LinkedResourceTerm:
 	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
 	 ';'?;
+	 
+ParentTriplesMapTerm:
+	'parent-map' mapping=[Mapping]
+	';'?;
 
 QualifiedName:
     ID ('.' ID)*;

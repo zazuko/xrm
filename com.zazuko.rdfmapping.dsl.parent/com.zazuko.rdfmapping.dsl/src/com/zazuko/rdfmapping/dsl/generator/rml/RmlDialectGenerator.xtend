@@ -12,6 +12,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import java.text.MessageFormat
 import java.util.List
 import javax.inject.Inject
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 
 class RmlDialectGenerator {
 
@@ -47,7 +48,7 @@ class RmlDialectGenerator {
 	'''
 	
 	def triplesMap(Mapping m) '''
-		<#«m.name»>
+		<«m.localId»>
 			«m.logicalSource»
 			
 			«m.subjectMap()»«IF ! m.poMappings.empty»;«ENDIF»
@@ -95,6 +96,10 @@ class RmlDialectGenerator {
 		rr:template "«toTemplateString»" ;
 	'''
 	
+	def dispatch objectTermMap(ParentTriplesMapTerm it) '''
+		rr:parentTriplesMap  <«mapping.localId»> ;
+	'''
+	
 	def termMapAnnex(ReferenceValuedTerm it) '''
 		«IF languageTag !== null»
 			rr:language "«languageTag.name»" ;
@@ -102,6 +107,8 @@ class RmlDialectGenerator {
 			rr:datatype «datatype.prefix.label»«datatype.valueResolved» ;
 		«ENDIF»
 	'''
+	
+	def private localId(Mapping m) '''#«m.name»'''
 	
 	def subjectIri(Mapping it) {
 		subjectIriMapping.toTemplateString
