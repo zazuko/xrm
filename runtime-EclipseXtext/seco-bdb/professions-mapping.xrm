@@ -8,7 +8,7 @@ map Profession from easygov_professions {
 		exProfessions.position from POS with datatype xsd.int;
 		exProfessions.code from CODE with datatype xsd.int;
 		
-		skos.notation template "{0}" with CODE;
+		skos.notation template "{0}" with CODE as Literal;
 		exProfessions.fkBranche from LN_BRANCHE with datatype xsd.int;
 		exProfessions.fkParent from LN_PARENT with datatype xsd.int;
 		

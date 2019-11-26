@@ -119,6 +119,7 @@ ValuedTerm:
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
+	('as' termType=TermType)?
 	';'?;
 
 ConstantValuedTerm:
@@ -127,6 +128,7 @@ ConstantValuedTerm:
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+
+	('as' termType=TermType)?
 	';'?;
 	
 LinkedResourceTerm:
@@ -139,3 +141,9 @@ ParentTriplesMapTerm:
 
 QualifiedName:
     ID ('.' ID)*;
+    
+enum TermTypeEnum:
+ Unspecified="unspecified" | Literal='Literal' | IRI='IRI' | BlankNode='BlankNode';
+
+enum TermType returns TermTypeEnum:
+ Literal='Literal' | IRI='IRI' | BlankNode='BlankNode';

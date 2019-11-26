@@ -43,6 +43,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:predicate skos:notation ;
 		rr:objectMap [
 			rr:template "{CODE}" ;
+			rr:termType rr:Literal ;
 		];
 	];
 	rr:predicateObjectMap [

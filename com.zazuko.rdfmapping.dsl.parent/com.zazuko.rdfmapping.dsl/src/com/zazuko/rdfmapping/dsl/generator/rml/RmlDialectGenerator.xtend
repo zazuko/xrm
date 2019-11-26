@@ -13,6 +13,7 @@ import java.text.MessageFormat
 import java.util.List
 import javax.inject.Inject
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeEnum
 
 class RmlDialectGenerator {
 
@@ -63,7 +64,10 @@ class RmlDialectGenerator {
 			rr:template "«m.subjectIri»";
 			«FOR stm : m.subjectTypeMappings»
 				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
-			«ENDFOR»	
+			«ENDFOR»
+			«IF !m.getSubjectIriMapping.termType.equals(TermTypeEnum.UNSPECIFIED)»
+				rr:termType rr:«m.getSubjectIriMapping.termType» ;
+			«ENDIF»
 		]'''
 	
 	def predicateObjectMap(PredicateObjectMapping pom) '''
@@ -90,6 +94,9 @@ class RmlDialectGenerator {
 	
 	def dispatch objectTermMap(TemplateValuedTerm it) '''
 		rr:template "«toTemplateString»" ;
+		«IF !termType.equals(TermTypeEnum.UNSPECIFIED)»
+			rr:termType rr:«termType» ;
+		«ENDIF»
 	'''
 	
 	def dispatch objectTermMap(LinkedResourceTerm it) '''
@@ -106,6 +113,9 @@ class RmlDialectGenerator {
 		«ELSEIF datatype !== null»
 			rr:datatype «datatype.prefix.label»«datatype.valueResolved» ;
 		«ENDIF»
+		«IF !termType.equals(TermTypeEnum.UNSPECIFIED)»
+			rr:termType rr:«termType» ;
+		«ENDIF»
 	'''
 	
 	def private localId(Mapping m) '''#«m.name»'''
@@ -114,7 +124,7 @@ class RmlDialectGenerator {
 		subjectIriMapping.toTemplateString
 	}
 	
-	def toTemplateString(TemplateValuedTerm it) {		
+	def toTemplateString(TemplateValuedTerm it) {
 		template.apply(references);
 	}
 	
