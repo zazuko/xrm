@@ -4,6 +4,7 @@ import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
@@ -12,8 +13,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import java.text.MessageFormat
 import java.util.List
 import javax.inject.Inject
-import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
-import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeEnum
 
 class RmlDialectGenerator {
 
@@ -65,8 +64,8 @@ class RmlDialectGenerator {
 			«FOR stm : m.subjectTypeMappings»
 				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
 			«ENDFOR»
-			«IF !m.getSubjectIriMapping.termType.equals(TermTypeEnum.UNSPECIFIED)»
-				rr:termType rr:«m.getSubjectIriMapping.termType» ;
+			«IF m.getSubjectIriMapping.termTypeRef?.type !== null»
+				rr:termType rr:«m.getSubjectIriMapping.termTypeRef.type» ;
 			«ENDIF»
 		]'''
 	
@@ -94,8 +93,8 @@ class RmlDialectGenerator {
 	
 	def dispatch objectTermMap(TemplateValuedTerm it) '''
 		rr:template "«toTemplateString»" ;
-		«IF !termType.equals(TermTypeEnum.UNSPECIFIED)»
-			rr:termType rr:«termType» ;
+		«IF termTypeRef?.type !== null»
+			rr:termType rr:«termTypeRef.type» ;
 		«ENDIF»
 	'''
 	
@@ -113,8 +112,8 @@ class RmlDialectGenerator {
 		«ELSEIF datatype !== null»
 			rr:datatype «datatype.prefix.label»«datatype.valueResolved» ;
 		«ENDIF»
-		«IF !termType.equals(TermTypeEnum.UNSPECIFIED)»
-			rr:termType rr:«termType» ;
+		«IF termTypeRef?.type !== null»
+			rr:termType rr:«termTypeRef.type» ;
 		«ENDIF»
 	'''
 	

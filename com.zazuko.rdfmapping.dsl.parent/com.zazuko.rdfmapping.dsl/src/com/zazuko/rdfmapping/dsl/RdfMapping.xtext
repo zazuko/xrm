@@ -119,7 +119,7 @@ ValuedTerm:
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
-	('as' termType=TermType)?
+	('as' termTypeRef=TermTypeRef)?
 	';'?;
 
 ConstantValuedTerm:
@@ -128,7 +128,7 @@ ConstantValuedTerm:
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+
-	('as' termType=TermType)?
+	('as' termTypeRef=TermTypeRef)?
 	';'?;
 	
 LinkedResourceTerm:
@@ -142,8 +142,15 @@ ParentTriplesMapTerm:
 QualifiedName:
     ID ('.' ID)*;
     
-enum TermTypeEnum:
- Unspecified="unspecified" | Literal='Literal' | IRI='IRI' | BlankNode='BlankNode';
 
-enum TermType returns TermTypeEnum:
- Literal='Literal' | IRI='IRI' | BlankNode='BlankNode';
+enum TermType:
+ Literal='Literal'
+ | IRI='IRI'
+ | BlankNode='BlankNode'
+ ;
+ 
+// do not reference an enum directly - if no value is declared, EMF will initialize the 
+// reference with the first entry of the enum instead of null.
+TermTypeRef:
+	type=TermType
+;
