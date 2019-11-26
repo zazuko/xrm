@@ -4,12 +4,17 @@
 package com.zazuko.rdfmapping.dsl.validation
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
+import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
+import com.zazuko.rdfmapping.dsl.rdfMapping.Element
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
+import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import java.util.ArrayList
+import java.util.List
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
 
@@ -71,7 +76,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Check
 	def void checkReferenceableDeclarationNullValueMarker(NullValueDeclaration it) {
-		val Referenceable ref = eContainer as Referenceable; 
+		val Referenceable ref = eContainer as Referenceable;
 		if (ref === null) {
 			return;
 		}
@@ -84,7 +89,29 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 		}
 		val SourceType type = ls.typeResolved;
 		if (type !== null && !SourceType.CSV.equals(type)) {
-			error("Type 'csv' required for null value declaration, but was '" + type + "'", ref, RdfMappingPackage.Literals.REFERENCEABLE__NULL_VALUE_MARKER);
+			error("Type 'csv' required for null value declaration, but was '" + type + "'", ref,
+				RdfMappingPackage.Literals.REFERENCEABLE__NULL_VALUE_MARKER);
+		}
+	}
+
+	@Check
+	def void checkDuplicateMappingNames(Mapping mapping) {
+		val Domainmodel domainModel = mapping.eContainer as Domainmodel;
+		if (domainModel === null) {
+			return;
+		}
+		if (domainModel.elements === null || domainModel.elements.empty) {
+			return;
+		}
+
+		val List<Element> nameOccurrences = new ArrayList();
+		for (Mapping candidate : domainModel.elements.filter(typeof(Mapping))) {
+			if (candidate.name.equals(mapping.name)) {
+				nameOccurrences.add(candidate);
+			}
+		}
+		if (nameOccurrences.size > 1) {
+			error("Mapping name already in use.", RdfMappingPackage.Literals.MAPPING__NAME);
 		}
 	}
 }
