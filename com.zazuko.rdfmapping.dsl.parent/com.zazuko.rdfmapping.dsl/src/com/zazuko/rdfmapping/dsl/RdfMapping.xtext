@@ -9,18 +9,6 @@ Element:
     SourceGroup | LogicalSource | PrefixHolder | Mapping |
     LanguageTagDefinition | DialectGroup;
 
-enum SourceType:
-	XML='xml' 
-	| RDB = 'rdb'
-	| CSV = 'csv'
-	;
-
-// do not reference an enum directly - if no value is declared, EMF will initialize the 
-// reference with the first entry of the enum instead of null.
-SourceTypeRef:
-	type=SourceType
-;
-	
 DatatypesDefinition: 
 	'datatypes' name=ID BLOCK_BEGIN
 		prefix=Prefix
@@ -53,6 +41,18 @@ LogicalSource:
 		'referenceables'
 			(referenceables+=Referenceable)*
 	BLOCK_END;
+	
+enum SourceType:
+	XML='xml' 
+	| RDB = 'rdb'
+	| CSV = 'csv'
+	;
+
+// do not reference an enum directly - if no value is declared, EMF will initialize the 
+// reference with the first entry of the enum instead of null.
+SourceTypeRef:
+	type=SourceType
+;
 
 Referenceable:	
     name=ID (value=STRING)? (nullValueMarker=NullValueDeclaration)?;
