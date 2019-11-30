@@ -15,6 +15,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
@@ -220,7 +221,9 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.referenceValuedTermAccess.withKeyword_2_1_0).prepend[oneSpace];
 		regionFor.keyword(ga.referenceValuedTermAccess.languageTagKeyword_2_1_1).surround[oneSpace];
 
-		regionFor.ruleCall(ga.referenceValuedTermAccess.LINE_ENDTerminalRuleCall_3).prepend[noSpace];
+		regionFor.keyword(ga.referenceValuedTermAccess.asKeyword_3_0).surround[oneSpace];
+		
+		regionFor.ruleCall(ga.referenceValuedTermAccess.LINE_ENDTerminalRuleCall_4).prepend[noSpace];
 	}
 
 	def dispatch void format(ConstantValuedTerm it, extension IFormattableDocument document) {
@@ -232,7 +235,8 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.templateValuedTermAccess.templateKeyword_0).surround[oneSpace];
 		regionFor.keyword(ga.templateValuedTermAccess.withKeyword_2).prepend[oneSpace];
 		regionFor.assignment(ga.templateValuedTermAccess.referencesAssignment_3).prepend[oneSpace];
-		regionFor.ruleCall(ga.templateValuedTermAccess.LINE_ENDTerminalRuleCall_4).prepend[noSpace];
+		regionFor.keyword(ga.templateValuedTermAccess.asKeyword_4_0).surround[oneSpace];
+		regionFor.ruleCall(ga.templateValuedTermAccess.LINE_ENDTerminalRuleCall_5).prepend[noSpace];
 	}
 
 	def dispatch void format(LinkedResourceTerm it, extension IFormattableDocument document) {
@@ -240,6 +244,11 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.linkedResourceTermAccess.withKeyword_2).prepend[oneSpace];
 		regionFor.assignment(ga.linkedResourceTermAccess.referencesAssignment_3).prepend[oneSpace];
 		regionFor.ruleCall(ga.linkedResourceTermAccess.LINE_ENDTerminalRuleCall_4).prepend[noSpace];
+	}
+
+	def dispatch void format(ParentTriplesMapTerm it, extension IFormattableDocument document) {
+		regionFor.keyword(ga.parentTriplesMapTermAccess.parentMapKeyword_0).surround[oneSpace];
+		regionFor.ruleCall(ga.parentTriplesMapTermAccess.LINE_ENDTerminalRuleCall_2).prepend[noSpace];
 	}
 
 	def dispatch void format(LanguageTagDefinition it, extension IFormattableDocument document) {
