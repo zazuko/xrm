@@ -102,7 +102,7 @@ RdfClass:
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
 		'subject' subjectIriMapping=TemplateValuedTerm
-		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+ ';'?)?
+		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+ LINE_END?)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
 	BLOCK_END;
 	
@@ -119,22 +119,23 @@ ValuedTerm:
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
-	';'?;
+	LINE_END?;
 
 ConstantValuedTerm:
 	'constant' constant=STRING
-	';'?;
+	LINE_END?;
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+
-	';'?;
+	LINE_END?;
 	
 LinkedResourceTerm:
 	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
-	 ';'?;
+	 LINE_END?;
 
 QualifiedName:
     ID ('.' ID)*;
     
 terminal BLOCK_BEGIN: '{';
 terminal BLOCK_END: '}';
+terminal LINE_END: ';';
