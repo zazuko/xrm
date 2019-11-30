@@ -67,15 +67,9 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.vocabularyAccess.vocabularyKeyword_0).append[oneSpace];
 		regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_2).prepend[oneSpace];
 		
-		interior(
-			regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_4_1),
-			regionFor.keyword(ga.vocabularyAccess.rightCurlyBracketKeyword_4_3)
-		)[indent];
-		
 		prefix?.format
 
 		regionFor.keyword(ga.vocabularyAccess.classesKeyword_4_0).prepend[setNewLines(1)];
-		regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_4_1).prepend[oneSpace];
 		
 		classes.forEach[format];
 		

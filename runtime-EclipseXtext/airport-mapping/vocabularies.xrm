@@ -5,9 +5,8 @@ datatypes xsd {
 
 vocabulary transit {
 	prefix "transit:" "http://vocab.org/transit/terms/"
-	classes {
-		Stop
-	}
+	classes
+	Stop
 	properties
 	route
 }
@@ -21,9 +20,8 @@ vocabulary wgs84_pos {
 
 vocabulary schema {
 	prefix "schema:" "https://schema.org/"
-	classes {
-		City
-	}
+	classes
+	City
 	properties
 }
 
