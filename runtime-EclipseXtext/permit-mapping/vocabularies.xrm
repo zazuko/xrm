@@ -7,9 +7,11 @@ language-tags {
 
 vocabulary schema {
 	prefix "schema:" "https://schema.org/"
+
 	classes
 		GovernmentPermit
 		GovernmentOrganization
+
 	properties
 		name
 		alternateName
@@ -18,7 +20,9 @@ vocabulary schema {
 
 vocabulary ex {
 	prefix "ex:" "https://schema.example.org/"
+
 	classes
+
 	properties
 		agency
 		permitLevel
