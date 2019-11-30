@@ -19,7 +19,6 @@ import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 
-@SuppressWarnings("discouragedAccess")
 class RdfMappingFormatter extends AbstractFormatter2 {
 
 	@Inject RdfMappingGrammarAccess ga
@@ -38,18 +37,18 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	def dispatch void format(DatatypesDefinition it, extension IFormattableDocument document) {
 		interior[indent];
 
-		regionFor.keyword("datatypes").append[oneSpace];
-		regionFor.keyword("{").prepend[oneSpace];
+		regionFor.keyword(ga.datatypesDefinitionAccess.datatypesKeyword_0).append[oneSpace];
+		regionFor.ruleCall(ga.datatypesDefinitionAccess.BLOCK_BEGINTerminalRuleCall_2) .prepend[oneSpace];
 		
 		prefix?.format;
 		types.forEach[format];
 		
-		regionFor.keyword("}").prepend[setNewLines(1)].append[setNewLines(2)];
+		regionFor.ruleCall(ga.datatypesDefinitionAccess.BLOCK_ENDTerminalRuleCall_5) .prepend[setNewLines(1)].append[setNewLines(2)];
 	}
 	
 	def dispatch void format(Prefix it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.keyword("prefix").append[oneSpace];
+		regionFor.keyword(ga.prefixAccess.prefixKeyword_0).append[oneSpace];
 		regionFor.feature(pkg.prefix_Iri).prepend[oneSpace]
 	}
 	
@@ -60,12 +59,14 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	
 	def dispatch void format(Vocabulary it, extension IFormattableDocument document) {
 		interior(
-			regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_2),
-			regionFor.keyword(ga.vocabularyAccess.rightCurlyBracketKeyword_6)
+			regionFor.ruleCall(ga.vocabularyAccess.BLOCK_BEGINTerminalRuleCall_2),
+			regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_6)
 		)[indent];
+		
+		
 
 		regionFor.keyword(ga.vocabularyAccess.vocabularyKeyword_0).append[oneSpace];
-		regionFor.keyword(ga.vocabularyAccess.leftCurlyBracketKeyword_2).prepend[oneSpace];
+		regionFor.ruleCall(ga.vocabularyAccess.BLOCK_BEGINTerminalRuleCall_2).prepend[oneSpace];
 		
 		prefix?.format
 
@@ -76,7 +77,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.vocabularyAccess.propertiesKeyword_5_0).prepend[setNewLines(0, 1, 1)];
 		properties.forEach[format];
 
-		regionFor.keyword("}").prepend[setNewLines(1)].append[setNewLines(2)];
+		regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_6) .prepend[setNewLines(1)].append[setNewLines(2)];
 	}
 
 	def dispatch void format(RdfClass it, extension IFormattableDocument document) {
@@ -93,17 +94,17 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		// regionFor.feature(RdfMappingPackage.eINSTANCE.getLogicalSource_TypeRef).append([newLine]);
 		interior[indent];
 
-		regionFor.keyword("logical-source").append[oneSpace];
-		regionFor.keyword("{").prepend[oneSpace];
-		regionFor.keyword("type").prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword("source").prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword("dialect").prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword("referenceables").prepend[setNewLines(2)];
+		regionFor.keyword(ga.logicalSourceAccess.logicalSourceKeyword_0).append[oneSpace];
+		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_BEGINTerminalRuleCall_2).prepend[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.typeKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.sourceKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_6).prepend[setNewLines(2)];
 
 		// regionFor.feature(RdfMappingPackage.eINSTANCE.logicalSource_Referenceables).prepend[indent]
 		referenceables.forEach[format];
 
-		regionFor.keyword("}").prepend[setNewLines(1)].append[setNewLines(2)];
+		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_8) .prepend[setNewLines(1)].append[setNewLines(2)];
 	}
 
 	def dispatch void format(Referenceable it, extension IFormattableDocument document) {

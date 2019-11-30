@@ -22,37 +22,37 @@ SourceTypeRef:
 ;
 	
 DatatypesDefinition: 
-	'datatypes' name=ID '{'
+	'datatypes' name=ID BLOCK_BEGIN
 		prefix=Prefix
 		(types+=Datatype)*
-	'}';
-	
+	BLOCK_END;
+
 Datatype:
 	name=ID (value=STRING)?;
 	
 LanguageTagDefinition: {LanguageTagDefinition}
-	'language-tags' '{'
+	'language-tags' BLOCK_BEGIN
 		(languageTags+=LanguageTag)*
-	'}';
+	BLOCK_END;
 	
 LanguageTag:
 	name=ID;
   
 SourceGroup:
-    'source-group' name=ID '{'
+    'source-group' name=ID BLOCK_BEGIN
     	('type' typeRef=SourceTypeRef)?
     	('source' (sourceIsQuery ?= 'query')? source=STRING)?
     	(logicalSources+=LogicalSource)*
-    '}';
+    BLOCK_END;
     
 LogicalSource:
-	'logical-source' name=ID '{'
+	'logical-source' name=ID BLOCK_BEGIN
 		('type' typeRef=SourceTypeRef)?
 		('source' (sourceIsQuery ?= 'query')? source=STRING)?
 		('dialect' dialect=[DialectGroup])?
 		'referenceables'
 			(referenceables+=Referenceable)*
-	'}';
+	BLOCK_END;
 
 Referenceable:	
     name=ID (value=STRING)? (nullValueMarker=NullValueDeclaration)?;
@@ -61,7 +61,7 @@ NullValueDeclaration:
 	'null' nullValue=STRING;
     
 DialectGroup:
-	'dialect' name=ID '{'
+	'dialect' name=ID BLOCK_BEGIN
 		'delimiter' delimiter=STRING &
 		('commentPrefix' commentPrefix=STRING)? &
 		('doubleQuote' doubleQuote=BooleanLiteral)? &
@@ -75,17 +75,17 @@ DialectGroup:
 		('skipInitialSpace' skipInitialSpace=BooleanLiteral)? &
 		('skipRows' skipRows=INT)? &
 		('trim' trim=BooleanLiteral)? &
-	'}';
+	BLOCK_END;
 
 BooleanLiteral:
     value?='true' | {BooleanLiteral} 'false';
     
 Vocabulary:	
-	'vocabulary' name=ID '{'
+	'vocabulary' name=ID BLOCK_BEGIN
     	prefix=Prefix
 		('classes' (classes+=RdfClass)* )?
 	    ('properties' (properties+=RdfProperty)*)?	
-    '}';
+    BLOCK_END;
    
 PrefixHolder:
     DatatypesDefinition | Vocabulary;   
@@ -100,11 +100,11 @@ RdfClass:
 	name=ID (value=STRING)?;	
     
 Mapping:
-	'map' name=ID 'from' source=[LogicalSource|QualifiedName] '{'
+	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
 		'subject' subjectIriMapping=TemplateValuedTerm
 		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+ ';'?)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
-	'}';
+	BLOCK_END;
 	
 SubjectTypeMapping:	
 	type=[RdfClass|QualifiedName];
@@ -135,3 +135,6 @@ LinkedResourceTerm:
 
 QualifiedName:
     ID ('.' ID)*;
+    
+terminal BLOCK_BEGIN: '{';
+terminal BLOCK_END: '}';
