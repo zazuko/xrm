@@ -34,10 +34,6 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	RdfMappingPackage pkg = RdfMappingPackage.eINSTANCE;
 
 	def dispatch void format(Domainmodel it, extension IFormattableDocument document) {
-		// TODO try this
-//		interior(
-//			regionFor.ruleCall(ga.BLOCK_BEGINRule)
-//		)[indent];
 		elements.forEach[format];
 	}
 
