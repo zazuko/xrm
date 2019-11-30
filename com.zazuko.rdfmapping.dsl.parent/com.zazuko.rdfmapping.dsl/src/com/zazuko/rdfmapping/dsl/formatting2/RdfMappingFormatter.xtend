@@ -7,12 +7,14 @@ import com.google.inject.Inject
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
+import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
@@ -46,12 +48,12 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 
 		// 'type'
 		regionFor.keyword(ga.sourceGroupAccess.typeKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
-		
+
 		// 'source'
 		regionFor.keyword(ga.sourceGroupAccess.sourceKeyword_4_0).prepend[setNewLines(1)];
 		regionFor.assignment(ga.sourceGroupAccess.sourceIsQueryAssignment_4_1).prepend[oneSpace];
 		regionFor.assignment(ga.sourceGroupAccess.sourceAssignment_4_2).prepend[oneSpace];
-				
+
 		logicalSources.forEach[format.append[setNewLines(2)]];
 	}
 
@@ -155,6 +157,10 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.feature(pkg.referenceable_Name).append[oneSpace]
 	}
 
+	def dispatch void format(NullValueDeclaration it, extension IFormattableDocument document) {
+		regionFor.keyword(ga.nullValueDeclarationAccess.nullKeyword_0).append[oneSpace];
+	}
+
 	def dispatch void format(Mapping it, extension IFormattableDocument document) {
 		regionFor.keyword(ga.mappingAccess.mapKeyword_0).append[oneSpace];
 		regionFor.keyword(ga.mappingAccess.fromKeyword_2).surround[oneSpace];
@@ -249,4 +255,25 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.assignment(ga.languageTagAccess.nameAssignment).prepend[setNewLines(1)];
 	}
 
+	def dispatch void format(DialectGroup it, extension IFormattableDocument document) {
+		regionFor.assignment(ga.dialectGroupAccess.nameAssignment_0_1).surround[oneSpace];
+		interior(
+			regionFor.ruleCall(ga.dialectGroupAccess.BLOCK_BEGINTerminalRuleCall_0_2),
+			regionFor.ruleCall(ga.dialectGroupAccess.BLOCK_ENDTerminalRuleCall_13)
+		)[indent];
+		
+		regionFor.keyword(ga.dialectGroupAccess.delimiterKeyword_0_3).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.commentPrefixKeyword_1_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.doubleQuoteKeyword_2_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.encodingKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.headerKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.headerRowCountKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.lineTerminatorsKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.quoteCharKeyword_7_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.skipBlankRowsKeyword_8_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.skipColumnsKeyword_9_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.skipInitialSpaceKeyword_10_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.skipRowsKeyword_11_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupAccess.trimKeyword_12_0).prepend[setNewLines(1)].append[oneSpace];
+	}
 }

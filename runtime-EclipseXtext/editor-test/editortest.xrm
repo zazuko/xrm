@@ -5,6 +5,6 @@ logical-source EMPLOYEE {
 
 	referenceables
 		EMPNO
-		// TODO uncomment next line. error: null "X" is only supported on type cfs
-		// ENAME null "X"	
+// TODO uncomment next line. error: null "X" is only supported on type cfs
+// ENAME null "X"	
 }
