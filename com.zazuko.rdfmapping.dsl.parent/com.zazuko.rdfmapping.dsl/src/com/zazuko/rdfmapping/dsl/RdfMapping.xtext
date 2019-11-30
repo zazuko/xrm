@@ -114,11 +114,12 @@ PredicateObjectMapping:
 	term=ValuedTerm;
 	
 ValuedTerm:
-	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm | ConstantValuedTerm;
+	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm | ConstantValuedTerm | ParentTriplesMapTerm;
 	
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
+	('as' termTypeRef=TermTypeRef)?
 	LINE_END?;
 
 ConstantValuedTerm:
@@ -127,11 +128,16 @@ ConstantValuedTerm:
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+
+	('as' termTypeRef=TermTypeRef)?
 	LINE_END?;
 	
 LinkedResourceTerm:
 	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
 	 LINE_END?;
+	 
+ParentTriplesMapTerm:
+	'parent-map' mapping=[Mapping]
+	LINE_END?;
 
 QualifiedName:
     ID ('.' ID)*;
@@ -139,3 +145,15 @@ QualifiedName:
 terminal BLOCK_BEGIN: '{';
 terminal BLOCK_END: '}';
 terminal LINE_END: ';';
+
+enum TermType:
+ Literal='Literal'
+ | IRI='IRI'
+ | BlankNode='BlankNode'
+ ;
+ 
+// do not reference an enum directly - if no value is declared, EMF will initialize the 
+// reference with the first entry of the enum instead of null.
+TermTypeRef:
+	type=TermType
+;

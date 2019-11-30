@@ -4,6 +4,7 @@ import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
@@ -47,7 +48,7 @@ class RmlDialectGenerator {
 	'''
 	
 	def triplesMap(Mapping m) '''
-		<#«m.name»>
+		<«m.localId»>
 			«m.logicalSource»
 			
 			«m.subjectMap()»«IF ! m.poMappings.empty»;«ENDIF»
@@ -62,7 +63,10 @@ class RmlDialectGenerator {
 			rr:template "«m.subjectIri»";
 			«FOR stm : m.subjectTypeMappings»
 				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
-			«ENDFOR»	
+			«ENDFOR»
+			«IF m.getSubjectIriMapping.termTypeRef?.type !== null»
+				rr:termType rr:«m.getSubjectIriMapping.termTypeRef.type» ;
+			«ENDIF»
 		]'''
 	
 	def predicateObjectMap(PredicateObjectMapping pom) '''
@@ -89,10 +93,17 @@ class RmlDialectGenerator {
 	
 	def dispatch objectTermMap(TemplateValuedTerm it) '''
 		rr:template "«toTemplateString»" ;
+		«IF termTypeRef?.type !== null»
+			rr:termType rr:«termTypeRef.type» ;
+		«ENDIF»
 	'''
 	
 	def dispatch objectTermMap(LinkedResourceTerm it) '''
 		rr:template "«toTemplateString»" ;
+	'''
+	
+	def dispatch objectTermMap(ParentTriplesMapTerm it) '''
+		rr:parentTriplesMap  <«mapping.localId»> ;
 	'''
 	
 	def termMapAnnex(ReferenceValuedTerm it) '''
@@ -101,13 +112,18 @@ class RmlDialectGenerator {
 		«ELSEIF datatype !== null»
 			rr:datatype «datatype.prefix.label»«datatype.valueResolved» ;
 		«ENDIF»
+		«IF termTypeRef?.type !== null»
+			rr:termType rr:«termTypeRef.type» ;
+		«ENDIF»
 	'''
+	
+	def private localId(Mapping m) '''#«m.name»'''
 	
 	def subjectIri(Mapping it) {
 		subjectIriMapping.toTemplateString
 	}
 	
-	def toTemplateString(TemplateValuedTerm it) {		
+	def toTemplateString(TemplateValuedTerm it) {
 		template.apply(references);
 	}
 	

@@ -1,0 +1,8 @@
+logical-source Department {
+	type csv
+	source "DEPT"
+
+	referenceables
+		DEPTNO
+		LOC	
+}
