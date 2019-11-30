@@ -1,13 +1,14 @@
+
 logical-source airport {
 	type csv
 	source "http://www.example.com/Airport.csv"
 
 	referenceables
-	id
-	stop
-	latitude
-	longitude null "N/A"
-	ownership "airport öwnership" null "X"
+		id
+		stop
+		latitude
+		longitude null "N/A"
+		ownership "airport öwnership" null "X"
 }
 
 logical-source city {
@@ -15,8 +16,8 @@ logical-source city {
 	source "http://www.example.com/City.csv"
 
 	referenceables
-	continent
-	country
-	city
+		continent
+		country
+		city
 }
 

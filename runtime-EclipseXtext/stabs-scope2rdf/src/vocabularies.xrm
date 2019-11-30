@@ -10,29 +10,29 @@ datatypes xsd {
 
 vocabulary dc {
 	prefix "dc:" "http://purl.org/dc/terms/"
-	
+
 	classes
-	    BibliographicResource 
-	
+		BibliographicResource
+
 	properties
-	    creator
-	    title
+		creator
+		title
 		relation
 }
 
 /** Friend of a friend
-    attemt to model partners and (ablieferungs-)projects
-*/
+ *     attemt to model partners and (ablieferungs-)projects
+ */
 vocabulary foaf {
 	prefix "foaf:" "http://xmlns.com/foaf/0.1/"
-	
+
 	classes
-	    Agent
-	    Group
-	    Person
-	    Organization
-	    Project
-	
+		Agent
+		Group
+		Person
+		Organization
+		Project
+
 	properties
 		made
 		name
@@ -41,38 +41,40 @@ vocabulary foaf {
 
 // Web annotation ontology
 vocabulary oa {
-	prefix "oa:"  "http://www.w3.org/ns/oa#"
-	
+	prefix "oa:" "http://www.w3.org/ns/oa#"
+
 	classes
 		Annotation
-		
+
 	properties
 		hasBody
 		hasTarget
 }
 
 vocabulary ric {
-    prefix "ric:" "http://purl.org/ica/ric#"
-    classes
-        Record
-    	RecordSet
-    	
-    properties
-    	something
-    	title
-    	scopeAndContent
-    	contentType
-    	qualityOfInformation
-    	date
-    	characteristic_Physical
-		// TODO '-' in IDs -> characteristic-Physical    
+	prefix "ric:" "http://purl.org/ica/ric#"
+
+	classes
+		Record
+		RecordSet
+
+	properties
+		something
+		title
+		scopeAndContent
+		contentType
+		qualityOfInformation
+		date
+		characteristic_Physical
+// TODO '-' in IDs -> characteristic-Physical    
 }
 
 vocabulary skos {
 	prefix "skos:" "http://www.w3.org/2004/02/skos/core#"
+
 	classes
 		Concept
-		
+
 	properties
 		notation
 		prefLabel
@@ -80,26 +82,24 @@ vocabulary skos {
 }
 
 vocabulary schema {
-	
 	prefix "schema:" "http://schema.org/"
-	
-	classes 
+
+	classes
 		Person
-	
+
 	properties
-	 place
-	
+		place
 }
 
 vocabulary stabs {
 	prefix "stabs:" "http://data.staatsarchiv-bs.ch/vocab/"
-	
+
 	classes
 		Ablieferung
 		Deskriptor
 		Partner
 		Verzeichnungseinheit
-		
+
 	properties
 		TITEL
 		SIGNATUR
@@ -203,7 +203,7 @@ vocabulary stabs {
 		FARBE_BILDBEARBEITUNG
 		HAUSNAME
 //            EIGENTÜMER_1862
-        ALTE_HAUSNUMMER
+		ALTE_HAUSNUMMER
 		ENTSTEHUNGSSTUFE
 		FORMALBEGRIFF_HOEFLINGER
 		REPRO
@@ -251,7 +251,7 @@ vocabulary stabs {
 		BEWILLIGUNG
 		PHYSISCHE_BENUETZBARKEIT
 		ZUGAENGLICHKEIT
-		//Deskriptor
+		// Deskriptor
 		THESAURUS
 		BEZEICHNUNG
 		FREMDSPRACHIGE_BEZEICHNUNGEN
@@ -264,7 +264,7 @@ vocabulary stabs {
 		TODESDATUM
 		GND
 		VIAF
-		//Ablieferung
+		// Ablieferung
 		TYP
 		SUBTYP
 		ABLIEFERNDE_STELLE
@@ -275,7 +275,7 @@ vocabulary stabs {
 		JAHR_LAUF_NR
 		ID_NR
 		ID_NAME
-		//Partner
+		// Partner
 		ID_NR
 		ID_NAME
 		TYP_DER_EINHEIT
@@ -285,7 +285,7 @@ vocabulary stabs {
 		RECHTSFORM
 		RECHTLICHE_GRUNDLAGE
 		AUFNAHMEDATUM
-		//Rest
+		// Rest
 		ROLLE
 		ZEITRAUM
 		NOTIZ
@@ -298,3 +298,4 @@ vocabulary stabs {
 		oaSource
 		oaTarget
 }
+
