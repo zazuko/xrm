@@ -6,7 +6,7 @@ map TriplesMap1 from EMPLOYEE {
 		ex.Employee;
 
 	properties
-		ex.name from ENAME;
+		ex:name from ENAME;
 }
 
 // database: table and columns 

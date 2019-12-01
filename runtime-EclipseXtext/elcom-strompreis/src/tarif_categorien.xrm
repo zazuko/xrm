@@ -15,8 +15,8 @@ map KategorienConceptMapping from stromnetz {
 		skos.Concept
 
 	properties
-		skos.prefLabel from desc
-		skos.topConceptOf constant "http://elcom.zazuko.com/category/conceptscheme"
+		skos:prefLabel from desc
+		skos:topConceptOf constant "http://elcom.zazuko.com/category/conceptscheme"
 }
 
 map KategorienConceptSchemeMapping from stromnetz {
@@ -26,6 +26,6 @@ map KategorienConceptSchemeMapping from stromnetz {
 		skos.ConceptScheme
 
 	properties
-		skos.prefLabel constant "Category concepts"
-		skos.hasTopConcept template "http://elcom.zazuko.com/category/{0}" with id
+		skos:prefLabel constant "Category concepts"
+		skos:hasTopConcept template "http://elcom.zazuko.com/category/{0}" with id
 }

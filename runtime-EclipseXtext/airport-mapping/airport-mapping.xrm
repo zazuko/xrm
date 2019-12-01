@@ -6,11 +6,11 @@ map AirportMapping from airport {
 		transit.Stop;
 
 	properties
-		transit.route from stop with datatype xsd.int;
-		wgs84_pos.lat from latitude;
-		wgs84_pos.long from longitude;
-		ex.owner from ownership;
-		ex.marker constant "foobar";
+		transit:route from stop with datatype xsd.int;
+		wgs84_pos:lat from latitude;
+		wgs84_pos:long from longitude;
+		ex:owner from ownership;
+		ex:marker constant "foobar";
 }
 
 map CityMapping from city {

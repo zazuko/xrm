@@ -6,15 +6,15 @@ map Amt from bewilligungen.t_amt {
 		schema.GovernmentOrganization;
 
 	properties
-		schema.alternateName from AMT_ABK_DE with language-tag de;
-		schema.alternateName from AMT_ABK_FR with language-tag fr;
-		schema.alternateName from AMT_ABK_EN with language-tag en;
-		schema.alternateName from AMT_ABK_IT with language-tag it;
+		schema:alternateName from AMT_ABK_DE with language-tag de;
+		schema:alternateName from AMT_ABK_FR with language-tag fr;
+		schema:alternateName from AMT_ABK_EN with language-tag en;
+		schema:alternateName from AMT_ABK_IT with language-tag it;
 
-		schema.name from AMT_NAME_DE with language-tag de;
-		schema.name from AMT_NAME_FR with language-tag fr;
-		schema.name from AMT_NAME_EN with language-tag en;
-		schema.name from AMT_NAME_IT with language-tag it;
+		schema:name from AMT_NAME_DE with language-tag de;
+		schema:name from AMT_NAME_FR with language-tag fr;
+		schema:name from AMT_NAME_EN with language-tag en;
+		schema:name from AMT_NAME_IT with language-tag it;
 }
 
 map Bewilligung from bewilligungen.t_bewilligung {
@@ -24,34 +24,34 @@ map Bewilligung from bewilligungen.t_bewilligung {
 		schema.GovernmentPermit;
 
 	properties
-		schema.description from BEW_BESCHR_DE with language-tag de;
-		schema.description from BEW_BESCHR_FR with language-tag fr;
-		schema.description from BEW_BESCHR_EN with language-tag en;
-		schema.description from BEW_BESCHR_IT with language-tag it;
+		schema:description from BEW_BESCHR_DE with language-tag de;
+		schema:description from BEW_BESCHR_FR with language-tag fr;
+		schema:description from BEW_BESCHR_EN with language-tag en;
+		schema:description from BEW_BESCHR_IT with language-tag it;
 
-		schema.permitAudience template "https://permits.zazukoians.org/permitaudiences/{0}" with BEW_BET_PERS_EVENT;
-		bdb.permitLevel template "https://permits.zazukoians.org/permitlevels/{0}" with BEW_TYPE;
-		bdb.status template "https://permits.zazukoians.org/statuses/{0}" with BEW_STATUS;
+		schema:permitAudience template "https://permits.zazukoians.org/permitaudiences/{0}" with BEW_BET_PERS_EVENT;
+		bdb:permitLevel template "https://permits.zazukoians.org/permitlevels/{0}" with BEW_TYPE;
+		bdb:status template "https://permits.zazukoians.org/statuses/{0}" with BEW_STATUS;
 
-		schema.url from BEW_KONTAKT_URL_DE with language-tag de;
-		schema.url from BEW_KONTAKT_URL_FR with language-tag fr;
-		schema.url from BEW_KONTAKT_URL_EN with language-tag en;
-		schema.url from BEW_KONTAKT_URL_IT with language-tag it;
+		schema:url from BEW_KONTAKT_URL_DE with language-tag de;
+		schema:url from BEW_KONTAKT_URL_FR with language-tag fr;
+		schema:url from BEW_KONTAKT_URL_EN with language-tag en;
+		schema:url from BEW_KONTAKT_URL_IT with language-tag it;
 
-		schema.name from BEW_TITLE_DE with language-tag de;
-		schema.name from BEW_TITLE_FR with language-tag fr;
-		schema.name from BEW_TITLE_EN with language-tag en;
-		schema.name from BEW_TITLE_IT with language-tag it;
+		schema:name from BEW_TITLE_DE with language-tag de;
+		schema:name from BEW_TITLE_FR with language-tag fr;
+		schema:name from BEW_TITLE_EN with language-tag en;
+		schema:name from BEW_TITLE_IT with language-tag it;
 
-		bdb.legalFoundation from BEW_RECHT_GRUND_DE with language-tag de;
-		bdb.legalFoundation from BEW_RECHT_GRUND_FR with language-tag fr;
-		bdb.legalFoundation from BEW_RECHT_GRUND_EN with language-tag en;
-		bdb.legalFoundation from BEW_RECHT_GRUND_IT with language-tag it;
+		bdb:legalFoundation from BEW_RECHT_GRUND_DE with language-tag de;
+		bdb:legalFoundation from BEW_RECHT_GRUND_FR with language-tag fr;
+		bdb:legalFoundation from BEW_RECHT_GRUND_EN with language-tag en;
+		bdb:legalFoundation from BEW_RECHT_GRUND_IT with language-tag it;
 
-		schema.dateModified from BEW_LAST_CHANGED;
+		schema:dateModified from BEW_LAST_CHANGED;
 
-		bdb.agency link Amt with BEW_AMT_LNK;
-		ex.gemeinde link Gemeinde with BEW_GEMEINDE;
+		bdb:agency link Amt with BEW_AMT_LNK;
+		ex:gemeinde link Gemeinde with BEW_GEMEINDE;
 }
 
 map KontaktAusBewilligung from bewilligungen.t_bewilligung {
@@ -61,22 +61,22 @@ map KontaktAusBewilligung from bewilligungen.t_bewilligung {
 		ex.KontaktAusBewilligung;
 
 	properties
-		ex.bewilligung link Bewilligung with BEW_ID;
+		ex:bewilligung link Bewilligung with BEW_ID;
 
-		bdb.contact from BEW_KONTAKT_DE with language-tag de;
-		bdb.contact from BEW_KONTAKT_FR with language-tag fr;
-		bdb.contact from BEW_KONTAKT_EN with language-tag en;
-		bdb.contact from BEW_KONTAKT_IT with language-tag it;
+		bdb:contact from BEW_KONTAKT_DE with language-tag de;
+		bdb:contact from BEW_KONTAKT_FR with language-tag fr;
+		bdb:contact from BEW_KONTAKT_EN with language-tag en;
+		bdb:contact from BEW_KONTAKT_IT with language-tag it;
 
-		ex.kontaktDE from BEW_KONTAKT_DE;
-		ex.kontaktFR from BEW_KONTAKT_FR;
-		ex.kontaktEN from BEW_KONTAKT_EN;
-		ex.kontaktIT from BEW_KONTAKT_IT;
+		ex:kontaktDE from BEW_KONTAKT_DE;
+		ex:kontaktFR from BEW_KONTAKT_FR;
+		ex:kontaktEN from BEW_KONTAKT_EN;
+		ex:kontaktIT from BEW_KONTAKT_IT;
 
-		schema.address from BEW_KONTAKT_ADR;
-		schema.faxNumber from BEW_KONTAKT_FAX;
-		schema.email from BEW_KONTAKT_MAIL;
-		schema.telephone from BEW_KONTAKT_TEL;
+		schema:address from BEW_KONTAKT_ADR;
+		schema:faxNumber from BEW_KONTAKT_FAX;
+		schema:email from BEW_KONTAKT_MAIL;
+		schema:telephone from BEW_KONTAKT_TEL;
 }
 
 map KantonInfo from bewilligungen.t_kt_info {
@@ -86,9 +86,9 @@ map KantonInfo from bewilligungen.t_kt_info {
 		ex.KantonInfo;
 
 	properties
-		ex.bewilligung link Bewilligung with KTI_BEW_LNK;
-		schema.url from KTI_INTERNET;
-		ex.kanton from KTI_KANTON;
+		ex:bewilligung link Bewilligung with KTI_BEW_LNK;
+		schema:url from KTI_INTERNET;
+		ex:kanton from KTI_KANTON;
 }
 
 map KontaktAusKantonInfo from bewilligungen.t_kt_info {
@@ -98,12 +98,12 @@ map KontaktAusKantonInfo from bewilligungen.t_kt_info {
 		ex.KontaktKantonInfo;
 
 	properties
-		ex.kantonInfo link KantonInfo with KTI_KANTON KTI_ID;
-		ex.kanton from KTI_KANTON;
+		ex:kantonInfo link KantonInfo with KTI_KANTON KTI_ID;
+		ex:kanton from KTI_KANTON;
 
-		bdb.contact from KTI_OFFICE;
-		schema.email from KTI_EMAIL;
-		schema.telephone from KTI_TELEPHONE;			
+		bdb:contact from KTI_OFFICE;
+		schema:email from KTI_EMAIL;
+		schema:telephone from KTI_TELEPHONE;			
 }
 
 map Gemeinde from bewilligungen.t_gemeinde {
@@ -113,7 +113,7 @@ map Gemeinde from bewilligungen.t_gemeinde {
 		ex.Gemeinde;
 
 	properties
-		ex.id from GDE_PLZ;
-		ex.plz from GDE_PLZ_PA with datatype xsd.int;
-		ex.ort from GDE_ORT_PA;
+		ex:id from GDE_PLZ;
+		ex:plz from GDE_PLZ_PA with datatype xsd.int;
+		ex:ort from GDE_ORT_PA;
 }
