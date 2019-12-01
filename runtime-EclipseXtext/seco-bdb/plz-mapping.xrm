@@ -3,7 +3,7 @@ map Ort from plz_verzeichnis {
 	subject template "http://example.org/ort/{0}" with ONRP;
 
 	types
-		exPLZ.Ort;
+		exPLZ:Ort;
 
 	properties
 		exPLZ:onrp from ONRP with datatype xsd.int;

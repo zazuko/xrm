@@ -4,9 +4,9 @@ map RecordSet from WSD_STABS_SCP_ARCHIV_DBA.Verzeichnungseinheiten {
 	subject template "http://data.staatsarchiv-bs.ch/id/record/{0}" with ID_NR
 
 	types
-		stabs.Verzeichnungseinheit
-		ric.Record
-		dc.BibliographicResource;
+		stabs:Verzeichnungseinheit
+		ric:Record
+		dc:BibliographicResource;
 
 	properties
 
@@ -170,7 +170,7 @@ map Deskriptor from WSD_STABS_SCP_ARCHIV_DBA.Deskriptoren {
 	subject template "http://data.staatsarchiv-bs.ch/id/deskriptor/{0}" with ID_NR
 
 	types
-		stabs.Deskriptor
+		stabs:Deskriptor
 
 	properties
 		stabs:THESAURUS from THESAURUS
@@ -192,7 +192,7 @@ map Ablieferung from WSD_STABS_SCP_ARCHIV_DBA.Ablieferungen {
 	subject template "http://data.staatsarchiv-bs.ch/id/ablieferung/{0}" with ID_NR
 
 	types
-		stabs.Ablieferung
+		stabs:Ablieferung
 
 	properties
 		stabs:TYP from TYP
@@ -211,7 +211,7 @@ map Partner from WSD_STABS_SCP_ARCHIV_DBA.Partner {
 	subject template "http://data.staatsarchiv-bs.ch/id/partner/{0}" with ID_NR
 
 	types
-		stabs.Partner
+		stabs:Partner
 
 	properties
 
@@ -246,7 +246,7 @@ map Verzeichnungseinheiten_Deskriptoren_Verknuepfungen_Annotation from WSD_STABS
 	subject template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_deskriptor/{0}/{1}" with ID_NR_DSKRP ID_NR_VRZNG_ENHT
 
 	types
-		oa.Annotation
+		oa:Annotation
 
 	properties
 		stabs:oaSource from ID_NR_DSKRP
@@ -262,7 +262,7 @@ map Deskriptoren_Verweise from WSD_STABS_SCP_ARCHIV_DBA.Deskriptoren_Verweise {
 	subject template "http://data.staatsarchiv-bs.ch/id/deskriptor/{0}" with ID_NR_1
 
 	types
-		oa.Annotation
+		oa:Annotation
 
 	properties
 		stabs:deskriptor_deskriptor template "http://data.staatsarchiv-bs.ch/id/deskriptor/{0}" with ID_NR_2
@@ -272,7 +272,7 @@ map Deskriptoren_Verweise_Annotation from WSD_STABS_SCP_ARCHIV_DBA.Deskriptoren_
 	subject template "http://data.staatsarchiv-bs.ch/id/deskriptor_deskriptor/{0}/{1}" with ID_NR_1 ID_NR_2
 
 	types
-		oa.Annotation
+		oa:Annotation
 
 	properties
 		stabs:oaSource from ID_NR_1
@@ -286,7 +286,7 @@ map Verzeichnungseinheiten_Verweise_Annotation from WSD_STABS_SCP_ARCHIV_DBA.Ver
 	subject template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_verweis/{0}/{1}" with ID_NR_1 ID_NR_2
 
 	types
-		oa.Annotation
+		oa:Annotation
 
 	properties
 		stabs:oaSource from ID_NR_1
@@ -310,7 +310,7 @@ map Partner_Verweise from WSD_STABS_SCP_ARCHIV_DBA.Partner_Verweise {
 	subject template "http://data.staatsarchiv-bs.ch/id/partner_verweis/{0}/{1}" with ID_NR_1 ID_NR_2
 
 	types
-		oa.Annotation
+		oa:Annotation
 
 	properties
 		stabs:oaSource from ID_NR_1

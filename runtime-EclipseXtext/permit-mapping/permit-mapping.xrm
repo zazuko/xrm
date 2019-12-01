@@ -2,7 +2,7 @@ map Agency from permits.t_agency {
 	subject template "https://permits.example.org/agencies/{0}" with AGENCY_ID;
 
 	types
-		schema.GovernmentOrganization;
+		schema:GovernmentOrganization;
 
 	properties
 		schema:name from AGENCY_NAME_DE with language-tag de;
@@ -20,7 +20,7 @@ map Permit from permits.t_permit {
 	subject template "https://permits.example.org/permits/{0}" with PERMIT_ID;
 
 	types
-		schema.GovernmentPermit;
+		schema:GovernmentPermit;
 
 	properties
 		schema:description from PERMIT_DESC_DE with language-tag de;

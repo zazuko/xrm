@@ -2,8 +2,8 @@ map Profession from easygov_professions {
 	subject template "https://permits.zazukoians.org/professions/{0}" with CODE;
 
 	types
-		bdb.Profession
-		skos.Concept;
+		bdb:Profession
+		skos:Concept
 
 	properties
 		exProfessions:internalKey from PK with datatype xsd.int;

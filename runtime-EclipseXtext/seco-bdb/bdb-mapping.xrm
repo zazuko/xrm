@@ -3,7 +3,7 @@ map Amt from bewilligungen.t_amt {
 	subject template "https://permits.zazukoians.org/agencies/{0}" with AMT_ID;
 
 	types
-		schema.GovernmentOrganization;
+		schema:GovernmentOrganization;
 
 	properties
 		schema:alternateName from AMT_ABK_DE with language-tag de;
@@ -21,7 +21,7 @@ map Bewilligung from bewilligungen.t_bewilligung {
 	subject template "https://permits.zazukoians.org/permits/{0}" with BEW_ID;
 
 	types
-		schema.GovernmentPermit;
+		schema:GovernmentPermit;
 
 	properties
 		schema:description from BEW_BESCHR_DE with language-tag de;
@@ -58,7 +58,7 @@ map KontaktAusBewilligung from bewilligungen.t_bewilligung {
 	subject template "http://example.org/kontaktbew/{0}" with BEW_ID;
 
 	types
-		ex.KontaktAusBewilligung;
+		ex:KontaktAusBewilligung;
 
 	properties
 		ex:bewilligung link Bewilligung with BEW_ID;
@@ -83,7 +83,7 @@ map KantonInfo from bewilligungen.t_kt_info {
 	subject template "http://example.org/kantoninfo/{0}{1}" with KTI_KANTON KTI_ID;
 
 	types
-		ex.KantonInfo;
+		ex:KantonInfo;
 
 	properties
 		ex:bewilligung link Bewilligung with KTI_BEW_LNK;
@@ -95,7 +95,7 @@ map KontaktAusKantonInfo from bewilligungen.t_kt_info {
 	subject template "http://example.org/kontaktkantoninfo/{0}" with KTI_ID;
 
 	types
-		ex.KontaktKantonInfo;
+		ex:KontaktKantonInfo;
 
 	properties
 		ex:kantonInfo link KantonInfo with KTI_KANTON KTI_ID;
@@ -110,7 +110,7 @@ map Gemeinde from bewilligungen.t_gemeinde {
 	subject template "http://example.org/gemeinde/{0}" with GDE_PLZ;
 
 	types
-		ex.Gemeinde;
+		ex:Gemeinde;
 
 	properties
 		ex:id from GDE_PLZ;

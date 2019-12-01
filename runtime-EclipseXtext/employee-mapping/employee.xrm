@@ -3,7 +3,7 @@ map TriplesMap1 from EMPLOYEE {
 	subject template "http://data.example.com/employee/{0}" with EMPNO;
 
 	types
-		ex.Employee;
+		ex:Employee;
 
 	properties
 		ex:name from ENAME;

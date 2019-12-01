@@ -12,7 +12,7 @@ map KategorienConceptMapping from stromnetz {
 	subject template "http://elcom.zazuko.com/category/{0}" with id
 
 	types
-		skos.Concept
+		skos:Concept
 
 	properties
 		skos:prefLabel from desc
@@ -23,7 +23,7 @@ map KategorienConceptSchemeMapping from stromnetz {
 	subject template "http://elcom.zazuko.com/category/conceptscheme/{0}" with id
 
 	types
-		skos.ConceptScheme
+		skos:ConceptScheme
 
 	properties
 		skos:prefLabel constant "Category concepts"

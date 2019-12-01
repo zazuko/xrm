@@ -2,8 +2,8 @@ map Sector from easygov_sectors {
 	subject template "https://permits.zazukoians.org/sectors/{0}" with CODE;
 
 	types
-		bdb.Sector
-		skos.Concept;
+		bdb:Sector
+		skos:Concept;
 
 	properties
 		exSectors:internalKey from PK with datatype xsd.int;

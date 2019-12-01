@@ -20,7 +20,7 @@ map StromnetzMapping from stromnetz {
 	subject template "http://elcom.zazuko.com/stormnetz/{0}" with NameUrl
 
 	types
-		schema.Organization
+		schema:Organization
 
 	properties
 		rdfs:label from Name

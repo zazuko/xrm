@@ -19,7 +19,7 @@ map ElcomMapping from elcom {
 	subject template "http://elcom.zazuko.com/observation/2019/{0}" with Kategorie
 
 	types
-		qb.Observation
+		qb:Observation
 
 	properties
 		attr:kategorie template "http://elcom.zazuko.com/category/{0}" with Kategorie
