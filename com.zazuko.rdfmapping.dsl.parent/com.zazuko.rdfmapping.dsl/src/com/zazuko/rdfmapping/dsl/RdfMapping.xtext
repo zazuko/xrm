@@ -107,7 +107,7 @@ Mapping:
 	BLOCK_END;
 	
 SubjectTypeMapping:	
-	type=[RdfClass|QualifiedName];
+	type=[RdfClass|RdfQualifiedName];
 
 PredicateObjectMapping:	
 	property=[RdfProperty|RdfQualifiedName] 
