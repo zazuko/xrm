@@ -110,7 +110,7 @@ SubjectTypeMapping:
 	type=[RdfClass|QualifiedName];
 
 PredicateObjectMapping:	
-	property=[RdfProperty|QualifiedName] 
+	property=[RdfProperty|RdfQualifiedName] 
 	term=ValuedTerm;
 	
 ValuedTerm:
@@ -141,6 +141,11 @@ ParentTriplesMapTerm:
 
 QualifiedName:
     ID ('.' ID)*;
+    
+// on EObjects to be addressed with RdfQualifiedName, don't forget to change 
+// com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.getStyledDisplayString(IEObjectDescription)
+RdfQualifiedName:
+    ID (':' ID)*;
     
 terminal BLOCK_BEGIN: '{';
 terminal BLOCK_END: '}';
