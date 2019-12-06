@@ -7,6 +7,7 @@ PREFIX employee: <http://example.com/employee>
 	rml:logicalSource [
 		rml:source "EMP" ;
 		rml:referenceFormulation ql:XPath
+		rml:iterator "/Employees/Employee";
 	];
 	
 	rr:subjectMap [

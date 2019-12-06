@@ -16,11 +16,11 @@ class RmlDialect implements IRmlDialect {
 		PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
 	'''
 
-	// TODO: rml:iterator
 	override logicalSource(Mapping it) '''
 		rml:logicalSource [
 			«source.sourceStatement»
 			rml:referenceFormulation «source.typeResolved?.referenceFormulation»
+		«IF source.iterator !== null»	rml:iterator "«source.iterator»";«ENDIF»
 		];
 	'''
 	
