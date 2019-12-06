@@ -133,7 +133,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	def dispatch void format(LogicalSource it, extension IFormattableDocument document) {
 		interior(
 			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_BEGINTerminalRuleCall_2),
-			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_8)
+			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_9)
 		)[indent];
 
 		regionFor.keyword(ga.logicalSourceAccess.logicalSourceKeyword_0).prepend[setNewLines(1, 1, 2)].append[oneSpace];
@@ -141,16 +141,17 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.logicalSourceAccess.typeKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.sourceKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.iteratorKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
 
 		interior(
-			regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_6),
-			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_8)
+			regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_7),
+			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_9)
 		)[indent];
-		regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_6).prepend[setNewLines(2)];
+		regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_7).prepend[setNewLines(2)];
 
 		referenceables.forEach[format];
 
-		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_8).prepend[setNewLines(1)];
+		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_9).prepend[setNewLines(1)];
 	}
 
 	def dispatch void format(Referenceable it, extension IFormattableDocument document) {

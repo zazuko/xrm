@@ -38,6 +38,7 @@ LogicalSource:
 		('type' typeRef=SourceTypeRef)?
 		('source' (sourceIsQuery ?= 'query')? source=STRING)?
 		('dialect' dialect=[DialectGroup])?
+		('iterator' iterator=STRING)?
 		'referenceables'
 			(referenceables+=Referenceable)*
 	BLOCK_END;
