@@ -114,6 +114,6 @@ map Gemeinde from bewilligungen.t_gemeinde {
 
 	properties
 		ex:id from GDE_PLZ;
-		ex:plz from GDE_PLZ_PA with datatype xsd.int;
+		ex:plz from GDE_PLZ_PA with datatype xsd:int;
 		ex:ort from GDE_ORT_PA;
 }

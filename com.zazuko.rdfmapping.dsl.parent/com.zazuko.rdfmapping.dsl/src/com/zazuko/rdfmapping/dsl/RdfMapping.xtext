@@ -120,7 +120,7 @@ ValuedTerm:
 	
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
-	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
+	('with' 'datatype' datatype=[Datatype|RdfPrefixedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	('as' termTypeRef=TermTypeRef)?
 	LINE_END?;
 

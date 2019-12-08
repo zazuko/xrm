@@ -179,7 +179,7 @@ map Deskriptor from WSD_STABS_SCP_ARCHIV_DBA.Deskriptoren {
 		stabs:QUELLE from QUELLE
 		stabs:BESCHREIBUNG from BESCHREIBUNG
 		stabs:ID_NAME from ID_NAME
-		stabs:ID_NR from ID_NR with datatype xsd.int
+		stabs:ID_NR from ID_NR with datatype xsd:int
 		stabs:ANZAHL_VERKNUEPFUNGEN from ANZAHL_VERKNUEPFUNGEN
 		stabs:GEBURTSDATUM from GEBURTSDATUM
 		stabs:TODESDATUM from TODESDATUM
