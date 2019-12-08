@@ -30,6 +30,7 @@ SourceGroup:
     'source-group' name=ID BLOCK_BEGIN
     	('type' typeRef=SourceTypeRef)?
     	('source' (sourceIsQuery ?= 'query')? source=STRING)?
+    	('dialect' dialect=[DialectGroup])?
     	(logicalSources+=LogicalSource)*
     BLOCK_END;
     

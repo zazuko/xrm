@@ -1,8 +1,13 @@
 package com.zazuko.rdfmapping.dsl.generator.common
 
+import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtractor
+import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
+import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
+import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceTypeExtractor
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
+import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
@@ -21,39 +26,41 @@ import java.net.URL
 import java.util.LinkedHashSet
 import java.util.List
 import java.util.Set
+import javax.inject.Inject
 
 class ModelAccess {
+	
+	@Inject
+	DialectGroupExtractor dialectExtractor;
+
+	@Inject
+	IsQueryResolvedExtractor isQueryResolvedExtractor;
+	
+	@Inject
+	SourceExtractor sourceExtractor;
+
+	@Inject
+	SourceTypeExtractor sourceTypeExtractor;
+	
 
 	def String sourceResolved(LogicalSource it) {
-		if (source !== null) {
-			source;
-		} else {
-			sourceGroup?.source;
-		}
+		return sourceExtractor.extractC(it);
 	}
 	
 	def boolean sourceIsQueryResolved(LogicalSource it) {
-		if (source !== null) {
-			sourceIsQuery;
-		} else {
-			sourceGroup !== null ? sourceGroup.sourceIsQuery : false;
-		}
+		return isQueryResolvedExtractor.extractC(it);
 	}
 
 	def SourceType typeResolved(LogicalSource it) {
-		if (typeRef !== null) {
-			typeRef.type;
-		} else {
-			sourceGroup?.typeRef.type;
-		}
+		return sourceTypeExtractor.extractC(it);
+	}
+	
+	def DialectGroup dialectResolved(LogicalSource it) {
+		return dialectExtractor.extractC(it);
 	}
 
-	def SourceGroup sourceGroup(LogicalSource it) {
-		if (eContainer instanceof SourceGroup) {
-			return eContainer as SourceGroup;
-		} else {
-			return null;
-		}
+	def DialectGroup dialectResolved(SourceGroup it) {
+		return dialectExtractor.extractP(it);
 	}
 
 	def Vocabulary vocabulary(RdfClass it) {
