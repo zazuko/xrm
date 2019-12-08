@@ -1,0 +1,23 @@
+PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
+PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
+PREFIX thing: <http://foobar.com/things/thing/>
+
+<#FooMapping>
+	rml:logicalSource [
+		rml:source "http://www.example.com/Foo.csv" ;
+		rml:referenceFormulation ql:CSV
+	];
+	
+	rr:subjectMap [
+		rr:template "http://foo.example.com/{id}";
+		rr:class thing:Thing ;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate thing:color ;
+		rr:objectMap [
+			rr:constant "blue" ;
+		];
+	]
+.

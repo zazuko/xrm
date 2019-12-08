@@ -44,7 +44,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.assignment(ga.sourceGroupAccess.nameAssignment_1).surround[oneSpace];
 		interior(
 			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_BEGINTerminalRuleCall_2),
-			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_ENDTerminalRuleCall_6)
+			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_ENDTerminalRuleCall_7)
 		)[indent];
 
 		// 'type'
@@ -54,6 +54,8 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.sourceGroupAccess.sourceKeyword_4_0).prepend[setNewLines(1)];
 		regionFor.assignment(ga.sourceGroupAccess.sourceIsQueryAssignment_4_1).prepend[oneSpace];
 		regionFor.assignment(ga.sourceGroupAccess.sourceAssignment_4_2).prepend[oneSpace];
+		
+		regionFor.keyword(ga.sourceGroupAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
 
 		logicalSources.forEach[format.append[setNewLines(2)]];
 	}

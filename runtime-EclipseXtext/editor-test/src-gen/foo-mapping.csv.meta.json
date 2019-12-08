@@ -1,0 +1,42 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"tables": [
+		{
+			"url": "http://www.example.com/Foo.csv",
+			"dialect": {
+				"delimiter": "|"
+				,"commentPrefix": "cp"
+				,"headerRowCount": "42"
+			},
+			"tableSchema": {
+				"aboutUrl": "http://foo.example.com/{id}",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://foobar.com/things/thing/Thing"
+					}
+					,
+					{
+						"propertyUrl": "http://foobar.com/things/thing/color",
+						"virtual": true,
+						"valueUrl": "blue"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "id"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "foo"
+					},
+					{
+						"suppressOutput": true,
+						"titles": "bar"
+					}
+				] 
+			}
+		}
+	]
+}

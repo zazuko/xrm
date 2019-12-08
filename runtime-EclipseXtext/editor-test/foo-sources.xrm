@@ -1,0 +1,21 @@
+
+source-group SomeSourceGroup {
+	// TODO move line 'dialect' into logicalSource --> expect no changes in generated files'
+	dialect SomeDialect
+	logical-source foo {
+		type csv
+		source "http://www.example.com/Foo.csv"
+
+		referenceables
+			id
+			foo
+			bar
+	}
+
+}
+
+dialect SomeDialect {
+	delimiter "|"
+	commentPrefix "cp"
+	headerRowCount 42
+}
