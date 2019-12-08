@@ -8,7 +8,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "easygov-sectors.csv" ];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/sectors/{CODE}";
+		rr:template "https://permits.zazukoians.org/sectors/{CODE}" ;
 		rr:class bdb:Sector ;
 		rr:class skos:Concept ;
 	];

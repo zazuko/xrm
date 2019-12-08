@@ -6,7 +6,7 @@ PREFIX qb: <http://purl.org/linked-data/cube#>
 	rr:logicalTable [ rr:tableName "http://www.example.com/Rohdaten%20Tarife%202019.csv" ];
 	
 	rr:subjectMap [
-		rr:template "http://elcom.zazuko.com/observation/2019/{Kategorie}";
+		rr:template "http://elcom.zazuko.com/observation/2019/{Kategorie}" ;
 		rr:class qb:Observation ;
 	];
 	

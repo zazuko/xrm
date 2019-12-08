@@ -11,7 +11,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/ort/{ONRP}";
+		rr:template "http://example.org/ort/{ONRP}" ;
 		rr:class ex:Ort ;
 	];
 	

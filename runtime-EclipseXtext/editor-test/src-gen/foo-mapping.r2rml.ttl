@@ -5,7 +5,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	rr:logicalTable [ rr:tableName "http://www.example.com/Foo.csv" ];
 	
 	rr:subjectMap [
-		rr:template "http://foo.example.com/{id}";
+		rr:template "http://foo.example.com/{id}" ;
 		rr:class thing:Thing ;
 	];
 	

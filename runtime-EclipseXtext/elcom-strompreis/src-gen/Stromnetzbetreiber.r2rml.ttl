@@ -6,7 +6,7 @@ PREFIX schema: <https://schema.org/>
 	rr:logicalTable [ rr:tableName "http://www.example.com/Schweizerische Gemeinden und zust�ndige Stromnetzbetreiber (Stand 07.09.2018).csv" ];
 	
 	rr:subjectMap [
-		rr:template "http://elcom.zazuko.com/stormnetz/{NameUrl}";
+		rr:template "http://elcom.zazuko.com/stormnetz/{NameUrl}" ;
 		rr:class schema:Organization ;
 	];
 	

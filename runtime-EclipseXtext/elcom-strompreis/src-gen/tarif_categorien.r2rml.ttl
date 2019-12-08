@@ -5,7 +5,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 	rr:logicalTable [ rr:tableName "http://www.example.com/usageCategories.csv" ];
 	
 	rr:subjectMap [
-		rr:template "http://elcom.zazuko.com/category/{id}";
+		rr:template "http://elcom.zazuko.com/category/{id}" ;
 		rr:class skos:Concept ;
 	];
 	
@@ -26,7 +26,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 	rr:logicalTable [ rr:tableName "http://www.example.com/usageCategories.csv" ];
 	
 	rr:subjectMap [
-		rr:template "http://elcom.zazuko.com/category/conceptscheme/{id}";
+		rr:template "http://elcom.zazuko.com/category/conceptscheme/{id}" ;
 		rr:class skos:ConceptScheme ;
 	];
 	

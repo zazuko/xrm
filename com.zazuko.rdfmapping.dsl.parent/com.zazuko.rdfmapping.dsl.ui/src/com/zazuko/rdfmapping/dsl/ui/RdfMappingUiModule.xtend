@@ -3,11 +3,13 @@
  */
 package com.zazuko.rdfmapping.dsl.ui
 
-import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider
+import com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider
+import com.zazuko.rdfmapping.dsl.ui.labeling.RdfMappingLabelProvider
 import com.zazuko.rdfmapping.dsl.ui.outline.RdfMappingOutlineTreeProvider
 import org.eclipse.jface.viewers.LabelProvider
-import com.zazuko.rdfmapping.dsl.ui.labeling.RdfMappingLabelProvider
+import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider
+import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -15,10 +17,15 @@ import com.zazuko.rdfmapping.dsl.ui.labeling.RdfMappingLabelProvider
 @FinalFieldsConstructor
 class RdfMappingUiModule extends AbstractRdfMappingUiModule {
 	override Class<? extends IOutlineTreeProvider> bindIOutlineTreeProvider() {
-    	return RdfMappingOutlineTreeProvider;
+		return RdfMappingOutlineTreeProvider;
 	}
-	
+
 	def Class<? extends LabelProvider> bindLabelProvider() {
-    	return RdfMappingLabelProvider;
+		return RdfMappingLabelProvider;
 	}
+
+	override Class<? extends IContentProposalProvider> bindIContentProposalProvider() {
+		return RealRdfMappingProposalProvider
+	}
+
 }

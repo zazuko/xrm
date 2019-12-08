@@ -1,6 +1,7 @@
 package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
+import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import javax.inject.Inject
 
@@ -15,19 +16,20 @@ class RmlDialect implements IRmlDialect {
 		PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
 	'''
 
-	// TODO: rml:iterator
-	override logicalSource(Mapping m) '''
-		«IF m.source.sourceIsQueryResolved»
-			rml:logicalSource [
-				rml:query """«m.source.sourceResolved»""" ;
-				rml:referenceFormulation «m.source.typeResolved?.referenceFormulation»
-			];
+	override logicalSource(Mapping it) '''
+		rml:logicalSource [
+			«source.sourceStatement»
+			rml:referenceFormulation «source.typeResolved?.referenceFormulation»«IF source.iterator !== null» ;
+			rml:iterator "«source.iterator»" ;«ENDIF»
+		];
+	'''
+	
+	def sourceStatement(LogicalSource it) '''
+		«IF sourceIsQueryResolved»
+			rml:query """«sourceResolved»""" ;
 		«ELSE»
-			rml:logicalSource [
-				rml:source "«m.source.sourceResolved»" ;
-				rml:referenceFormulation «m.source.typeResolved?.referenceFormulation»
-			];
-		«ENDIF»		
+			rml:source "«sourceResolved»" ;
+		«ENDIF»
 	'''
 
 	override objectMapReferencePredicate() '''rml:reference'''

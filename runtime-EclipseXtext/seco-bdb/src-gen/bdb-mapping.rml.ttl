@@ -13,7 +13,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/agencies/{AMT_ID}";
+		rr:template "https://permits.zazukoians.org/agencies/{AMT_ID}" ;
 		rr:class schema:GovernmentOrganization ;
 	];
 	
@@ -81,7 +81,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/permits/{BEW_ID}";
+		rr:template "https://permits.zazukoians.org/permits/{BEW_ID}" ;
 		rr:class schema:GovernmentPermit ;
 	];
 	
@@ -241,7 +241,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kontaktbew/{BEW_ID}";
+		rr:template "http://example.org/kontaktbew/{BEW_ID}" ;
 		rr:class ex:KontaktAusBewilligung ;
 	];
 	
@@ -335,7 +335,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}";
+		rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}" ;
 		rr:class ex:KantonInfo ;
 	];
 	
@@ -365,7 +365,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kontaktkantoninfo/{KTI_ID}";
+		rr:template "http://example.org/kontaktkantoninfo/{KTI_ID}" ;
 		rr:class ex:KontaktKantonInfo ;
 	];
 	
@@ -407,7 +407,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/gemeinde/{GDE_PLZ}";
+		rr:template "http://example.org/gemeinde/{GDE_PLZ}" ;
 		rr:class ex:Gemeinde ;
 	];
 	

@@ -2,9 +2,9 @@ map FooMapping from SomeSourceGroup.foo {
 	subject template "http://foo.example.com/{0}" with id;
 
 	types
-		thing.Thing
+		thing:Thing
 
 	properties
-		thing.color constant "blue"
+		thing:color constant "blue"
 }
 

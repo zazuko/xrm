@@ -11,7 +11,7 @@ PREFIX schema: <https://schema.org/>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://elcom.zazuko.com/stormnetz/{NameUrl}";
+		rr:template "http://elcom.zazuko.com/stormnetz/{NameUrl}" ;
 		rr:class schema:Organization ;
 	];
 	

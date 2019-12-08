@@ -3,15 +3,15 @@ map Ort from plz_verzeichnis {
 	subject template "http://example.org/ort/{0}" with ONRP;
 
 	types
-		exPLZ.Ort;
+		exPLZ:Ort;
 
 	properties
-		exPLZ.onrp from ONRP with datatype xsd.int;
-		exPLZ.bfsnr from BFSNR with datatype xsd.int;
-		exPLZ.plz from POSTLEITZAHL with datatype xsd.int;
-		exPLZ.zz from PLZ_ZZ with datatype xsd.int;
-		exPLZ.bezeichnung from ORTBEZ18;
-		exPLZ.bezeichnung from ORTBEZ27;
+		exPLZ:onrp from ONRP with datatype xsd.int;
+		exPLZ:bfsnr from BFSNR with datatype xsd.int;
+		exPLZ:plz from POSTLEITZAHL with datatype xsd.int;
+		exPLZ:zz from PLZ_ZZ with datatype xsd.int;
+		exPLZ:bezeichnung from ORTBEZ18;
+		exPLZ:bezeichnung from ORTBEZ27;
 }
 
 // for metadata, see https://swisspost.opendatasoft.com/explore/dataset/plz_verzeichnis_v2/information/

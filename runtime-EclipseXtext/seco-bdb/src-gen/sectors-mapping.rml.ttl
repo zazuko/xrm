@@ -13,7 +13,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/sectors/{CODE}";
+		rr:template "https://permits.zazukoians.org/sectors/{CODE}" ;
 		rr:class bdb:Sector ;
 		rr:class skos:Concept ;
 	];
