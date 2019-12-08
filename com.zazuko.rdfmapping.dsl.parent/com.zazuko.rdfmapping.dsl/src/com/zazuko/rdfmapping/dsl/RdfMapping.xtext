@@ -9,6 +9,39 @@ Element:
     SourceGroup | LogicalSource | PrefixHolder | Mapping |
     LanguageTagDefinition | DialectGroup;
 
+DatatypesDefinition: 
+	'datatypes' name=ID BLOCK_BEGIN
+		prefix=Prefix
+		(types+=Datatype)*
+	BLOCK_END;
+
+Datatype:
+	name=ID (value=STRING)?;
+	
+LanguageTagDefinition: {LanguageTagDefinition}
+	'language-tags' BLOCK_BEGIN
+		(languageTags+=LanguageTag)*
+	BLOCK_END;
+	
+LanguageTag:
+	name=ID;
+  
+SourceGroup:
+    'source-group' name=ID BLOCK_BEGIN
+    	('type' typeRef=SourceTypeRef)?
+    	('source' (sourceIsQuery ?= 'query')? source=STRING)?
+    	(logicalSources+=LogicalSource)*
+    BLOCK_END;
+    
+LogicalSource:
+	'logical-source' name=ID BLOCK_BEGIN
+		('type' typeRef=SourceTypeRef)?
+		('source' (sourceIsQuery ?= 'query')? source=STRING)?
+		('dialect' dialect=[DialectGroup])?
+		'referenceables'
+			(referenceables+=Referenceable)*
+	BLOCK_END;
+	
 enum SourceType:
 	XML='xml' 
 	| RDB = 'rdb'
@@ -20,39 +53,6 @@ enum SourceType:
 SourceTypeRef:
 	type=SourceType
 ;
-	
-DatatypesDefinition: 
-	'datatypes' name=ID '{'
-		prefix=Prefix
-		(types+=Datatype)*
-	'}';
-	
-Datatype:
-	name=ID (value=STRING)?;
-	
-LanguageTagDefinition: {LanguageTagDefinition}
-	'language-tags' '{'
-		(languageTags+=LanguageTag)*
-	'}';
-	
-LanguageTag:
-	name=ID;
-  
-SourceGroup:
-    'source-group' name=ID '{'
-    	('type' typeRef=SourceTypeRef)?
-    	('source' (sourceIsQuery ?= 'query')? source=STRING)?
-    	(logicalSources+=LogicalSource)*
-    '}';
-    
-LogicalSource:
-	'logical-source' name=ID '{'
-		('type' typeRef=SourceTypeRef)?
-		('source' (sourceIsQuery ?= 'query')? source=STRING)?
-		('dialect' dialect=[DialectGroup])?
-		'referenceables'
-			(referenceables+=Referenceable)*
-	'}';
 
 Referenceable:	
     name=ID (value=STRING)? (nullValueMarker=NullValueDeclaration)?;
@@ -61,7 +61,7 @@ NullValueDeclaration:
 	'null' nullValue=STRING;
     
 DialectGroup:
-	'dialect' name=ID '{'
+	'dialect' name=ID BLOCK_BEGIN
 		'delimiter' delimiter=STRING &
 		('commentPrefix' commentPrefix=STRING)? &
 		('doubleQuote' doubleQuote=BooleanLiteral)? &
@@ -75,17 +75,17 @@ DialectGroup:
 		('skipInitialSpace' skipInitialSpace=BooleanLiteral)? &
 		('skipRows' skipRows=INT)? &
 		('trim' trim=BooleanLiteral)? &
-	'}';
+	BLOCK_END;
 
 BooleanLiteral:
     value?='true' | {BooleanLiteral} 'false';
     
 Vocabulary:	
-	'vocabulary' name=ID '{'
+	'vocabulary' name=ID BLOCK_BEGIN
     	prefix=Prefix
-		('classes' (classes+=RdfClass)*)?
+		('classes' (classes+=RdfClass)* )?
 	    ('properties' (properties+=RdfProperty)*)?	
-    '}';
+    BLOCK_END;
    
 PrefixHolder:
     DatatypesDefinition | Vocabulary;   
@@ -100,11 +100,11 @@ RdfClass:
 	name=ID (value=STRING)?;	
     
 Mapping:
-	'map' name=ID 'from' source=[LogicalSource|QualifiedName] '{'
+	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
 		'subject' subjectIriMapping=TemplateValuedTerm
-		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+ ';'?)?
+		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+ LINE_END?)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
-	'}';
+	BLOCK_END;
 	
 SubjectTypeMapping:	
 	type=[RdfClass|QualifiedName];
@@ -120,28 +120,31 @@ ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|QualifiedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	('as' termTypeRef=TermTypeRef)?
-	';'?;
+	LINE_END?;
 
 ConstantValuedTerm:
 	'constant' constant=STRING
-	';'?;
+	LINE_END?;
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+
 	('as' termTypeRef=TermTypeRef)?
-	';'?;
+	LINE_END?;
 	
 LinkedResourceTerm:
 	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
-	 ';'?;
+	 LINE_END?;
 	 
 ParentTriplesMapTerm:
 	'parent-map' mapping=[Mapping]
-	';'?;
+	LINE_END?;
 
 QualifiedName:
     ID ('.' ID)*;
     
+terminal BLOCK_BEGIN: '{';
+terminal BLOCK_END: '}';
+terminal LINE_END: ';';
 
 enum TermType:
  Literal='Literal'

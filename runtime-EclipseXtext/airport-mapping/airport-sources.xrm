@@ -1,7 +1,7 @@
 logical-source airport {
 	type csv
 	source "http://www.example.com/Airport.csv"
-	
+
 	referenceables
 		id
 		stop
@@ -13,9 +13,10 @@ logical-source airport {
 logical-source city {
 	type csv
 	source "http://www.example.com/City.csv"
-	
+
 	referenceables
 		continent
 		country
 		city
 }
+

@@ -1,17 +1,18 @@
 map Profession from easygov_professions {
 	subject template "https://permits.zazukoians.org/professions/{0}" with CODE;
-	
-	types bdb.Profession skos.Concept;
-	
+
+	types
+		bdb.Profession
+		skos.Concept;
+
 	properties
 		exProfessions.internalKey from PK with datatype xsd.int;
 		exProfessions.position from POS with datatype xsd.int;
 		exProfessions.code from CODE with datatype xsd.int;
-		
 		skos.notation template "{0}" with CODE as Literal;
 		exProfessions.fkBranche from LN_BRANCHE with datatype xsd.int;
 		exProfessions.fkParent from LN_PARENT with datatype xsd.int;
-		
+
 		skos.prefLabel from DE with language-tag de;
 		skos.prefLabel from EN with language-tag en;
 		skos.prefLabel from FR with language-tag fr;
@@ -19,23 +20,24 @@ map Profession from easygov_professions {
 }
 
 logical-source easygov_professions {
-type csv
+	type csv
 	source "easygov_professions.csv"
+
 	referenceables
-	PK
-	CODE
-	POS
-	LN_BRANCHE
-	LN_PARENT
-	DE
-	FR
-	IT
-	EN
+		PK
+		CODE
+		POS
+		LN_BRANCHE
+		LN_PARENT
+		DE
+		FR
+		IT
+		EN
 }
 
 vocabulary exProfessions {
 	prefix "ex:" "http://schema.example.org/"
-		
+
 	properties
 		code
 		internalKey
@@ -43,3 +45,4 @@ vocabulary exProfessions {
 		fkBranche
 		fkParent
 }
+

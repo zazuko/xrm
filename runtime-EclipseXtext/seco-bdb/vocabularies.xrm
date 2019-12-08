@@ -1,5 +1,8 @@
 language-tags {
-	de en fr it
+	de
+	en
+	fr
+	it
 }
 
 datatypes xsd {
@@ -9,36 +12,34 @@ datatypes xsd {
 
 vocabulary schema {
 	prefix "schema:" "https://schema.org/"
-	
-	classes	
+
+	classes
 		GovernmentPermit
 		GovernmentOrganization
 		ContactPoint
-	
+
 	properties
 		permitAudience
 		dateModified
-		
 		description
 		name
 		alternateName
 		url
-		
 		contactPoint
 		email
 		faxNumber
 		telephone
 		address
-		
 		position
 }
 
 vocabulary skos {
 	prefix "skos:" "http://www.w3.org/2004/02/skos/core#"
+
 	classes
 		Concept
 		ConceptScheme
-		
+
 	properties
 		notation
 		prefLabel
@@ -51,11 +52,11 @@ vocabulary skos {
 
 vocabulary bdb {
 	prefix "bdb:" "https://permits.ld.admin.ch/schema/"
-	
+
 	classes
 		Sector
 		Profession
-	
+
 	properties
 		agency
 		legalFoundation
@@ -68,13 +69,14 @@ vocabulary bdb {
 }
 
 vocabulary ex {
-	prefix "ex:" "http://schema.example.org/"	
+	prefix "ex:" "http://schema.example.org/"
+
 	classes
 		Gemeinde
 		KantonInfo
 		KontaktAusBewilligung
 		KontaktKantonInfo
-		
+
 	properties
 		id
 		kontaktDE
@@ -88,3 +90,4 @@ vocabulary ex {
 		kanton
 		kantonInfo
 }
+

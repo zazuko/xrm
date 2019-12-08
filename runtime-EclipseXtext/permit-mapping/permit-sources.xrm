@@ -15,10 +15,10 @@ source-group permits {
 			AGENCY_ABBREV_FR
 			AGENCY_ABBREV_IT
 	}
-    
+
 	logical-source t_permit {
 		source "t_permit"
-    	
+
 		referenceables
 			PERMIT_ID
 			PERMIT_DESC_DE
@@ -29,4 +29,5 @@ source-group permits {
 			PERMIT_STATUS
 			PERMIT_AGENCY_FK
 	}
+
 }
