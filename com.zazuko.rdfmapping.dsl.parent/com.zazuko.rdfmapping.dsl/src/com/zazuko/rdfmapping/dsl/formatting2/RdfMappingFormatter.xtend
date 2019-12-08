@@ -136,7 +136,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_8)
 		)[indent];
 
-		regionFor.keyword(ga.logicalSourceAccess.logicalSourceKeyword_0).prepend[setNewLines(1, 1, 2)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.logicalSourceKeyword_0).prepend[setNewLines(0, 1, 2)].append[oneSpace];
 		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_BEGINTerminalRuleCall_2).prepend[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.typeKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.sourceKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];

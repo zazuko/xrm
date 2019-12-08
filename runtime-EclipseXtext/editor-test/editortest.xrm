@@ -1,4 +1,3 @@
-
 logical-source EMPLOYEE {
 	type rdb
 	source "EMP"
