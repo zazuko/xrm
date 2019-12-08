@@ -19,8 +19,8 @@ class RmlDialect implements IRmlDialect {
 	override logicalSource(Mapping it) '''
 		rml:logicalSource [
 			«source.sourceStatement»
-			rml:referenceFormulation «source.typeResolved?.referenceFormulation»
-		«IF source.iterator !== null»	rml:iterator "«source.iterator»";«ENDIF»
+			rml:referenceFormulation «source.typeResolved?.referenceFormulation»«IF source.iterator !== null» ;
+			rml:iterator "«source.iterator»" ;«ENDIF»
 		];
 	'''
 	
