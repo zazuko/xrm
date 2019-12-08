@@ -4,9 +4,17 @@
 		{
 			"url": "http://www.example.com/Foo.csv",
 			"dialect": {
-				"delimiter": "|"
-				,"commentPrefix": "cp"
-				,"headerRowCount": "42"
+				"delimiter": ","
+				,"commentPrefix": "#"
+				,"doubleQuote": true
+				,"encoding": "utf-8"
+				,"header": true
+				,"headerRowCount": "1"
+				,"lineTerminators": "\r\n"
+				,"quoteChar": "\""
+				,"skipBlankRows": false
+				,"skipInitialSpace": false
+				,"trim": false
 			},
 			"tableSchema": {
 				"aboutUrl": "http://foo.example.com/{id}",

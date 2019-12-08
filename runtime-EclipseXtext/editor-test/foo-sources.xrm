@@ -1,4 +1,3 @@
-
 source-group SomeSourceGroup {
 	// TODO move line 'dialect' into logicalSource --> expect no changes in generated files'
 	dialect SomeDialect
@@ -15,7 +14,17 @@ source-group SomeSourceGroup {
 }
 
 dialect SomeDialect {
-	delimiter "|"
-	commentPrefix "cp"
-	headerRowCount 42
+	delimiter ","
+	commentPrefix "#"
+	doubleQuote true
+	encoding "utf-8"
+	header true
+	headerRowCount 1
+	lineTerminators "\\r\\n"
+	quoteChar '\\"'
+	skipBlankRows false
+	skipColumns 0
+	skipInitialSpace false
+	skipRows 0
+	trim false
 }
