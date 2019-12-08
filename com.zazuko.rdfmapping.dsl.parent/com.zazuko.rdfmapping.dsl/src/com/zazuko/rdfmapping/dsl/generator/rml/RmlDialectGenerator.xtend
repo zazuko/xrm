@@ -47,33 +47,33 @@ class RmlDialectGenerator {
 		
 	'''
 	
-	def triplesMap(Mapping m) '''
-		<«m.localId»>
-			«m.logicalSource»
+	def triplesMap(Mapping it) '''
+		<«localId»>
+			«logicalSource»
 			
-			«m.subjectMap()»«IF ! m.poMappings.empty»;«ENDIF»
+			«subjectMap()»«IF ! poMappings.empty»;«ENDIF»
 			
-			«FOR pom : m.poMappings SEPARATOR ";"»
+			«FOR pom : poMappings SEPARATOR ";"»
 				«pom.predicateObjectMap»
 			«ENDFOR»
 		.'''
 	
-	def subjectMap(Mapping m) '''
+	def subjectMap(Mapping it) '''
 		rr:subjectMap [
-			rr:template "«m.subjectIri»";
-			«FOR stm : m.subjectTypeMappings»
+			rr:template "«subjectIri»";
+			«FOR stm : subjectTypeMappings»
 				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
 			«ENDFOR»
-			«IF m.getSubjectIriMapping.termTypeRef?.type !== null»
-				rr:termType rr:«m.getSubjectIriMapping.termTypeRef.type» ;
+			«IF getSubjectIriMapping.termTypeRef?.type !== null»
+				rr:termType rr:«getSubjectIriMapping.termTypeRef.type» ;
 			«ENDIF»
 		]'''
 	
-	def predicateObjectMap(PredicateObjectMapping pom) '''
+	def predicateObjectMap(PredicateObjectMapping it) '''
 		rr:predicateObjectMap [
-			rr:predicate «pom.property.vocabulary.prefix.label»«pom.property.valueResolved» ;
+			rr:predicate «property.vocabulary.prefix.label»«property.valueResolved» ;
 			rr:objectMap [
-				«pom.term.objectTermMap»
+				«term.objectTermMap»
 			];
 		]
 	'''
@@ -117,7 +117,7 @@ class RmlDialectGenerator {
 		«ENDIF»
 	'''
 	
-	def private localId(Mapping m) '''#«m.name»'''
+	def private localId(Mapping it) '''#«name»'''
 	
 	def subjectIri(Mapping it) {
 		subjectIriMapping.toTemplateString
