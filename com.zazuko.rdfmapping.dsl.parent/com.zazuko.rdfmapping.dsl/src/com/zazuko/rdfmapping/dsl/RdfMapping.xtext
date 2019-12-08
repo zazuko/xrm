@@ -109,10 +109,10 @@ Mapping:
 	BLOCK_END;
 	
 SubjectTypeMapping:	
-	type=[RdfClass|RdfQualifiedName];
+	type=[RdfClass|RdfPrefixedName];
 
 PredicateObjectMapping:	
-	property=[RdfProperty|RdfQualifiedName] 
+	property=[RdfProperty|RdfPrefixedName] 
 	term=ValuedTerm;
 	
 ValuedTerm:
@@ -144,10 +144,11 @@ ParentTriplesMapTerm:
 QualifiedName:
     ID ('.' ID)*;
     
-// on EObjects to be addressed with RdfQualifiedName, don't forget to change 
-// com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.getStyledDisplayString(IEObjectDescription)
-RdfQualifiedName:
-    ID (':' ID)*;
+// on EObjects to be addressed with RdfPrefixedName, don't forget to change 
+/// com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.getStyledDisplayString(IEObjectDescription)
+/// com.zazuko.rdfmapping.dsl.services.RdfDslConverters.RdfPrefixedName()
+RdfPrefixedName:
+    ID ':' ID;
     
 terminal BLOCK_BEGIN: '{';
 terminal BLOCK_END: '}';

@@ -11,15 +11,15 @@ import org.eclipse.xtext.nodemodel.INode;
 public class RdfDslConverters extends DefaultTerminalConverters {
 
 	@Inject
-	private RdfQualifiedNameConverter rdfQualifiedNameConverter;
+	private RdfPrefixedNameConverter rdfPrefixedNameConverter;
 
-	@ValueConverter(rule = "RdfQualifiedName")
-	public IValueConverter<String> RdfQualifiedName() {
-		return rdfQualifiedNameConverter;
+	@ValueConverter(rule = "RdfPrefixedName")
+	public IValueConverter<String> RdfPrefixedName() {
+		return rdfPrefixedNameConverter;
 	}
 
 	// see https://www.eclipse.org/forums/index.php/t/1099755/
-	public static class RdfQualifiedNameConverter implements IValueConverter<String> {
+	public static class RdfPrefixedNameConverter implements IValueConverter<String> {
 
 		@Override
 		public String toValue(String string, INode node) throws ValueConverterException {
