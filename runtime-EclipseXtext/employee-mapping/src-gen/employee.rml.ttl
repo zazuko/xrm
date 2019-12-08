@@ -10,7 +10,7 @@ PREFIX ex: <http://example.com/ns#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://data.example.com/employee/{EMPNO}";
+		rr:template "http://data.example.com/employee/{EMPNO}" ;
 		rr:class ex:Employee ;
 	];
 	

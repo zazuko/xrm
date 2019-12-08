@@ -11,7 +11,7 @@ PREFIX employee: <http://example.com/employee>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://airport.example.com/{id}";
+		rr:template "http://airport.example.com/{id}" ;
 		rr:class employee:Employee ;
 	];
 	

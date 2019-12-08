@@ -10,7 +10,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://foo.example.com/{id}";
+		rr:template "http://foo.example.com/{id}" ;
 		rr:class thing:Thing ;
 	];
 	

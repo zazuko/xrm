@@ -11,7 +11,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_VRZNG_ENHT_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR}" ;
 		rr:class stabs:Verzeichnungseinheit ;
 		rr:class ric:Record ;
 		rr:class dc:BibliographicResource ;
@@ -928,7 +928,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR}" ;
 		rr:class stabs:Deskriptor ;
 	];
 	
@@ -1010,7 +1010,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_ABLFR_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/ablieferung/{ID_NR}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/ablieferung/{ID_NR}" ;
 		rr:class stabs:Ablieferung ;
 	];
 	
@@ -1079,7 +1079,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_PRTNR_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/partner/{ID_NR}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/partner/{ID_NR}" ;
 		rr:class stabs:Partner ;
 	];
 	
@@ -1148,7 +1148,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_ABLFR_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}" ;
 	];
 	
 	rr:predicateObjectMap [
@@ -1162,7 +1162,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_DSKRP}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_DSKRP}" ;
 	];
 	
 	rr:predicateObjectMap [
@@ -1176,7 +1176,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_deskriptor/{ID_NR_DSKRP}/{ID_NR_VRZNG_ENHT}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_deskriptor/{ID_NR_DSKRP}/{ID_NR_VRZNG_ENHT}" ;
 		rr:class oa:Annotation ;
 	];
 	
@@ -1215,7 +1215,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_1}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_1}" ;
 		rr:class oa:Annotation ;
 	];
 	
@@ -1230,7 +1230,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor_deskriptor/{ID_NR_1}/{ID_NR_2}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor_deskriptor/{ID_NR_1}/{ID_NR_2}" ;
 		rr:class oa:Annotation ;
 	];
 	
@@ -1269,7 +1269,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_VRZNG_ENHT_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_verweis/{ID_NR_1}/{ID_NR_2}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_verweis/{ID_NR_1}/{ID_NR_2}" ;
 		rr:class oa:Annotation ;
 	];
 	
@@ -1308,7 +1308,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_PRTNR_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}" ;
 	];
 	
 	rr:predicateObjectMap [
@@ -1322,7 +1322,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "MVK_OGD_PRTNR_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/partner_verweis/{ID_NR_1}/{ID_NR_2}";
+		rr:template "http://data.staatsarchiv-bs.ch/id/partner_verweis/{ID_NR_1}/{ID_NR_2}" ;
 		rr:class oa:Annotation ;
 	];
 	

@@ -13,7 +13,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/professions/{CODE}";
+		rr:template "https://permits.zazukoians.org/professions/{CODE}" ;
 		rr:class bdb:Profession ;
 		rr:class skos:Concept ;
 	];

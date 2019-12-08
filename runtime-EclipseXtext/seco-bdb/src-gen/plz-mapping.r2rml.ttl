@@ -6,7 +6,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "plz_verzeichnis_v2.csv" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/ort/{ONRP}";
+		rr:template "http://example.org/ort/{ONRP}" ;
 		rr:class ex:Ort ;
 	];
 	

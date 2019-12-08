@@ -60,7 +60,7 @@ class RmlDialectGenerator {
 	
 	def subjectMap(Mapping it) '''
 		rr:subjectMap [
-			rr:template "«subjectIri»";
+			rr:template "«subjectIri»" ;
 			«FOR stm : subjectTypeMappings»
 				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
 			«ENDFOR»

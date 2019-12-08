@@ -11,7 +11,7 @@ PREFIX qb: <http://purl.org/linked-data/cube#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://elcom.zazuko.com/observation/2019/{Kategorie}";
+		rr:template "http://elcom.zazuko.com/observation/2019/{Kategorie}" ;
 		rr:class qb:Observation ;
 	];
 	
