@@ -1,4 +1,5 @@
-output rml // http://rml.io/spec.html#example-CSV
+// http://rml.io/spec.html#example-CSV
+output csv
 
 logical-source elcom {
 	type csv

@@ -1,4 +1,4 @@
-output r2rml
+output csv
 
 map Profession from easygov_professions {
 	subject template "https://permits.zazukoians.org/professions/{0}" with CODE;

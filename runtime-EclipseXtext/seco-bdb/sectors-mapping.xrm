@@ -1,4 +1,4 @@
-output r2rml
+output csv
 
 map Sector from easygov_sectors {
 	subject template "https://permits.zazukoians.org/sectors/{0}" with CODE;
