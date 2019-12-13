@@ -1,3 +1,4 @@
+output r2rml
 
 map Amt from bewilligungen.t_amt {
 	subject template "https://permits.zazukoians.org/agencies/{0}" with AMT_ID;

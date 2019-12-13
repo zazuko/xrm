@@ -1,4 +1,6 @@
+output rml 
 // based on http://rml.io/spec.html#example-CSV
+
 map AirportMapping from airport {
 	subject template "http://airport.example.com/{0}" with id;
 
@@ -14,7 +16,7 @@ map AirportMapping from airport {
 }
 
 map CityMapping from city {
-	subject template "http://city.example.com/{0}/{1}/{2}" with continent country  city;
+	subject template "http://city.example.com/{0}/{1}/{2}" with continent country city;
 
 	types
 		schema:City

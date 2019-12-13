@@ -1,4 +1,5 @@
-// http://rml.io/spec.html#example-CSV
+output rml // http://rml.io/spec.html#example-CSV
+
 logical-source elcom {
 	type csv
 	source "http://www.example.com/Rohdaten%20Tarife%202019.csv"

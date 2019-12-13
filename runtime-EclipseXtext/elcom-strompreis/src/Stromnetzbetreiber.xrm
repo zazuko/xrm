@@ -1,4 +1,6 @@
+output csv 
 // http://rml.io/spec.html#example-CSV
+
 logical-source stromnetz {
 	type csv
 	source "http://www.example.com/Schweizerische Gemeinden und zust�ndige Stromnetzbetreiber (Stand 07.09.2018).csv"

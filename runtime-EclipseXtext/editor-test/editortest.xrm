@@ -1,4 +1,5 @@
-output csv
+// TODO uncomment next line --> warning on 'map' + quickfix
+output r2rml
 
 map EmployeeMapping from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;

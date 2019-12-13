@@ -1,3 +1,5 @@
+output csv
+
 logical-source stromnetz {
 	type csv
 	source "http://www.example.com/usageCategories.csv"
