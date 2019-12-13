@@ -1,6 +1,8 @@
 package com.zazuko.rdfmapping.dsl.services;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.Enumerator;
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType;
 import com.zazuko.rdfmapping.dsl.util.LazyMap;
@@ -31,7 +34,8 @@ public class InputOutputCompatibility {
 
 		{
 			Map<SourceType, Set<OutputType>> tmp = new LinkedHashMap<>();
-			register(tmp, SourceType.XML, OutputType.R2RML, OutputType.RML);
+			// TODO SourceType.RDB?
+			register(tmp, SourceType.XML, RdfMappingConstants.RMLISH_OUTPUTTYPES);
 			register(tmp, SourceType.CSV, OutputType.CSVW);
 			this.src2Out = Collections.unmodifiableMap(tmp);
 		}
@@ -58,10 +62,12 @@ public class InputOutputCompatibility {
 
 	@SafeVarargs
 	private final <S, T> void register(Map<S, Set<T>> tmp, S source, T... targets) {
-		Set<T> values = new LinkedHashSet<>(targets.length);
-		for (T t : targets) {
-			values.add(t);
-		}
+		register(tmp, source, Arrays.asList(targets));
+	}
+
+	private final <S, T> void register(Map<S, Set<T>> tmp, S source, Collection<T> targets) {
+		Set<T> values = new LinkedHashSet<>(targets.size());
+		values.addAll(targets);
 		tmp.put(source, Collections.unmodifiableSet(values));
 	}
 

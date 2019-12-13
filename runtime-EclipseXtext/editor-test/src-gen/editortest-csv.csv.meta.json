@@ -2,53 +2,48 @@
 	"@context": "http://www.w3.org/ns/csvw",
 	"tables": [
 		{
-			"url": "DEPT",
+			"url": "EMP",
 			"tableSchema": {
-				"aboutUrl": "department/{DEPTNO}",
+				"aboutUrl": "http://airport.example.com/{id}",
 				"columns": [
 					{
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-						"valueUrl": "http://example.org/Department"
+						"valueUrl": "http://example.com/employeeEmployee"
 					}
 					,
 					{
-						"propertyUrl": "http://example.org/location",
-						"virtual": true,
-						"valueUrl": "Foo"
+						"propertyUrl": "http://example.com/employeeno",
+						"titles": "EMPNO"
 					}
 					,
 					{
 						"suppressOutput": true,
-						"titles": "DEPTNO"
-					},
-					{
-						"suppressOutput": true,
-						"titles": "LOC"
+						"titles": "id"
 					}
 				] 
 			}
 		},
 		
 		{
-			"url": "DEPT",
+			"url": "EMP",
 			"tableSchema": {
-				"aboutUrl": "site/{LOC}",
+				"aboutUrl": "http://airport.example.com/{id}",
 				"columns": [
 					{
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-						"valueUrl": "http://example.org/Site"
+						"valueUrl": "http://example.com/employeeEmployee"
 					}
 					,
 					{
-						"propertyUrl": "http://example.org/siteName",
-						"titles": "LOC"
+						"propertyUrl": "http://example.com/employeeno",
+						"titles": "EMPNO"
 					}
 					,
 					{
 						"suppressOutput": true,
-						"titles": "DEPTNO"
+						"titles": "id"
 					}
 				] 
 			}

@@ -1,5 +1,5 @@
-// TODO uncomment next line --> warning on 'map' + quickfix
-output r2rml
+// TODO comment next line --> warning on map + quickfix
+output csv
 
 map EmployeeMapping from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;
@@ -9,8 +9,11 @@ map EmployeeMapping from EMPLOYEE {
 
 	properties
 		employee:no from EMPNO;
-		thing:color parent-map EmployeeMapping2; // ok for rml, r2rml
+		// TODO uncomment next line --> error no ParentTriplesMap on CSV
+		// thing:color parent-map EmployeeMapping2;
 		
+		// TODO uncomment next line, do code-completion, 'parent-map' must not be offered 
+		// thing:color 
 }
 
 map EmployeeMapping2 from EMPLOYEE {
@@ -26,7 +29,7 @@ map EmployeeMapping2 from EMPLOYEE {
 
 
 logical-source EMPLOYEE {
-	type xml
+	type csv
 	source "EMP"
 	iterator "/Employees/Employee"
 

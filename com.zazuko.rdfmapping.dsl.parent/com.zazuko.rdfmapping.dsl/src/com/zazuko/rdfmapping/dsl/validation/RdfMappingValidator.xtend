@@ -22,6 +22,7 @@ import java.util.List
 import java.util.Set
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants
 
 /**
  * This class contains custom validation rules. 
@@ -103,7 +104,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	}
 
 	@Check
-	def void checkDomainModel(Domainmodel it) {
+	def void check(Domainmodel it) {
 		if (outputType !== null && elements.filter(typeof(Mapping)).empty) {
 			warning("No outputType needed when no mapping is declared.",
 				RdfMappingPackage.Literals.DOMAINMODEL__OUTPUT_TYPE,
@@ -112,7 +113,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	}
 
 	@Check
-	def void checkMapping(Mapping it) {
+	def void check(Mapping it) {
 		val Domainmodel domainModel = findParent(Domainmodel);
 		if (domainModel === null) {
 			return;
@@ -137,8 +138,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			if (ownSourceType !== null) {
 				msg += " Choose from " + ownSourceType.compatibleOutputTypes.serialize2Message;
 			}
-			error(msg, RdfMappingPackage.Literals.MAPPING__NAME,
-				RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING);
+			error(msg, RdfMappingPackage.Literals.MAPPING__NAME, RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING);
 		} else {
 			if (ownSourceType !== null) {
 				val Set<OutputType> compatibleOutputTypes = ownSourceType.compatibleOutputTypes;
@@ -151,5 +151,15 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 		}
 	}
-	
+
+	@Check
+	def void check(ParentTriplesMapTerm it) {
+		val OutputType outputType = outputType;
+		if (outputType !== null) {
+			if (!RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(outputType)) {
+				error("Only on output of type " + RdfMappingConstants.RMLISH_OUTPUTTYPES.serialize2Message, null);
+			}
+		}
+	}
+
 }

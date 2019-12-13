@@ -7,7 +7,8 @@ map DeptTriplesMap from Department {
 		ex:Department
 
 	properties
-		ex:location parent-map SiteTriplesMap; 
+//		ex:location parent-map SiteTriplesMap;
+		ex:location constant "Foo"; 
 }
 
 map SiteTriplesMap from Department {

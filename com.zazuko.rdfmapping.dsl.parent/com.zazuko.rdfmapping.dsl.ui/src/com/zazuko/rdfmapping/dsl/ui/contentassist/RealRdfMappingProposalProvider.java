@@ -4,10 +4,16 @@ import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
+import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
+import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
+import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
 import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
@@ -20,11 +26,14 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 	@Inject
 	private RdfPrefixedNameConverter rdfDslConverter;
 
+	@Inject
+	private ModelAccess modelAccess;
+
 	protected StyledString getStyledDisplayString(IEObjectDescription description) {
 		EObject eo = description.getEObjectOrProxy();
 		if (eo instanceof RdfProperty //
 				|| eo instanceof RdfClass //
-				) {
+		) {
 			String origQualifiedNameString = this.qualifiedNameConverter.toString(description.getQualifiedName());
 			String qualifiedNameString = this.rdfDslConverter.toString(origQualifiedNameString);
 			return getStyledDisplayString(eo, qualifiedNameString,
@@ -41,4 +50,28 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 		}
 
 	}
+
+	@Override
+	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
+			ICompletionProposalAcceptor acceptor) {
+		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
+			final OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+			super.completeKeyword(keyword, contentAssistContext,
+					new FilteringCompletionProposalAcceptor(acceptor, proposal -> {
+						if (type == null) {
+							return true;
+						}
+						// hmm... hiding keywords seems to be nasty.
+						// reason: there is no data driven grammar...
+						if ("parent-map".equals(keyword.getValue())) {
+							return RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(type);
+						}
+						return true;
+
+					}));
+		} else {
+			super.completeKeyword(keyword, contentAssistContext, acceptor);
+		}
+	}
+
 }
