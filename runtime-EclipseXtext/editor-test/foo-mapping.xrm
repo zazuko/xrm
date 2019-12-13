@@ -1,4 +1,4 @@
-map FooMapping from SomeSourceGroup.foo {
+map FooMapping from KEYWORDSOURCE {
 	subject template "http://foo.example.com/{0}" with id;
 
 	types
@@ -6,5 +6,25 @@ map FooMapping from SomeSourceGroup.foo {
 
 	properties
 		thing:color constant "blue"
+
+		keyword:no from ^map
+		keyword:^map from ^map
+}
+
+logical-source KEYWORDSOURCE {
+	type xml
+	source "KWS"
+
+	referenceables
+		id
+		^map
+}
+
+vocabulary keyword {
+	prefix "employee:" "http://example.com/employee"
+
+	properties
+		no
+		^map
 }
 

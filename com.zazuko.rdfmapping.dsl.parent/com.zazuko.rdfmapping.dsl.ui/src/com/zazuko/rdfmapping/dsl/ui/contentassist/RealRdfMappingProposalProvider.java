@@ -10,7 +10,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
-import com.zazuko.rdfmapping.dsl.services.RdfDslConverters.RdfPrefixedNameConverter;
+import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
 
 public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalProvider {
 

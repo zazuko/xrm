@@ -1,12 +1,13 @@
 PREFIX rr: <http://www.w3.org/ns/r2rml#>
 PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
 PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
+PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
 <#FooMapping>
 	rml:logicalSource [
-		rml:source "http://www.example.com/Foo.csv" ;
-		rml:referenceFormulation ql:CSV
+		rml:source "KWS" ;
+		rml:referenceFormulation ql:XPath
 	];
 	
 	rr:subjectMap [
@@ -18,6 +19,18 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:predicate thing:color ;
 		rr:objectMap [
 			rr:constant "blue" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate employee:no ;
+		rr:objectMap [
+			rml:reference "map" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate employee:map ;
+		rr:objectMap [
+			rml:reference "map" ;
 		];
 	]
 .
