@@ -22,7 +22,23 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 	@Inject
 	private RdfMappingFactory modelFactory;
 	
-	@Fix(RdfMappingValidationCodes.MAPPING_MISSING_OUTPUTTYPE)
+	
+	@Fix(RdfMappingValidationCodes.DOMAINMODEL_OUTPUTTYPE_SUPERFLUOUS)
+	public void removeOutputType(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, "Remove", "Remove declaration of outputType.", null, new ISemanticModification() {
+			
+			@Override
+			public void apply(EObject element, IModificationContext context) throws Exception {
+				if (!(element instanceof Domainmodel)) {
+					return;
+				}
+				Domainmodel target = (Domainmodel)element;
+				target.setOutputType(null);
+			}
+		});
+	}
+	
+	@Fix(RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING)
 	public void mappingAddOutputType(Issue issue, IssueResolutionAcceptor acceptor) {
 		for (final OutputType candidate : OutputType.VALUES) {
 			String msg = String.format("Set output to '%s'", candidate.getLiteral());

@@ -1,4 +1,5 @@
-output csv
+// TODO uncomment next line --> get warning + quickfix
+//output csv
 
 vocabulary thing {
 	prefix "thing:" "http://foobar.com/things/thing/"

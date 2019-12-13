@@ -96,8 +96,17 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	}
 
 	@Check
-	def void checkDuplicateMappingNames(Mapping mapping) {
-		val Domainmodel domainModel = mapping.eContainer as Domainmodel;
+	def void checkDomainModel(Domainmodel it) {
+		if (outputType !== null && elements.filter(typeof(Mapping)).empty) {
+			warning("No outputType needed when no mapping is declared.",
+				RdfMappingPackage.Literals.DOMAINMODEL__OUTPUT_TYPE,
+				RdfMappingValidationCodes.DOMAINMODEL_OUTPUTTYPE_SUPERFLUOUS);
+		}
+	}
+
+	@Check
+	def void checkMapping(Mapping it) {
+		val Domainmodel domainModel = eContainer as Domainmodel;
 		if (domainModel === null) {
 			return;
 		}
@@ -107,7 +116,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 		val List<Element> nameOccurrences = new ArrayList();
 		for (Mapping candidate : domainModel.elements.filter(typeof(Mapping))) {
-			if (candidate.name.equals(mapping.name)) {
+			if (candidate.name.equals(name)) {
 				nameOccurrences.add(candidate);
 			}
 		}
@@ -117,7 +126,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 		if (domainModel.outputType === null) {
 			error("A mapping requires an outputType.", RdfMappingPackage.Literals.MAPPING__NAME,
-				RdfMappingValidationCodes.MAPPING_MISSING_OUTPUTTYPE);
+				RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING);
 		}
 	}
 }
