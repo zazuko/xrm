@@ -39,6 +39,11 @@
 					{
 						"propertyUrl": "http://example.com/employeeno",
 						"titles": "EMPNO"
+					},
+					{
+						"propertyUrl": "http://example.com/employeemap",
+						"titles": "EMPNO",
+						"valueUrl": "{EMPNO}"
 					}
 					,
 					{

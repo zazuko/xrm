@@ -24,6 +24,10 @@ map EmployeeMapping2 from EMPLOYEE {
 
 	properties
 		employee:no from EMPNO;
+		// TODO codeCompletion between EMPNO and ; must not give 'as'
+		keyword:^map template "{0}" with EMPNO; // FIXME as Literal;
+		// TODO uncomment next line, 'Literal' is not allowed due to CSV
+		// keyword:^map template "{0}" with EMPNO as Literal;
 		
 }
 

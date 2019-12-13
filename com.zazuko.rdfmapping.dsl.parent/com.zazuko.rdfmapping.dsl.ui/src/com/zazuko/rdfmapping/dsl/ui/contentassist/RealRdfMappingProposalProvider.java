@@ -10,12 +10,13 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
-import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
 import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
 
 public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalProvider {
@@ -56,19 +57,15 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 			ICompletionProposalAcceptor acceptor) {
 		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
 			final OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
-			super.completeKeyword(keyword, contentAssistContext,
-					new FilteringCompletionProposalAcceptor(acceptor, proposal -> {
-						if (type == null) {
-							return true;
-						}
-						// hmm... hiding keywords seems to be nasty.
-						// reason: there is no data driven grammar...
-						if ("parent-map".equals(keyword.getValue())) {
-							return RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(type);
-						}
-						return true;
+			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
+					new RmlishCompletionProposalPredicate("parent-map", keyword, type)));
 
-					}));
+		} else if (contentAssistContext.getCurrentModel() instanceof ReferenceValuedTerm
+				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
+			final OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
+					new RmlishCompletionProposalPredicate("as", keyword, type)));
+
 		} else {
 			super.completeKeyword(keyword, contentAssistContext, acceptor);
 		}

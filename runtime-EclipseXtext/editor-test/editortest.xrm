@@ -10,6 +10,8 @@ map EmployeeMapping from EMPLOYEE {
 	properties
 		employee:no from EMPNO;
 		thing:color parent-map EmployeeMapping2; // ok for rml, r2rml
+		// TODO 'as' must be offered by code completion (this is r2rml)
+		keyword:^map template "{0}" with EMPNO as Literal; // ok for rml, r2rml 
 		
 }
 

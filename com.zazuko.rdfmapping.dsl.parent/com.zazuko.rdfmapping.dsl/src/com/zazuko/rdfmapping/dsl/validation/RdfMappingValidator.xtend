@@ -3,6 +3,7 @@
  */
 package com.zazuko.rdfmapping.dsl.validation
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants
 import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
@@ -16,13 +17,13 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
 import java.util.ArrayList
 import java.util.List
 import java.util.Set
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
-import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants
 
 /**
  * This class contains custom validation rules. 
@@ -154,12 +155,21 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Check
 	def void check(ParentTriplesMapTerm it) {
-		val OutputType outputType = outputType;
-		if (outputType !== null) {
-			if (!RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(outputType)) {
-				error("Only on output of type " + RdfMappingConstants.RMLISH_OUTPUTTYPES.serialize2Message, null);
-			}
+		onlyOnRmlishType(outputType);
+	}
+
+	def private onlyOnRmlishType(OutputType outputType) {
+		if (outputType === null) {
+			return;
 		}
+		if (!RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(outputType)) {
+			error("Only on output of type " + RdfMappingConstants.RMLISH_OUTPUTTYPES.serialize2Message, null);
+		}
+	}
+
+	@Check
+	def void check(TermTypeRef it) {
+		onlyOnRmlishType(outputType);
 	}
 
 }

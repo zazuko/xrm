@@ -1,5 +1,6 @@
 PREFIX rr: <http://www.w3.org/ns/r2rml#>
 PREFIX employee: <http://example.com/employee>
+PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
 <#EmployeeMapping>
@@ -20,6 +21,13 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:predicate thing:color ;
 		rr:objectMap [
 			rr:parentTriplesMap  <#EmployeeMapping2> ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate employee:map ;
+		rr:objectMap [
+			rr:template "{EMPNO}" ;
+			rr:termType rr:Literal ;
 		];
 	]
 .
