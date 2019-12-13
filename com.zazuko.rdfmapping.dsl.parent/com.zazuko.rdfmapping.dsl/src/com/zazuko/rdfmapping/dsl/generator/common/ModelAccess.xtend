@@ -27,6 +27,7 @@ import java.util.LinkedHashSet
 import java.util.List
 import java.util.Set
 import javax.inject.Inject
+import org.eclipse.emf.ecore.EObject
 
 class ModelAccess {
 	
@@ -159,6 +160,17 @@ class ModelAccess {
 	
 	def String referenceFormulation(SourceType it) {
 		return GeneratorConstants.REFERENCE_FORMULATION.toStringValue(it);
+	}
+	
+	def <C extends EObject> C findParent(EObject it, Class<C> clazz) {
+		var EObject tmp = it;
+		while (tmp !== null) {
+			if (clazz.isInstance(tmp)) {
+				return clazz.cast(tmp);
+			}
+			tmp = tmp.eContainer;
+		}
+		return null;
 	}
 
 }

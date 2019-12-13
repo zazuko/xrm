@@ -11,6 +11,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
@@ -112,7 +113,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Check
 	def void checkMapping(Mapping it) {
-		val Domainmodel domainModel = eContainer as Domainmodel;
+		val Domainmodel domainModel = findParent(Domainmodel);
 		if (domainModel === null) {
 			return;
 		}
@@ -150,4 +151,5 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 		}
 	}
+	
 }
