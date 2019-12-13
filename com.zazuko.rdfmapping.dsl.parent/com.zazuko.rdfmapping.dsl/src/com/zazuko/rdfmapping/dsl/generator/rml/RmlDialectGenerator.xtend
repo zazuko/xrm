@@ -64,8 +64,8 @@ class RmlDialectGenerator {
 			«FOR stm : subjectTypeMappings»
 				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
 			«ENDFOR»
-			«IF getSubjectIriMapping.termTypeRef?.type !== null»
-				rr:termType rr:«getSubjectIriMapping.termTypeRef.type» ;
+			«IF subjectIriMapping.termTypeRef?.type !== null»
+				rr:termType rr:«subjectIriMapping.termTypeRef.type» ;
 			«ENDIF»
 		]'''
 	
