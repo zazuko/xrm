@@ -1,11 +1,14 @@
 package com.zazuko.rdfmapping.dsl.ui.quickfix;
 
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.inject.Inject;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.ui.editor.model.edit.IModificationContext;
 import org.eclipse.xtext.ui.editor.model.edit.ISemanticModification;
 import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider;
@@ -72,6 +75,35 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 				}
 			});
 		}
+	}
 
+	@Fix(RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS)
+	public void eObjectRemoval(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, "Remove", "Remove", null, new ISemanticModification() {
+			
+			@Override
+			public void apply(EObject element, IModificationContext context) throws Exception {
+				if (element == null) {
+					return;
+				}
+				EObject container = element.eContainer();
+				if (container == null) {
+					return;
+				}
+				EList<EReference> containments = container.eClass().getEAllContainments();
+				for (EReference ref : containments) {
+					
+					if (ref.isMany()) {
+						Collection<?> containingList = (Collection<?>) container.eGet(ref);
+						if (containingList.contains(element)) {
+							containingList.remove(element);
+						}
+					} else {
+						container.eUnset(ref);
+					}
+				}
+					
+			}
+		});
 	}
 }

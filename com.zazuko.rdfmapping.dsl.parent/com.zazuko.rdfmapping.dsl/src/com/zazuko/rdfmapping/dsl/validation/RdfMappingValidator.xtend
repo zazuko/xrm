@@ -163,7 +163,9 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			return;
 		}
 		if (!RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(outputType)) {
-			error("Only on output of type " + RdfMappingConstants.RMLISH_OUTPUTTYPES.serialize2Message, null);
+			warning("Not on output of type '" + outputType.literal + "' - only valid on " +
+				RdfMappingConstants.RMLISH_OUTPUTTYPES.serialize2Message, null,
+				RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS);
 		}
 	}
 
