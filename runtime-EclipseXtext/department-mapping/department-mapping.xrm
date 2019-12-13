@@ -2,17 +2,17 @@ map DeptTriplesMap from Department {
 	subject template "department/{0}" with DEPTNO;
 
 	types
-		ex:Department;
+		ex:Department
 
 	properties
-		ex:location parent-map SiteTriplesMap 
+		ex:location parent-map SiteTriplesMap; 
 }
 
 map SiteTriplesMap from Department {
 	subject template "site/{0}" with LOC;
 
 	types
-		ex:Site;
+		ex:Site
 
 	properties
 		ex:siteName from LOC;

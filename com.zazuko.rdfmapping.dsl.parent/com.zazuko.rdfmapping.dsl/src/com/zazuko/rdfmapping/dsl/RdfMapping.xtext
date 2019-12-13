@@ -104,7 +104,7 @@ RdfClass:
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
 		'subject' subjectIriMapping=TemplateValuedTerm
-		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+ LINE_END?)?
+		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
 	BLOCK_END;
 	
@@ -122,24 +122,24 @@ ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|RdfPrefixedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	('as' termTypeRef=TermTypeRef)?
-	LINE_END?;
+	LINE_END;
 
 ConstantValuedTerm:
 	'constant' constant=STRING
-	LINE_END?;
+	LINE_END;
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+
 	('as' termTypeRef=TermTypeRef)?
-	LINE_END?;
+	LINE_END;
 	
 LinkedResourceTerm:
 	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
-	 LINE_END?;
+	 LINE_END;
 	 
 ParentTriplesMapTerm:
 	'parent-map' mapping=[Mapping]
-	LINE_END?;
+	LINE_END;
 
 QualifiedName:
     ID ('.' ID)*;

@@ -2,6 +2,7 @@ PREFIX rr: <http://www.w3.org/ns/r2rml#>
 PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
 PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
 PREFIX employee: <http://example.com/employee>
+PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
 <#FooMapping>
@@ -12,7 +13,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	
 	rr:subjectMap [
 		rr:template "http://foo.example.com/{id}" ;
-		rr:class thing:Thing ;
+		rr:class employee:Employee ;
 	];
 	
 	rr:predicateObjectMap [

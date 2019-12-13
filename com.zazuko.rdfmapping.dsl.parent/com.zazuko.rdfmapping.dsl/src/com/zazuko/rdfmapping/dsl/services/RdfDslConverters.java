@@ -7,7 +7,7 @@ import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 
 public class RdfDslConverters extends DefaultTerminalConverters {
-
+	
 	@Inject
 	private RdfPrefixedNameConverter rdfPrefixedNameConverter;
 

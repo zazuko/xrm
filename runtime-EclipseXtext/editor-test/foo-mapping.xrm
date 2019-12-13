@@ -2,13 +2,12 @@ map FooMapping from KEYWORDSOURCE {
 	subject template "http://foo.example.com/{0}" with id;
 
 	types
-		thing:Thing
+		employee:Employee
 
 	properties
-		thing:color constant "blue"
-
-		keyword:no from ^map
-		keyword:^map from ^map
+		thing:color constant "blue";
+		keyword:no from ^map;
+		keyword:^map from ^map;
 }
 
 logical-source KEYWORDSOURCE {

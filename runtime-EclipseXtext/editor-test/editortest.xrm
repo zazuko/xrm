@@ -5,7 +5,7 @@ map EmployeeMapping from EMPLOYEE {
 		employee:Employee
 
 	properties
-		employee:no from EMPNO
+		employee:no from EMPNO;
 }
 
 logical-source EMPLOYEE {

@@ -3,7 +3,7 @@ map Sector from easygov_sectors {
 
 	types
 		bdb:Sector
-		skos:Concept;
+		skos:Concept
 
 	properties
 		exSectors:internalKey from PK with datatype xsd:int;
