@@ -3,15 +3,19 @@
  */
 package com.zazuko.rdfmapping.dsl.ui
 
+import com.google.inject.Binder
+import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingFactory
 import com.zazuko.rdfmapping.dsl.ui.contentassist.RdfMappingPrefixMatcher
 import com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider
 import com.zazuko.rdfmapping.dsl.ui.labeling.RdfMappingLabelProvider
 import com.zazuko.rdfmapping.dsl.ui.outline.RdfMappingOutlineTreeProvider
+import com.zazuko.rdfmapping.dsl.ui.quickfix.RealRdfMappingQuickfixProvider
 import org.eclipse.jface.viewers.LabelProvider
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider
 import org.eclipse.xtext.ui.editor.contentassist.PrefixMatcher
 import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -29,9 +33,19 @@ class RdfMappingUiModule extends AbstractRdfMappingUiModule {
 	override Class<? extends IContentProposalProvider> bindIContentProposalProvider() {
 		return RealRdfMappingProposalProvider
 	}
-	
+
 	override Class<? extends PrefixMatcher> bindPrefixMatcher() {
 		return RdfMappingPrefixMatcher;
+	}
+
+	override Class<? extends IssueResolutionProvider> bindIssueResolutionProvider() {
+		return RealRdfMappingQuickfixProvider;
+	}
+
+	// do pure Guice here...
+	override configure(Binder it) {
+		super.configure(it);
+		bind(RdfMappingFactory).toInstance(RdfMappingFactory.eINSTANCE);
 	}
 
 }

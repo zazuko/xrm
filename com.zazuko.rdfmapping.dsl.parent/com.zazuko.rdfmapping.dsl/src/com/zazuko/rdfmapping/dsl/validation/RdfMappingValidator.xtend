@@ -17,6 +17,7 @@ import java.util.ArrayList
 import java.util.List
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
+import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
 
 /**
  * This class contains custom validation rules. 
@@ -112,6 +113,11 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 		}
 		if (nameOccurrences.size > 1) {
 			error("Mapping name already in use.", RdfMappingPackage.Literals.MAPPING__NAME);
+		}
+
+		if (domainModel.outputType === null) {
+			error("A mapping requires an outputType.", RdfMappingPackage.Literals.MAPPING__NAME,
+				RdfMappingValidationCodes.MAPPING_MISSING_OUTPUTTYPE);
 		}
 	}
 }
