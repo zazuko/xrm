@@ -1,3 +1,5 @@
+output csv
+
 map EmployeeMapping from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;
 
