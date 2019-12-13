@@ -12,7 +12,7 @@ map Sector from easygov_sectors {
 		exSectors:position from POS with datatype xsd:int;
 		exSectors:code from CODE with datatype xsd:int;
 
-		skos:notation template "{0}" with CODE; // FIXME as Literal;
+		skos:notation template "{0}" with CODE as Literal;
 
 		exSectors:fkParent from LN_PARENT with datatype xsd:int;
 
