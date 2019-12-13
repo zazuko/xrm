@@ -10,7 +10,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
-import com.zazuko.rdfmapping.dsl.services.RdfDslConverters.RdfQualifiedNameConverter;
+import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
 
 public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalProvider {
 
@@ -18,7 +18,7 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 	private IQualifiedNameConverter qualifiedNameConverter;
 
 	@Inject
-	private RdfQualifiedNameConverter rdfDslConverter;
+	private RdfPrefixedNameConverter rdfDslConverter;
 
 	protected StyledString getStyledDisplayString(IEObjectDescription description) {
 		EObject eo = description.getEObjectOrProxy();

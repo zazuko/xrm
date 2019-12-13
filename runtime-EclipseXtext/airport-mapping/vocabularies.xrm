@@ -37,4 +37,11 @@ vocabulary ex {
 		owner
 		marker
 }
+vocabulary exOwner {
+	prefix "ex:" "https://schema.example.org/"
+
+	properties
+		owner
+		marker
+}
 

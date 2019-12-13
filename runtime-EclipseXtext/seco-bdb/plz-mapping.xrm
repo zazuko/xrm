@@ -6,10 +6,10 @@ map Ort from plz_verzeichnis {
 		exPLZ:Ort;
 
 	properties
-		exPLZ:onrp from ONRP with datatype xsd.int;
-		exPLZ:bfsnr from BFSNR with datatype xsd.int;
-		exPLZ:plz from POSTLEITZAHL with datatype xsd.int;
-		exPLZ:zz from PLZ_ZZ with datatype xsd.int;
+		exPLZ:onrp from ONRP with datatype xsd:int;
+		exPLZ:bfsnr from BFSNR with datatype xsd:int;
+		exPLZ:plz from POSTLEITZAHL with datatype xsd:int;
+		exPLZ:zz from PLZ_ZZ with datatype xsd:int;
 		exPLZ:bezeichnung from ORTBEZ18;
 		exPLZ:bezeichnung from ORTBEZ27;
 }

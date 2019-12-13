@@ -4,5 +4,5 @@ logical-source Department {
 
 	referenceables
 		DEPTNO
-		LOC	
+		LOC
 }

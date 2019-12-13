@@ -5,12 +5,13 @@ datatypes xsd {
 
 vocabulary ex {
 	prefix "ex:" "http://example.org/"
-	
+
 	classes
 		Department
 		Site
-	
+
 	properties
 		location
 		siteName
 }
+

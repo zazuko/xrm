@@ -6,13 +6,13 @@ map Sector from easygov_sectors {
 		skos:Concept;
 
 	properties
-		exSectors:internalKey from PK with datatype xsd.int;
-		exSectors:position from POS with datatype xsd.int;
-		exSectors:code from CODE with datatype xsd.int;
+		exSectors:internalKey from PK with datatype xsd:int;
+		exSectors:position from POS with datatype xsd:int;
+		exSectors:code from CODE with datatype xsd:int;
 
 		skos:notation template "{0}" with CODE as Literal;
 
-		exSectors:fkParent from LN_PARENT with datatype xsd.int;
+		exSectors:fkParent from LN_PARENT with datatype xsd:int;
 
 		skos:prefLabel from DE with language-tag de;
 		skos:prefLabel from EN with language-tag en;

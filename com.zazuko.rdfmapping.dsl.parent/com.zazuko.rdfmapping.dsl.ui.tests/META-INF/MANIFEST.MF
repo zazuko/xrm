@@ -17,3 +17,6 @@ Require-Bundle: com.zazuko.rdfmapping.dsl.ui,
  org.eclipse.xtext.ui.testing
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.zazuko.rdfmapping.dsl.ui.tests;x-internal=true
+Import-Package: org.junit,
+ org.junit.runner;version="4.12.0",
+ org.junit.runners;version="4.12.0"

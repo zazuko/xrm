@@ -5,7 +5,7 @@ PREFIX ex: <http://example.org/>
 	rr:logicalTable [ rr:tableName "DEPT" ];
 	
 	rr:subjectMap [
-		rr:template "department/{DEPTNO}";
+		rr:template "department/{DEPTNO}" ;
 		rr:class ex:Department ;
 	];
 	
@@ -20,7 +20,7 @@ PREFIX ex: <http://example.org/>
 	rr:logicalTable [ rr:tableName "DEPT" ];
 	
 	rr:subjectMap [
-		rr:template "site/{LOC}";
+		rr:template "site/{LOC}" ;
 		rr:class ex:Site ;
 	];
 	
