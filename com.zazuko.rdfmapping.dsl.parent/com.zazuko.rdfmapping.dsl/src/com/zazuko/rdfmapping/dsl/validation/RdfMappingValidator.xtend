@@ -3,21 +3,24 @@
  */
 package com.zazuko.rdfmapping.dsl.validation
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.Element
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
 import java.util.ArrayList
 import java.util.List
+import java.util.Set
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
-import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
 
 /**
  * This class contains custom validation rules. 
@@ -28,6 +31,9 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Inject
 	extension ModelAccess
+
+	@Inject
+	extension InputOutputCompatibility
 
 	@Check
 	def void checkTypeDeclarations(LogicalSource logicalSource) {
@@ -124,9 +130,24 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			error("Mapping name already in use.", RdfMappingPackage.Literals.MAPPING__NAME);
 		}
 
+		val SourceType ownSourceType = source?.typeResolved;
 		if (domainModel.outputType === null) {
-			error("A mapping requires an outputType.", RdfMappingPackage.Literals.MAPPING__NAME,
+			var String msg = "A mapping requires an outputType.";
+			if (ownSourceType !== null) {
+				msg += " Choose from " + ownSourceType.compatibleOutputTypes.serialize2Message;
+			}
+			error(msg, RdfMappingPackage.Literals.MAPPING__NAME,
 				RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING);
+		} else {
+			if (ownSourceType !== null) {
+				val Set<OutputType> compatibleOutputTypes = ownSourceType.compatibleOutputTypes;
+				if (!compatibleOutputTypes.contains(domainModel.outputType.type)) {
+					val String msg = "Output of type " + domainModel.outputType.type.literal +
+						" is incompatible. Expected one of " + compatibleOutputTypes.serialize2Message;
+					error(msg, RdfMappingPackage.Literals.MAPPING__NAME,
+						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE)
+				}
+			}
 		}
 	}
 }
