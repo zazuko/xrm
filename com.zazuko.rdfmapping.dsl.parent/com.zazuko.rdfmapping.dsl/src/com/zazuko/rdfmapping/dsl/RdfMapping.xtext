@@ -61,6 +61,7 @@ enum OutputType:
 	CSVW = 'csv'
 	| RML = 'rml'
 	| R2RML = 'r2rml'
+	| CARML = 'carml'
 ;
 
 OutputTypeRef:
