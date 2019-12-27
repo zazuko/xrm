@@ -1,3 +1,7 @@
+
+
+
+
 output r2rml
 
 map FooMapping from KEYWORDSOURCE {
@@ -10,6 +14,17 @@ map FooMapping from KEYWORDSOURCE {
 		thing:color constant "blue";
 		keyword:no from ^map;
 		keyword:^map from ^map;
+
+		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'keyword' gets modified --> error for missing Term
+		// keyword:bla
+		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'stuff' gets created --> error for missing Term
+		//	stuff:bla 
+		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'new' gets created --> error for missing Term
+		// asdf
+		
+		// for the next one, please make sure to select the project 'editor-test' in the package explorer and hit refresh before testing!
+		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'thing' in file 'foo-vocabularies.xrm' gets modified --> error for missing Term
+		// thing:bla
 }
 
 logical-source KEYWORDSOURCE {

@@ -9,7 +9,7 @@ public class RdfMappingPrefixMatcher extends PrefixMatcher {
 
 	private static final String DOT = ".";
 	private static final String COLON = ":";
-	private static final String DELIMITERS_REGEX = "[\\"+DOT+"\\:"+COLON+"]";
+	public static final String DELIMITERS_REGEX = "[\\" + DOT + "\\:" + COLON + "]";
 
 	@Override
 	public boolean isCandidateMatchingPrefix(String name, String prefix) {
@@ -29,13 +29,14 @@ public class RdfMappingPrefixMatcher extends PrefixMatcher {
 		} else {
 			// path matching
 			boolean traceMatches = segments.size() >= prefixSegments.size();
-			for (int a = 0; traceMatches && a < prefixSegments.size();a++) {
+			for (int a = 0; traceMatches && a < prefixSegments.size(); a++) {
 				String prefixToMatch = prefixSegments.get(a);
 				String segment = segments.get(a);
-				traceMatches &= a < prefixSegments.size() -1 || qualified ? segment.equals(prefixToMatch) : segment.contains(prefixToMatch);
+				traceMatches &= a < prefixSegments.size() - 1 || qualified ? segment.equals(prefixToMatch)
+						: segment.contains(prefixToMatch);
 			}
 			return traceMatches;
-			
+
 		}
 		return false;
 	}
