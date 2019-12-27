@@ -9,6 +9,9 @@ map FooMapping from KEYWORDSOURCE {
 	properties
 		thing:color constant "blue";
 		thing:size from ^map;
+		// TODO get 'multi-reference' in code completion (due to type carml)
+		// TODO get 'parent-map' in code completion (due to type rmlish)
+		thing:weight multi-reference from ^map; 
 }
 
 logical-source KEYWORDSOURCE {
