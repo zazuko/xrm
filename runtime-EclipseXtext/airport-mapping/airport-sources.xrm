@@ -4,7 +4,7 @@ logical-source airport {
 
 	referenceables
 		id
-		stop
+		stop "flop"
 		latitude
 		longitude null "N/A"
 		ownership "airport öwnership" null "X"
