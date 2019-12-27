@@ -11,6 +11,8 @@ import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes
  */
 class RdfMappingQuickfixProvider extends DefaultQuickfixProvider {
+	
+	// see RealRdfMappingQuickfixProvider
 
 //	@Fix(RdfMappingValidator.INVALID_NAME)
 //	def capitalizeName(Issue issue, IssueResolutionAcceptor acceptor) {

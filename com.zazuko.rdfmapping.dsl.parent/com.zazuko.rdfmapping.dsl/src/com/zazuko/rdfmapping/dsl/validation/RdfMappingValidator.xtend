@@ -10,6 +10,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.Element
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
@@ -172,6 +173,24 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	@Check
 	def void check(TermTypeRef it) {
 		onlyOnRmlishType(outputType);
+	}
+
+	@Check
+	def void check(MultiReferenceValuedTerm it) {
+		carmlOnly(outputType);
+	}
+	
+	def private carmlOnly(OutputType outputType) {
+		if (outputType === null) {
+			return;
+		}
+		if (!OutputType.CARML.equals(outputType)) {
+			error("Not on output of type '" + outputType.literal + "' - only valid on " +
+				OutputType.CARML.serialize2Message, null,
+				// no quickfix - it would be complicated and the case should not happen at all (omitted completion)
+				RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS + "nofix"
+				);
+		}
 	}
 
 }

@@ -14,6 +14,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
@@ -233,6 +234,13 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.referenceValuedTermAccess.asKeyword_3_0).surround[oneSpace];
 		
 		regionFor.ruleCall(ga.referenceValuedTermAccess.LINE_ENDTerminalRuleCall_4).prepend[noSpace];
+	}
+
+	def dispatch void format(MultiReferenceValuedTerm it, extension IFormattableDocument document) {
+		regionFor.keyword(ga.multiReferenceValuedTermAccess.multiReferenceKeyword_0).surround[oneSpace];
+		regionFor.keyword(ga.multiReferenceValuedTermAccess.fromKeyword_1).append[oneSpace];
+
+		regionFor.ruleCall(ga.multiReferenceValuedTermAccess.LINE_ENDTerminalRuleCall_3).prepend[noSpace];
 	}
 
 	def dispatch void format(ConstantValuedTerm it, extension IFormattableDocument document) {
