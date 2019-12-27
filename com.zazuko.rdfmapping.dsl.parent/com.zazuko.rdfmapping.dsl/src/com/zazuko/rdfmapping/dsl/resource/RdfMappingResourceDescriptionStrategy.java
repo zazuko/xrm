@@ -15,5 +15,8 @@ public class RdfMappingResourceDescriptionStrategy extends CustomResourceDescrip
 	public void init(RandomUserDataProvider rnd) {
 		// LogicalSource always publish impact on any CTRL+S for now
 		this.addUserDataProvider(RdfMappingPackage.eINSTANCE.getLogicalSource(), rnd);
+		
+		// NOT (referred transitively) this.addUserDataProvider(RdfMappingPackage.eINSTANCE.getDialectGroup(), rnd);
+		//this.addUserDataProvider(RdfMappingPackage.eINSTANCE.getSourceGroup(), rnd);
 	}
 }
