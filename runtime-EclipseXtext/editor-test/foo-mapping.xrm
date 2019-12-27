@@ -12,6 +12,17 @@ map FooMapping from KEYWORDSOURCE {
 		keyword:^map from ^map;
 }
 
+map TestImpactMapping from SomeSourceGroup.foo {
+	subject template "http://foo.example.com/{0}" with id;
+
+	types
+		employee:Employee
+
+	properties
+		thing:color constant "blue";
+		keyword:^map from bar;
+}
+
 logical-source KEYWORDSOURCE {
 	type xml
 	source "KWS"
