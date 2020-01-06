@@ -8,23 +8,23 @@ logical-source stromnetz {
 }
 
 map KategorienConceptMapping from stromnetz {
-	subject template "http://elcom.zazuko.com/category/{0}" with id
+	subject template "http://elcom.zazuko.com/category/{0}" with id;
 
 	types
 		skos:Concept
 
 	properties
-		skos:prefLabel from desc
-		skos:topConceptOf constant "http://elcom.zazuko.com/category/conceptscheme"
+		skos:prefLabel from desc;
+		skos:topConceptOf constant "http://elcom.zazuko.com/category/conceptscheme";
 }
 
 map KategorienConceptSchemeMapping from stromnetz {
-	subject template "http://elcom.zazuko.com/category/conceptscheme/{0}" with id
+	subject template "http://elcom.zazuko.com/category/conceptscheme/{0}" with id;
 
 	types
 		skos:ConceptScheme
 
 	properties
-		skos:prefLabel constant "Category concepts"
-		skos:hasTopConcept template "http://elcom.zazuko.com/category/{0}" with id
+		skos:prefLabel constant "Category concepts";
+		skos:hasTopConcept template "http://elcom.zazuko.com/category/{0}" with id;
 }

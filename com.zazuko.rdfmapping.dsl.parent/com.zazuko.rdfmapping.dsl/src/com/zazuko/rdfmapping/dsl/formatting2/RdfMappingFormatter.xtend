@@ -57,7 +57,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		
 		regionFor.keyword(ga.sourceGroupAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
 
-		logicalSources.forEach[format.append[setNewLines(2)]];
+		logicalSources.forEach[format];
 	}
 
 	def dispatch void format(DatatypesDefinition it, extension IFormattableDocument document) {
@@ -187,12 +187,11 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		} else {
 			interior(
 				regionFor.keyword(ga.mappingAccess.typesKeyword_7_0),
-				regionFor.ruleCall(ga.mappingAccess.LINE_ENDTerminalRuleCall_7_2)
+				regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_9)
 			)[indent];
 		}
 		regionFor.keyword(ga.mappingAccess.typesKeyword_7_0).prepend[setNewLines(2)];
 		subjectTypeMappings.forEach[format];
-		regionFor.ruleCall(ga.mappingAccess.LINE_ENDTerminalRuleCall_7_2).prepend[noSpace];
 
 		// 'properties'
 		regionFor.keyword(ga.mappingAccess.propertiesKeyword_8_0).prepend[setNewLines(2)];
