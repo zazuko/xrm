@@ -169,8 +169,9 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 					// it has to be valid
 					vocabulary.setPrefix(prefix);
 
-					prefix.setLabel(vocabulary.getName().toLowerCase());
-					prefix.setIri("http://" + prefix.getLabel() + ".org/TODO");
+					String vocNameLowercase = vocabulary.getName().toLowerCase();
+					prefix.setLabel("" + vocNameLowercase + ":");
+					prefix.setIri("http://" + vocNameLowercase + ".example.org/");
 				}
 
 				RdfProperty newProperty = RdfMappingFactory.eINSTANCE.createRdfProperty();
