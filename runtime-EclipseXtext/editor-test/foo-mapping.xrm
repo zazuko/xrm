@@ -2,7 +2,7 @@
 
 
 
-output r2rml
+output rml
 
 map FooMapping from KEYWORDSOURCE {
 	subject template "http://foo.example.com/{0}" with id;

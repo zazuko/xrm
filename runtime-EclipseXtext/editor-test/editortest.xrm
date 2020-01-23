@@ -1,5 +1,5 @@
 // TODO uncomment next line --> warning on 'map' + quickfix
-output r2rml
+output rml
 
 map EmployeeMapping from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;
@@ -37,7 +37,7 @@ logical-source EMPLOYEE {
 	referenceables
 		id
 		EMPNO
-// TODO uncomment next line. error: null "X" is only supported on type cfs
+// TODO uncomment next line. error: null "X" is only supported on type csv
 // ENAME null "X"	
 }
 

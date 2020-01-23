@@ -1,10 +1,15 @@
 PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
+PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
 PREFIX employee: <http://example.com/employee>
 PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
 <#FooMapping>
-	rr:logicalTable [ rr:tableName "KWS" ];
+	rml:logicalSource [
+		rml:source "KWS" ;
+		rml:referenceFormulation ql:XPath
+	];
 	
 	rr:subjectMap [
 		rr:template "http://foo.example.com/{id}" ;
@@ -20,18 +25,21 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	rr:predicateObjectMap [
 		rr:predicate employee:no ;
 		rr:objectMap [
-			rr:column "map" ;
+			rml:reference "map" ;
 		];
 	];
 	rr:predicateObjectMap [
 		rr:predicate employee:map ;
 		rr:objectMap [
-			rr:column "map" ;
+			rml:reference "map" ;
 		];
 	]
 .
 <#TestImpactMapping>
-	rr:logicalTable [ rr:tableName "http://www.example.com/Foo.csv" ];
+	rml:logicalSource [
+		rml:source "http://www.example.com/Foo.csv" ;
+		rml:referenceFormulation ql:XPath
+	];
 	
 	rr:subjectMap [
 		rr:template "http://foo.example.com/{id}" ;
@@ -47,7 +55,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	rr:predicateObjectMap [
 		rr:predicate employee:map ;
 		rr:objectMap [
-			rr:column "bar" ;
+			rml:reference "bar" ;
 		];
 	]
 .
