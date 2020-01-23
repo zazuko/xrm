@@ -1,4 +1,4 @@
-//https://github.com/zazuko/staatsarchiv-bs/blob/master/pdstavs13t/oracle-mapping.ttl
+output r2rml //https://github.com/zazuko/staatsarchiv-bs/blob/master/pdstavs13t/oracle-mapping.ttl
 
 map RecordSet from WSD_STABS_SCP_ARCHIV_DBA.Verzeichnungseinheiten {
 	subject template "http://data.staatsarchiv-bs.ch/id/record/{0}" with ID_NR;

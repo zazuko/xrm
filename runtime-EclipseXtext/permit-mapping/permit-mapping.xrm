@@ -1,3 +1,5 @@
+output r2rml
+
 map Agency from permits.t_agency {
 	subject template "https://permits.example.org/agencies/{0}" with AGENCY_ID;
 

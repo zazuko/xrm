@@ -1,3 +1,5 @@
+output csv
+
 map DeptTriplesMap from Department {
 	subject template "department/{0}" with DEPTNO;
 
@@ -5,7 +7,8 @@ map DeptTriplesMap from Department {
 		ex:Department
 
 	properties
-		ex:location parent-map SiteTriplesMap; 
+//		ex:location parent-map SiteTriplesMap;
+		ex:location constant "Foo"; 
 }
 
 map SiteTriplesMap from Department {

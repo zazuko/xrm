@@ -4,12 +4,19 @@ import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
+import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
+import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
+import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
 import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
 
 public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalProvider {
@@ -20,11 +27,14 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 	@Inject
 	private RdfPrefixedNameConverter rdfDslConverter;
 
+	@Inject
+	private ModelAccess modelAccess;
+
 	protected StyledString getStyledDisplayString(IEObjectDescription description) {
 		EObject eo = description.getEObjectOrProxy();
 		if (eo instanceof RdfProperty //
 				|| eo instanceof RdfClass //
-				) {
+		) {
 			String origQualifiedNameString = this.qualifiedNameConverter.toString(description.getQualifiedName());
 			String qualifiedNameString = this.rdfDslConverter.toString(origQualifiedNameString);
 			return getStyledDisplayString(eo, qualifiedNameString,
@@ -41,4 +51,24 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 		}
 
 	}
+
+	@Override
+	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
+			ICompletionProposalAcceptor acceptor) {
+		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
+			final OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
+					new RmlishCompletionProposalPredicate("parent-map", keyword, type)));
+
+		} else if (contentAssistContext.getCurrentModel() instanceof ReferenceValuedTerm
+				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
+			final OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
+					new RmlishCompletionProposalPredicate("as", keyword, type)));
+
+		} else {
+			super.completeKeyword(keyword, contentAssistContext, acceptor);
+		}
+	}
+
 }

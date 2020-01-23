@@ -3,18 +3,25 @@
  */
 package com.zazuko.rdfmapping.dsl.validation
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants
+import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.Element
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
+import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
 import java.util.ArrayList
 import java.util.List
+import java.util.Set
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
 
@@ -27,6 +34,9 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Inject
 	extension ModelAccess
+
+	@Inject
+	extension InputOutputCompatibility
 
 	@Check
 	def void checkTypeDeclarations(LogicalSource logicalSource) {
@@ -95,8 +105,17 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	}
 
 	@Check
-	def void checkDuplicateMappingNames(Mapping mapping) {
-		val Domainmodel domainModel = mapping.eContainer as Domainmodel;
+	def void check(Domainmodel it) {
+		if (outputType !== null && elements.filter(typeof(Mapping)).empty) {
+			warning("No outputType needed when no mapping is declared.",
+				RdfMappingPackage.Literals.DOMAINMODEL__OUTPUT_TYPE,
+				RdfMappingValidationCodes.DOMAINMODEL_OUTPUTTYPE_SUPERFLUOUS);
+		}
+	}
+
+	@Check
+	def void check(Mapping it) {
+		val Domainmodel domainModel = findParent(Domainmodel);
 		if (domainModel === null) {
 			return;
 		}
@@ -106,12 +125,53 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 		val List<Element> nameOccurrences = new ArrayList();
 		for (Mapping candidate : domainModel.elements.filter(typeof(Mapping))) {
-			if (candidate.name.equals(mapping.name)) {
+			if (candidate.name.equals(name)) {
 				nameOccurrences.add(candidate);
 			}
 		}
 		if (nameOccurrences.size > 1) {
 			error("Mapping name already in use.", RdfMappingPackage.Literals.MAPPING__NAME);
 		}
+
+		val SourceType ownSourceType = source?.typeResolved;
+		if (domainModel.outputType === null) {
+			var String msg = "A mapping requires an outputType.";
+			if (ownSourceType !== null) {
+				msg += " Choose from " + ownSourceType.compatibleOutputTypes.serialize2Message;
+			}
+			error(msg, RdfMappingPackage.Literals.MAPPING__NAME, RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING);
+		} else {
+			if (ownSourceType !== null) {
+				val Set<OutputType> compatibleOutputTypes = ownSourceType.compatibleOutputTypes;
+				if (!compatibleOutputTypes.contains(domainModel.outputType.type)) {
+					val String msg = "Output of type " + domainModel.outputType.type.literal +
+						" is incompatible. Expected one of " + compatibleOutputTypes.serialize2Message;
+					error(msg, RdfMappingPackage.Literals.MAPPING__NAME,
+						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE)
+				}
+			}
+		}
 	}
+
+	@Check
+	def void check(ParentTriplesMapTerm it) {
+		onlyOnRmlishType(outputType);
+	}
+
+	def private onlyOnRmlishType(OutputType outputType) {
+		if (outputType === null) {
+			return;
+		}
+		if (!RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(outputType)) {
+			warning("Not on output of type '" + outputType.literal + "' - only valid on " +
+				RdfMappingConstants.RMLISH_OUTPUTTYPES.serialize2Message, null,
+				RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS);
+		}
+	}
+
+	@Check
+	def void check(TermTypeRef it) {
+		onlyOnRmlishType(outputType);
+	}
+
 }

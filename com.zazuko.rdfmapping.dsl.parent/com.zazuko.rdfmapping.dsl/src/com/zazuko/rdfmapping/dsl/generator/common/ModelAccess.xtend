@@ -8,8 +8,10 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
 import com.zazuko.rdfmapping.dsl.rdfMapping.PrefixHolder
@@ -27,6 +29,7 @@ import java.util.LinkedHashSet
 import java.util.List
 import java.util.Set
 import javax.inject.Inject
+import org.eclipse.emf.ecore.EObject
 
 class ModelAccess {
 	
@@ -159,6 +162,21 @@ class ModelAccess {
 	
 	def String referenceFormulation(SourceType it) {
 		return GeneratorConstants.REFERENCE_FORMULATION.toStringValue(it);
+	}
+	
+	def OutputType outputType(EObject it) {
+		return findParent(Domainmodel)?.outputType?.type;
+	}
+	
+	def <C extends EObject> C findParent(EObject it, Class<C> clazz) {
+		var EObject tmp = it;
+		while (tmp !== null) {
+			if (clazz.isInstance(tmp)) {
+				return clazz.cast(tmp);
+			}
+			tmp = tmp.eContainer;
+		}
+		return null;
 	}
 
 }

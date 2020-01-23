@@ -1,7 +1,37 @@
 PREFIX rr: <http://www.w3.org/ns/r2rml#>
 PREFIX employee: <http://example.com/employee>
+PREFIX employee: <http://example.com/employee>
+PREFIX thing: <http://foobar.com/things/thing/>
 
 <#EmployeeMapping>
+	rr:logicalTable [ rr:tableName "EMP" ];
+	
+	rr:subjectMap [
+		rr:template "http://airport.example.com/{id}" ;
+		rr:class employee:Employee ;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate employee:no ;
+		rr:objectMap [
+			rr:column "EMPNO" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate thing:color ;
+		rr:objectMap [
+			rr:parentTriplesMap  <#EmployeeMapping2> ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate employee:map ;
+		rr:objectMap [
+			rr:template "{EMPNO}" ;
+			rr:termType rr:Literal ;
+		];
+	]
+.
+<#EmployeeMapping2>
 	rr:logicalTable [ rr:tableName "EMP" ];
 	
 	rr:subjectMap [

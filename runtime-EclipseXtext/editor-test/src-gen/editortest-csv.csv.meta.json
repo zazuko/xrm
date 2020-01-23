@@ -1,0 +1,57 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"tables": [
+		{
+			"url": "EMP",
+			"tableSchema": {
+				"aboutUrl": "http://airport.example.com/{id}",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://example.com/employeeEmployee"
+					}
+					,
+					{
+						"propertyUrl": "http://example.com/employeeno",
+						"titles": "EMPNO"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "id"
+					}
+				] 
+			}
+		},
+		
+		{
+			"url": "EMP",
+			"tableSchema": {
+				"aboutUrl": "http://airport.example.com/{id}",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://example.com/employeeEmployee"
+					}
+					,
+					{
+						"propertyUrl": "http://example.com/employeeno",
+						"titles": "EMPNO"
+					},
+					{
+						"propertyUrl": "http://example.com/employeemap",
+						"titles": "EMPNO",
+						"valueUrl": "{EMPNO}"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "id"
+					}
+				] 
+			}
+		}
+	]
+}

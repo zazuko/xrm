@@ -15,6 +15,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.OutputTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
@@ -37,7 +38,13 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	RdfMappingPackage pkg = RdfMappingPackage.eINSTANCE;
 
 	def dispatch void format(Domainmodel it, extension IFormattableDocument document) {
+		regionFor.keyword(ga.domainmodelAccess.outputKeyword_0_0).append[oneSpace];
+		outputType?.format;
 		elements.forEach[format];
+	}
+	
+	def dispatch void format(OutputTypeRef it, extension IFormattableDocument document) {
+		append[setNewLines(2)];
 	}
 
 	def dispatch void format(SourceGroup it, extension IFormattableDocument document) {
@@ -166,7 +173,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(Mapping it, extension IFormattableDocument document) {
-		regionFor.keyword(ga.mappingAccess.mapKeyword_0).append[oneSpace];
+		regionFor.keyword(ga.mappingAccess.mapKeyword_0).append[oneSpace];//.prepend[setNewLines(1, 1, 2)];
 		regionFor.keyword(ga.mappingAccess.fromKeyword_2).surround[oneSpace];
 
 		interior(

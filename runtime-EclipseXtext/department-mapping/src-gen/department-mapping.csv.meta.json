@@ -15,7 +15,7 @@
 					{
 						"propertyUrl": "http://example.org/location",
 						"virtual": true,
-						"valueUrl": "unsupported"
+						"valueUrl": "Foo"
 					}
 					,
 					{
