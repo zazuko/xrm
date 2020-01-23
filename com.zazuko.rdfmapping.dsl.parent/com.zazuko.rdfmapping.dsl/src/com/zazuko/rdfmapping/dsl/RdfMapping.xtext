@@ -146,6 +146,8 @@ ReferenceValuedTerm:
 
 MultiReferenceValuedTerm:
 	'multi-reference' 'from' reference=[Referenceable]
+	('with' 'datatype' datatype=[Datatype|RdfPrefixedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
+	('as' termTypeRef=TermTypeRef)?
 	LINE_END;
 
 ConstantValuedTerm:

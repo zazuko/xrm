@@ -34,7 +34,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	rr:predicateObjectMap [
 		rr:predicate thing:weight ;
 		rr:objectMap [
-			# TODO: implementation missing for com.zazuko.rdfmapping.dsl.rdfMapping.impl.MultiReferenceValuedTermImpl
+			carml:multiReference "map" ;
 		];
 	]
 .

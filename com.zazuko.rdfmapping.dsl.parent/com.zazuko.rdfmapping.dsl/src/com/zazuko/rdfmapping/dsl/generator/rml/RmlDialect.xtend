@@ -6,10 +6,10 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import javax.inject.Inject
 
 class RmlDialect implements IRmlDialect {
-	
+
 	@Inject
 	extension ModelAccess
-	
+
 	override staticPrefixes() '''
 		PREFIX rr: <http://www.w3.org/ns/r2rml#>
 		PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
@@ -23,7 +23,7 @@ class RmlDialect implements IRmlDialect {
 			rml:iterator "«source.iterator»" ;«ENDIF»
 		];
 	'''
-	
+
 	def sourceStatement(LogicalSource it) '''
 		«IF sourceIsQueryResolved»
 			rml:query """«sourceResolved»""" ;
@@ -33,5 +33,10 @@ class RmlDialect implements IRmlDialect {
 	'''
 
 	override objectMapReferencePredicate() '''rml:reference'''
+
+	// Plain RML does no support multiReference. CarmlDialect overrides this with 'carml:multiReference'   
+	override objectMapMultiReferencePredicate() {
+		return objectMapReferencePredicate()
+	}
 
 }

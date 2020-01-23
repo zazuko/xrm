@@ -2,13 +2,17 @@ package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
+import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import java.text.MessageFormat
 import java.util.List
@@ -87,6 +91,11 @@ class RmlDialectGenerator {
 		«termMapAnnex»
 	'''
 	
+	def dispatch objectTermMap(MultiReferenceValuedTerm it) '''
+		«objectMapMultiReferencePredicate» "«reference.valueResolved»" ;
+		«termMapAnnex»
+	'''
+	
 	def dispatch objectTermMap(ConstantValuedTerm it) '''
 		rr:constant «toConstantValue» ;
 	'''
@@ -106,7 +115,15 @@ class RmlDialectGenerator {
 		rr:parentTriplesMap  <«mapping.localId»> ;
 	'''
 	
-	def termMapAnnex(ReferenceValuedTerm it) '''
+	def termMapAnnex(ReferenceValuedTerm it)  {
+		termMapAnnex(languageTag, datatype, termTypeRef);
+	}
+	
+	def termMapAnnex(MultiReferenceValuedTerm it) {
+		termMapAnnex(languageTag, datatype, termTypeRef);
+	}
+	
+	def termMapAnnex(LanguageTag languageTag, Datatype datatype, TermTypeRef termTypeRef) '''
 		«IF languageTag !== null»
 			rr:language "«languageTag.name»" ;
 		«ELSEIF datatype !== null»

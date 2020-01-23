@@ -6,7 +6,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import javax.inject.Inject
 
 class R2rmlDialect implements IRmlDialect {
-	
+
 	@Inject
 	extension ModelAccess
 
@@ -17,9 +17,14 @@ class R2rmlDialect implements IRmlDialect {
 	override logicalSource(Mapping it) '''
 		rr:logicalTable [ «source.sourceStatement» ];
 	'''
-	
-	def sourceStatement(LogicalSource it) '''«IF sourceIsQueryResolved»rr:sqlQuery """«sourceResolved»"""«ELSE»rr:tableName "«sourceResolved»"«ENDIF»'''
+
+	def sourceStatement(
+		LogicalSource it) '''«IF sourceIsQueryResolved»rr:sqlQuery """«sourceResolved»"""«ELSE»rr:tableName "«sourceResolved»"«ENDIF»'''
 
 	override objectMapReferencePredicate() '''rr:column'''
 
+	// R2ML does no support multiReference   
+	override objectMapMultiReferencePredicate() {
+		return objectMapReferencePredicate()
+	}
 }

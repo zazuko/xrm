@@ -239,8 +239,17 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	def dispatch void format(MultiReferenceValuedTerm it, extension IFormattableDocument document) {
 		regionFor.keyword(ga.multiReferenceValuedTermAccess.multiReferenceKeyword_0).surround[oneSpace];
 		regionFor.keyword(ga.multiReferenceValuedTermAccess.fromKeyword_1).append[oneSpace];
+		
+		// case 'datatype'
+		regionFor.keyword(ga.multiReferenceValuedTermAccess.withKeyword_3_0_0).prepend[oneSpace];
+		regionFor.keyword(ga.multiReferenceValuedTermAccess.datatypeKeyword_3_0_1).surround[oneSpace];
+		// case 'language-tag'
+		regionFor.keyword(ga.multiReferenceValuedTermAccess.withKeyword_3_1_0).prepend[oneSpace];
+		regionFor.keyword(ga.multiReferenceValuedTermAccess.languageTagKeyword_3_1_1).surround[oneSpace];
 
-		regionFor.ruleCall(ga.multiReferenceValuedTermAccess.LINE_ENDTerminalRuleCall_3).prepend[noSpace];
+		regionFor.keyword(ga.multiReferenceValuedTermAccess.asKeyword_4_0).surround[oneSpace];
+
+		regionFor.ruleCall(ga.multiReferenceValuedTermAccess.LINE_ENDTerminalRuleCall_5).prepend[noSpace];
 	}
 
 	def dispatch void format(ConstantValuedTerm it, extension IFormattableDocument document) {
