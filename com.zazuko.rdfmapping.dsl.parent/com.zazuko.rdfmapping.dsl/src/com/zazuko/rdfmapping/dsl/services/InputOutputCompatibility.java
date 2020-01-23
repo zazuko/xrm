@@ -34,9 +34,9 @@ public class InputOutputCompatibility {
 
 		{
 			Map<SourceType, Set<OutputType>> tmp = new LinkedHashMap<>();
-			// TODO SourceType.RDB?
-			register(tmp, SourceType.XML, RdfMappingConstants.RMLISH_OUTPUTTYPES);
-			register(tmp, SourceType.CSV, OutputType.CSVW);
+			register(tmp, SourceType.RDB, OutputType.RML, OutputType.R2RML);
+			register(tmp, SourceType.XML, OutputType.RML, OutputType.CARML);
+			register(tmp, SourceType.CSV, OutputType.RML, OutputType.R2RML, OutputType.CSVW);
 			this.src2Out = Collections.unmodifiableMap(tmp);
 		}
 		{
