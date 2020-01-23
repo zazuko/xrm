@@ -61,6 +61,7 @@ enum OutputType:
 	CSVW = 'csv'
 	| RML = 'rml'
 	| R2RML = 'r2rml'
+	| CARML = 'carml'
 ;
 
 OutputTypeRef:
@@ -127,12 +128,22 @@ PredicateObjectMapping:
 	term=ValuedTerm;
 	
 ValuedTerm:
-	ReferenceValuedTerm | TemplateValuedTerm | LinkedResourceTerm | ConstantValuedTerm | ParentTriplesMapTerm;
+	  ReferenceValuedTerm 
+	| MultiReferenceValuedTerm 
+	| TemplateValuedTerm 
+	| LinkedResourceTerm 
+	| ConstantValuedTerm 
+	| ParentTriplesMapTerm
+;
 	
 ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|RdfPrefixedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	('as' termTypeRef=TermTypeRef)?
+	LINE_END;
+
+MultiReferenceValuedTerm:
+	'multi-reference' 'from' reference=[Referenceable]
 	LINE_END;
 
 ConstantValuedTerm:

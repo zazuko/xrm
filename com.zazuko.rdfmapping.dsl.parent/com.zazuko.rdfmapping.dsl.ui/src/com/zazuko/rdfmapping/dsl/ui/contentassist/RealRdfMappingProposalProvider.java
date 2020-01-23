@@ -1,8 +1,12 @@
 package com.zazuko.rdfmapping.dsl.ui.contentassist;
 
+import java.util.Collections;
+import java.util.function.Predicate;
+
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
@@ -56,13 +60,16 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
 			ICompletionProposalAcceptor acceptor) {
 		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
-			final OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
-			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
-					new RmlishCompletionProposalPredicate("parent-map", keyword, type)));
+			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+			Predicate<ICompletionProposal> filter = new RmlishCompletionProposalPredicate("parent-map", keyword, type)//
+					.and(new WhitelistedOutputTypeCompletionProposalPredicate("multi-reference", keyword,
+							Collections.singleton(OutputType.CARML), type));
+			super.completeKeyword(keyword, contentAssistContext,
+					new FilteringCompletionProposalAcceptor(acceptor, filter));
 
 		} else if (contentAssistContext.getCurrentModel() instanceof ReferenceValuedTerm
 				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
-			final OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
 			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
 					new RmlishCompletionProposalPredicate("as", keyword, type)));
 

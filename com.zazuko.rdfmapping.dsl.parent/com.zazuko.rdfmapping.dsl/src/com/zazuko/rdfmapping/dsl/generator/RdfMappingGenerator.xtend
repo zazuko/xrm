@@ -35,6 +35,10 @@ class RdfMappingGenerator extends AbstractGenerator {
 	RmlDialectGenerator r2rmlGenerator
 
 	@Inject
+	@Named(GeneratorConstants.DIALECT_CARML)
+	RmlDialectGenerator carmlGenerator
+
+	@Inject
 	CsvwDialectGenerator csvwGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
@@ -56,6 +60,9 @@ class RdfMappingGenerator extends AbstractGenerator {
 			}
 			case R2RML: {
 				fsa.generateFile(outFileBase + '.r2rml.ttl', r2rmlGenerator.generateTurtle(mappings));
+			}
+			case CARML: {
+				fsa.generateFile(outFileBase + '.carml.ttl', carmlGenerator.generateTurtle(mappings));
 			}
 			case CSVW: {
 				val CsvwDialectContext ctx = new CsvwDialectContext(modelAccess, mappings);
