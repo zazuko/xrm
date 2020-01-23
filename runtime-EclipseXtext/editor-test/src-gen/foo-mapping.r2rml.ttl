@@ -30,3 +30,24 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		];
 	]
 .
+<#TestImpactMapping>
+	rr:logicalTable [ rr:tableName "http://www.example.com/Foo.csv" ];
+	
+	rr:subjectMap [
+		rr:template "http://foo.example.com/{id}" ;
+		rr:class employee:Employee ;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate thing:color ;
+		rr:objectMap [
+			rr:constant "blue" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate employee:map ;
+		rr:objectMap [
+			rr:column "bar" ;
+		];
+	]
+.

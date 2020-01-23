@@ -9,8 +9,10 @@ import com.zazuko.rdfmapping.dsl.generator.common.GeneratorConstants
 import com.zazuko.rdfmapping.dsl.generator.rml.R2rmlDialect
 import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialect
 import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialectGenerator
+import com.zazuko.rdfmapping.dsl.resource.RdfMappingResourceDescriptionStrategy
 import com.zazuko.rdfmapping.dsl.services.RdfDslConverters
 import javax.inject.Named
+import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
 import com.zazuko.rdfmapping.dsl.generator.rml.CarmlDialect
 
 /**
@@ -41,9 +43,13 @@ class RdfMappingRuntimeModule extends AbstractRdfMappingRuntimeModule {
 		injector.injectMembers(result);
 		return result;
 	}
-	
+
 	override bindIValueConverterService() {
 		return RdfDslConverters;
+	}
+
+	def Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
+		return RdfMappingResourceDescriptionStrategy;
 	}
 
 }
