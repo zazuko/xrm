@@ -2,7 +2,7 @@
 <feature
       id="com.zazuko.rdfmapping.dsl.feature"
       label="RDF Mapping DSL"
-      version="0.10.0.qualifier"
+      version="0.11.0.qualifier"
       provider-name="zazuko.com">
 
    <plugin

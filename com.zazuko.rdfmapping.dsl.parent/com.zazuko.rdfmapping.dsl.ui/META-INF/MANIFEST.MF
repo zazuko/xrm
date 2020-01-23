@@ -3,7 +3,7 @@ Automatic-Module-Name: com.zazuko.rdfmapping.dsl.ui
 Bundle-ManifestVersion: 2
 Bundle-Name: com.zazuko.rdfmapping.dsl.ui
 Bundle-Vendor: zazuko.com
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.11.0.qualifier
 Bundle-SymbolicName: com.zazuko.rdfmapping.dsl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.zazuko.rdfmapping.dsl,
