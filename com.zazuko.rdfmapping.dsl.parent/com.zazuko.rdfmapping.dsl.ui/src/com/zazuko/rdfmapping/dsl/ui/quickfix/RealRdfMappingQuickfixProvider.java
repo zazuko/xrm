@@ -155,6 +155,8 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 				Vocabulary vocabulary = null;
 				if (vocabularyName != null) {
 					vocabulary = findVocabulary(vocabularyName, element);
+				} else {
+					vocabulary = findVocabulary("new", element);
 				}
 				final boolean vocabularyInForeignFile = vocabulary != null;
 
