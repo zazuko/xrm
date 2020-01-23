@@ -125,7 +125,9 @@ SubjectTypeMapping:
 
 PredicateObjectMapping:	
 	property=[RdfProperty|RdfPrefixedName] 
-	term=ValuedTerm;
+	term=ValuedTerm? // must be optional in order to get the quickfix working (must be serializable on missing term) --> manual validation for term === null
+	// see: com.zazuko.rdfmapping.dsl.ui.quickfix.RealRdfMappingQuickfixProvider.missingRdfProperty(Issue, IssueResolutionAcceptor)
+;
 	
 ValuedTerm:
 	  ReferenceValuedTerm 

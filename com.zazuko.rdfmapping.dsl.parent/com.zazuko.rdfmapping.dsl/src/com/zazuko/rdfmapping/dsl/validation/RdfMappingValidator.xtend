@@ -14,6 +14,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
@@ -174,6 +175,14 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	def void check(TermTypeRef it) {
 		onlyOnRmlishType(outputType);
 	}
+	
+	@Check
+	def void check(PredicateObjectMapping it) {
+		if (term === null) {
+			error("ValuedTerm missing", null, "missing");
+		}
+	}
+	
 
 	@Check
 	def void check(MultiReferenceValuedTerm it) {
