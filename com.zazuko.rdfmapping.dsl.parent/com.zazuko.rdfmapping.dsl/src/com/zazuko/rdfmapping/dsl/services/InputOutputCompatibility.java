@@ -78,6 +78,10 @@ public class InputOutputCompatibility {
 	public Set<OutputType> getCompatibleOutputTypes(SourceType type) {
 		return this.src2Out.getOrDefault(type, this.allOutputTypes);
 	}
+	
+	public String serialize2Message(OutputType type) {
+		return serialize2Message(Collections.singleton(type));
+	}
 
 	public String serialize2Message(Set<? extends Enumerator> in) {
 		return in.stream().map(Enumerator::getLiteral).collect(Collectors.joining(", ", "[", "]"));

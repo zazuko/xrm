@@ -1,0 +1,33 @@
+output carml
+
+map FooMapping from KEYWORDSOURCE {
+	subject template "http://foo.example.com/{0}" with id;
+
+	types
+		employee:Employee
+
+	properties
+		thing:color constant "blue";
+		thing:size from ^map;
+		// TODO get 'multi-reference' in code completion (due to type carml)
+		// TODO get 'parent-map' in code completion (due to type rmlish)
+		thing:weight multi-reference from ^map; 
+}
+
+logical-source KEYWORDSOURCE {
+	type xml
+	source "KWS"
+
+	referenceables
+		id
+		^map
+}
+
+vocabulary keyword {
+	prefix "employee:" "http://example.com/employee"
+
+	properties
+		no
+		^map
+}
+

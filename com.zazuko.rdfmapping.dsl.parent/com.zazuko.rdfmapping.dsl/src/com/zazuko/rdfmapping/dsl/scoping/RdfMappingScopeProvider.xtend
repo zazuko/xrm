@@ -2,6 +2,7 @@ package com.zazuko.rdfmapping.dsl.scoping
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
@@ -21,6 +22,10 @@ class RdfMappingScopeProvider extends AbstractRdfMappingScopeProvider {
 	override getScope(EObject context, EReference reference) {
 		if (context instanceof ReferenceValuedTerm &&
 			reference == RdfMappingPackage.Literals.REFERENCE_VALUED_TERM__REFERENCE) {
+			return scopeForReferenceables(context.eContainer.eContainer as Mapping)
+		
+		} else if (context instanceof MultiReferenceValuedTerm &&
+			reference == RdfMappingPackage.Literals.MULTI_REFERENCE_VALUED_TERM__REFERENCE) {
 			return scopeForReferenceables(context.eContainer.eContainer as Mapping)
 
 		} else if (context instanceof TemplateValuedTerm &&

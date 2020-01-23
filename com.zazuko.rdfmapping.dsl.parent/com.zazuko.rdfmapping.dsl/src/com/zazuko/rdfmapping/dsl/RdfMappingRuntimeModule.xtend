@@ -13,6 +13,7 @@ import com.zazuko.rdfmapping.dsl.resource.RdfMappingResourceDescriptionStrategy
 import com.zazuko.rdfmapping.dsl.services.RdfDslConverters
 import javax.inject.Named
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
+import com.zazuko.rdfmapping.dsl.generator.rml.CarmlDialect
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -30,6 +31,14 @@ class RdfMappingRuntimeModule extends AbstractRdfMappingRuntimeModule {
 	@Provides
 	@Named(GeneratorConstants.DIALECT_R2RML)
 	def RmlDialectGenerator r2rmlDialectGenerator(Injector injector, R2rmlDialect dialect) {
+		val RmlDialectGenerator result = new RmlDialectGenerator(dialect);
+		injector.injectMembers(result);
+		return result;
+	}
+
+	@Provides
+	@Named(GeneratorConstants.DIALECT_CARML)
+	def RmlDialectGenerator carmlDialectGenerator(Injector injector, CarmlDialect dialect) {
 		val RmlDialectGenerator result = new RmlDialectGenerator(dialect);
 		injector.injectMembers(result);
 		return result;

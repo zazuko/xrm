@@ -9,5 +9,7 @@ vocabulary thing {
 
 	properties
 		color
+		size
+		weight
 }
 
