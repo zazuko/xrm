@@ -7,9 +7,9 @@ PREFIX thing: <http://foobar.com/things/thing/>
 
 <#FooMapping>
 	rml:logicalSource [
-		rml:source "KWS" [
+		rml:source [
 			a carml:Stream ;
-			carml:streamName "KEYWORDSOURCE" ;
+			carml:streamName "KWS" ;
 		] ;
 		rml:referenceFormulation ql:XPath
 	];

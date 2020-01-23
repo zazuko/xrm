@@ -18,9 +18,9 @@ class CarmlDialect extends RmlDialect implements IRmlDialect {
 		«IF sourceIsQueryResolved»
 			rml:query """«sourceResolved»""" ;
 		«ELSE»
-			rml:source "«sourceResolved»" [
+			rml:source [
 				a carml:Stream ;
-				carml:streamName "«name»" ;
+				carml:streamName "«sourceResolved»" ;
 			] ;
 		«ENDIF»
 	'''
