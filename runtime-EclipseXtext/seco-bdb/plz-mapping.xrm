@@ -1,4 +1,4 @@
-output csv
+output csvw
 
 map Ort from plz_verzeichnis {
 	subject template "http://example.org/ort/{0}" with ONRP;

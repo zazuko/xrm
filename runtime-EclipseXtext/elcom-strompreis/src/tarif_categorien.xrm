@@ -1,4 +1,4 @@
-output csv
+output csvw
 
 logical-source stromnetz {
 	type csv

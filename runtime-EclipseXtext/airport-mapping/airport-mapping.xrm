@@ -1,4 +1,4 @@
-output csv 
+output csvw 
 // based on http://rml.io/spec.html#example-CSV
 
 map AirportMapping from airport {

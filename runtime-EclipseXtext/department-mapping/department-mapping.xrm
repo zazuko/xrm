@@ -1,4 +1,4 @@
-output csv
+output csvw
 
 map DeptTriplesMap from Department {
 	subject template "department/{0}" with DEPTNO;

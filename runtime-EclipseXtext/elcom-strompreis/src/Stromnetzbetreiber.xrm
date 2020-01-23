@@ -1,4 +1,4 @@
-output csv 
+output csvw
 // http://rml.io/spec.html#example-CSV
 
 logical-source stromnetz {

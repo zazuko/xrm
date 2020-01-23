@@ -1,5 +1,5 @@
 // TODO comment next line --> warning on map + quickfix
-output csv
+output csvw
 
 map EmployeeMapping from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;
