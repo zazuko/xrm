@@ -8,7 +8,12 @@ map EmployeeMapping from EMPLOYEE {
 		employee:Employee
 
 	properties
+		// TODO code completion before the next line - get references like 'thing:size' offered
+		// TODO code completion on the next line between 'employee:no' and 'from' - keywords will be offered (no references to RdfProperties)
 		employee:no from EMPNO;
+		// TODO (reloaded) code completion before the next line - get references like 'thing:size' offered
+		// TODO uncomment next line (error is fine), code completion at end of line offers keywords
+		// thing:size 
 		thing:color parent-map EmployeeMapping2; // ok for rml, r2rml
 		// TODO 'as' must be offered by code completion (this is r2rml)
 		keyword:^map template "{0}" with EMPNO as Literal; // ok for rml, r2rml 
