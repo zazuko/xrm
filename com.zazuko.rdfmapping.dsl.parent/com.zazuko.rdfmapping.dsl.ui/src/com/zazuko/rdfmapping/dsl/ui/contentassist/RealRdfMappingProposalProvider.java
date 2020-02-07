@@ -47,15 +47,6 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 		return super.getStyledDisplayString(description);
 	}
 
-	class RdfProposalCreator extends DefaultProposalCreator {
-
-		public RdfProposalCreator(ContentAssistContext contentAssistContext, String ruleName,
-				IQualifiedNameConverter qualifiedNameConverter) {
-			super(contentAssistContext, ruleName, qualifiedNameConverter);
-		}
-
-	}
-
 	@Override
 	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
 			ICompletionProposalAcceptor acceptor) {

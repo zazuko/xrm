@@ -31,7 +31,7 @@ class RdfMappingUiModule extends AbstractRdfMappingUiModule {
 	}
 
 	override Class<? extends IContentProposalProvider> bindIContentProposalProvider() {
-		return RealRdfMappingProposalProvider
+		return RealRdfMappingProposalProvider;
 	}
 
 	override Class<? extends PrefixMatcher> bindPrefixMatcher() {
