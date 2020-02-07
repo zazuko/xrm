@@ -12,6 +12,14 @@ public interface RdfMappingConstants {
 	public static final String TOKEN_BLOCK_BEGIN = "{";
 	public static final String TOKEN_BLOCK_END = "}";
 
+	public static final String TOKEN_QNAME_SEPARATOR_DEFAULT = ".";
+	public static final char TOKEN_QNAME_SEPARATOR_DEFAULT_CHAR = TOKEN_QNAME_SEPARATOR_DEFAULT.charAt(0);
+	
+	public static final String TOKEN_QNAME_SEPARATOR_RDFPREFIX = ":";
+	public static final char TOKEN_QNAME_SEPARATOR_RDFPREFIX_CHAR = TOKEN_QNAME_SEPARATOR_RDFPREFIX.charAt(0);
+	
+	
+
 	public static final Set<OutputType> RMLISH_OUTPUTTYPES = Collections
 			.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(new OutputType[] { OutputType.RML, OutputType.R2RML, OutputType.CARML })));
 
