@@ -9,11 +9,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
@@ -68,5 +70,19 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 			super.completeKeyword(keyword, contentAssistContext, acceptor);
 		}
 	}
+
+	@Override
+	public void complete_BLOCK_BEGIN(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_BEGIN, RdfMappingConstants.TOKEN_BLOCK_BEGIN, null, context));
+	}
+
+	@Override
+	public void complete_BLOCK_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_END, RdfMappingConstants.TOKEN_BLOCK_END, null, context));
+	}
+	
+	
 
 }
