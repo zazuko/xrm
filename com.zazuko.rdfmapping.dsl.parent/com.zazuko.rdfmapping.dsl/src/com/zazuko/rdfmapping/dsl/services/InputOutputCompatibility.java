@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType;
 import com.zazuko.rdfmapping.dsl.util.LazyMap;
