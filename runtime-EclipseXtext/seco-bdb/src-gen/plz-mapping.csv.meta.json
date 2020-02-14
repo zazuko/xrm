@@ -1,47 +1,43 @@
 {
 	"@context": "http://www.w3.org/ns/csvw",
-	"tables": [
-		{
-			"url": "plz_verzeichnis_v2.csv",
-			"tableSchema": {
-				"aboutUrl": "http://example.org/ort/{ONRP}",
-				"columns": [
-					{
-						"virtual": true,
-						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-						"valueUrl": "http://schema.example.org/Ort"
-					}
-					,
-					{
-						"propertyUrl": "http://schema.example.org/onrp",
-						"datatype": "int",
-						"titles": "ONRP"
-					},
-					{
-						"propertyUrl": "http://schema.example.org/bfsnr",
-						"datatype": "int",
-						"titles": "BFSNR"
-					},
-					{
-						"propertyUrl": "http://schema.example.org/plz",
-						"datatype": "int",
-						"titles": "POSTLEITZAHL"
-					},
-					{
-						"propertyUrl": "http://schema.example.org/zz",
-						"datatype": "int",
-						"titles": "PLZ_ZZ"
-					},
-					{
-						"propertyUrl": "http://schema.example.org/bezeichnung",
-						"titles": "ORTBEZ18"
-					},
-					{
-						"propertyUrl": "http://schema.example.org/bezeichnung",
-						"titles": "ORTBEZ27"
-					}
-				] 
+	"url": "plz_verzeichnis_v2.csv",
+	"tableSchema": {
+		"aboutUrl": "http://example.org/ort/{ONRP}",
+		"columns": [
+			{
+				"virtual": true,
+				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+				"valueUrl": "http://schema.example.org/Ort"
 			}
-		}
-	]
+			,
+			{
+				"propertyUrl": "http://schema.example.org/onrp",
+				"datatype": "int",
+				"titles": "ONRP"
+			},
+			{
+				"propertyUrl": "http://schema.example.org/bfsnr",
+				"datatype": "int",
+				"titles": "BFSNR"
+			},
+			{
+				"propertyUrl": "http://schema.example.org/plz",
+				"datatype": "int",
+				"titles": "POSTLEITZAHL"
+			},
+			{
+				"propertyUrl": "http://schema.example.org/zz",
+				"datatype": "int",
+				"titles": "PLZ_ZZ"
+			},
+			{
+				"propertyUrl": "http://schema.example.org/bezeichnung",
+				"titles": "ORTBEZ18"
+			},
+			{
+				"propertyUrl": "http://schema.example.org/bezeichnung",
+				"titles": "ORTBEZ27"
+			}
+		] 
+	}
 }

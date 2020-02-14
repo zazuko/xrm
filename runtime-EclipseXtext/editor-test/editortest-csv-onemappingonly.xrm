@@ -1,0 +1,36 @@
+output csvw
+
+// TODO compare generated files:
+//// editortest-csv-onemappingonly.csv.meta.json
+//// editortest-csv.csv.meta.json
+//// --> onemapping does not show field "tables"
+map EmployeeMapping from EMPLOYEE {
+	subject template "http://airport.example.com/{0}" with id;
+
+	types
+		employee:Employee
+
+	properties
+		employee:no from EMPNO;
+}
+
+logical-source EMPLOYEE {
+	type csv
+	source "EMP"
+	iterator "/Employees/Employee"
+
+	referenceables
+		id
+		EMPNO
+}
+
+vocabulary employee {
+	prefix "employee:" "http://example.com/employee"
+
+	classes
+		Employee
+
+	properties
+		no
+}
+

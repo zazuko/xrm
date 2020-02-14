@@ -25,11 +25,17 @@ class CsvwDialectGenerator {
 	def generateJson(Iterable<Mapping> mappings, CsvwDialectContext ctx) '''
 		{
 			«context()»
+			«IF mappings.size == 1»
+			«mappings.iterator.next.tableSchema(ctx)»
+			«ELSE»
 			"tables": [
 				«FOR Mapping mapping : mappings SEPARATOR jsonListSeparator»
-				«mapping.tableSchema(ctx)»
+				{
+					«mapping.tableSchema(ctx)»
+				}
 				«ENDFOR»
 			]
+			«ENDIF»
 		}
 	'''
 	
@@ -81,7 +87,6 @@ class CsvwDialectGenerator {
 	'''
 	
 	def tableSchema(Mapping it, CsvwDialectContext ctx) '''
-	{
 		"url": "«source.source»",
 		«IF source.dialectResolved !== null»
 			«source.dialectResolved.description.dialect()»
@@ -94,7 +99,6 @@ class CsvwDialectGenerator {
 				«suppressOutput(ctx)»
 			] 
 		}
-	}
 	'''
 	
 	def suppressOutput(Mapping it, CsvwDialectContext ctx)'''
