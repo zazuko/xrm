@@ -15,7 +15,8 @@ public interface RdfMappingConstants {
 	public static final String TOKEN_QNAME_SEPARATOR_DEFAULT = ".";
 	public static final char TOKEN_QNAME_SEPARATOR_DEFAULT_CHAR = TOKEN_QNAME_SEPARATOR_DEFAULT.charAt(0);
 	
-	public static final String TOKEN_QNAME_SEPARATOR_RDFPREFIX = ":";
+	// public static final String TOKEN_QNAME_SEPARATOR_RDFPREFIX = ":"; // #71 defuse this functionality for now
+	public static final String TOKEN_QNAME_SEPARATOR_RDFPREFIX = TOKEN_QNAME_SEPARATOR_DEFAULT;
 	public static final char TOKEN_QNAME_SEPARATOR_RDFPREFIX_CHAR = TOKEN_QNAME_SEPARATOR_RDFPREFIX.charAt(0);
 	
 	
