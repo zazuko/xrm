@@ -21,4 +21,46 @@ class XmlNamespaceExtensionDSLSnippets {
 			prefix "exb" "http://www.example.com/books/1.0/"
 		}
 	'''
+	
+	def outputAndXmlNamespaceExtensionRef(String output, boolean referXmlExtension) '''
+		output «output»
+		
+		map FooMapping from KEYWORDSOURCE {
+			subject template "http://foo.example.com/{0}" with id;
+		
+			types
+				foobar.SomeClass
+		
+			properties
+				foobar.one from color;
+		}
+		
+		logical-source KEYWORDSOURCE {
+			type xml
+			source "KWS"
+			
+			«IF referXmlExtension»
+			xml-namespace-extension SomeXmlNsExtension
+			
+			«ENDIF»
+			referenceables
+				id
+				color
+		}
+		
+		vocabulary foobar {
+			prefix "employee:" "http://example.com/employee"
+		
+			classes
+				SomeClass
+		
+			properties
+				one
+		}
+		
+		xml-namespace-extension SomeXmlNsExtension {
+			prefix "exa" "http://www.example.com/audios/1.0/"
+			prefix "exb" "http://www.example.com/books/1.0/"
+		}
+	'''
 }

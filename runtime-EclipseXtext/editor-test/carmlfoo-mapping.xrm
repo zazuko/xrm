@@ -17,6 +17,8 @@ map FooMapping from KEYWORDSOURCE {
 logical-source KEYWORDSOURCE {
 	type xml
 	source "KWS"
+	
+	xml-namespace-extension SomeXmlNsExtension
 
 	referenceables
 		id

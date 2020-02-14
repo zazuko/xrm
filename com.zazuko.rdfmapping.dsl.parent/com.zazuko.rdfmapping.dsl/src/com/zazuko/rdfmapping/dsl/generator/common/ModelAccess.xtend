@@ -4,6 +4,7 @@ import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtract
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceTypeExtractor
+import com.zazuko.rdfmapping.dsl.generator.common.extractors.XmlNamespaceExtensionExtractor
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
@@ -24,6 +25,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
+import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import java.net.URL
 import java.util.LinkedHashSet
 import java.util.List
@@ -45,6 +47,9 @@ class ModelAccess {
 	@Inject
 	SourceTypeExtractor sourceTypeExtractor;
 	
+	@Inject
+	XmlNamespaceExtensionExtractor xmlNamespaceExtensionExtractor
+	
 
 	def String sourceResolved(LogicalSource it) {
 		return sourceExtractor.extractC(it);
@@ -56,6 +61,10 @@ class ModelAccess {
 
 	def SourceType typeResolved(LogicalSource it) {
 		return sourceTypeExtractor.extractC(it);
+	}
+
+	def XmlNamespaceExtension xmlNamespaceExtensionResolved(LogicalSource it) {
+		return xmlNamespaceExtensionExtractor.extractC(it);
 	}
 	
 	def DialectGroup dialectResolved(LogicalSource it) {

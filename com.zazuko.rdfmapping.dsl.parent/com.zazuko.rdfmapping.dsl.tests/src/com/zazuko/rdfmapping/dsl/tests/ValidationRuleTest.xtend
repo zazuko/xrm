@@ -360,4 +360,21 @@ class ValidationRuleTest {
 		);
 	}
 	
+	@Test
+	def void xmlNsExtensionRef_ok() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.outputAndXmlNamespaceExtensionRef("carml", true));
+		
+		validationTester.assertNoErrors(result);
+	}
+
+	@Test
+	def void xmlNsExtensionRef_outputRml_fail() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.outputAndXmlNamespaceExtensionRef("rml", true));
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.mapping, 
+			RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE, 
+			"Source with xml-namespace-extension requires OutputType [carml]"
+		);
+	}
 }

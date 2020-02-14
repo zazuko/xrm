@@ -148,13 +148,22 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 			error(msg, RdfMappingPackage.Literals.MAPPING__NAME, RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING);
 		} else {
+			// having an outputType
 			if (ownSourceType !== null) {
 				val Set<OutputType> compatibleOutputTypes = ownSourceType.compatibleOutputTypes;
 				if (!compatibleOutputTypes.contains(domainModel.outputType.type)) {
 					val String msg = "Output of type " + domainModel.outputType.type.literal +
 						" is incompatible. Expected one of " + compatibleOutputTypes.serialize2Message;
 					error(msg, RdfMappingPackage.Literals.MAPPING__NAME,
-						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE)
+						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE);
+				}
+			}
+			
+			if (source?.xmlNamespaceExtensionResolved !== null) {
+				if (!OutputType.CARML.equals(domainModel.outputType.type)) {
+					val String msg = "Source with xml-namespace-extension requires OutputType " + OutputType.CARML.serialize2Message;
+					error(msg, RdfMappingPackage.Literals.MAPPING__SOURCE,
+						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE);
 				}
 			}
 		}
