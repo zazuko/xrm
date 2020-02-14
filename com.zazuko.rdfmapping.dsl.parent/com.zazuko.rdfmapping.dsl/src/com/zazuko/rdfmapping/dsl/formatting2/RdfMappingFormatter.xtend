@@ -66,6 +66,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.assignment(ga.sourceGroupAccess.sourceAssignment_4_2).prepend[oneSpace];
 		
 		regionFor.keyword(ga.sourceGroupAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.sourceGroupAccess.xmlNamespaceExtensionKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
 
 		logicalSources.forEach[format];
 	}
@@ -153,6 +154,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.logicalSourceAccess.typeKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.sourceKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.xmlNamespaceExtensionKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.iteratorKeyword_7_0).prepend[setNewLines(1)].append[oneSpace];
 
 		interior(
