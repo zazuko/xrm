@@ -8,7 +8,7 @@ class OutputTypeValidationDSLSnippets {
 				subject template "http://airport.example.com/{0}" with id;
 				
 					types
-						employee:Employee
+						employee.Employee
 				
 					properties
 					   «properties»
@@ -18,10 +18,10 @@ class OutputTypeValidationDSLSnippets {
 				subject template "http://airport.example.com/{0}" with id;
 			
 				types
-					employee:Employee
+					employee.Employee
 			
 				properties
-					employee:two from EMPNO;
+					employee.two from EMPNO;
 			}
 			
 			logical-source EMPLOYEE {
@@ -35,7 +35,7 @@ class OutputTypeValidationDSLSnippets {
 			}
 			
 			vocabulary employee {
-				prefix "employee:" "http://example.com/employee"
+				prefix "employee." "http://example.com/employee"
 			
 				classes
 					Employee
@@ -50,7 +50,7 @@ class OutputTypeValidationDSLSnippets {
 		output csvw
 		
 		vocabulary employee {
-			prefix "employee:" "http://example.com/employee"
+			prefix "employee." "http://example.com/employee"
 		
 			classes
 				Employee

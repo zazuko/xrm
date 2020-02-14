@@ -9,20 +9,20 @@ class MappingValidationDSLSnippets {
 			subject template "http://airport.example.com/{0}" with id;
 		
 			types
-				employee:Employee
+				employee.Employee
 		
 			properties
-				employee:two from EMPNO;
+				employee.two from EMPNO;
 		}
 
 		map Duplicated from EMPLOYEE {
 			subject template "http://airport.example.com/{0}" with id;
 		
 			types
-				employee:Employee
+				employee.Employee
 		
 			properties
-				employee:two from EMPNO;
+				employee.two from EMPNO;
 		}
 		
 		logical-source EMPLOYEE {
@@ -36,7 +36,7 @@ class MappingValidationDSLSnippets {
 		}
 		
 		vocabulary employee {
-			prefix "employee:" "http://example.com/employee"
+			prefix "employee." "http://example.com/employee"
 		
 			classes
 				Employee
@@ -52,10 +52,10 @@ class MappingValidationDSLSnippets {
 			subject template "http://airport.example.com/{0}" with id;
 		
 			types
-				employee:Employee
+				employee.Employee
 		
 			properties
-				employee:one from EMPNO;
+				employee.one from EMPNO;
 		}
 
 		
@@ -70,7 +70,7 @@ class MappingValidationDSLSnippets {
 		}
 		
 		vocabulary employee {
-			prefix "employee:" "http://example.com/employee"
+			prefix "employee." "http://example.com/employee"
 		
 			classes
 				Employee
@@ -87,10 +87,10 @@ class MappingValidationDSLSnippets {
 			subject template "http://airport.example.com/{0}" with id;
 		
 			types
-				employee:Employee
+				employee.Employee
 		
 			properties
-				employee:one from EMPNO;
+				employee.one from EMPNO;
 		}
 
 		
@@ -105,7 +105,7 @@ class MappingValidationDSLSnippets {
 		}
 		
 		vocabulary employee {
-			prefix "employee:" "http://example.com/employee"
+			prefix "employee." "http://example.com/employee"
 		
 			classes
 				Employee
