@@ -20,6 +20,7 @@ import org.eclipse.xtext.ui.editor.quickfix.Fix;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor;
 import org.eclipse.xtext.validation.Issue;
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
@@ -172,7 +173,7 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 					vocabulary.setPrefix(prefix);
 
 					String vocNameLowercase = vocabulary.getName().toLowerCase();
-					prefix.setLabel("" + vocNameLowercase + ":");
+					prefix.setLabel(vocNameLowercase + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX);
 					prefix.setIri("http://" + vocNameLowercase + ".example.org/");
 				}
 

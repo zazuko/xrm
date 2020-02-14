@@ -76,20 +76,24 @@ NullValueDeclaration:
     
 DialectGroup:
 	'dialect' name=ID BLOCK_BEGIN
-		'delimiter' delimiter=STRING &
-		('commentPrefix' commentPrefix=STRING)? &
-		('doubleQuote' doubleQuote=BooleanLiteral)? &
-		('encoding' encoding=STRING)? &
-		('header' header=BooleanLiteral)? &
-		('headerRowCount' headerRowCount=INT)? & 
-		('lineTerminators' lineTerminators=STRING)? &
-		('quoteChar' quoteChar=STRING)? & 
-		('skipBlankRows' skipBlankRows=BooleanLiteral)? &
-		('skipColumns' skipColumns=INT)? &
-		('skipInitialSpace' skipInitialSpace=BooleanLiteral)? &
-		('skipRows' skipRows=INT)? &
-		('trim' trim=BooleanLiteral)? &
+		description=DialectGroupDescription
 	BLOCK_END;
+
+DialectGroupDescription:
+	'delimiter' delimiter=STRING &
+	('commentPrefix' commentPrefix=STRING)? &
+	('doubleQuote' doubleQuote=BooleanLiteral)? &
+	('encoding' encoding=STRING)? &
+	('header' header=BooleanLiteral)? &
+	('headerRowCount' headerRowCount=INT)? & 
+	('lineTerminators' lineTerminators=STRING)? &
+	('quoteChar' quoteChar=STRING)? & 
+	('skipBlankRows' skipBlankRows=BooleanLiteral)? &
+	('skipColumns' skipColumns=INT)? &
+	('skipInitialSpace' skipInitialSpace=BooleanLiteral)? &
+	('skipRows' skipRows=INT)? &
+	('trim' trim=BooleanLiteral)?
+	;
 
 BooleanLiteral:
     value?='true' | {BooleanLiteral} 'false';

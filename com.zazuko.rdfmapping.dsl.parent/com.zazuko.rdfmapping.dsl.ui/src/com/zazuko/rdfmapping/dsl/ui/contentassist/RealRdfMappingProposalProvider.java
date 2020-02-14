@@ -8,12 +8,15 @@ import javax.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
@@ -47,15 +50,6 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 		return super.getStyledDisplayString(description);
 	}
 
-	class RdfProposalCreator extends DefaultProposalCreator {
-
-		public RdfProposalCreator(ContentAssistContext contentAssistContext, String ruleName,
-				IQualifiedNameConverter qualifiedNameConverter) {
-			super(contentAssistContext, ruleName, qualifiedNameConverter);
-		}
-
-	}
-
 	@Override
 	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
 			ICompletionProposalAcceptor acceptor) {
@@ -77,5 +71,30 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 			super.completeKeyword(keyword, contentAssistContext, acceptor);
 		}
 	}
+
+	@Override
+	public void complete_BLOCK_BEGIN(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_BEGIN, RdfMappingConstants.TOKEN_BLOCK_BEGIN, null, context));
+	}
+
+	@Override
+	public void complete_BLOCK_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_END, RdfMappingConstants.TOKEN_BLOCK_END, null, context));
+	}
+
+	@Override
+	public void completePredicateObjectMapping_Property(EObject model, Assignment assignment,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		EObject previousModel = context.getPreviousModel();
+		if (previousModel instanceof PredicateObjectMapping) {
+			return; // abort here - the cursor is within the assignments of property and term - do not propose cross references here (keywords will be offered)
+		}
+		super.completePredicateObjectMapping_Property(model, assignment, context, acceptor);
+	}
+
+	
+	
 
 }

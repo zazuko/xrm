@@ -8,6 +8,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroupDescription
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
@@ -291,24 +292,27 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(DialectGroup it, extension IFormattableDocument document) {
-		regionFor.assignment(ga.dialectGroupAccess.nameAssignment_0_1).surround[oneSpace];
+		regionFor.assignment(ga.dialectGroupAccess.nameAssignment_1).surround[oneSpace];
 		interior(
-			regionFor.ruleCall(ga.dialectGroupAccess.BLOCK_BEGINTerminalRuleCall_0_2),
-			regionFor.ruleCall(ga.dialectGroupAccess.BLOCK_ENDTerminalRuleCall_13)
+			regionFor.ruleCall(ga.dialectGroupAccess.BLOCK_BEGINTerminalRuleCall_2),
+			regionFor.ruleCall(ga.dialectGroupAccess.BLOCK_ENDTerminalRuleCall_4)
 		)[indent];
+		description?.format;
+	}
 		
-		regionFor.keyword(ga.dialectGroupAccess.delimiterKeyword_0_3).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.commentPrefixKeyword_1_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.doubleQuoteKeyword_2_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.encodingKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.headerKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.headerRowCountKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.lineTerminatorsKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.quoteCharKeyword_7_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.skipBlankRowsKeyword_8_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.skipColumnsKeyword_9_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.skipInitialSpaceKeyword_10_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.skipRowsKeyword_11_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.dialectGroupAccess.trimKeyword_12_0).prepend[setNewLines(1)].append[oneSpace];
+	def dispatch void format(DialectGroupDescription it, extension IFormattableDocument document) {
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.delimiterKeyword_0_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.commentPrefixKeyword_1_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.doubleQuoteKeyword_2_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.encodingKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.headerKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.headerRowCountKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.lineTerminatorsKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.quoteCharKeyword_7_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.skipBlankRowsKeyword_8_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.skipColumnsKeyword_9_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.skipInitialSpaceKeyword_10_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.skipRowsKeyword_11_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.dialectGroupDescriptionAccess.trimKeyword_12_0).prepend[setNewLines(1)].append[oneSpace];
 	}
 }

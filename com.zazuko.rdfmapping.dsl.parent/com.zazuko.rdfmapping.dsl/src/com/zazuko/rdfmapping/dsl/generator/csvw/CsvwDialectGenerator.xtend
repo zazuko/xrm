@@ -2,7 +2,7 @@ package com.zazuko.rdfmapping.dsl.generator.csvw
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
-import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroupDescription
 import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
@@ -38,7 +38,7 @@ class CsvwDialectGenerator {
 	,
 	'''
 	
-	def dialect(DialectGroup d) '''
+	def dialect(DialectGroupDescription d) '''
 		"dialect": {
 			"delimiter": "«d.delimiter»"
 			«IF d.commentPrefix !== null»
@@ -84,7 +84,7 @@ class CsvwDialectGenerator {
 	{
 		"url": "«source.source»",
 		«IF source.dialectResolved !== null»
-			«source.dialectResolved.dialect()»
+			«source.dialectResolved.description.dialect()»
 		«ENDIF»
 		"tableSchema": {
 			«subjectMap()»,

@@ -4,11 +4,12 @@
 package com.zazuko.rdfmapping.dsl.ui.labeling
 
 import com.google.inject.Inject
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
-import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants
+import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
-import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 
 /**
  * Provides labels for EObjects.
@@ -24,7 +25,7 @@ class RdfMappingLabelProvider extends DefaultEObjectLabelProvider {
 
 	def text(PredicateObjectMapping pom) {
 		val vocab = pom.property.eContainer as Vocabulary;
-		vocab.name + ":" + pom.property.name
+		vocab.name + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + pom.property.name
 	}	
 	
 	def text(LanguageTagDefinition ltd) {

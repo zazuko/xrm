@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.eclipse.xtext.ui.editor.contentassist.PrefixMatcher;
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
+
 public class RdfMappingPrefixMatcher extends PrefixMatcher {
 
-	private static final String DOT = ".";
-	private static final String COLON = ":";
+	private static final String DOT = RdfMappingConstants.TOKEN_QNAME_SEPARATOR_DEFAULT;
+	private static final String COLON = RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX;
 	public static final String DELIMITERS_REGEX = "[\\" + DOT + "\\:" + COLON + "]";
 
 	@Override
