@@ -10,4 +10,5 @@ public interface RdfMappingValidationCodes {
 	String PARENTTRIPLESMAP_OUTPUTTYPE_INCOMPATIBLE = "parenttriplesmap.outputtype.incompatible";
 	
 	String EOBJECT_SUPERFLUOUS = "eobject.superfluous";
+	String EOBJECT_SUPERFLUOUS_NOFIX = EOBJECT_SUPERFLUOUS + ".nofix";
 }

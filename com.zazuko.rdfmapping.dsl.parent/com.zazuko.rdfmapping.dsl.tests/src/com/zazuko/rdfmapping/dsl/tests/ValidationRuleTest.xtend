@@ -10,6 +10,8 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 import org.eclipse.xtext.diagnostics.Severity
+import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
+import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
 
 @ExtendWith(InjectionExtension)
 @InjectWith(RdfMappingInjectorProvider)
@@ -17,6 +19,8 @@ class ValidationRuleTest {
 	@Inject
 	ParseHelper<Domainmodel> parseHelper
 	@Inject ValidationTestHelper validationTester
+	
+	@Inject extension OutputTypeValidationDSLSnippets
 
 	// Validation tests for the validation rules about the use of type
 	@Test
@@ -211,4 +215,60 @@ class ValidationRuleTest {
 		validationTester.assertIssue(result, RdfMappingPackage.Literals.LOGICAL_SOURCE, null, Severity.WARNING,
 			"Source declared on source-group level is shadowed by source declared on logical-source.")
 	}
+	
+	@Test
+	def void rml_ok() {
+		val result = parseHelper.parse(outputType_propertiesmapping("rml", '''employee:one constant "42";'''));
+		validationTester.assertNoErrors(result);
+	}
+
+	@Test
+	def void rml_multiReference_onCarmlOnly() {
+		val result = parseHelper.parse(outputType_propertiesmapping("rml", '''employee:one multi-reference from EMPNO;'''));
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.multiReferenceValuedTerm, 
+			RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS_NOFIX, 
+			"Not on output of type 'rml' - only valid on [carml]"
+		);
+	}
+	
+	@Test
+	def void carml_multiReference_ok() {
+		val result = parseHelper.parse(outputType_propertiesmapping("carml", '''employee:one multi-reference from EMPNO;'''));
+		validationTester.assertNoErrors(result);
+	}
+	
+	@Test
+	def void predicateObjectMapping_without_valuedTerm() {
+		// valuedTerm is optional in grammar in order to enable quickfixes 
+		//// (serialization new properties while editing PredicateObjectMapping )
+ 
+		val result = parseHelper.parse(outputType_propertiesmapping("rml", '''employee:one'''));
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.predicateObjectMapping, 
+			"missing", 
+			"ValuedTerm missing"
+		);
+	}
+	
+	@Test
+	def void rmp_parentMap_ok() {
+		val result = parseHelper.parse(outputType_propertiesmapping("rml", '''employee:one parent-map EmployeeMapping2;'''));
+		
+		validationTester.assertNoErrors(result);
+	}
+	
+	@Test
+	def void csv_parentMap_onRmlishOnly() {
+		val result = parseHelper.parse(outputType_propertiesmapping("csv", '''employee:one parent-map EmployeeMapping2;'''));
+		
+		validationTester.assertWarning(result, 
+			RdfMappingPackage.eINSTANCE.parentTriplesMapTerm, 
+			RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS, 
+			"Not on output of type 'csvw' - only valid on [rml, r2rml, carml]"
+		);
+	}
+	
 }
