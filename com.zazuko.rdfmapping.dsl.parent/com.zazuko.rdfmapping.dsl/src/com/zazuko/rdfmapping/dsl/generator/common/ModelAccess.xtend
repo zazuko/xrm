@@ -6,7 +6,6 @@ import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceTypeExtractor
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
-import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
@@ -14,7 +13,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
-import com.zazuko.rdfmapping.dsl.rdfMapping.PrefixHolder
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
@@ -91,8 +89,8 @@ class ModelAccess {
 		}
 	}
 
-	def Set<PrefixHolder> prefixesUsed(Mapping it) {
-		val Set<PrefixHolder> result = new LinkedHashSet();
+	def Set<Vocabulary> prefixesUsed(Mapping it) {
+		val Set<Vocabulary> result = new LinkedHashSet();
 		result.addAll(subjectTypeMappings.map[m|m.type.vocabulary]);
 		result.addAll(poMappings.map[m|m.property.vocabulary]);
 
@@ -100,7 +98,7 @@ class ModelAccess {
 			val ValuedTerm term = poMapping.term
 			if (term instanceof ReferenceValuedTerm) {
 				if (term.datatype !== null) {
-					result.add(term.datatype.datatypesDefinition)
+					result.add(term.datatype.vocabulary)
 				}
 			}
 		}
@@ -108,20 +106,20 @@ class ModelAccess {
 		return result
 	}
 
-	def Set<PrefixHolder> prefixesUsed(Iterable<Mapping> mappings) {
+	def Set<Vocabulary> prefixesUsed(Iterable<Mapping> mappings) {
 		return mappings.map[m|m.prefixesUsed].flatten.toSet;
 	}
 
-	def List<PrefixHolder> inDeterministicOrder(Iterable<PrefixHolder> prefixHolders) {
+	def List<Vocabulary> inDeterministicOrder(Iterable<Vocabulary> prefixHolders) {
 		return prefixHolders.toSet.toList.sortBy[s|s.prefix.label];
 	}
 
-	def DatatypesDefinition datatypesDefinition(Datatype it) {
-		return eContainer as DatatypesDefinition;
+	def Vocabulary vocabulary(Datatype it) {
+		return eContainer as Vocabulary;
 	}
 
 	def Prefix prefix(Datatype it) {
-		return datatypesDefinition.prefix;
+		return vocabulary.prefix;
 	}
 
 	def String valueResolved(Referenceable it) {
