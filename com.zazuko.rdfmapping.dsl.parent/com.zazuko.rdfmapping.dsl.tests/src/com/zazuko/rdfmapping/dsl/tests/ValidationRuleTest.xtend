@@ -6,6 +6,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.tests.snippets.LogicalSourceDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.MappingValidationDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
+import com.zazuko.rdfmapping.dsl.tests.snippets.XmlNamespaceExtensionDSLSnippets
 import javax.inject.Inject
 import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.testing.InjectWith
@@ -25,6 +26,7 @@ class ValidationRuleTest {
 	@Inject OutputTypeValidationDSLSnippets outputTypeSnippets
 	@Inject MappingValidationDSLSnippets mappingSnippets
 	@Inject LogicalSourceDSLSnippets logicalSourceSnippets
+	@Inject XmlNamespaceExtensionDSLSnippets xmlNamespaceExtensionSnippets
 
 	// Validation tests for the validation rules about the use of type
 	@Test
@@ -317,7 +319,6 @@ class ValidationRuleTest {
 			null, 
 			"Type 'csv' required for null value declaration, but was 'xml"
 		);
-		
 	}
 
 	@Test
@@ -329,7 +330,34 @@ class ValidationRuleTest {
 			RdfMappingValidationCodes.DOMAINMODEL_OUTPUTTYPE_SUPERFLUOUS, 
 			"No outputType needed when no mapping is declared."
 		);
+	}
+
+	@Test
+	def void xmlNsExtension_ok() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.ok());
 		
+		validationTester.assertNoErrors(result);
+	}
+	@Test
+	def void xmlNsExtension_label_withSeparator() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.separatorInLabel());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.prefix, 
+			null, 
+			"No separator characters allowed"
+		);
+	}
+
+	@Test
+	def void xmlNsExtension_label_duplicated() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.duplicatedPrefix());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.prefix, 
+			null, 
+			"Duplicated label"
+		);
 	}
 	
 }
