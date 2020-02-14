@@ -116,6 +116,20 @@ class ModelAccess {
 
 		return result
 	}
+	
+	def Iterable<Prefix> prefixesUsed(XmlNamespaceExtension ext, Mapping mapping) {
+		val Set<String> usedPrefixLabelsInMapping = mapping.prefixesUsed()
+			.map[h | h.prefix.label]
+			.map[label | label.replaceAll("\\:", "")] // TODO see proposal #73 (unify Prefix.label)
+			.toSet;
+		val Set<Prefix> result = new LinkedHashSet;
+		for (Prefix candidate : ext.prefixes) {
+			if (usedPrefixLabelsInMapping.contains(candidate.label)) {
+				result.add(candidate);
+			}
+		}
+		return result;
+	}
 
 	def Set<PrefixHolder> prefixesUsed(Iterable<Mapping> mappings) {
 		return mappings.map[m|m.prefixesUsed].flatten.toSet;
