@@ -1,5 +1,5 @@
 // TODO uncomment next line --> get warning + quickfix
-//output csv
+//output csvw
 
 vocabulary thing {
 	prefix "thing:" "http://foobar.com/things/thing/"

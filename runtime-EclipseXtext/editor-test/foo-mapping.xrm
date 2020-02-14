@@ -18,7 +18,7 @@ map FooMapping from KEYWORDSOURCE {
 		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'keyword' gets modified --> error for missing Term
 		// keyword.bla
 		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'stuff' gets created --> error for missing Term
-		//	stuff:bla 
+		//	stuff.bla 
 		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'new' gets created --> error for missing Term
 		// asdf
 		
