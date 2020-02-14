@@ -55,8 +55,8 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 			ICompletionProposalAcceptor acceptor) {
 		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
 			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
-			Predicate<ICompletionProposal> filter = new RmlishCompletionProposalPredicate("parent-map", keyword, type)//
-					.and(new WhitelistedOutputTypeCompletionProposalPredicate("multi-reference", keyword,
+			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("parent-map", keyword, type)//
+					.and(new WhitelistedEnumTypeCompletionProposalPredicate<OutputType>("multi-reference", keyword,
 							Collections.singleton(OutputType.CARML), type));
 			super.completeKeyword(keyword, contentAssistContext,
 					new FilteringCompletionProposalAcceptor(acceptor, filter));
@@ -65,7 +65,7 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
 			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
 			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
-					new RmlishCompletionProposalPredicate("as", keyword, type)));
+					new RmlishOutputTypeCompletionProposalPredicate("as", keyword, type)));
 
 		} else {
 			super.completeKeyword(keyword, contentAssistContext, acceptor);
