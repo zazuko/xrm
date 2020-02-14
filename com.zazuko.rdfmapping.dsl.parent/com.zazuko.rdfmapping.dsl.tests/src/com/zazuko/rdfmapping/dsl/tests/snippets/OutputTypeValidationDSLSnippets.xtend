@@ -45,4 +45,18 @@ class OutputTypeValidationDSLSnippets {
 					two
 			}
 		'''
+		
+	def outputTypeWithoutMapping() '''
+		output csvw
+		
+		vocabulary employee {
+			prefix "employee:" "http://example.com/employee"
+		
+			classes
+				Employee
+		
+			properties
+				one
+		}
+	'''	
 }

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.^extension.ExtendWith
 import org.eclipse.xtext.diagnostics.Severity
 import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
 import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
+import com.zazuko.rdfmapping.dsl.tests.snippets.MappingValidationDSLSnippets
 
 @ExtendWith(InjectionExtension)
 @InjectWith(RdfMappingInjectorProvider)
@@ -20,7 +21,8 @@ class ValidationRuleTest {
 	ParseHelper<Domainmodel> parseHelper
 	@Inject ValidationTestHelper validationTester
 	
-	@Inject extension OutputTypeValidationDSLSnippets
+	@Inject OutputTypeValidationDSLSnippets outputTypeSnippets
+	@Inject MappingValidationDSLSnippets mappingSnippets
 
 	// Validation tests for the validation rules about the use of type
 	@Test
@@ -218,13 +220,13 @@ class ValidationRuleTest {
 	
 	@Test
 	def void rml_ok() {
-		val result = parseHelper.parse(outputType_propertiesmapping("rml", '''employee:one constant "42";'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee:one constant "42";'''));
 		validationTester.assertNoErrors(result);
 	}
 
 	@Test
 	def void rml_multiReference_onCarmlOnly() {
-		val result = parseHelper.parse(outputType_propertiesmapping("rml", '''employee:one multi-reference from EMPNO;'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee:one multi-reference from EMPNO;'''));
 		
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.multiReferenceValuedTerm, 
@@ -235,7 +237,7 @@ class ValidationRuleTest {
 	
 	@Test
 	def void carml_multiReference_ok() {
-		val result = parseHelper.parse(outputType_propertiesmapping("carml", '''employee:one multi-reference from EMPNO;'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("carml", '''employee:one multi-reference from EMPNO;'''));
 		validationTester.assertNoErrors(result);
 	}
 	
@@ -244,7 +246,7 @@ class ValidationRuleTest {
 		// valuedTerm is optional in grammar in order to enable quickfixes 
 		//// (serialization new properties while editing PredicateObjectMapping )
  
-		val result = parseHelper.parse(outputType_propertiesmapping("rml", '''employee:one'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee:one'''));
 		
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.predicateObjectMapping, 
@@ -255,20 +257,65 @@ class ValidationRuleTest {
 	
 	@Test
 	def void rmp_parentMap_ok() {
-		val result = parseHelper.parse(outputType_propertiesmapping("rml", '''employee:one parent-map EmployeeMapping2;'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee:one parent-map EmployeeMapping2;'''));
 		
 		validationTester.assertNoErrors(result);
 	}
 	
 	@Test
 	def void csv_parentMap_onRmlishOnly() {
-		val result = parseHelper.parse(outputType_propertiesmapping("csv", '''employee:one parent-map EmployeeMapping2;'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("csvw", '''employee:one parent-map EmployeeMapping2;'''));
 		
 		validationTester.assertWarning(result, 
 			RdfMappingPackage.eINSTANCE.parentTriplesMapTerm, 
 			RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS, 
 			"Not on output of type 'csvw' - only valid on [rml, r2rml, carml]"
 		);
+	}
+	
+	@Test
+	def void mapping_duplicatedMappingName() {
+		val result = parseHelper.parse(mappingSnippets.duplicatedMappingName());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.mapping, 
+			null, 
+			"Mapping name already in use."
+		);
+	}
+
+	@Test
+	def void mapping_noOutputType() {
+		val result = parseHelper.parse(mappingSnippets.noOutputType());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.mapping, 
+			RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING, 
+			"A mapping requires an outputType. Choose from [rml, carml]"
+		);
+	}
+
+	@Test
+	def void mapping_outputType_incompatible() {
+		val result = parseHelper.parse(mappingSnippets.incompatibleOutputType());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.mapping, 
+			RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE, 
+			"Output of type csvw is incompatible. Expected one of [rml, carml]"
+		);
+	}
+	
+	@Test
+	def void outputtype_without_mapping() {
+		val result = parseHelper.parse(outputTypeSnippets.outputTypeWithoutMapping());
+		
+		validationTester.assertWarning(result, 
+			RdfMappingPackage.eINSTANCE.domainmodel, 
+			RdfMappingValidationCodes.DOMAINMODEL_OUTPUTTYPE_SUPERFLUOUS, 
+			"No outputType needed when no mapping is declared."
+		);
+		
 	}
 	
 }
