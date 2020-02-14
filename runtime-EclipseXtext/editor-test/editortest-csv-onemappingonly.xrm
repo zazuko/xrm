@@ -16,6 +16,7 @@ map EmployeeMapping from EMPLOYEE {
 
 logical-source EMPLOYEE {
 	type csv
+	// TODO code completion sourceType==csv: yield 'dialect', but not 'xml-namespace-extension'
 	source "EMP"
 	iterator "/Employees/Employee"
 
