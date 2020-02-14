@@ -40,8 +40,6 @@ logical-source EMPLOYEE {
 	referenceables
 		id
 		EMPNO
-// TODO uncomment next line. error: null "X" is only supported on type cfs
-// ENAME null "X"	
 }
 
 vocabulary employee {

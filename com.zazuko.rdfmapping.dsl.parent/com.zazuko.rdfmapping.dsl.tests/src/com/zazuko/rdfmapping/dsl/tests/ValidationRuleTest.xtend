@@ -1,18 +1,19 @@
 package com.zazuko.rdfmapping.dsl.tests
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
+import com.zazuko.rdfmapping.dsl.tests.snippets.LogicalSourceDSLSnippets
+import com.zazuko.rdfmapping.dsl.tests.snippets.MappingValidationDSLSnippets
+import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
 import javax.inject.Inject
+import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
 import org.eclipse.xtext.testing.util.ParseHelper
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
-import org.eclipse.xtext.diagnostics.Severity
-import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
-import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
-import com.zazuko.rdfmapping.dsl.tests.snippets.MappingValidationDSLSnippets
 
 @ExtendWith(InjectionExtension)
 @InjectWith(RdfMappingInjectorProvider)
@@ -23,6 +24,7 @@ class ValidationRuleTest {
 	
 	@Inject OutputTypeValidationDSLSnippets outputTypeSnippets
 	@Inject MappingValidationDSLSnippets mappingSnippets
+	@Inject LogicalSourceDSLSnippets logicalSourceSnippets
 
 	// Validation tests for the validation rules about the use of type
 	@Test
@@ -306,6 +308,18 @@ class ValidationRuleTest {
 		);
 	}
 	
+	@Test
+	def void logicalSource_xml_withNullValueDeclaration() {
+		val result = parseHelper.parse(logicalSourceSnippets.nullValueDeclarationOnXml());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.referenceable, 
+			null, 
+			"Type 'csv' required for null value declaration, but was 'xml"
+		);
+		
+	}
+
 	@Test
 	def void outputtype_without_mapping() {
 		val result = parseHelper.parse(outputTypeSnippets.outputTypeWithoutMapping());
