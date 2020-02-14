@@ -4,14 +4,14 @@ map FooMapping from KEYWORDSOURCE {
 	subject template "http://foo.example.com/{0}" with id;
 
 	types
-		employee:Employee
+		employee.Employee
 
 	properties
-		thing:color constant "blue";
-		thing:size from ^map;
+		thing.color constant "blue";
+		thing.size from ^map;
 		// TODO get 'multi-reference' in code completion (due to type carml)
 		// TODO get 'parent-map' in code completion (due to type rmlish)
-		thing:weight multi-reference from ^map; 
+		thing.weight multi-reference from ^map; 
 }
 
 logical-source KEYWORDSOURCE {

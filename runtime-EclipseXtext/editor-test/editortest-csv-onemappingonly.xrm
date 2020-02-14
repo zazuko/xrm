@@ -8,10 +8,10 @@ map EmployeeMapping from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
-		employee:Employee
+		employee.Employee
 
 	properties
-		employee:no from EMPNO;
+		employee.no from EMPNO;
 }
 
 logical-source EMPLOYEE {

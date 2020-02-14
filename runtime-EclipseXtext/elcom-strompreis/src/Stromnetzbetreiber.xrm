@@ -22,12 +22,12 @@ map StromnetzMapping from stromnetz {
 	subject template "http://elcom.zazuko.com/stormnetz/{0}" with NameUrl;
 
 	types
-		schema:Organization
+		schema.Organization
 
 	properties
-		rdfs:label from Name;
-		schema:address from Adresse;
-		schema:postalCode from PLZ;
-		schema:addressLocality template "http://classifications.data.admin.ch/municipality/{0}" with Ort;
-		schema:areaServed template "http://classifications.data.admin.ch/municipality/{0}" with gdenr;
+		rdfs.label from Name;
+		schema.address from Adresse;
+		schema.postalCode from PLZ;
+		schema.addressLocality template "http://classifications.data.admin.ch/municipality/{0}" with Ort;
+		schema.areaServed template "http://classifications.data.admin.ch/municipality/{0}" with gdenr;
 }
