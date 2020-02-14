@@ -5,9 +5,11 @@ language-tags {
 	it
 }
 
-datatypes xsd {
+vocabulary xsd {
 	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
-	int
+
+	datatypes
+		int
 }
 
 vocabulary schema {

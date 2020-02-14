@@ -1,7 +1,9 @@
-datatypes xsd {
+vocabulary xsd {
 	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
-	integer
-} 
+
+	datatypes
+		integer
+}
 
 vocabulary qb {
 	prefix "qb:" "http://purl.org/linked-data/cube#"
