@@ -35,7 +35,9 @@ map EmployeeMapping2 from EMPLOYEE {
 logical-source EMPLOYEE {
 	type csv
 	source "EMP"
-	// TODO uncomment next line --> error on both mappings above, referencing this source --> with quickfix
+	// TODO uncomment next line --> 2errors:
+	//// on both mappings above, referencing this source --> with quickfix
+	//// error here: no xml-stuff on srcType CSV
 	// xml-namespace-extension SomeXmlNsExtension
 	iterator "/Employees/Employee"
 

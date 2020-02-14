@@ -37,6 +37,8 @@ map EmployeeMapping2 from EMPLOYEE {
 logical-source EMPLOYEE {
 	type xml
 	source "EMP"
+	// TODO uncomment next line --> error because of sourceType==xml
+	// dialect MyDialect
 	iterator "/Employees/Employee"
 
 	referenceables
