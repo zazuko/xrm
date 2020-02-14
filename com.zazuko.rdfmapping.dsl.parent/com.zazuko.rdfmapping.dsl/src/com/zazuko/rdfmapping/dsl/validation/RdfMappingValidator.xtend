@@ -90,6 +90,36 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 		}
 	}
+	
+	@Check
+	def void checkSourceTypeSpecificRules(SourceGroup it) {
+		val SourceType type = typeRef?.type;
+		if (type === null) {
+			return;
+		}
+		
+		if (!SourceType.CSV.equals(type) && dialect !== null) {
+			error("Dialect is for sourceType CSV only", RdfMappingPackage.Literals.SOURCE_GROUP__DIALECT);
+		}
+		if (!SourceType.XML.equals(type) && xmlNamespaceExtension !== null) {
+			error("xml-namespace-extension is for sourceType XML only", RdfMappingPackage.Literals.SOURCE_GROUP__XML_NAMESPACE_EXTENSION);
+		}
+	}
+
+	@Check
+	def void checkSourceTypeSpecificRules(LogicalSource it) {
+		val SourceType type = typeResolved;
+		if (type === null) {
+			return;
+		}
+		
+		if (!SourceType.CSV.equals(type) && dialect !== null) {
+			error("Dialect is for sourceType CSV only", RdfMappingPackage.Literals.LOGICAL_SOURCE__DIALECT);
+		}
+		if (!SourceType.XML.equals(type) && xmlNamespaceExtension !== null) {
+			error("xml-namespace-extension is for sourceType XML only", RdfMappingPackage.Literals.LOGICAL_SOURCE__XML_NAMESPACE_EXTENSION);
+		}
+	}
 
 	@Check
 	def void checkReferenceableDeclarationNullValueMarker(NullValueDeclaration it) {
