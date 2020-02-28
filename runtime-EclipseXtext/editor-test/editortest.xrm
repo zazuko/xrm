@@ -3,6 +3,8 @@ output rml
 
 template airportIri "http://airport.example.com/{0}"
 template exampleIri "http://example.com/"
+// TODO uncomment next line --> error for duplicated template name
+//template exampleIri "http://example.com/"
 
 map EmployeeMapping from EMPLOYEE {
 	// TODO code complete on airportIri - get proposals of templates declared within this file
