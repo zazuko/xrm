@@ -27,7 +27,6 @@ logical-source KEYWORDSOURCE {
 
 xml-namespace-extension SomeXmlNsExtension {
 	prefix "exa" "http://www.example.com/audios/1.0/"
-	// TODO check generated carmlfoo-mapping.carml.ttl --> carml:declaresNamespace should only be generated for 'employee', since this is the only prefix really used by the mapping
 	prefix "employee" "http://www.example.com/audios/1.0/"
 	prefix "exb" "http://www.example.com/books/1.0/"
 

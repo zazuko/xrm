@@ -2,7 +2,6 @@ package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
-import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
 import javax.inject.Inject
 
@@ -16,7 +15,7 @@ class CarmlDialect extends RmlDialect implements IRmlDialect {
 		PREFIX carml: <http://carml.taxonic.com/carml/>
 	'''
 
-	override sourceStatement(LogicalSource it, Mapping mapping) '''
+	override sourceStatement(LogicalSource it) '''
 		«IF sourceIsQueryResolved»
 			rml:query """«sourceResolved»""" ;
 		«ELSE»
@@ -24,7 +23,7 @@ class CarmlDialect extends RmlDialect implements IRmlDialect {
 				a carml:Stream ;
 				carml:streamName "«sourceResolved»" ;
 				«IF xmlNamespaceExtension !== null»
-				«FOR Prefix p : xmlNamespaceExtension.prefixesUsed(mapping)»
+				«FOR Prefix p : xmlNamespaceExtension.prefixes»
 				«p.declareNamespace»
 				«ENDFOR»
 				«ENDIF»
