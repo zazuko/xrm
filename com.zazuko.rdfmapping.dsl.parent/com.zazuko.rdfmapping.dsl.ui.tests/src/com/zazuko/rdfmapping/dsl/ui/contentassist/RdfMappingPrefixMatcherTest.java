@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
+
 @RunWith(Parameterized.class)
 public class RdfMappingPrefixMatcherTest {
 
@@ -48,12 +50,14 @@ public class RdfMappingPrefixMatcherTest {
 		}
 		Builder b = new Builder();
 
-		b.register("exPLZ:bar", "ex", true);
-		b.register("exPLZ:bar", "ex:", false);
-		b.register("exPLZ:bar", "exPLZ:bar", true);
-		b.register("exPLZ:bar", "exPLZ:ar", true);
-		b.register("exPLZ:bar", "plz", true);
-		b.register("exPLZ:bar", "ar", true);
+		// @formatter:off
+		b.register("exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", "ex", true);
+		b.register("exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", "ex" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX, false);
+		b.register("exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", "exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", true);
+		b.register("exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", "exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "ar", true);
+		b.register("exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", "plz", true);
+		b.register("exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", "ar", true);
+		// @formatter:off
 		return result;
 	}
 }

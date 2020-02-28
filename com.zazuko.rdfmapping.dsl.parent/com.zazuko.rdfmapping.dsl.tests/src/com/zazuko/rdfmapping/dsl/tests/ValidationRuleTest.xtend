@@ -222,13 +222,13 @@ class ValidationRuleTest {
 	
 	@Test
 	def void rml_ok() {
-		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee:one constant "42";'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee.one constant "42";'''));
 		validationTester.assertNoErrors(result);
 	}
 
 	@Test
 	def void rml_multiReference_onCarmlOnly() {
-		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee:one multi-reference from EMPNO;'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee.one multi-reference from EMPNO;'''));
 		
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.multiReferenceValuedTerm, 
@@ -239,7 +239,7 @@ class ValidationRuleTest {
 	
 	@Test
 	def void carml_multiReference_ok() {
-		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("carml", '''employee:one multi-reference from EMPNO;'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("carml", '''employee.one multi-reference from EMPNO;'''));
 		validationTester.assertNoErrors(result);
 	}
 	
@@ -248,7 +248,7 @@ class ValidationRuleTest {
 		// valuedTerm is optional in grammar in order to enable quickfixes 
 		//// (serialization new properties while editing PredicateObjectMapping )
  
-		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee:one'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee.one'''));
 		
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.predicateObjectMapping, 
@@ -259,14 +259,14 @@ class ValidationRuleTest {
 	
 	@Test
 	def void rmp_parentMap_ok() {
-		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee:one parent-map EmployeeMapping2;'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee.one parent-map EmployeeMapping2;'''));
 		
 		validationTester.assertNoErrors(result);
 	}
 	
 	@Test
 	def void csv_parentMap_onRmlishOnly() {
-		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("csvw", '''employee:one parent-map EmployeeMapping2;'''));
+		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("csvw", '''employee.one parent-map EmployeeMapping2;'''));
 		
 		validationTester.assertWarning(result, 
 			RdfMappingPackage.eINSTANCE.parentTriplesMapTerm, 

@@ -178,7 +178,8 @@ QualifiedName:
 /// com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.getStyledDisplayString(IEObjectDescription)
 /// com.zazuko.rdfmapping.dsl.services.RdfDslConverters.RdfPrefixedName()
 RdfPrefixedName:
-    ID ':' ID;
+	// ID ':' ID; // #71 
+	ID '.' ID;
     
 terminal BLOCK_BEGIN: '{';
 terminal BLOCK_END: '}';

@@ -1,5 +1,5 @@
 source-group SomeSourceGroup {
-	// TODO move line 'dialect' into logicalSource --> expect no changes in generated files' (on a project.clean())
+	// TODO move line 'dialect' into logicalSource below 'source' --> expect no changes in generated files' (on a project.clean())
 	dialect SomeDialect
 	logical-source foo {
 		type xml

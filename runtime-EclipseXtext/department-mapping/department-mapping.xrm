@@ -4,19 +4,19 @@ map DeptTriplesMap from Department {
 	subject template "department/{0}" with DEPTNO;
 
 	types
-		ex:Department
+		ex.Department
 
 	properties
-//		ex:location parent-map SiteTriplesMap;
-		ex:location constant "Foo"; 
+//		ex.location parent-map SiteTriplesMap;
+		ex.location constant "Foo"; 
 }
 
 map SiteTriplesMap from Department {
 	subject template "site/{0}" with LOC;
 
 	types
-		ex:Site
+		ex.Site
 
 	properties
-		ex:siteName from LOC;
+		ex.siteName from LOC;
 }
