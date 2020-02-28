@@ -56,5 +56,6 @@ vocabulary employee {
 
 	properties
 		no
+yes
 }
 

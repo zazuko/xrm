@@ -183,6 +183,7 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 				newProperty.setName(propertyName);
 
 				poMapping.setProperty(newProperty);
+				poMapping.setLineEnd(true);
 				
 				if (vocabularyInForeignFile) {
 					vocabulary.eResource().save(Collections.emptyMap());

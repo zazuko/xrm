@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.StyledString;
-import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
@@ -121,19 +120,14 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 	@Override
 	public void complete_LINE_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
+		if (model instanceof PredicateObjectMapping) {
+			PredicateObjectMapping pom = (PredicateObjectMapping)model;
+			if (pom.getTerm() == null || pom.isLineEnd()) {
+				return; // do not offer ';' if there is no valuedTerm or there is already a ';'
+			}
+		}
 		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_LINE_END,
 				RdfMappingConstants.TOKEN_LINE_END, null, context));
-	}
-
-	@Override
-	public void completePredicateObjectMapping_Property(EObject model, Assignment assignment,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		EObject previousModel = context.getPreviousModel();
-		if (previousModel instanceof PredicateObjectMapping) {
-			return; // abort here - the cursor is within the assignments of property and term - do
-					// not propose cross references here (keywords will be offered)
-		}
-		super.completePredicateObjectMapping_Property(model, assignment, context, acceptor);
 	}
 
 }
