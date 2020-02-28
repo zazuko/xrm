@@ -2,9 +2,10 @@
 output rml
 
 map EmployeeMapping from EMPLOYEE {
-	// TODO uncomment next line (and comment the old subject-line) --> error
+	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
 	// subject template "http://airport.example.com/{0}" with id as Literal;
 	subject template "http://airport.example.com/{0}" with id;
+	// subject template "http://airport.example.com/{0}" with id as Literal;
 
 	types
 		employee.Employee
