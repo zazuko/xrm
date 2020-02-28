@@ -3,9 +3,11 @@ package com.zazuko.rdfmapping.dsl.tests
 import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
+import com.zazuko.rdfmapping.dsl.tests.snippets.DomainmodelDslSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.LogicalSourceDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.MappingValidationDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
+import com.zazuko.rdfmapping.dsl.tests.snippets.SourceGroupDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.XmlNamespaceExtensionDSLSnippets
 import javax.inject.Inject
 import org.eclipse.xtext.diagnostics.Severity
@@ -15,7 +17,6 @@ import org.eclipse.xtext.testing.util.ParseHelper
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
-import com.zazuko.rdfmapping.dsl.tests.snippets.SourceGroupDSLSnippets
 
 @ExtendWith(InjectionExtension)
 @InjectWith(RdfMappingInjectorProvider)
@@ -29,6 +30,7 @@ class ValidationRuleTest {
 	@Inject LogicalSourceDSLSnippets logicalSourceSnippets
 	@Inject SourceGroupDSLSnippets sourceGroupSnippets
 	@Inject XmlNamespaceExtensionDSLSnippets xmlNamespaceExtensionSnippets
+	@Inject DomainmodelDslSnippets domainmodelDslSnippets
 
 	// Validation tests for the validation rules about the use of type
 	@Test
@@ -340,6 +342,7 @@ class ValidationRuleTest {
 		
 		validationTester.assertNoErrors(result);
 	}
+	
 	@Test
 	def void xmlNsExtension_label_withSeparator() {
 		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.separatorInLabel());
@@ -449,6 +452,17 @@ class ValidationRuleTest {
 			RdfMappingPackage.eINSTANCE.sourceGroup, 
 			null,
 			"xml-namespace-extension is for sourceType XML only"
+		);
+	}
+	
+	@Test
+	def void domainmodel_templatedeclaration_duplicated() {
+		val result = parseHelper.parse(domainmodelDslSnippets.duplicatedTemplateName);
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.templateDeclaration, 
+			null, 
+			"Declaration name already in use: foo"
 		);
 	}
 }
