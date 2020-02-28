@@ -2,6 +2,8 @@
 output rml
 
 map EmployeeMapping from EMPLOYEE {
+	// TODO uncomment next line (and comment the old subject-line) --> error
+	// subject template "http://airport.example.com/{0}" with id as Literal;
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
@@ -19,7 +21,7 @@ map EmployeeMapping from EMPLOYEE {
 		keyword.^map template "{0}" with EMPNO as Literal; // ok for rml, r2rml 
 		// TODO uncomment next line --> error
 		// TODO code completion: no suggestion 'multi-reference'
-		//keyword.^map multi-reference from EMPNO ;
+		// keyword.^map multi-reference from EMPNO ;
 }
 
 map EmployeeMapping2 from EMPLOYEE {
@@ -32,7 +34,6 @@ map EmployeeMapping2 from EMPLOYEE {
 		employee.no from EMPNO;
 		
 }
-
 
 logical-source EMPLOYEE {
 	type xml
