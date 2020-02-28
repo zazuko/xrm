@@ -49,7 +49,7 @@ class XmlNamespaceExtensionDSLSnippets {
 		}
 		
 		vocabulary foobar {
-			prefix "employee:" "http://example.com/employee"
+			prefix "employee" "http://example.com/employee"
 		
 			classes
 				SomeClass

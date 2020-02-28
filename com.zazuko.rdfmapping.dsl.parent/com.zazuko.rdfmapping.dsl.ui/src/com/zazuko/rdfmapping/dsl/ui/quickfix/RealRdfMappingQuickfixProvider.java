@@ -116,6 +116,23 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 			}
 		});
 	}
+	@Fix(RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR)
+	public void prefixLabelSanitizing(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, "Sanitize", "Remove invalid characters", null, new ISemanticModification() {
+			
+			@Override
+			public void apply(EObject element, IModificationContext context) throws Exception {
+				if (!(element instanceof Prefix)) {
+					return;
+				}
+				Prefix prefix = (Prefix)element;
+				if (prefix.getLabel() == null) {
+					return;
+				}
+				prefix.setLabel(prefix.getLabel().replaceAll("\\" + RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER, ""));
+			}
+		});
+	}
 
 	@Fix(Diagnostic.LINKING_DIAGNOSTIC)
 	public void createMissingStuff(Issue issue, IssueResolutionAcceptor acceptor) {
