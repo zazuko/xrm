@@ -129,7 +129,8 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 				if (prefix.getLabel() == null) {
 					return;
 				}
-				prefix.setLabel(prefix.getLabel().replaceAll("\\" + RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER, ""));
+				String newLabel = prefix.getLabel().replaceAll(RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER_REGEX, "");
+				prefix.setLabel(newLabel);
 			}
 		});
 	}
