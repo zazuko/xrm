@@ -1,7 +1,6 @@
 package com.zazuko.rdfmapping.dsl.scoping
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
-import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
@@ -39,10 +38,6 @@ class RdfMappingScopeProvider extends AbstractRdfMappingScopeProvider {
 
 		} else if (context instanceof TemplateValuedTerm &&
 			reference == RdfMappingPackage.Literals.TEMPLATE_VALUED_TERM__REFERENCES) {
-			return scopeForReferenceables(context.findRoot(Mapping))
-
-		} else if (context instanceof LinkedResourceTerm &&
-			reference == RdfMappingPackage.Literals.LINKED_RESOURCE_TERM__REFERENCES) {
 			return scopeForReferenceables(context.findRoot(Mapping))
 
 		}

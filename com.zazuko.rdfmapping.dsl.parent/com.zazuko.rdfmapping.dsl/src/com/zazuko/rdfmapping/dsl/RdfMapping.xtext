@@ -162,7 +162,6 @@ ValuedTerm:
 	  ReferenceValuedTerm 
 	| MultiReferenceValuedTerm 
 	| TemplateValuedTerm 
-	| LinkedResourceTerm 
 	| ConstantValuedTerm 
 	| ParentTriplesMapTerm
 ;
@@ -188,10 +187,6 @@ TemplateValuedTerm:
 	('as' termTypeRef=TermTypeRef)?
 ;
 	
-LinkedResourceTerm:
-	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
-;
-	 
 ParentTriplesMapTerm:
 	'parent-map' mapping=[Mapping]
 ;

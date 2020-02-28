@@ -4,7 +4,6 @@ import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag
-import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
@@ -108,10 +107,6 @@ class RmlDialectGenerator {
 		«ENDIF»
 	'''
 	
-	def dispatch objectTermMap(LinkedResourceTerm it) '''
-		rr:template "«toTemplateString»" ;
-	'''
-	
 	def dispatch objectTermMap(ParentTriplesMapTerm it) '''
 		rr:parentTriplesMap  <«mapping.localId»> ;
 	'''
@@ -143,10 +138,6 @@ class RmlDialectGenerator {
 	
 	def toTemplateString(TemplateValuedTerm it) {
 		template.apply(references);
-	}
-	
-	def toTemplateString(LinkedResourceTerm it) {		
-		mapping.subjectIriMapping.template.apply(references);
 	}
 	
 	def apply(TemplateValue template, List<Referenceable> refs) {

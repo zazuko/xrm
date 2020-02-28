@@ -3,7 +3,6 @@ package com.zazuko.rdfmapping.dsl.generator.csvw
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroupDescription
-import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
@@ -146,11 +145,6 @@ class CsvwDialectGenerator {
 		"valueUrl": "«toTemplateString»"
 	'''
 	
-	def dispatch valueReference(LinkedResourceTerm it) '''
-		"titles": "«references.toList.get(0).valueResolved»",
-		"valueUrl": "«toTemplateString»"
-	'''
-	
 	def dispatch valueReference(ParentTriplesMapTerm it) '''
 		"virtual": true,
 		"valueUrl": "unsupported"
@@ -170,10 +164,6 @@ class CsvwDialectGenerator {
 	
 	def toTemplateString(TemplateValuedTerm it) {		
 		template.apply(references);
-	}
-	
-	def toTemplateString(LinkedResourceTerm it) {		
-		mapping.subjectIriMapping.template.apply(references);
 	}
 	
 	def apply(TemplateValue template, List<Referenceable> refs) {
