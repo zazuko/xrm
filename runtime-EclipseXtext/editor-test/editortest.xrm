@@ -5,7 +5,8 @@ template airportIri "http://airport.example.com/{0}"
 template exampleIri "http://example.com/"
 
 map EmployeeMapping from EMPLOYEE {
-	subject template "http://airport.example.com/{0}" with id;
+	// TODO code complete on airportIri - get proposals of templates declared within this file
+	subject template airportIri with id;
 
 	types
 		employee.Employee
@@ -33,6 +34,8 @@ map EmployeeMapping2 from EMPLOYEE {
 
 	properties
 		employee.no from EMPNO;
+		thing.color template airportIri with id;
+		thing.color template "http://manualstuff.com/colors/{0}" with id;
 		
 }
 

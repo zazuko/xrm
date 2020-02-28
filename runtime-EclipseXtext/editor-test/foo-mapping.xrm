@@ -1,7 +1,3 @@
-
-
-
-
 output rml
 
 map FooMapping from KEYWORDSOURCE {

@@ -54,5 +54,17 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:objectMap [
 			rml:reference "EMPNO" ;
 		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate thing:color ;
+		rr:objectMap [
+			rr:template "http://airport.example.com/{id}" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate thing:color ;
+		rr:objectMap [
+			rr:template "http://manualstuff.com/colors/{id}" ;
+		];
 	]
 .
