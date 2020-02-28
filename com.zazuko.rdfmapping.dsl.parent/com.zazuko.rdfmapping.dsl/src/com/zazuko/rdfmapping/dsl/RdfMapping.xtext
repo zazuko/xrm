@@ -14,6 +14,7 @@ Element:
     | LanguageTagDefinition 
     | DialectGroup
     | XmlNamespaceExtension
+    | TemplateDeclaration
 ;
 
 Datatype:
@@ -122,6 +123,22 @@ RdfProperty:
 	
 RdfClass:
 	name=ID (value=STRING)?;	
+
+TemplateDeclaration:
+	'template' name=ID value=TemplateValueDeclaration
+;
+
+TemplateValue:
+	TemplateValueDeclaration | TemplateValueRef
+;
+
+TemplateValueDeclaration:
+	template=STRING
+;
+
+TemplateValueRef:
+	template=[TemplateDeclaration]
+;
     
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN

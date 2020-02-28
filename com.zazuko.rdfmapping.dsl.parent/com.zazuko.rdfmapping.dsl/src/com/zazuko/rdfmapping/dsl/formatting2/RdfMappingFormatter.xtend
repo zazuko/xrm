@@ -27,12 +27,13 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SubjectTypeMapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
+import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
-import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 
 class RdfMappingFormatter extends AbstractFormatter2 {
 
@@ -185,6 +186,11 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.nullValueDeclarationAccess.nullKeyword_0).append[oneSpace];
 	}
 
+	def dispatch void format(TemplateDeclaration it, extension IFormattableDocument document) {
+		regionFor.assignment(ga.templateDeclarationAccess.nameAssignment_1).surround[oneSpace];
+		regionFor.assignment(ga.templateDeclarationAccess.valueAssignment_2).append[setNewLines(1, 1, 2)];
+	}
+	
 	def dispatch void format(Mapping it, extension IFormattableDocument document) {
 		regionFor.keyword(ga.mappingAccess.mapKeyword_0).append[oneSpace];//.prepend[setNewLines(1, 1, 2)];
 		regionFor.keyword(ga.mappingAccess.fromKeyword_2).surround[oneSpace];
