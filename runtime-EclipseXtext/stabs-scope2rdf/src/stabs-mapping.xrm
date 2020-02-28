@@ -188,8 +188,10 @@ map Deskriptor from WSD_STABS_SCP_ARCHIV_DBA.Deskriptoren {
 	
 }
 
+template ablieferungIri "http://data.staatsarchiv-bs.ch/id/ablieferung/{0}"
+
 map Ablieferung from WSD_STABS_SCP_ARCHIV_DBA.Ablieferungen {
-	subject template "http://data.staatsarchiv-bs.ch/id/ablieferung/{0}" with ID_NR;
+	subject template ablieferungIri with ID_NR;
 
 	types
 		stabs.Ablieferung
@@ -207,8 +209,10 @@ map Ablieferung from WSD_STABS_SCP_ARCHIV_DBA.Ablieferungen {
 		stabs.ID_NAME from ID_NAME;
 }
 
+template partnerIri "http://data.staatsarchiv-bs.ch/id/partner/{0}"
+
 map Partner from WSD_STABS_SCP_ARCHIV_DBA.Partner {
-	subject template "http://data.staatsarchiv-bs.ch/id/partner/{0}" with ID_NR;
+	subject template partnerIri with ID_NR;
 
 	types
 		stabs.Partner
@@ -231,7 +235,7 @@ map Verzeichnungseinheiten_Ablieferungen_Verknuepfungen from WSD_STABS_SCP_ARCHI
 
 	properties
 
-		stabs.ablieferung link Ablieferung with ID_NR_ABLFR;
+		stabs.ablieferung template ablieferungIri with ID_NR_ABLFR;
 }
 
 map Verzeichnungseinheiten_Deskriptoren_Verknuepfungen from WSD_STABS_SCP_ARCHIV_DBA.Verzeichnungseinheiten_Deskriptoren_Verknuepfungen {
@@ -301,7 +305,7 @@ map Verzeichnungeinheiten_Partner_Verknuepfungen from WSD_STABS_SCP_ARCHIV_DBA.V
 	subject template "http://data.staatsarchiv-bs.ch/id/record/{0}" with ID_NR_VRZNG_ENHT;
 
 	properties
-		stabs.partner link Partner with ID_NR_PRTNR;
+		stabs.partner template partnerIri with ID_NR_PRTNR;
 	
 }
 

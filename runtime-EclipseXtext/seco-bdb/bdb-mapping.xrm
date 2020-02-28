@@ -1,7 +1,9 @@
 output r2rml
 
+template amtIri "https://permits.zazukoians.org/agencies/{0}"
+
 map Amt from bewilligungen.t_amt {
-	subject template "https://permits.zazukoians.org/agencies/{0}" with AMT_ID;
+	subject template amtIri with AMT_ID;
 
 	types
 		schema.GovernmentOrganization
@@ -18,8 +20,9 @@ map Amt from bewilligungen.t_amt {
 		schema.name from AMT_NAME_IT with language-tag it;
 }
 
+template bewilligungIri "https://permits.zazukoians.org/permits/{0}"
 map Bewilligung from bewilligungen.t_bewilligung {
-	subject template "https://permits.zazukoians.org/permits/{0}" with BEW_ID;
+	subject template bewilligungIri with BEW_ID;
 
 	types
 		schema.GovernmentPermit
@@ -51,8 +54,8 @@ map Bewilligung from bewilligungen.t_bewilligung {
 
 		schema.dateModified from BEW_LAST_CHANGED;
 
-		bdb.agency link Amt with BEW_AMT_LNK;
-		ex.gemeinde link Gemeinde with BEW_GEMEINDE;
+		bdb.agency template amtIri with BEW_AMT_LNK;
+		ex.gemeinde template gemeindeIri with BEW_GEMEINDE;
 }
 
 map KontaktAusBewilligung from bewilligungen.t_bewilligung {
@@ -62,7 +65,7 @@ map KontaktAusBewilligung from bewilligungen.t_bewilligung {
 		ex.KontaktAusBewilligung
 
 	properties
-		ex.bewilligung link Bewilligung with BEW_ID;
+		ex.bewilligung template bewilligungIri with BEW_ID;
 
 		bdb.contact from BEW_KONTAKT_DE with language-tag de;
 		bdb.contact from BEW_KONTAKT_FR with language-tag fr;
@@ -80,14 +83,16 @@ map KontaktAusBewilligung from bewilligungen.t_bewilligung {
 		schema.telephone from BEW_KONTAKT_TEL;
 }
 
+template kantonInfoIri "http://example.org/kantoninfo/{0}{1}"
+
 map KantonInfo from bewilligungen.t_kt_info {
-	subject template "http://example.org/kantoninfo/{0}{1}" with KTI_KANTON KTI_ID;
+	subject template kantonInfoIri with KTI_KANTON KTI_ID;
 
 	types
 		ex.KantonInfo
 
 	properties
-		ex.bewilligung link Bewilligung with KTI_BEW_LNK;
+		ex.bewilligung template bewilligungIri with KTI_BEW_LNK;
 		schema.url from KTI_INTERNET;
 		ex.kanton from KTI_KANTON;
 }
@@ -99,7 +104,7 @@ map KontaktAusKantonInfo from bewilligungen.t_kt_info {
 		ex.KontaktKantonInfo
 
 	properties
-		ex.kantonInfo link KantonInfo with KTI_KANTON KTI_ID;
+		ex.kantonInfo template kantonInfoIri with KTI_KANTON KTI_ID;
 		ex.kanton from KTI_KANTON;
 
 		bdb.contact from KTI_OFFICE;
@@ -107,8 +112,10 @@ map KontaktAusKantonInfo from bewilligungen.t_kt_info {
 		schema.telephone from KTI_TELEPHONE;			
 }
 
+template gemeindeIri "http://example.org/gemeinde/{0}"
+
 map Gemeinde from bewilligungen.t_gemeinde {
-	subject template "http://example.org/gemeinde/{0}" with GDE_PLZ;
+	subject template gemeindeIri with GDE_PLZ;
 
 	types
 		ex.Gemeinde

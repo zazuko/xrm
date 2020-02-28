@@ -1,7 +1,9 @@
 output r2rml
 
+template agencyIri "https://permits.example.org/agencies/{0}"
+
 map Agency from permits.t_agency {
-	subject template "https://permits.example.org/agencies/{0}" with AGENCY_ID;
+	subject template agencyIri with AGENCY_ID;
 
 	types
 		schema.GovernmentOrganization
@@ -33,5 +35,5 @@ map Permit from permits.t_permit {
 		ex.permitLevel template "https://permits.example.org/permitlevels/{0}" with PERMIT_LEVEL;
 		ex.status template "https://permits.example.org/statuses/{0}" with PERMIT_STATUS;
 
-		ex.agency link Agency with PERMIT_AGENCY_FK;
+		ex.agency template agencyIri with PERMIT_AGENCY_FK;
 }
