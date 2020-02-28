@@ -2,7 +2,7 @@
 //output csvw
 
 vocabulary thing {
-	prefix "thing:" "http://foobar.com/things/thing/"
+	prefix "thing" "http://foobar.com/things/thing/"
 
 	classes
 		Thing

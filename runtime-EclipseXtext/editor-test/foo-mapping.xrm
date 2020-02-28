@@ -48,7 +48,7 @@ logical-source KEYWORDSOURCE {
 }
 
 vocabulary keyword {
-	prefix "employee:" "http://example.com/employee"
+	prefix "employee" "http://example.com/employee"
 
 	properties
 		no

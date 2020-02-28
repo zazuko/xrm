@@ -49,7 +49,7 @@ logical-source EMPLOYEE {
 }
 
 vocabulary employee {
-	prefix "employee:" "http://example.com/employee"
+	prefix "employee" "http://example.com/employee"
 
 	classes
 		Employee
