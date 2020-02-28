@@ -11,6 +11,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValue
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
@@ -148,8 +149,8 @@ class RmlDialectGenerator {
 		mapping.subjectIriMapping.template.apply(references);
 	}
 	
-	def apply(String template, List<Referenceable> refs) {
-		MessageFormat.format(template, refs.toMessageFormatArguments());
+	def apply(TemplateValue template, List<Referenceable> refs) {
+		MessageFormat.format(template.templateValueResolved, refs.toMessageFormatArguments());
 	}
 	
 	def toMessageFormatArguments(List<Referenceable> refs) {

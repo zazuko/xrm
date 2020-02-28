@@ -2,7 +2,7 @@
 output rml
 
 template airportIri "http://airport.example.com/{0}"
-template fizfaz "schnick-schnack"
+template exampleIri "http://example.com/"
 
 map EmployeeMapping from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;

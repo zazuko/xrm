@@ -133,11 +133,11 @@ TemplateValue:
 ;
 
 TemplateValueDeclaration:
-	template=STRING
+	templateValue=STRING
 ;
 
 TemplateValueRef:
-	template=[TemplateDeclaration]
+	templateDeclaration=[TemplateDeclaration]
 ;
     
 Mapping:
@@ -184,7 +184,7 @@ ConstantValuedTerm:
 ;
 
 TemplateValuedTerm:
-	'template' template=STRING 'with' (references+=[Referenceable])+
+	'template' template=TemplateValue 'with' (references+=[Referenceable])+
 	('as' termTypeRef=TermTypeRef)?
 ;
 	
