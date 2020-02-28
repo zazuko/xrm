@@ -2,10 +2,12 @@ language-tags {
 	de
 }
 
-datatypes xsd {
+vocabulary xsd {
 	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
-	int
-	double
+
+	datatypes
+		int
+		double
 }
 
 vocabulary dc {

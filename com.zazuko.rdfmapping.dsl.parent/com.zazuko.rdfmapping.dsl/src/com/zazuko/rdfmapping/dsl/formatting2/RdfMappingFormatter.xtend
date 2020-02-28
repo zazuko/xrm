@@ -6,7 +6,6 @@ package com.zazuko.rdfmapping.dsl.formatting2
 import com.google.inject.Inject
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
-import com.zazuko.rdfmapping.dsl.rdfMapping.DatatypesDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroupDescription
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
@@ -71,18 +70,6 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		logicalSources.forEach[format];
 	}
 
-	def dispatch void format(DatatypesDefinition it, extension IFormattableDocument document) {
-		interior[indent];
-
-		regionFor.keyword(ga.datatypesDefinitionAccess.datatypesKeyword_0).append[oneSpace];
-		regionFor.ruleCall(ga.datatypesDefinitionAccess.BLOCK_BEGINTerminalRuleCall_2).prepend[oneSpace];
-
-		prefix?.format;
-		types.forEach[format];
-
-		regionFor.ruleCall(ga.datatypesDefinitionAccess.BLOCK_ENDTerminalRuleCall_5).prepend[setNewLines(1)];
-	}
-
 	def dispatch void format(Prefix it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
 		regionFor.keyword(ga.prefixAccess.prefixKeyword_0).append[oneSpace];
@@ -97,7 +84,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	def dispatch void format(Vocabulary it, extension IFormattableDocument document) {
 		interior(
 			regionFor.ruleCall(ga.vocabularyAccess.BLOCK_BEGINTerminalRuleCall_2),
-			regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_6)
+			regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_7)
 		)[indent];
 
 		regionFor.keyword(ga.vocabularyAccess.vocabularyKeyword_0).append[oneSpace];
@@ -111,24 +98,45 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 				regionFor.keyword(ga.vocabularyAccess.classesKeyword_4_0),
 				regionFor.keyword(ga.vocabularyAccess.propertiesKeyword_5_0)
 			)[indent];
+		} else if (!datatypes.empty) {
+			interior(
+				regionFor.keyword(ga.vocabularyAccess.classesKeyword_4_0),
+				regionFor.keyword(ga.vocabularyAccess.datatypesKeyword_6_0)
+			)[indent];
 		} else {
 			interior(
 				regionFor.keyword(ga.vocabularyAccess.classesKeyword_4_0),
-				regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_6)
+				regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_7)
 			)[indent];
 		}
 		regionFor.keyword(ga.vocabularyAccess.classesKeyword_4_0).prepend[setNewLines(2)];
 		classes.forEach[format];
 
 		// 'properties'
-		interior(
-			regionFor.keyword(ga.vocabularyAccess.propertiesKeyword_5_0),
-			regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_6)
-		)[indent];
+		if (!datatypes.empty) {
+			interior(
+				regionFor.keyword(ga.vocabularyAccess.propertiesKeyword_5_0),
+				regionFor.keyword(ga.vocabularyAccess.datatypesKeyword_6_0)
+			)[indent];
+		} else {
+			interior(
+				regionFor.keyword(ga.vocabularyAccess.propertiesKeyword_5_0),
+				regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_7)
+			)[indent];
+			
+		}
 		regionFor.keyword(ga.vocabularyAccess.propertiesKeyword_5_0).prepend[setNewLines(2)];
 		properties.forEach[format];
 
-		regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_6).prepend[setNewLines(1)].append [
+		// 'datatypes'
+		interior(
+			regionFor.keyword(ga.vocabularyAccess.datatypesKeyword_6_0),
+			regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_7)
+		)[indent];
+		regionFor.keyword(ga.vocabularyAccess.datatypesKeyword_6_0).prepend[setNewLines(2)];
+		datatypes.forEach[format];
+
+		regionFor.ruleCall(ga.vocabularyAccess.BLOCK_ENDTerminalRuleCall_7).prepend[setNewLines(1)].append[
 			setNewLines(2)
 		];
 	}

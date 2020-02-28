@@ -9,18 +9,12 @@ Domainmodel:
 Element:
     SourceGroup 
     | LogicalSource 
-    | PrefixHolder 
+    | Vocabulary 
     | Mapping 
     | LanguageTagDefinition 
     | DialectGroup
     | XmlNamespaceExtension
 ;
-
-DatatypesDefinition: 
-	'datatypes' name=ID BLOCK_BEGIN
-		prefix=Prefix
-		(types+=Datatype)*
-	BLOCK_END;
 
 Datatype:
 	name=ID (value=STRING)?;
@@ -116,12 +110,10 @@ Vocabulary:
 	'vocabulary' name=ID BLOCK_BEGIN
     	prefix=Prefix
 		('classes' (classes+=RdfClass)* )?
-	    ('properties' (properties+=RdfProperty)*)?	
+	    ('properties' (properties+=RdfProperty)*)?
+	    ('datatypes' (datatypes+=Datatype)*)?	
     BLOCK_END;
    
-PrefixHolder:
-    DatatypesDefinition | Vocabulary;   
-    
 Prefix:
 	'prefix' label=STRING iri=STRING;
     
