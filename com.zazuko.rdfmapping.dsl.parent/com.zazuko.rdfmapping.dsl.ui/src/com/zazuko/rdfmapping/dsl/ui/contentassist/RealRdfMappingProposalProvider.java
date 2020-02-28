@@ -117,6 +117,13 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_END,
 				RdfMappingConstants.TOKEN_BLOCK_END, null, context));
 	}
+	
+	@Override
+	public void complete_LINE_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_LINE_END,
+				RdfMappingConstants.TOKEN_LINE_END, null, context));
+	}
 
 	@Override
 	public void completePredicateObjectMapping_Property(EObject model, Assignment assignment,
