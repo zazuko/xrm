@@ -293,6 +293,17 @@ class ValidationRuleTest {
 	}
 
 	@Test
+	def void mapping_templateNrOfArguments_differ() {
+		val result = parseHelper.parse(mappingSnippets.nrOfArgumentsDiffer());
+		
+		validationTester.assertWarning(result, 
+			RdfMappingPackage.eINSTANCE.templateValuedTerm, 
+			null, 
+			"Pattern 'http://airport.example.com/{0}' requires 1 argument(s), but there are 2"
+		);
+	}
+
+	@Test
 	def void mapping_noOutputType() {
 		val result = parseHelper.parse(mappingSnippets.noOutputType());
 		

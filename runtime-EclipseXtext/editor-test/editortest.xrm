@@ -12,6 +12,7 @@ template exampleIri "http://example.com/"
 
 map EmployeeMapping from EMPLOYEE {
 	// TODO code complete on airportIri - get proposals of templates declared within this file
+	// TODO add 'EMPNO' after id --> warn nr of arguments not matching with pattern
 	subject template airportIri with id;
 
 	types

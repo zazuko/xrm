@@ -20,10 +20,14 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
 import com.zazuko.rdfmapping.dsl.util.LazyMap
+import com.zazuko.rdfmapping.dsl.validation.IriFormatAnalyzer.IriFormatAnalyzerException
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
@@ -31,9 +35,6 @@ import java.util.Set
 import java.util.TreeMap
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
-import com.zazuko.rdfmapping.dsl.validation.IriFormatAnalyzer.IriFormatAnalyzerException
 
 /**
  * This class contains custom validation rules. 
@@ -294,5 +295,27 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 		}
 	}
+	
+	@Check
+	def void templateValuedTerm_parameterSatisfied(TemplateValuedTerm it) {
+		if (template === null) {
+			return;
+		}
+		val String templateValue = template.templateValueResolved;
+		var IriFormatAnalysis data;
+		try {
+			data = iriAnalyzer.analyzeFormats(templateValue);
+		} catch (IriFormatAnalyzerException e) {
+			// this is not an issue to be marked here - just go away
+			return;
+		}
+		
+		if (data.usedKeys.size != references.size) {
+			warning("Pattern '" + templateValue + "' requires " + data.usedKeys.size + " argument(s), but there are " + references.size,
+				it,
+				null
+			);
+		}
+	} 
 
 }
