@@ -32,6 +32,8 @@ import java.util.TreeMap
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
+import com.zazuko.rdfmapping.dsl.validation.IriFormatAnalyzer.IriFormatAnalyzerException
 
 /**
  * This class contains custom validation rules. 
@@ -45,6 +47,9 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Inject
 	extension InputOutputCompatibility
+	
+	@Inject
+	IriFormatAnalyzer iriAnalyzer
 
 	@Check
 	def void checkTypeDeclarations(LogicalSource logicalSource) {
@@ -272,6 +277,22 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			.forEach[duplicatedPrefix |
 			error("Duplicated Label", duplicatedPrefix, RdfMappingPackage.eINSTANCE.prefix_Label);
 		];
+	}
+	
+	@Check
+	def void templateFormat(TemplateValueDeclaration it) {
+		if (templateValue !== null) {
+			var IriFormatAnalysis data;
+			try {
+				data = iriAnalyzer.analyzeFormats(templateValue);
+			} catch (IriFormatAnalyzerException e) {
+				error("Pattern invalid: " + e.message, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
+				return;
+			}
+			if (!data.skippedKeys.empty) {
+				error("Pattern invalid, skipped keys " + data.skippedKeys.toList.toString, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
+			}
+		}
 	}
 
 }

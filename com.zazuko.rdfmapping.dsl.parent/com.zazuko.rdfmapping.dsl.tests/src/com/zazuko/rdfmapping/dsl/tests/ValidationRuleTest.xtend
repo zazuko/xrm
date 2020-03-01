@@ -465,4 +465,26 @@ class ValidationRuleTest {
 			"Declaration name already in use: foo"
 		);
 	}
+
+	@Test
+	def void domainmodel_templatedeclarationValue_skippedKey() {
+		val result = parseHelper.parse(domainmodelDslSnippets.skippedKey);
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.templateValue, 
+			null, 
+			"Pattern invalid, skipped keys [1, 3]"
+		);
+	}
+
+	@Test
+	def void domainmodel_templatedeclarationValue_notParsable() {
+		val result = parseHelper.parse(domainmodelDslSnippets.notParseable);
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.templateValue, 
+			null, 
+			"Pattern invalid: can't parse argument number: b"
+		);
+	}
 }

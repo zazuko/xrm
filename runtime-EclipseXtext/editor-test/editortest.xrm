@@ -5,6 +5,10 @@ template airportIri "http://airport.example.com/{0}"
 template exampleIri "http://example.com/"
 // TODO uncomment next line --> error for duplicated template name
 //template exampleIri "http://example.com/"
+// TODO uncomment next line --> error for unparseable format
+//template unparseable "http://airport.example.com/{0}/{b}"
+// TODO uncomment next line --> error for skipped keys [1, 2]
+// template skippingKeysIsPointless "http://airport.example.com/{0}/{3}"
 
 map EmployeeMapping from EMPLOYEE {
 	// TODO code complete on airportIri - get proposals of templates declared within this file

@@ -34,7 +34,7 @@ public class IriFormatAnalyzer {
 			f = new MessageFormat(input);
 		} catch (IllegalArgumentException e) {
 			// user input is rubbish
-			throw new IriFormatAnalyzerException(e);
+			throw new IriFormatAnalyzerException(e.getMessage(), e);
 		}
 		f.format(fakedArgs);
 
@@ -60,8 +60,8 @@ public class IriFormatAnalyzer {
 	static class IriFormatAnalyzerException extends Exception {
 		private static final long serialVersionUID = -7091028290621288352L;
 
-		public IriFormatAnalyzerException(Exception cause) {
-			super(cause);
+		public IriFormatAnalyzerException(String message, Exception cause) {
+			super(message, cause);
 		}
 	}
 
