@@ -5,9 +5,9 @@ import org.eclipse.xtext.Keyword;
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 
-public class RmlishCompletionProposalPredicate extends WhitelistedOutputTypeCompletionProposalPredicate {
+public class RmlishOutputTypeCompletionProposalPredicate extends WhitelistedEnumTypeCompletionProposalPredicate<OutputType> {
 
-	public RmlishCompletionProposalPredicate(String keywordLiteral, Keyword keyword, OutputType actualOutputType) {
+	public RmlishOutputTypeCompletionProposalPredicate(String keywordLiteral, Keyword keyword, OutputType actualOutputType) {
 		super(keywordLiteral, keyword, RdfMappingConstants.RMLISH_OUTPUTTYPES, actualOutputType);
 	}
 

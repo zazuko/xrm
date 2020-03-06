@@ -7,14 +7,14 @@ Domainmodel:
     (elements+=Element)*;
   
 Element:
-    SourceGroup | LogicalSource | Vocabulary | Mapping |
-    LanguageTagDefinition | DialectGroup;
-
-//DatatypesDefinition: 
-//	'datatypes' name=ID BLOCK_BEGIN
-//		prefix=Prefix
-//		(types+=Datatype)*
-//	BLOCK_END;
+    SourceGroup 
+    | LogicalSource 
+    | Vocabulary 
+    | Mapping 
+    | LanguageTagDefinition 
+    | DialectGroup
+    | XmlNamespaceExtension
+;
 
 Datatype:
 	name=ID (value=STRING)?;
@@ -32,6 +32,7 @@ SourceGroup:
     	('type' typeRef=SourceTypeRef)?
     	('source' (sourceIsQuery ?= 'query')? source=STRING)?
     	('dialect' dialect=[DialectGroup])?
+    	('xml-namespace-extension' xmlNamespaceExtension=[XmlNamespaceExtension])?
     	(logicalSources+=LogicalSource)*
     BLOCK_END;
     
@@ -40,6 +41,7 @@ LogicalSource:
 		('type' typeRef=SourceTypeRef)?
 		('source' (sourceIsQuery ?= 'query')? source=STRING)?
 		('dialect' dialect=[DialectGroup])?
+    	('xml-namespace-extension' xmlNamespaceExtension=[XmlNamespaceExtension])?
 		('iterator' iterator=STRING)?
 		'referenceables'
 			(referenceables+=Referenceable)*
@@ -98,6 +100,12 @@ DialectGroupDescription:
 BooleanLiteral:
     value?='true' | {BooleanLiteral} 'false';
     
+XmlNamespaceExtension:
+	'xml-namespace-extension' name=ID BLOCK_BEGIN
+		(prefixes+=Prefix)+
+	BLOCK_END
+;
+
 Vocabulary:	
 	'vocabulary' name=ID BLOCK_BEGIN
     	prefix=Prefix

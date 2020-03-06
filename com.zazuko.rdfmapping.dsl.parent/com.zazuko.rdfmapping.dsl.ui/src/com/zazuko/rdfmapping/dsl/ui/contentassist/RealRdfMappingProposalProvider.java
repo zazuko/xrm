@@ -18,11 +18,14 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
+import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
 import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
 
@@ -55,9 +58,10 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 			ICompletionProposalAcceptor acceptor) {
 		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
 			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
-			Predicate<ICompletionProposal> filter = new RmlishCompletionProposalPredicate("parent-map", keyword, type)//
-					.and(new WhitelistedOutputTypeCompletionProposalPredicate("multi-reference", keyword,
-							Collections.singleton(OutputType.CARML), type));
+			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("parent-map",
+					keyword, type)//
+							.and(new WhitelistedEnumTypeCompletionProposalPredicate<OutputType>("multi-reference",
+									keyword, Collections.singleton(OutputType.CARML), type));
 			super.completeKeyword(keyword, contentAssistContext,
 					new FilteringCompletionProposalAcceptor(acceptor, filter));
 
@@ -65,23 +69,53 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
 			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
 			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
-					new RmlishCompletionProposalPredicate("as", keyword, type)));
+					new RmlishOutputTypeCompletionProposalPredicate("as", keyword, type)));
+
+		} else if (contentAssistContext.getCurrentModel() instanceof SourceGroup) {
+			SourceGroup cast = (SourceGroup) contentAssistContext.getCurrentModel();
+			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
+					cast.getTypeRef() != null ? cast.getTypeRef().getType() : null);
+
+		} else if (contentAssistContext.getCurrentModel() instanceof LogicalSource) {
+			LogicalSource cast = (LogicalSource) contentAssistContext.getCurrentModel();
+			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
+					cast.getTypeRef() != null ? cast.getTypeRef().getType() : null);
 
 		} else {
 			super.completeKeyword(keyword, contentAssistContext, acceptor);
 		}
 	}
 
+	private void completeKeywordForSourceDefinition(Keyword keyword, ContentAssistContext contentAssistContext,
+			ICompletionProposalAcceptor acceptor, SourceType type) {
+
+		Predicate<ICompletionProposal> filter = //
+				new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("xml-namespace-extension", keyword, //
+						Collections.singleton(SourceType.XML), //
+						type) //
+								.and( //
+										new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("dialect",
+												keyword, //
+												Collections.singleton(SourceType.CSV), //
+												type)//
+								);
+
+		super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor, filter));
+
+	}
+
 	@Override
 	public void complete_BLOCK_BEGIN(EObject model, RuleCall ruleCall, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_BEGIN, RdfMappingConstants.TOKEN_BLOCK_BEGIN, null, context));
+		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_BEGIN,
+				RdfMappingConstants.TOKEN_BLOCK_BEGIN, null, context));
 	}
 
 	@Override
 	public void complete_BLOCK_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_END, RdfMappingConstants.TOKEN_BLOCK_END, null, context));
+		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_END,
+				RdfMappingConstants.TOKEN_BLOCK_END, null, context));
 	}
 
 	@Override
@@ -89,12 +123,10 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		EObject previousModel = context.getPreviousModel();
 		if (previousModel instanceof PredicateObjectMapping) {
-			return; // abort here - the cursor is within the assignments of property and term - do not propose cross references here (keywords will be offered)
+			return; // abort here - the cursor is within the assignments of property and term - do
+					// not propose cross references here (keywords will be offered)
 		}
 		super.completePredicateObjectMapping_Property(model, assignment, context, acceptor);
 	}
-
-	
-	
 
 }

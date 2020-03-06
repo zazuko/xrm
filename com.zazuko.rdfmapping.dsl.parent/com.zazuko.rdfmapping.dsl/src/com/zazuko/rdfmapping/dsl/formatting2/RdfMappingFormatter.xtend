@@ -32,6 +32,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 
 class RdfMappingFormatter extends AbstractFormatter2 {
 
@@ -52,7 +53,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.assignment(ga.sourceGroupAccess.nameAssignment_1).surround[oneSpace];
 		interior(
 			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_BEGINTerminalRuleCall_2),
-			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_ENDTerminalRuleCall_7)
+			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_ENDTerminalRuleCall_8)
 		)[indent];
 
 		// 'type'
@@ -64,6 +65,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.assignment(ga.sourceGroupAccess.sourceAssignment_4_2).prepend[oneSpace];
 		
 		regionFor.keyword(ga.sourceGroupAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.sourceGroupAccess.xmlNamespaceExtensionKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
 
 		logicalSources.forEach[format];
 	}
@@ -152,7 +154,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	def dispatch void format(LogicalSource it, extension IFormattableDocument document) {
 		interior(
 			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_BEGINTerminalRuleCall_2),
-			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_9)
+			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_10)
 		)[indent];
 
 		regionFor.keyword(ga.logicalSourceAccess.logicalSourceKeyword_0).prepend[setNewLines(0, 1, 2)].append[oneSpace];
@@ -160,17 +162,18 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.logicalSourceAccess.typeKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.sourceKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.logicalSourceAccess.iteratorKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.xmlNamespaceExtensionKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.iteratorKeyword_7_0).prepend[setNewLines(1)].append[oneSpace];
 
 		interior(
-			regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_7),
-			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_9)
+			regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_8),
+			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_10)
 		)[indent];
-		regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_7).prepend[setNewLines(2)];
+		regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_8).prepend[setNewLines(2)];
 
 		referenceables.forEach[format];
 
-		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_9).prepend[setNewLines(1)];
+		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_10).prepend[setNewLines(1)];
 	}
 
 	def dispatch void format(Referenceable it, extension IFormattableDocument document) {
@@ -322,5 +325,14 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.dialectGroupDescriptionAccess.skipInitialSpaceKeyword_10_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.dialectGroupDescriptionAccess.skipRowsKeyword_11_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.dialectGroupDescriptionAccess.trimKeyword_12_0).prepend[setNewLines(1)].append[oneSpace];
+	}
+	
+	def dispatch void format(XmlNamespaceExtension it, extension IFormattableDocument document) {
+		regionFor.assignment(ga.xmlNamespaceExtensionAccess.nameAssignment_1).surround[oneSpace];
+		interior(
+			regionFor.ruleCall(ga.xmlNamespaceExtensionAccess.BLOCK_BEGINTerminalRuleCall_2),
+			regionFor.ruleCall(ga.xmlNamespaceExtensionAccess.BLOCK_ENDTerminalRuleCall_4)
+		)[indent];
+		prefixes.forEach[format];
 	}
 }

@@ -15,15 +15,20 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
+import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
+import com.zazuko.rdfmapping.dsl.util.LazyMap
 import java.util.ArrayList
+import java.util.LinkedList
 import java.util.List
 import java.util.Set
+import java.util.TreeMap
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
 
@@ -85,6 +90,36 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 		}
 	}
+	
+	@Check
+	def void checkSourceTypeSpecificRules(SourceGroup it) {
+		val SourceType type = typeRef?.type;
+		if (type === null) {
+			return;
+		}
+		
+		if (!SourceType.CSV.equals(type) && dialect !== null) {
+			error("Dialect is for sourceType CSV only", RdfMappingPackage.Literals.SOURCE_GROUP__DIALECT);
+		}
+		if (!SourceType.XML.equals(type) && xmlNamespaceExtension !== null) {
+			error("xml-namespace-extension is for sourceType XML only", RdfMappingPackage.Literals.SOURCE_GROUP__XML_NAMESPACE_EXTENSION);
+		}
+	}
+
+	@Check
+	def void checkSourceTypeSpecificRules(LogicalSource it) {
+		val SourceType type = typeResolved;
+		if (type === null) {
+			return;
+		}
+		
+		if (!SourceType.CSV.equals(type) && dialect !== null) {
+			error("Dialect is for sourceType CSV only", RdfMappingPackage.Literals.LOGICAL_SOURCE__DIALECT);
+		}
+		if (!SourceType.XML.equals(type) && xmlNamespaceExtension !== null) {
+			error("xml-namespace-extension is for sourceType XML only", RdfMappingPackage.Literals.LOGICAL_SOURCE__XML_NAMESPACE_EXTENSION);
+		}
+	}
 
 	@Check
 	def void checkReferenceableDeclarationNullValueMarker(NullValueDeclaration it) {
@@ -143,13 +178,22 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 			error(msg, RdfMappingPackage.Literals.MAPPING__NAME, RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_MISSING);
 		} else {
+			// having an outputType
 			if (ownSourceType !== null) {
 				val Set<OutputType> compatibleOutputTypes = ownSourceType.compatibleOutputTypes;
 				if (!compatibleOutputTypes.contains(domainModel.outputType.type)) {
 					val String msg = "Output of type " + domainModel.outputType.type.literal +
 						" is incompatible. Expected one of " + compatibleOutputTypes.serialize2Message;
 					error(msg, RdfMappingPackage.Literals.MAPPING__NAME,
-						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE)
+						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE);
+				}
+			}
+			
+			if (source?.xmlNamespaceExtensionResolved !== null) {
+				if (!OutputType.CARML.equals(domainModel.outputType.type)) {
+					val String msg = "Source with xml-namespace-extension requires OutputType " + OutputType.CARML.serialize2Message;
+					error(msg, RdfMappingPackage.Literals.MAPPING__SOURCE,
+						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE);
 				}
 			}
 		}
@@ -200,6 +244,27 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 				RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS_NOFIX
 				);
 		}
+	}
+	
+	@Check
+	def void xmlNamespaceExtension(XmlNamespaceExtension it) {
+		val LazyMap<String, List<Prefix>> label2Prefix = new LazyMap(new TreeMap, [new LinkedList]);
+		for (Prefix current : prefixes) {
+			if (current.label !== null) {
+				if (current.label.contains(":")) {
+					// TODO think about prohibiting separators on any Prefix (changes user experience) (see proposal in issue #73)
+					error("No separator characters allowed", current, RdfMappingPackage.eINSTANCE.prefix_Label);
+				} else {
+					label2Prefix.getOrInit(current.label).add(current);
+				}
+			}
+		}
+		
+		label2Prefix.values.stream().filter[list | list.size > 1]
+			.flatMap[list | list.stream]
+			.forEach[duplicatedPrefix |
+			error("Duplicated Label", duplicatedPrefix, RdfMappingPackage.eINSTANCE.prefix_Label);
+		];
 	}
 
 }

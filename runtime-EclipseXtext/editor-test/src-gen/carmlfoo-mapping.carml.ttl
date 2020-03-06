@@ -10,6 +10,18 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rml:source [
 			a carml:Stream ;
 			carml:streamName "KWS" ;
+			carml:declaresNamespace [
+				carml:namespacePrefix "exa" ;
+				carml:namespaceName "http://www.example.com/audios/1.0/" ;
+			] ;
+			carml:declaresNamespace [
+				carml:namespacePrefix "employee" ;
+				carml:namespaceName "http://www.example.com/audios/1.0/" ;
+			] ;
+			carml:declaresNamespace [
+				carml:namespacePrefix "exb" ;
+				carml:namespaceName "http://www.example.com/books/1.0/" ;
+			] ;
 		] ;
 		rml:referenceFormulation ql:XPath
 	];

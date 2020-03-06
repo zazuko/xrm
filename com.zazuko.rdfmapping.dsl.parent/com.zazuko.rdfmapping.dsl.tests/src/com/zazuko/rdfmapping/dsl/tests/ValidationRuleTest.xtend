@@ -6,6 +6,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.tests.snippets.LogicalSourceDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.MappingValidationDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
+import com.zazuko.rdfmapping.dsl.tests.snippets.XmlNamespaceExtensionDSLSnippets
 import javax.inject.Inject
 import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.testing.InjectWith
@@ -14,6 +15,7 @@ import org.eclipse.xtext.testing.util.ParseHelper
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
+import com.zazuko.rdfmapping.dsl.tests.snippets.SourceGroupDSLSnippets
 
 @ExtendWith(InjectionExtension)
 @InjectWith(RdfMappingInjectorProvider)
@@ -25,6 +27,8 @@ class ValidationRuleTest {
 	@Inject OutputTypeValidationDSLSnippets outputTypeSnippets
 	@Inject MappingValidationDSLSnippets mappingSnippets
 	@Inject LogicalSourceDSLSnippets logicalSourceSnippets
+	@Inject SourceGroupDSLSnippets sourceGroupSnippets
+	@Inject XmlNamespaceExtensionDSLSnippets xmlNamespaceExtensionSnippets
 
 	// Validation tests for the validation rules about the use of type
 	@Test
@@ -317,7 +321,6 @@ class ValidationRuleTest {
 			null, 
 			"Type 'csv' required for null value declaration, but was 'xml"
 		);
-		
 	}
 
 	@Test
@@ -329,7 +332,123 @@ class ValidationRuleTest {
 			RdfMappingValidationCodes.DOMAINMODEL_OUTPUTTYPE_SUPERFLUOUS, 
 			"No outputType needed when no mapping is declared."
 		);
+	}
+
+	@Test
+	def void xmlNsExtension_ok() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.ok());
 		
+		validationTester.assertNoErrors(result);
+	}
+	@Test
+	def void xmlNsExtension_label_withSeparator() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.separatorInLabel());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.prefix, 
+			null, 
+			"No separator characters allowed"
+		);
+	}
+
+	@Test
+	def void xmlNsExtension_label_duplicated() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.duplicatedPrefix());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.prefix, 
+			null, 
+			"Duplicated label"
+		);
 	}
 	
+	@Test
+	def void xmlNsExtensionRef_ok() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.outputAndXmlNamespaceExtensionRef("carml", true));
+		
+		validationTester.assertNoErrors(result);
+	}
+
+	@Test
+	def void xmlNsExtensionRef_outputRml_fail() {
+		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.outputAndXmlNamespaceExtensionRef("rml", true));
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.mapping, 
+			RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE, 
+			"Source with xml-namespace-extension requires OutputType [carml]"
+		);
+	}
+	
+	@Test
+	def void logicalSource_dialect_onCSV_ok() {
+		val result = parseHelper.parse(logicalSourceSnippets.withDialect("csv"));
+		
+		validationTester.assertNoErrors(result);
+	}
+
+	@Test
+	def void logicalSource_dialect_onXML() {
+		val result = parseHelper.parse(logicalSourceSnippets.withDialect("xml"));
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.logicalSource, 
+			null,
+			"Dialect is for sourceType CSV only"
+		);
+	}
+	
+	@Test
+	def void logicalSource_xmlNsExt_onXML_ok() {
+		val result = parseHelper.parse(logicalSourceSnippets.withXmlNsExt("xml"));
+		
+		validationTester.assertNoErrors(result);
+	}
+
+	@Test
+	def void logicalSource_xmlNsExt_onCSV() {
+		val result = parseHelper.parse(logicalSourceSnippets.withXmlNsExt("csv"));
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.logicalSource, 
+			null,
+			"xml-namespace-extension is for sourceType XML only"
+		);
+	}
+
+	@Test
+	def void sourceGroup_dialect_onCSV_ok() {
+		val result = parseHelper.parse(sourceGroupSnippets.withDialect("csv"));
+		
+		validationTester.assertNoErrors(result);
+	}
+
+	@Test
+	def void sourceGroup_dialect_onXML() {
+		val result = parseHelper.parse(sourceGroupSnippets.withDialect("xml"));
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.sourceGroup, 
+			null,
+			"Dialect is for sourceType CSV only"
+		);
+	}
+
+	@Test
+	def void sourceGroup_xmlNsExt_onXML_ok() {
+		val result = parseHelper.parse(sourceGroupSnippets.withXmlNsExt("xml"));
+		
+		validationTester.assertNoErrors(result);
+	}
+
+	@Test
+	def void sourceGroup_xmlNsExt_onCSV() {
+		val result = parseHelper.parse(sourceGroupSnippets.withXmlNsExt("csv"));
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.sourceGroup, 
+			null,
+			"xml-namespace-extension is for sourceType XML only"
+		);
+	}
 }
