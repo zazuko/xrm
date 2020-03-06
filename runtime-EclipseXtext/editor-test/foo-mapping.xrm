@@ -13,6 +13,7 @@ map FooMapping from KEYWORDSOURCE {
 	properties
 		thing.color constant "blue";
 		keyword.no from ^map;
+		// TODO remove ';' on next line, do code completion, get ';' offered
 		keyword.^map from ^map;
 
 		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'keyword' gets modified --> error for missing Term

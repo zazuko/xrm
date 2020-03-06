@@ -125,18 +125,20 @@ RdfClass:
     
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
-		'subject' subjectIriMapping=TemplateValuedTerm
+		'subject' subjectIriMapping=TemplateValuedTerm LINE_END
 		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
 	BLOCK_END;
 	
 SubjectTypeMapping:	
-	type=[RdfClass|RdfPrefixedName];
+	type=[RdfClass|RdfPrefixedName]
+;
 
 PredicateObjectMapping:	
 	property=[RdfProperty|RdfPrefixedName] 
 	term=ValuedTerm? // must be optional in order to get the quickfix working (must be serializable on missing term) --> manual validation for term === null
 	// see: com.zazuko.rdfmapping.dsl.ui.quickfix.RealRdfMappingQuickfixProvider.missingRdfProperty(Issue, IssueResolutionAcceptor)
+	lineEnd?=LINE_END // hack in order to improve code completion - see com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.complete_LINE_END(EObject, RuleCall, ContentAssistContext, ICompletionProposalAcceptor) --> isLineEnd
 ;
 	
 ValuedTerm:
@@ -152,30 +154,30 @@ ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|RdfPrefixedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	('as' termTypeRef=TermTypeRef)?
-	LINE_END;
+;
 
 MultiReferenceValuedTerm:
 	'multi-reference' 'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|RdfPrefixedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	('as' termTypeRef=TermTypeRef)?
-	LINE_END;
+;
 
 ConstantValuedTerm:
 	'constant' constant=STRING
-	LINE_END;
+;
 
 TemplateValuedTerm:
 	'template' template=STRING 'with' (references+=[Referenceable])+
 	('as' termTypeRef=TermTypeRef)?
-	LINE_END;
+;
 	
 LinkedResourceTerm:
 	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
-	 LINE_END;
+;
 	 
 ParentTriplesMapTerm:
 	'parent-map' mapping=[Mapping]
-	LINE_END;
+;
 
 QualifiedName:
     ID ('.' ID)*;

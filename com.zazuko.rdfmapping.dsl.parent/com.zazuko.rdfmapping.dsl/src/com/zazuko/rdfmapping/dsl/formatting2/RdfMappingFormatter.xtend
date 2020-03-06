@@ -191,33 +191,34 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 
 		interior(
 			regionFor.ruleCall(ga.mappingAccess.BLOCK_BEGINTerminalRuleCall_4),
-			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_9)
+			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
 		)[indent];
 		regionFor.ruleCall(ga.mappingAccess.BLOCK_BEGINTerminalRuleCall_4).append[setNewLines(1)];
 
 		regionFor.keyword(ga.mappingAccess.subjectKeyword_5).append[oneSpace];
 		subjectIriMapping?.format;
+		regionFor.ruleCall(ga.mappingAccess.LINE_ENDTerminalRuleCall_7).prepend[noSpace];
 
 		// 'types'
 		if (!poMappings.empty) {
 			interior(
-				regionFor.keyword(ga.mappingAccess.typesKeyword_7_0),
-				regionFor.keyword(ga.mappingAccess.propertiesKeyword_8_0)
+				regionFor.keyword(ga.mappingAccess.typesKeyword_8_0),
+				regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0)
 			)[indent];
 		} else {
 			interior(
-				regionFor.keyword(ga.mappingAccess.typesKeyword_7_0),
-				regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_9)
+				regionFor.keyword(ga.mappingAccess.typesKeyword_8_0),
+				regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
 			)[indent];
 		}
-		regionFor.keyword(ga.mappingAccess.typesKeyword_7_0).prepend[setNewLines(2)];
+		regionFor.keyword(ga.mappingAccess.typesKeyword_8_0).prepend[setNewLines(2)];
 		subjectTypeMappings.forEach[format];
 
 		// 'properties'
-		regionFor.keyword(ga.mappingAccess.propertiesKeyword_8_0).prepend[setNewLines(2)];
+		regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0).prepend[setNewLines(2)];
 		interior(
-			regionFor.keyword(ga.mappingAccess.propertiesKeyword_8_0),
-			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_9)
+			regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0),
+			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
 		)[indent];
 		poMappings.forEach[format];
 	}
@@ -231,6 +232,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 			oneSpace
 		];
 		term?.format;
+		regionFor.assignment(ga.predicateObjectMappingAccess.lineEndAssignment_2).prepend[noSpace];
 	}
 
 	def dispatch void format(ReferenceValuedTerm it, extension IFormattableDocument document) {
@@ -244,8 +246,6 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.referenceValuedTermAccess.languageTagKeyword_2_1_1).surround[oneSpace];
 
 		regionFor.keyword(ga.referenceValuedTermAccess.asKeyword_3_0).surround[oneSpace];
-		
-		regionFor.ruleCall(ga.referenceValuedTermAccess.LINE_ENDTerminalRuleCall_4).prepend[noSpace];
 	}
 
 	def dispatch void format(MultiReferenceValuedTerm it, extension IFormattableDocument document) {
@@ -260,13 +260,10 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.multiReferenceValuedTermAccess.languageTagKeyword_3_1_1).surround[oneSpace];
 
 		regionFor.keyword(ga.multiReferenceValuedTermAccess.asKeyword_4_0).surround[oneSpace];
-
-		regionFor.ruleCall(ga.multiReferenceValuedTermAccess.LINE_ENDTerminalRuleCall_5).prepend[noSpace];
 	}
 
 	def dispatch void format(ConstantValuedTerm it, extension IFormattableDocument document) {
 		regionFor.keyword(ga.constantValuedTermAccess.constantKeyword_0).append[oneSpace];
-		regionFor.ruleCall(ga.constantValuedTermAccess.LINE_ENDTerminalRuleCall_2).prepend[noSpace];
 	}
 
 	def dispatch void format(TemplateValuedTerm it, extension IFormattableDocument document) {
@@ -274,19 +271,16 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.templateValuedTermAccess.withKeyword_2).prepend[oneSpace];
 		regionFor.assignment(ga.templateValuedTermAccess.referencesAssignment_3).prepend[oneSpace];
 		regionFor.keyword(ga.templateValuedTermAccess.asKeyword_4_0).surround[oneSpace];
-		regionFor.ruleCall(ga.templateValuedTermAccess.LINE_ENDTerminalRuleCall_5).prepend[noSpace];
 	}
 
 	def dispatch void format(LinkedResourceTerm it, extension IFormattableDocument document) {
 		regionFor.keyword(ga.linkedResourceTermAccess.linkKeyword_0).surround[oneSpace];
 		regionFor.keyword(ga.linkedResourceTermAccess.withKeyword_2).prepend[oneSpace];
 		regionFor.assignment(ga.linkedResourceTermAccess.referencesAssignment_3).prepend[oneSpace];
-		regionFor.ruleCall(ga.linkedResourceTermAccess.LINE_ENDTerminalRuleCall_4).prepend[noSpace];
 	}
 
 	def dispatch void format(ParentTriplesMapTerm it, extension IFormattableDocument document) {
 		regionFor.keyword(ga.parentTriplesMapTermAccess.parentMapKeyword_0).surround[oneSpace];
-		regionFor.ruleCall(ga.parentTriplesMapTermAccess.LINE_ENDTerminalRuleCall_2).prepend[noSpace];
 	}
 
 	def dispatch void format(LanguageTagDefinition it, extension IFormattableDocument document) {
