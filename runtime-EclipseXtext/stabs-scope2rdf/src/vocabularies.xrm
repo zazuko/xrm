@@ -3,7 +3,7 @@ language-tags {
 }
 
 vocabulary xsd {
-	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
+	prefix "xsd" "http://www.w3.org/2001/XMLSchema#"
 
 	datatypes
 		int
@@ -11,7 +11,7 @@ vocabulary xsd {
 }
 
 vocabulary dc {
-	prefix "dc:" "http://purl.org/dc/terms/"
+	prefix "dc" "http://purl.org/dc/terms/"
 
 	classes
 		BibliographicResource
@@ -26,7 +26,7 @@ vocabulary dc {
  *     attemt to model partners and (ablieferungs-)projects
  */
 vocabulary foaf {
-	prefix "foaf:" "http://xmlns.com/foaf/0.1/"
+	prefix "foaf" "http://xmlns.com/foaf/0.1/"
 
 	classes
 		Agent
@@ -43,7 +43,7 @@ vocabulary foaf {
 
 // Web annotation ontology
 vocabulary oa {
-	prefix "oa:" "http://www.w3.org/ns/oa#"
+	prefix "oa" "http://www.w3.org/ns/oa#"
 
 	classes
 		Annotation
@@ -54,7 +54,7 @@ vocabulary oa {
 }
 
 vocabulary ric {
-	prefix "ric:" "http://purl.org/ica/ric#"
+	prefix "ric" "http://purl.org/ica/ric#"
 
 	classes
 		Record
@@ -72,7 +72,7 @@ vocabulary ric {
 }
 
 vocabulary skos {
-	prefix "skos:" "http://www.w3.org/2004/02/skos/core#"
+	prefix "skos" "http://www.w3.org/2004/02/skos/core#"
 
 	classes
 		Concept
@@ -84,7 +84,7 @@ vocabulary skos {
 }
 
 vocabulary schema {
-	prefix "schema:" "http://schema.org/"
+	prefix "schema" "http://schema.org/"
 
 	classes
 		Person
@@ -94,7 +94,7 @@ vocabulary schema {
 }
 
 vocabulary stabs {
-	prefix "stabs:" "http://data.staatsarchiv-bs.ch/vocab/"
+	prefix "stabs" "http://data.staatsarchiv-bs.ch/vocab/"
 
 	classes
 		Ablieferung

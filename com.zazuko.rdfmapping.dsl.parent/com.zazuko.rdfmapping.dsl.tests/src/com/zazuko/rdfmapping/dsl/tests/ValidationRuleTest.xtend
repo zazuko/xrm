@@ -7,6 +7,7 @@ import com.zazuko.rdfmapping.dsl.tests.snippets.DomainmodelDslSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.LogicalSourceDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.MappingValidationDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
+import com.zazuko.rdfmapping.dsl.tests.snippets.PrefixSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.SourceGroupDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.XmlNamespaceExtensionDSLSnippets
 import javax.inject.Inject
@@ -31,6 +32,8 @@ class ValidationRuleTest {
 	@Inject SourceGroupDSLSnippets sourceGroupSnippets
 	@Inject XmlNamespaceExtensionDSLSnippets xmlNamespaceExtensionSnippets
 	@Inject DomainmodelDslSnippets domainmodelDslSnippets
+	@Inject PrefixSnippets prefixSnippets
+
 
 	// Validation tests for the validation rules about the use of type
 	@Test
@@ -326,6 +329,17 @@ class ValidationRuleTest {
 	}
 	
 	@Test
+	def void mapping_subjectAsLiteral() {
+		val result = parseHelper.parse(mappingSnippets.subjectAsLiteral());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.termTypeRef, 
+			null, 
+			"Literal is invalid on the subject"
+		);
+	}
+	
+	@Test
 	def void logicalSource_xml_withNullValueDeclaration() {
 		val result = parseHelper.parse(logicalSourceSnippets.nullValueDeclarationOnXml());
 		
@@ -360,7 +374,7 @@ class ValidationRuleTest {
 		
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.prefix, 
-			null, 
+			RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR, 
 			"No separator characters allowed"
 		);
 	}
@@ -494,8 +508,20 @@ class ValidationRuleTest {
 		
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.templateValue, 
-			null, 
+			null,
 			"Pattern invalid: can't parse argument number: b"
 		);
+	}
+
+	@Test
+	def void prefix_labelWithSeparator() {
+		val result = parseHelper.parse(prefixSnippets.labelWithSeparator);
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.prefix, 
+			RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR,
+			"No separator characters allowed"
+		);
+		
 	}
 }

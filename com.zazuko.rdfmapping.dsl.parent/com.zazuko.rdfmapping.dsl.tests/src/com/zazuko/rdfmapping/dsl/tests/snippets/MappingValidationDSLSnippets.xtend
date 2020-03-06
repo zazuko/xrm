@@ -149,4 +149,39 @@ class MappingValidationDSLSnippets {
 				one
 		}
 	'''
+	
+	def subjectAsLiteral() '''
+		output rml
+		
+		map EmployeeMapping from EMPLOYEE {
+			subject template "http://airport.example.com/{0}" with id as Literal;
+		
+			types
+				employee.Employee
+		
+			properties
+				employee.one from EMPNO;
+		}
+
+		
+		logical-source EMPLOYEE {
+			type xml
+			source "EMP"
+			iterator "/Employees/Employee"
+		
+			referenceables
+				id
+				EMPNO
+		}
+		
+		vocabulary employee {
+			prefix "employee." "http://example.com/employee"
+		
+			classes
+				Employee
+		
+			properties
+				one
+		}
+	'''
 }

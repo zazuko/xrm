@@ -23,6 +23,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.TermType
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
@@ -210,6 +211,14 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 				}
 			}
 		}
+		
+		// no literal on subjectIriMapping
+		if (subjectIriMapping !== null 
+			&& subjectIriMapping.termTypeRef !== null
+			&& TermType.LITERAL.equals(subjectIriMapping.termTypeRef.type)
+		) {
+			error("Literal is invalid on the subject", subjectIriMapping.termTypeRef, RdfMappingPackage.Literals.TERM_TYPE_REF__TYPE);
+		}
 	}
 
 	@Check
@@ -260,16 +269,18 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	}
 	
 	@Check
+	def void prefixLabelWithoutSeparator(Prefix it) {
+		if (label !== null && label.contains(RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER)) {
+			error("No separator characters allowed", it, RdfMappingPackage.eINSTANCE.prefix_Label, RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR);
+		}
+	}
+	
+	@Check
 	def void xmlNamespaceExtension(XmlNamespaceExtension it) {
 		val LazyMap<String, List<Prefix>> label2Prefix = new LazyMap(new TreeMap, [new LinkedList]);
 		for (Prefix current : prefixes) {
 			if (current.label !== null) {
-				if (current.label.contains(":")) {
-					// TODO think about prohibiting separators on any Prefix (changes user experience) (see proposal in issue #73)
-					error("No separator characters allowed", current, RdfMappingPackage.eINSTANCE.prefix_Label);
-				} else {
-					label2Prefix.getOrInit(current.label).add(current);
-				}
+				label2Prefix.getOrInit(current.label).add(current);
 			}
 		}
 		
