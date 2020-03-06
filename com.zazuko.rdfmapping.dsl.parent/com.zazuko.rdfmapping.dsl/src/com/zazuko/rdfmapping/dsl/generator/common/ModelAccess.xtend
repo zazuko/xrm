@@ -30,6 +30,8 @@ import java.util.List
 import java.util.Set
 import javax.inject.Inject
 import org.eclipse.emf.ecore.EObject
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueRef
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
 
 class ModelAccess {
 	
@@ -184,6 +186,14 @@ class ModelAccess {
 			tmp = tmp.eContainer;
 		}
 		return null;
+	}
+	
+	def dispatch String templateValueResolved(TemplateValueRef it) {
+		return templateDeclaration?.value?.templateValue;
+	}
+	
+	def dispatch String templateValueResolved(TemplateValueDeclaration it) {
+		return templateValue;
 	}
 
 }

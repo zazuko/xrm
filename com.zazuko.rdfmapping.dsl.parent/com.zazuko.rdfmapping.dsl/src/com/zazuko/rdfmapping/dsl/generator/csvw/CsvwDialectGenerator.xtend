@@ -3,12 +3,12 @@ package com.zazuko.rdfmapping.dsl.generator.csvw
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroupDescription
-import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SubjectTypeMapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValue
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import java.text.MessageFormat
 import java.util.List
@@ -145,11 +145,6 @@ class CsvwDialectGenerator {
 		"valueUrl": "«toTemplateString»"
 	'''
 	
-	def dispatch valueReference(LinkedResourceTerm it) '''
-		"titles": "«references.toList.get(0).valueResolved»",
-		"valueUrl": "«toTemplateString»"
-	'''
-	
 	def dispatch valueReference(ParentTriplesMapTerm it) '''
 		"virtual": true,
 		"valueUrl": "unsupported"
@@ -171,12 +166,8 @@ class CsvwDialectGenerator {
 		template.apply(references);
 	}
 	
-	def toTemplateString(LinkedResourceTerm it) {		
-		mapping.subjectIriMapping.template.apply(references);
-	}
-	
-	def apply(String template, List<Referenceable> refs) {
-		MessageFormat.format(template, refs.toMessageFormatArguments());
+	def apply(TemplateValue template, List<Referenceable> refs) {
+		MessageFormat.format(template.templateValueResolved, refs.toMessageFormatArguments());
 	}
 	
 	def toMessageFormatArguments(List<Referenceable> refs) {

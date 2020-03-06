@@ -14,6 +14,7 @@ Element:
     | LanguageTagDefinition 
     | DialectGroup
     | XmlNamespaceExtension
+    | TemplateDeclaration
 ;
 
 Datatype:
@@ -122,6 +123,22 @@ RdfProperty:
 	
 RdfClass:
 	name=ID (value=STRING)?;	
+
+TemplateDeclaration:
+	'template' name=ID value=TemplateValueDeclaration
+;
+
+TemplateValue:
+	TemplateValueDeclaration | TemplateValueRef
+;
+
+TemplateValueDeclaration:
+	templateValue=STRING
+;
+
+TemplateValueRef:
+	templateDeclaration=[TemplateDeclaration]
+;
     
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
@@ -145,7 +162,6 @@ ValuedTerm:
 	  ReferenceValuedTerm 
 	| MultiReferenceValuedTerm 
 	| TemplateValuedTerm 
-	| LinkedResourceTerm 
 	| ConstantValuedTerm 
 	| ParentTriplesMapTerm
 ;
@@ -167,14 +183,10 @@ ConstantValuedTerm:
 ;
 
 TemplateValuedTerm:
-	'template' template=STRING 'with' (references+=[Referenceable])+
+	'template' template=TemplateValue 'with' (references+=[Referenceable])+
 	('as' termTypeRef=TermTypeRef)?
 ;
 	
-LinkedResourceTerm:
-	'link' mapping=[Mapping] 'with' (references+=[Referenceable])+
-;
-	 
 ParentTriplesMapTerm:
 	'parent-map' mapping=[Mapping]
 ;

@@ -31,6 +31,7 @@ import java.util.Set
 import java.util.TreeMap
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermType
 
@@ -150,6 +151,12 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 				RdfMappingPackage.Literals.DOMAINMODEL__OUTPUT_TYPE,
 				RdfMappingValidationCodes.DOMAINMODEL_OUTPUTTYPE_SUPERFLUOUS);
 		}
+		
+		new DuplicationCheck().check(elements.filter(TemplateDeclaration).toList,
+			[name],
+			[name, declaration | error("Declaration name already in use: " + name, declaration, RdfMappingPackage.Literals.TEMPLATE_DECLARATION__NAME);]
+		)
+		
 	}
 
 	@Check

@@ -11,6 +11,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
 
 /**
  * Customization of the default outline structure.
@@ -34,6 +35,10 @@ class RdfMappingOutlineTreeProvider extends DefaultOutlineTreeProvider {
     
     def _createNode(IOutlineNode parentNode, TemplateValuedTerm modelElement) {
     	
+    }
+    
+    def _isLeaf(TemplateDeclaration it) {
+    	return true
     }
     
     def _isLeaf(Referenceable it) {

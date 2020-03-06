@@ -4,13 +4,13 @@ import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag
-import com.zazuko.rdfmapping.dsl.rdfMapping.LinkedResourceTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValue
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
@@ -107,10 +107,6 @@ class RmlDialectGenerator {
 		«ENDIF»
 	'''
 	
-	def dispatch objectTermMap(LinkedResourceTerm it) '''
-		rr:template "«toTemplateString»" ;
-	'''
-	
 	def dispatch objectTermMap(ParentTriplesMapTerm it) '''
 		rr:parentTriplesMap  <«mapping.localId»> ;
 	'''
@@ -144,12 +140,8 @@ class RmlDialectGenerator {
 		template.apply(references);
 	}
 	
-	def toTemplateString(LinkedResourceTerm it) {		
-		mapping.subjectIriMapping.template.apply(references);
-	}
-	
-	def apply(String template, List<Referenceable> refs) {
-		MessageFormat.format(template, refs.toMessageFormatArguments());
+	def apply(TemplateValue template, List<Referenceable> refs) {
+		MessageFormat.format(template.templateValueResolved, refs.toMessageFormatArguments());
 	}
 	
 	def toMessageFormatArguments(List<Referenceable> refs) {

@@ -1,10 +1,15 @@
 // TODO uncomment next line --> warning on 'map' + quickfix
 output rml
 
+template airportIri "http://airport.example.com/{0}"
+template exampleIri "http://example.com/"
+// TODO uncomment next line --> error for duplicated template name
+//template exampleIri "http://example.com/"
+
 map EmployeeMapping from EMPLOYEE {
+	// TODO code complete on airportIri - get proposals of templates declared within this file
+	subject template airportIri with id;
 	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
-	// subject template "http://airport.example.com/{0}" with id as Literal;
-	subject template "http://airport.example.com/{0}" with id;
 	// subject template "http://airport.example.com/{0}" with id as Literal;
 
 	types
@@ -33,6 +38,8 @@ map EmployeeMapping2 from EMPLOYEE {
 
 	properties
 		employee.no from EMPNO;
+		thing.color template airportIri with id;
+		thing.color template "http://manualstuff.com/colors/{0}" with id;
 		
 }
 
@@ -58,6 +65,6 @@ vocabulary employee {
 
 	properties
 		no
-yes
+		yes
 }
 
