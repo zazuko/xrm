@@ -31,6 +31,8 @@ import java.util.Set
 import java.util.TreeMap
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.TermType
 
 /**
  * This class contains custom validation rules. 
@@ -197,6 +199,14 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 				}
 			}
 		}
+		
+		// no literal on subjectIriMapping
+		if (subjectIriMapping !== null 
+			&& subjectIriMapping.termTypeRef !== null
+			&& TermType.LITERAL.equals(subjectIriMapping.termTypeRef.type)
+		) {
+			error("Literal is invalid on the subject", subjectIriMapping.termTypeRef, RdfMappingPackage.Literals.TERM_TYPE_REF__TYPE);
+		}
 	}
 
 	@Check
@@ -266,5 +276,5 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			error("Duplicated Label", duplicatedPrefix, RdfMappingPackage.eINSTANCE.prefix_Label);
 		];
 	}
-
+	
 }

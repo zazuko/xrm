@@ -313,6 +313,17 @@ class ValidationRuleTest {
 	}
 	
 	@Test
+	def void mapping_subjectAsLiteral() {
+		val result = parseHelper.parse(mappingSnippets.subjectAsLiteral());
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.termTypeRef, 
+			null, 
+			"Literal is invalid on the subject"
+		);
+	}
+	
+	@Test
 	def void logicalSource_xml_withNullValueDeclaration() {
 		val result = parseHelper.parse(logicalSourceSnippets.nullValueDeclarationOnXml());
 		
