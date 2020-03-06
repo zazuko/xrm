@@ -28,7 +28,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
 import com.zazuko.rdfmapping.dsl.util.LazyMap
-import com.zazuko.rdfmapping.dsl.validation.IriFormatAnalyzer.IriFormatAnalyzerException
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
@@ -36,6 +35,7 @@ import java.util.Set
 import java.util.TreeMap
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
+import com.zazuko.rdfmapping.dsl.validation.TemplateFormatAnalyzer.TemplateFormatAnalyzerException
 
 /**
  * This class contains custom validation rules. 
@@ -51,7 +51,7 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	extension InputOutputCompatibility
 	
 	@Inject
-	IriFormatAnalyzer iriAnalyzer
+	TemplateFormatAnalyzer templateAnalyzer
 
 	@Check
 	def void checkTypeDeclarations(LogicalSource logicalSource) {
@@ -294,15 +294,15 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	@Check
 	def void templateFormat(TemplateValueDeclaration it) {
 		if (templateValue !== null) {
-			var IriFormatAnalysis data;
+			var TemplateFormatAnalysis data;
 			try {
-				data = iriAnalyzer.analyzeFormats(templateValue);
-			} catch (IriFormatAnalyzerException e) {
+				data = templateAnalyzer.analyzeFormats(templateValue);
+			} catch (TemplateFormatAnalyzerException e) {
 				error("Pattern invalid: " + e.message, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
 				return;
 			}
-			if (!data.skippedKeys.empty) {
-				error("Pattern invalid, skipped keys " + data.skippedKeys.toList.toString, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
+			if (!data.getSkippedKeys.empty) {
+				error("Pattern invalid, skipped keys " + data.getSkippedKeys.toList.toString, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
 			}
 		}
 	}
@@ -313,16 +313,16 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			return;
 		}
 		val String templateValue = template.templateValueResolved;
-		var IriFormatAnalysis data;
+		var TemplateFormatAnalysis data;
 		try {
-			data = iriAnalyzer.analyzeFormats(templateValue);
-		} catch (IriFormatAnalyzerException e) {
+			data = templateAnalyzer.analyzeFormats(templateValue);
+		} catch (TemplateFormatAnalyzerException e) {
 			// this is not an issue to be marked here - just go away
 			return;
 		}
 		
-		if (data.usedKeys.size != references.size) {
-			warning("Pattern '" + templateValue + "' requires " + data.usedKeys.size + " argument(s), but there are " + references.size,
+		if (data.getUsedKeys.size != references.size) {
+			warning("Pattern '" + templateValue + "' requires " + data.getUsedKeys.size + " argument(s), but there are " + references.size,
 				it,
 				null
 			);

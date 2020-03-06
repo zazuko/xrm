@@ -2,11 +2,11 @@ package com.zazuko.rdfmapping.dsl.validation;
 
 import java.util.Set;
 
-public class IriFormatAnalysis {
+public class TemplateFormatAnalysis {
 
 	private Set<Integer> usedKeys, skippedKeys;
 
-	public IriFormatAnalysis(Set<Integer> usedKeys, Set<Integer> skippedKeys) {
+	public TemplateFormatAnalysis(Set<Integer> usedKeys, Set<Integer> skippedKeys) {
 		super();
 		this.usedKeys = usedKeys;
 		this.skippedKeys = skippedKeys;
@@ -22,7 +22,7 @@ public class IriFormatAnalysis {
 
 	@Override
 	public String toString() {
-		return "IriFormatValidationDiagnose [usedKeys=" + usedKeys + ", skippedKeys=" + skippedKeys + "]";
+		return "TemplateFormatValidationDiagnose [usedKeys=" + usedKeys + ", skippedKeys=" + skippedKeys + "]";
 	}
 	
 	

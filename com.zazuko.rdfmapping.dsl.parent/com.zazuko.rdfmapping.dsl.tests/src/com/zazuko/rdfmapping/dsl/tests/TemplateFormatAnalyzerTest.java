@@ -12,18 +12,18 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.zazuko.rdfmapping.dsl.validation.IriFormatAnalysis;
-import com.zazuko.rdfmapping.dsl.validation.IriFormatAnalyzer;
+import com.zazuko.rdfmapping.dsl.validation.TemplateFormatAnalysis;
+import com.zazuko.rdfmapping.dsl.validation.TemplateFormatAnalyzer;
 
 @RunWith(Parameterized.class)
-public class IriFormatAnalyzerTest {
+public class TemplateFormatAnalyzerTest {
 
-	private IriFormatAnalyzer analyzer;
+	private TemplateFormatAnalyzer analyzer;
 	private int[] usedKeys;
 	private int[] unusedKeys;
 	private String input;
 
-	public IriFormatAnalyzerTest(int[] usedKeys, int[] unusedKeys, String input) {
+	public TemplateFormatAnalyzerTest(int[] usedKeys, int[] unusedKeys, String input) {
 		this.usedKeys = usedKeys;
 		this.unusedKeys = unusedKeys;
 		this.input = input;
@@ -31,12 +31,12 @@ public class IriFormatAnalyzerTest {
 
 	@Before
 	public void before() {
-		this.analyzer = new IriFormatAnalyzer();
+		this.analyzer = new TemplateFormatAnalyzer();
 	}
 
 	@Test
 	public void test() throws Exception {
-		IriFormatAnalysis actual = this.analyzer.analyzeFormats(this.input);
+		TemplateFormatAnalysis actual = this.analyzer.analyzeFormats(this.input);
 		compare(this.usedKeys, actual.getUsedKeys());
 		compare(this.unusedKeys, actual.getSkippedKeys());
 	}

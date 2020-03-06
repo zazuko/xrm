@@ -4,9 +4,9 @@ import java.text.MessageFormat;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class IriFormatAnalyzer {
+public class TemplateFormatAnalyzer {
 
-	public IriFormatAnalysis analyzeFormats(String input) throws IriFormatAnalyzerException {
+	public TemplateFormatAnalysis analyzeFormats(String input) throws TemplateFormatAnalyzerException {
 		int maxNrOfArguments = (int) Math.ceil((double) input.length() / 3.0); // a parameter needs at least 3
 																				// characters
 		boolean[] readAttributes = new boolean[maxNrOfArguments];
@@ -34,7 +34,7 @@ public class IriFormatAnalyzer {
 			f = new MessageFormat(input);
 		} catch (IllegalArgumentException e) {
 			// user input is rubbish
-			throw new IriFormatAnalyzerException(e.getMessage(), e);
+			throw new TemplateFormatAnalyzerException(e.getMessage(), e);
 		}
 		f.format(fakedArgs);
 
@@ -54,13 +54,13 @@ public class IriFormatAnalyzer {
 			}
 		}
 
-		return new IriFormatAnalysis(usedKeys, unusedKeys);
+		return new TemplateFormatAnalysis(usedKeys, unusedKeys);
 	}
 
-	static class IriFormatAnalyzerException extends Exception {
+	static class TemplateFormatAnalyzerException extends Exception {
 		private static final long serialVersionUID = -7091028290621288352L;
 
-		public IriFormatAnalyzerException(String message, Exception cause) {
+		public TemplateFormatAnalyzerException(String message, Exception cause) {
 			super(message, cause);
 		}
 	}
