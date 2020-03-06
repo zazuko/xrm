@@ -20,7 +20,8 @@ public interface RdfMappingConstants {
 	public static final String TOKEN_QNAME_SEPARATOR_RDFPREFIX = TOKEN_QNAME_SEPARATOR_DEFAULT;
 	public static final char TOKEN_QNAME_SEPARATOR_RDFPREFIX_CHAR = TOKEN_QNAME_SEPARATOR_RDFPREFIX.charAt(0);
 	
-	
+	public static final String PREFIX_LABEL_SEPARATOR_CHARACTER = ":";
+	public static final String PREFIX_LABEL_SEPARATOR_CHARACTER_REGEX = "\\" + PREFIX_LABEL_SEPARATOR_CHARACTER;
 
 	public static final Set<OutputType> RMLISH_OUTPUTTYPES = Collections
 			.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(new OutputType[] { OutputType.RML, OutputType.R2RML, OutputType.CARML })));

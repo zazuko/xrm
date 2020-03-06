@@ -9,6 +9,8 @@ template exampleIri "http://example.com/"
 map EmployeeMapping from EMPLOYEE {
 	// TODO code complete on airportIri - get proposals of templates declared within this file
 	subject template airportIri with id;
+	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
+	// subject template "http://airport.example.com/{0}" with id as Literal;
 
 	types
 		employee.Employee
@@ -56,7 +58,7 @@ logical-source EMPLOYEE {
 }
 
 vocabulary employee {
-	prefix "employee:" "http://example.com/employee"
+	prefix "employee" "http://example.com/employee"
 
 	classes
 		Employee

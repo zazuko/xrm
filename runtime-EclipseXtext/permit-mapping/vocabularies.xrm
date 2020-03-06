@@ -6,7 +6,7 @@ language-tags {
 }
 
 vocabulary schema {
-	prefix "schema:" "https://schema.org/"
+	prefix "schema" "https://schema.org/"
 
 	classes
 		GovernmentPermit
@@ -19,7 +19,7 @@ vocabulary schema {
 }
 
 vocabulary ex {
-	prefix "ex:" "https://schema.example.org/"
+	prefix "ex" "https://schema.example.org/"
 
 	classes
 

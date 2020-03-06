@@ -30,7 +30,7 @@ logical-source plz_verzeichnis {
 }
 
 vocabulary exPLZ {
-	prefix "ex:" "http://schema.example.org/"
+	prefix "ex" "http://schema.example.org/"
 
 	classes
 		Ort

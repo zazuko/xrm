@@ -6,14 +6,14 @@ language-tags {
 }
 
 vocabulary xsd {
-	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
+	prefix "xsd" "http://www.w3.org/2001/XMLSchema#"
 
 	datatypes
 		int
 }
 
 vocabulary schema {
-	prefix "schema:" "https://schema.org/"
+	prefix "schema" "https://schema.org/"
 
 	classes
 		GovernmentPermit
@@ -36,7 +36,7 @@ vocabulary schema {
 }
 
 vocabulary skos {
-	prefix "skos:" "http://www.w3.org/2004/02/skos/core#"
+	prefix "skos" "http://www.w3.org/2004/02/skos/core#"
 
 	classes
 		Concept
@@ -53,7 +53,7 @@ vocabulary skos {
 }
 
 vocabulary bdb {
-	prefix "bdb:" "https://permits.ld.admin.ch/schema/"
+	prefix "bdb" "https://permits.ld.admin.ch/schema/"
 
 	classes
 		Sector
@@ -71,7 +71,7 @@ vocabulary bdb {
 }
 
 vocabulary ex {
-	prefix "ex:" "http://schema.example.org/"
+	prefix "ex" "http://schema.example.org/"
 
 	classes
 		Gemeinde

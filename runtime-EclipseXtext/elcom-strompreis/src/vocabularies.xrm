@@ -1,19 +1,19 @@
 vocabulary xsd {
-	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
+	prefix "xsd" "http://www.w3.org/2001/XMLSchema#"
 
 	datatypes
 		integer
 }
 
 vocabulary qb {
-	prefix "qb:" "http://purl.org/linked-data/cube#"
+	prefix "qb" "http://purl.org/linked-data/cube#"
 
 	classes
 		Observation
 }
 
 vocabulary attr {
-	prefix "elcom-attr:" "http://elcom.zazuko.com/attribute/"
+	prefix "elcom-attr" "http://elcom.zazuko.com/attribute/"
 
 	properties
 		kategorie
@@ -26,7 +26,7 @@ vocabulary attr {
 }
 
 vocabulary schema {
-	prefix "schema:" "https://schema.org/"
+	prefix "schema" "https://schema.org/"
 
 	classes
 		Organization
@@ -39,14 +39,14 @@ vocabulary schema {
 }
 
 vocabulary rdfs {
-	prefix "rdfs:" "http://www.w3.org/2000/01/rdf-schema#"
+	prefix "rdfs" "http://www.w3.org/2000/01/rdf-schema#"
 
 	properties
 		label
 }
 
 vocabulary skos {
-	prefix "skos:" "http://www.w3.org/2004/02/skos/core#"
+	prefix "skos" "http://www.w3.org/2004/02/skos/core#"
 
 	classes
 		Concept

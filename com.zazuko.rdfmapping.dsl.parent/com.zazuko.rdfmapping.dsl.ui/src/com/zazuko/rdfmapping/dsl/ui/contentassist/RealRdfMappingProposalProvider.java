@@ -18,6 +18,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
+import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
@@ -67,8 +68,22 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 		} else if (contentAssistContext.getCurrentModel() instanceof ReferenceValuedTerm
 				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
 			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("as", keyword, type);
+			
+			// #30 for a subjectIriMapping, don't offer 'Literal'
+			if (contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
+				EObject container = contentAssistContext.getCurrentModel().eContainer();
+				if (container instanceof Mapping) {
+					Mapping mapping = (Mapping) container;
+					// make sure we really have subjetIriMapping in our hands
+					if (mapping.getSubjectIriMapping() == contentAssistContext.getCurrentModel()) {
+						filter = filter.and(new BlacklistedCompletionProposalPredicate("Literal", keyword));
+					}
+				}
+			}
+			
 			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
-					new RmlishOutputTypeCompletionProposalPredicate("as", keyword, type)));
+					filter));
 
 		} else if (contentAssistContext.getCurrentModel() instanceof SourceGroup) {
 			SourceGroup cast = (SourceGroup) contentAssistContext.getCurrentModel();
