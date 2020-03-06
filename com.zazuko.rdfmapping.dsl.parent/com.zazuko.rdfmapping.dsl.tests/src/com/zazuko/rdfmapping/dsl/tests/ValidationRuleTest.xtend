@@ -34,6 +34,7 @@ class ValidationRuleTest {
 	@Inject DomainmodelDslSnippets domainmodelDslSnippets
 	@Inject PrefixSnippets prefixSnippets
 
+
 	// Validation tests for the validation rules about the use of type
 	@Test
 	def void NoTypeDefined() {
@@ -295,6 +296,17 @@ class ValidationRuleTest {
 	}
 
 	@Test
+	def void mapping_templateNrOfArguments_differ() {
+		val result = parseHelper.parse(mappingSnippets.nrOfArgumentsDiffer());
+		
+		validationTester.assertWarning(result, 
+			RdfMappingPackage.eINSTANCE.templateValuedTerm, 
+			null, 
+			"Pattern 'http://airport.example.com/{0}' requires 1 argument(s), but there are 2"
+		);
+	}
+
+	@Test
 	def void mapping_noOutputType() {
 		val result = parseHelper.parse(mappingSnippets.noOutputType());
 		
@@ -362,7 +374,7 @@ class ValidationRuleTest {
 		
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.prefix, 
-			null, 
+			RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR, 
 			"No separator characters allowed"
 		);
 	}
@@ -479,12 +491,35 @@ class ValidationRuleTest {
 		);
 	}
 
+	@Test
+	def void domainmodel_templatedeclarationValue_skippedKey() {
+		val result = parseHelper.parse(domainmodelDslSnippets.skippedKey);
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.templateValue, 
+			null, 
+			"Pattern invalid, skipped keys [1, 3]"
+		);
+	}
+
+	@Test
+	def void domainmodel_templatedeclarationValue_notParsable() {
+		val result = parseHelper.parse(domainmodelDslSnippets.notParseable);
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.templateValue, 
+			null,
+			"Pattern invalid: can't parse argument number: b"
+		);
+	}
+
+	@Test
 	def void prefix_labelWithSeparator() {
 		val result = parseHelper.parse(prefixSnippets.labelWithSeparator);
 		
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.prefix, 
-			null,
+			RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR,
 			"No separator characters allowed"
 		);
 		

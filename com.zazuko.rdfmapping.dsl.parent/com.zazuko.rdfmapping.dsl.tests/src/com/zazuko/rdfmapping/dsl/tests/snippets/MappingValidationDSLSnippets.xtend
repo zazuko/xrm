@@ -46,6 +46,41 @@ class MappingValidationDSLSnippets {
 				two
 		}
 	'''
+	
+	def nrOfArgumentsDiffer() '''
+		output rml
+		
+		map Employee from EMPLOYEE {
+			subject template "http://airport.example.com/{0}" with id EMPNO;
+		
+			types
+				employee.Employee
+		
+			properties
+				employee.two from EMPNO;
+		}
+
+		logical-source EMPLOYEE {
+			type xml
+			source "EMP"
+			iterator "/Employees/Employee"
+		
+			referenceables
+				id
+				EMPNO
+		}
+		
+		vocabulary employee {
+			prefix "employee." "http://example.com/employee"
+		
+			classes
+				Employee
+		
+			properties
+				one
+				two
+		}
+	'''
 
 	def noOutputType() '''
 		map EmployeeMapping from EMPLOYEE {

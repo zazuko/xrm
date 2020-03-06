@@ -20,6 +20,10 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.TermType
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
@@ -31,9 +35,7 @@ import java.util.Set
 import java.util.TreeMap
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
-import com.zazuko.rdfmapping.dsl.rdfMapping.TermType
+import com.zazuko.rdfmapping.dsl.validation.TemplateFormatAnalyzer.TemplateFormatAnalyzerException
 
 /**
  * This class contains custom validation rules. 
@@ -47,6 +49,9 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Inject
 	extension InputOutputCompatibility
+	
+	@Inject
+	TemplateFormatAnalyzer templateAnalyzer
 
 	@Check
 	def void checkTypeDeclarations(LogicalSource logicalSource) {
@@ -286,4 +291,42 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 		];
 	}
 	
+	@Check
+	def void templateFormat(TemplateValueDeclaration it) {
+		if (templateValue !== null) {
+			var TemplateFormatAnalysis data;
+			try {
+				data = templateAnalyzer.analyzeFormats(templateValue);
+			} catch (TemplateFormatAnalyzerException e) {
+				error("Pattern invalid: " + e.message, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
+				return;
+			}
+			if (!data.getSkippedKeys.empty) {
+				error("Pattern invalid, skipped keys " + data.getSkippedKeys.toList.toString, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
+			}
+		}
+	}
+	
+	@Check
+	def void templateValuedTerm_parameterSatisfied(TemplateValuedTerm it) {
+		if (template === null) {
+			return;
+		}
+		val String templateValue = template.templateValueResolved;
+		var TemplateFormatAnalysis data;
+		try {
+			data = templateAnalyzer.analyzeFormats(templateValue);
+		} catch (TemplateFormatAnalyzerException e) {
+			// this is not an issue to be marked here - just go away
+			return;
+		}
+		
+		if (data.getUsedKeys.size != references.size) {
+			warning("Pattern '" + templateValue + "' requires " + data.getUsedKeys.size + " argument(s), but there are " + references.size,
+				it,
+				null
+			);
+		}
+	} 
+
 }
