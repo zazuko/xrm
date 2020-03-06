@@ -257,16 +257,18 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	}
 	
 	@Check
+	def void prefixLabelWithoutSeparator(Prefix it) {
+		if (label !== null && label.contains(RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER)) {
+			error("No separator characters allowed", it, RdfMappingPackage.eINSTANCE.prefix_Label, RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR);
+		}
+	}
+	
+	@Check
 	def void xmlNamespaceExtension(XmlNamespaceExtension it) {
 		val LazyMap<String, List<Prefix>> label2Prefix = new LazyMap(new TreeMap, [new LinkedList]);
 		for (Prefix current : prefixes) {
 			if (current.label !== null) {
-				if (current.label.contains(":")) {
-					// TODO think about prohibiting separators on any Prefix (changes user experience) (see proposal in issue #73)
-					error("No separator characters allowed", current, RdfMappingPackage.eINSTANCE.prefix_Label);
-				} else {
-					label2Prefix.getOrInit(current.label).add(current);
-				}
+				label2Prefix.getOrInit(current.label).add(current);
 			}
 		}
 		

@@ -1,12 +1,12 @@
 vocabulary xsd {
-	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
+	prefix "xsd" "http://www.w3.org/2001/XMLSchema#"
 
 	datatypes
 		int
 }
 
 vocabulary transit {
-	prefix "transit:" "http://vocab.org/transit/terms/"
+	prefix "transit" "http://vocab.org/transit/terms/"
 
 	classes
 		Stop
@@ -16,7 +16,7 @@ vocabulary transit {
 }
 
 vocabulary wgs84_pos {
-	prefix "wgs84_pos:" "http://www.w3.org/2003/01/geo/wgs84_pos#"
+	prefix "wgs84_pos" "http://www.w3.org/2003/01/geo/wgs84_pos#"
 
 	properties
 		lat
@@ -24,7 +24,7 @@ vocabulary wgs84_pos {
 }
 
 vocabulary schema {
-	prefix "schema:" "https://schema.org/"
+	prefix "schema" "https://schema.org/"
 
 	classes
 		City
@@ -33,7 +33,7 @@ vocabulary schema {
 }
 
 vocabulary ex {
-	prefix "ex:" "https://schema.example.org/"
+	prefix "ex" "https://schema.example.org/"
 
 	properties
 		owner
@@ -41,7 +41,7 @@ vocabulary ex {
 }
 
 vocabulary exOwner {
-	prefix "ex:" "https://schema.example.org/"
+	prefix "ex" "https://schema.example.org/"
 
 	properties
 		owner

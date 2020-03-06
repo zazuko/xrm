@@ -46,7 +46,7 @@ class RmlDialectGenerator {
 	def prefixes(Iterable<Mapping> mappings) '''
 		«staticPrefixes»
 		«FOR prefixHolder:mappings.prefixesUsed.inDeterministicOrder»
-			PREFIX «prefixHolder.prefix.label» <«prefixHolder.prefix.iri»>
+			PREFIX «prefixHolder.prefix.label»: <«prefixHolder.prefix.iri»>
 		«ENDFOR»
 		
 	'''
@@ -66,7 +66,7 @@ class RmlDialectGenerator {
 		rr:subjectMap [
 			rr:template "«subjectIri»" ;
 			«FOR stm : subjectTypeMappings»
-				rr:class «stm.type.vocabulary.prefix.label»«stm.type.valueResolved» ;
+				rr:class «stm.type.vocabulary.prefix.label»:«stm.type.valueResolved» ;
 			«ENDFOR»
 			«IF subjectIriMapping.termTypeRef?.type !== null»
 				rr:termType rr:«subjectIriMapping.termTypeRef.type» ;
@@ -75,7 +75,7 @@ class RmlDialectGenerator {
 	
 	def predicateObjectMap(PredicateObjectMapping it) '''
 		rr:predicateObjectMap [
-			rr:predicate «property.vocabulary.prefix.label»«property.valueResolved» ;
+			rr:predicate «property.vocabulary.prefix.label»:«property.valueResolved» ;
 			rr:objectMap [
 				«term.objectTermMap»
 			];
@@ -127,7 +127,7 @@ class RmlDialectGenerator {
 		«IF languageTag !== null»
 			rr:language "«languageTag.name»" ;
 		«ELSEIF datatype !== null»
-			rr:datatype «datatype.prefix.label»«datatype.valueResolved» ;
+			rr:datatype «datatype.prefix.label»:«datatype.valueResolved» ;
 		«ENDIF»
 		«IF termTypeRef?.type !== null»
 			rr:termType rr:«termTypeRef.type» ;

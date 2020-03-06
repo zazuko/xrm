@@ -38,7 +38,7 @@ logical-source easygov_professions {
 }
 
 vocabulary exProfessions {
-	prefix "ex:" "http://schema.example.org/"
+	prefix "ex" "http://schema.example.org/"
 
 	properties
 		code

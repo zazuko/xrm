@@ -23,7 +23,7 @@ logical-source EMPLOYEE {
 
 // vocabulary: classes and properties
 vocabulary ex {
-	prefix "ex:" "http://example.com/ns#"
+	prefix "ex" "http://example.com/ns#"
 
 	classes
 		Employee

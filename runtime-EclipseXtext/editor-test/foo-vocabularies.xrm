@@ -2,7 +2,8 @@
 //output csvw
 
 vocabulary thing {
-	prefix "thing:" "http://foobar.com/things/thing/"
+	// TODO change label to "thing:" --> error + quickfix
+	prefix "thing" "http://foobar.com/things/thing/"
 
 	classes
 		Thing

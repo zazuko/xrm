@@ -1,12 +1,12 @@
 vocabulary xsd {
-	prefix "xsd:" "http://www.w3.org/2001/XMLSchema#"
+	prefix "xsd" "http://www.w3.org/2001/XMLSchema#"
 
 	datatypes
 		int
 }
 
 vocabulary ex {
-	prefix "ex:" "http://example.org/"
+	prefix "ex" "http://example.org/"
 
 	classes
 		Department

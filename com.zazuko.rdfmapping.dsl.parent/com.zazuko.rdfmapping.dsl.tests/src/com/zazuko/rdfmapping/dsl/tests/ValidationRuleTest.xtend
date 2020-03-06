@@ -16,6 +16,7 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 import com.zazuko.rdfmapping.dsl.tests.snippets.SourceGroupDSLSnippets
+import com.zazuko.rdfmapping.dsl.tests.snippets.PrefixSnippets
 
 @ExtendWith(InjectionExtension)
 @InjectWith(RdfMappingInjectorProvider)
@@ -29,6 +30,7 @@ class ValidationRuleTest {
 	@Inject LogicalSourceDSLSnippets logicalSourceSnippets
 	@Inject SourceGroupDSLSnippets sourceGroupSnippets
 	@Inject XmlNamespaceExtensionDSLSnippets xmlNamespaceExtensionSnippets
+	@Inject PrefixSnippets prefixSnippets
 
 	// Validation tests for the validation rules about the use of type
 	@Test
@@ -461,5 +463,17 @@ class ValidationRuleTest {
 			null,
 			"xml-namespace-extension is for sourceType XML only"
 		);
+	}
+	
+	@Test
+	def void prefix_labelWithSeparator() {
+		val result = parseHelper.parse(prefixSnippets.labelWithSeparator);
+		
+		validationTester.assertError(result, 
+			RdfMappingPackage.eINSTANCE.prefix, 
+			null,
+			"No separator characters allowed"
+		);
+		
 	}
 }
