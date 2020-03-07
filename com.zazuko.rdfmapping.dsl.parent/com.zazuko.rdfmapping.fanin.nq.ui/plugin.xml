@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ 	<!-- resource service providers for ecore-->
+	<extension
+	      point="org.eclipse.xtext.extension_resourceServiceProvider">
+	    <resourceServiceProvider
+	          class="com.zazuko.rdfmapping.fanin.nq.ui.ExecutableExtensionFactory:com.zazuko.rdfmapping.fanin.nq.ui.NqFaninResourceUIServiceProvider"
+	          uriExtension="nq">
+	    </resourceServiceProvider>
+	</extension>
+   
+ <extension
+       point="org.eclipse.xtext.ui.searchFilter">
+    <filter
+          class="com.zazuko.rdfmapping.fanin.nq.ui.search.NqFaninSearchFilter">
+    </filter>
+ </extension>
+</plugin>

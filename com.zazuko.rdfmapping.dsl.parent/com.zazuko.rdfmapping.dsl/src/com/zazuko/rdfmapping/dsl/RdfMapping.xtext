@@ -1,6 +1,6 @@
 grammar com.zazuko.rdfmapping.dsl.RdfMapping with org.eclipse.xtext.common.Terminals
 
-import "http://www.zazuko.com/rdfmapping/fanin/nq"
+import "http://www.zazuko.com/rdfmapping/fanin/nq" as nq
 
 generate rdfMapping "http://www.zazuko.com/rdfmapping/dsl/RdfMapping"
 
@@ -21,7 +21,7 @@ Element:
 ;
 
 NqRef:
-	'nq' thing=[NqThing|QualifiedName]
+	'nq' thing=[nq::NqThing|QualifiedName]
 ;
 
 Datatype:
