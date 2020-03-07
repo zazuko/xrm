@@ -1,8 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: com.zazuko.rdfmapping.fanin.nq
-Bundle-SymbolicName: com.zazuko.rdfmapping.fanin.nq; singleton:=true
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.zazuko.rdfmapping.fanin.nq;singleton:=true
+Automatic-Module-Name: com.zazuko.rdfmapping.fanin.nq
 Bundle-Version: 0.1.0.qualifier
-Require-Bundle: org.eclipse.emf.ecore,
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: com.zazuko.rdfmapping.fanin.nq,
+ com.zazuko.rdfmapping.fanin.nq.impl,
+ com.zazuko.rdfmapping.fanin.nq.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xcore.lib
+Bundle-ActivationPolicy: lazy

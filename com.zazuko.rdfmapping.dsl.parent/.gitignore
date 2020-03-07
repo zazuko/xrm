@@ -1,6 +1,5 @@
 src-gen
 xtend-gen
-model
 target
 
 *.jar

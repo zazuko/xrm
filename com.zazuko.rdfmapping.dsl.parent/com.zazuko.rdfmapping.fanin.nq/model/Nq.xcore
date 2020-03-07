@@ -1,0 +1,5 @@
+package com.zazuko.rdfmapping.fanin.nq
+
+class NqThing {
+	String name
+}
