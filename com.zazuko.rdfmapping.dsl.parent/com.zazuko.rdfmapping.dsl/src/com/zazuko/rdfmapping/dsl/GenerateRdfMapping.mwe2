@@ -47,6 +47,9 @@ Workflow {
 			formatter = {
 				generateStub = true
 			}
+			
+			referencedResource = "platform:/resource/com.zazuko.rdfmapping.fanin.nq/model/Nq.genmodel"
+			
 		}
 	}
 }

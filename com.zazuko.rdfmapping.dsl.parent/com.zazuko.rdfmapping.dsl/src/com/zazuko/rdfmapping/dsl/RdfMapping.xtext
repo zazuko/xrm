@@ -1,5 +1,7 @@
 grammar com.zazuko.rdfmapping.dsl.RdfMapping with org.eclipse.xtext.common.Terminals
 
+import "http://www.zazuko.com/rdfmapping/fanin/nq"
+
 generate rdfMapping "http://www.zazuko.com/rdfmapping/dsl/RdfMapping"
 
 Domainmodel:
@@ -15,6 +17,11 @@ Element:
     | DialectGroup
     | XmlNamespaceExtension
     | TemplateDeclaration
+    | NqRef
+;
+
+NqRef:
+	'nq' thing=[NqThing|QualifiedName]
 ;
 
 Datatype:
