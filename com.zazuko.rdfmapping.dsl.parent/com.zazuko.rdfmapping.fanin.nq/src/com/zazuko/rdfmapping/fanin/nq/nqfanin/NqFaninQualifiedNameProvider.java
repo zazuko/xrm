@@ -1,7 +1,5 @@
 package com.zazuko.rdfmapping.fanin.nq.nqfanin;
 
-import java.util.Collections;
-
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -11,8 +9,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.IResourceScopeCache;
-import org.eclipse.xtext.util.PolymorphicDispatcher;
-import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.util.Tuples;
 
 import com.google.inject.Inject;

@@ -11,6 +11,7 @@ public class NqFaninUiModule extends EmfUiModule {
 	
 	@Override
 	public void configureLanguageSpecificURIEditorOpener(com.google.inject.Binder binder) {
+		super.configureLanguageSpecificURIEditorOpener(binder);
 		// binder.bind(IURIEditorOpener.class).annotatedWith(LanguageSpecific.class).to(NqFaninEditorOpener.class);
 	}
 	
