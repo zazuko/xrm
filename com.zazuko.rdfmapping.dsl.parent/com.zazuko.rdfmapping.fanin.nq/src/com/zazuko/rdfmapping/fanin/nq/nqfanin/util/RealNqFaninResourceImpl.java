@@ -1,6 +1,5 @@
 package com.zazuko.rdfmapping.fanin.nq.nqfanin.util;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

@@ -8,7 +8,7 @@
   <foreignModel>Nq.ecore</foreignModel>
   <genPackages prefix="NqFanin" basePackage="com.zazuko.rdfmapping.fanin.nq" resource="Basic"
       disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
-      ecorePackage="Nq.ecore#/">
+      fileExtensions="nq" ecorePackage="Nq.ecore#/">
     <genClasses ecoreClass="Nq.ecore#//NqThing">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqThing/name"/>
     </genClasses>

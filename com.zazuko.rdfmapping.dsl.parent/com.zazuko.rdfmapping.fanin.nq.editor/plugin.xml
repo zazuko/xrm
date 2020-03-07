@@ -12,10 +12,11 @@
             id="com.zazuko.rdfmapping.fanin.nq.nqfanin.presentation.NqFaninEditorID"
             name="%_UI_NqFaninEditor_label"
             icon="icons/full/obj16/NqFaninModelFile.gif"
-            extensions="nqfanin"
+            extensions="nq"
             class="com.zazuko.rdfmapping.fanin.nq.nqfanin.presentation.NqFaninEditor"
             contributorClass="com.zazuko.rdfmapping.fanin.nq.nqfanin.presentation.NqFaninActionBarContributor">
       </editor>
    </extension>
+   
 
 </plugin>

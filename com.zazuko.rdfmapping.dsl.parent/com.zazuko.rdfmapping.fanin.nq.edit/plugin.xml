@@ -18,5 +18,12 @@
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
+   
+   	<extension point="org.eclipse.team.core.fileTypes">
+		<fileTypes
+			extension="xrm"
+			type="text">
+		</fileTypes>
+	</extension>
 
 </plugin>
