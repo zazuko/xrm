@@ -9,7 +9,8 @@ import com.google.inject.Module;
 
 /**
  * 
- * @see oorg.eclipse.xtext.ecore.EcoreSupport
+ * @see org.eclipse.xtext.ecore.EcoreSupport
+ * {@linkplain https://www.eclipse.org/forums/index.php?t=msg&th=215999/}
  *
  */
 public class NqFaninSupport extends AbstractGenericResourceSupport implements ISetup {
