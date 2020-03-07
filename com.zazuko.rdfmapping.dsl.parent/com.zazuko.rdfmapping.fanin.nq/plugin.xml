@@ -9,9 +9,9 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Nq -->
       <package
-            uri="com.zazuko.rdfmapping.fanin.nq"
-            class="com.zazuko.rdfmapping.fanin.nq.NqPackage"
-            genModel="model/Nq.xcore"/>
+            uri="http://www.zazuko.com/rdfmapping/fanin/nq"
+            class="com.zazuko.rdfmapping.fanin.nq.nqfanin.NqFaninPackage"
+            genModel="model/Nq.genmodel"/>
    </extension>
 
 </plugin>

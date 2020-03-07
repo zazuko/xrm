@@ -8,9 +8,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: com.zazuko.rdfmapping.fanin.nq,
- com.zazuko.rdfmapping.fanin.nq.impl,
- com.zazuko.rdfmapping.fanin.nq.util
+Export-Package: com.zazuko.rdfmapping.fanin.nq.nqfanin,
+ com.zazuko.rdfmapping.fanin.nq.nqfanin.impl,
+ com.zazuko.rdfmapping.fanin.nq.nqfanin.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
