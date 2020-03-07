@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fanin-test
+Bundle-SymbolicName: fanin-test
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: com.zazuko.rdfmapping.fanin.nq;bundle-version="0.1.0",
+ com.zazuko.rdfmapping.fanin.nq.edit;bundle-version="1.0.0"

@@ -15,6 +15,13 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Nq -->
+      <parser
+            type="nqfanin"
+            class="com.zazuko.rdfmapping.fanin.nq.nqfanin.util.NqFaninResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @ NOT generated NOT Nq -->
       <parser
             type="nqfanin"
