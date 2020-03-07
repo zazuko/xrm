@@ -13,6 +13,7 @@ Export-Package: com.zazuko.rdfmapping.fanin.nq.nqfanin,
  com.zazuko.rdfmapping.fanin.nq.nqfanin.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xcore.lib
 Bundle-ActivationPolicy: lazy
