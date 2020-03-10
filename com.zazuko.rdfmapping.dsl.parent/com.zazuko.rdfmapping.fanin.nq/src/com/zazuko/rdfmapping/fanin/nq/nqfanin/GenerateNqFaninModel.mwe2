@@ -14,15 +14,24 @@ Workflow {
 	
     bean = StandaloneSetup { 
 //    	platformUri = "${rootPath}"
-//    	scanClassPath = true
+    	scanClassPath = true
 	}
 	
-	bean = DirectoryCleaner {
+	component = DirectoryCleaner {
 		directory = "./src-gen"
 	}
 	
-	bean = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
 		genModel = "platform:/resource/${projectName}/model/Nq.genmodel"
 		srcPath = "platform:/resource/${projectName}/src-gen"
+		lineDelimiter = "\n"
 	}
+	
+	component = com.zazuko.rdfmapping.fanin.nq.nqfanin.components.StringReplacingComponent {
+		fileName =  "${rootPath}/${projectName}/plugin.xml"
+		oldValue = "com.zazuko.rdfmapping.fanin.nq.nqfanin.util.NqFaninResourceFactoryImpl"
+		newValue = "com.zazuko.rdfmapping.fanin.nq.nqfanin.util.RealNqFaninResourceImpl"
+	
+	} 
+	
 }

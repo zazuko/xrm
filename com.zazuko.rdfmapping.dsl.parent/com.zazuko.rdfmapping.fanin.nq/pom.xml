@@ -27,7 +27,7 @@
 				<configuration>
 					<mainClass>org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher</mainClass>
 					<arguments>
-						<argument>/${project.basedir}/src/com/zazuko/rdfmapping/dsl/GenerateRdfMapping.mwe2</argument>
+						<argument>/${project.basedir}/src/com/zazuko/rdfmapping/fanin/nq/nqfanin/GenerateNqFaninModel.mwe2</argument>
 						<argument>-p</argument>
 						<argument>rootPath=/${project.basedir}/..</argument>
 					</arguments>
@@ -41,26 +41,26 @@
 						<artifactId>org.eclipse.emf.mwe2.launch</artifactId>
 						<version>2.10.0</version>
 					</dependency>
-					<dependency>
-						<groupId>org.eclipse.xtext</groupId>
-						<artifactId>org.eclipse.xtext.common.types</artifactId>
-						<version>${xtextVersion}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.xtext</groupId>
-						<artifactId>org.eclipse.xtext.xtext.generator</artifactId>
-						<version>${xtextVersion}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.xtext</groupId>
-						<artifactId>org.eclipse.xtext.xbase</artifactId>
-						<version>${xtextVersion}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.xtext</groupId>
-						<artifactId>xtext-antlr-generator</artifactId>
-						<version>2.1.1</version>
-					</dependency>
+<!-- 					<dependency> -->
+<!-- 						<groupId>org.eclipse.xtext</groupId> -->
+<!-- 						<artifactId>org.eclipse.xtext.common.types</artifactId> -->
+<!-- 						<version>${xtextVersion}</version> -->
+<!-- 					</dependency> -->
+<!-- 					<dependency> -->
+<!-- 						<groupId>org.eclipse.xtext</groupId> -->
+<!-- 						<artifactId>org.eclipse.xtext.xtext.generator</artifactId> -->
+<!-- 						<version>${xtextVersion}</version> -->
+<!-- 					</dependency> -->
+<!-- 					<dependency> -->
+<!-- 						<groupId>org.eclipse.xtext</groupId> -->
+<!-- 						<artifactId>org.eclipse.xtext.xbase</artifactId> -->
+<!-- 						<version>${xtextVersion}</version> -->
+<!-- 					</dependency> -->
+<!-- 					<dependency> -->
+<!-- 						<groupId>org.eclipse.xtext</groupId> -->
+<!-- 						<artifactId>xtext-antlr-generator</artifactId> -->
+<!-- 						<version>2.1.1</version> -->
+<!-- 					</dependency> -->
 				</dependencies>
 			</plugin>
 			<plugin>
@@ -74,37 +74,10 @@
 				<configuration>
 					<filesets combine.children="append">
 						<fileset>
-							<directory>${basedir}/../com.zazuko.rdfmapping.dsl/src-gen/</directory>
+							<directory>${basedir}/../com.zazuko.rdfmapping.fanin.nq/src-gen/</directory>
 							<includes>
 								<include>**/*</include>
 							</includes>
-						</fileset>
-						<fileset>
-							<directory>${basedir}/../com.zazuko.rdfmapping.dsl.tests/src-gen/</directory>
-							<includes>
-								<include>**/*</include>
-							</includes>
-						</fileset>
-						<fileset>
-							<directory>${basedir}/../com.zazuko.rdfmapping.dsl.ide/src-gen/</directory>
-							<includes>
-								<include>**/*</include>
-							</includes>
-						</fileset>
-						<fileset>
-							<directory>${basedir}/../com.zazuko.rdfmapping.dsl.ui/src-gen/</directory>
-							<includes>
-								<include>**/*</include>
-							</includes>
-						</fileset>
-						<fileset>
-							<directory>${basedir}/../com.zazuko.rdfmapping.dsl.ui.tests/src-gen/</directory>
-							<includes>
-								<include>**/*</include>
-							</includes>
-						</fileset>
-						<fileset>
-							<directory>${basedir}/model/generated/</directory>
 						</fileset>
 					</filesets>
 				</configuration>

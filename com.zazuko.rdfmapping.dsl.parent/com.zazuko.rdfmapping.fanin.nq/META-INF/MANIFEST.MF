@@ -3,13 +3,12 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.zazuko.rdfmapping.fanin.nq;singleton:=true
 Automatic-Module-Name: com.zazuko.rdfmapping.fanin.nq
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.11.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.8
-Export-Package: com.zazuko.rdfmapping.fanin.nq.nqfanin;
-  uses:="org.eclipse.emf.ecore,
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.zazuko.rdfmapping.fanin.nq.nqfanin; uses:="org.eclipse.emf.ecore,
    com.google.inject,
    org.eclipse.xtext.resource.generic,
    org.eclipse.xtext.resource.impl,
@@ -17,8 +16,11 @@ Export-Package: com.zazuko.rdfmapping.fanin.nq.nqfanin;
    org.eclipse.xtext.util,
    org.eclipse.xtext",
    com.zazuko.rdfmapping.fanin.nq.nqfanin.util
-Import-Package: org.apache.log4j;version="1.2.15"
+Import-Package: org.apache.commons.logging;version="1.2.0",
+ org.apache.log4j;version="1.2.15"
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.13.0",
  org.eclipse.emf.mwe2.lib,
- org.eclipse.xtext;visibility:=reexport
+ org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.emf.mwe2.launch,
+ org.eclipse.emf.codegen.ecore
 Bundle-ActivationPolicy: lazy
