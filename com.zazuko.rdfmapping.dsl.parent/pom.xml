@@ -28,6 +28,7 @@
 		<module>com.zazuko.rdfmapping.dsl.repository</module>
 		<module>com.zazuko.rdfmapping.dsl.tests</module>
 		<module>com.zazuko.rdfmapping.dsl.ui.tests</module>
+		<module>com.zazuko.rdfmapping.fanin.nq</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>

@@ -1,0 +1,28 @@
+module com.zazuko.rdfmapping.dsl.GenerateRdfMapping
+
+import org.eclipse.xtext.xtext.generator.*
+import org.eclipse.xtext.xtext.generator.model.project.*
+
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe2.ecore.EcoreGenerator
+
+var rootPath = ".."
+var projectName = "com.zazuko.rdfmapping.fanin.nq"
+
+Workflow {
+	
+    bean = StandaloneSetup { 
+//    	platformUri = "${rootPath}"
+//    	scanClassPath = true
+	}
+	
+	bean = DirectoryCleaner {
+		directory = "./src-gen"
+	}
+	
+	bean = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		genModel = "platform:/resource/${projectName}/model/Nq.genmodel"
+		srcPath = "platform:/resource/${projectName}/src-gen"
+	}
+}
