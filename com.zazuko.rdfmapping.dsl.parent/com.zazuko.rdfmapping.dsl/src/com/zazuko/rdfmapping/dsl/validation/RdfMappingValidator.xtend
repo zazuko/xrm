@@ -27,7 +27,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TermType
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
-import com.zazuko.rdfmapping.dsl.util.LazyMap
+import com.zazuko.rdfmapping.dsl.common.util.LazyMap
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List

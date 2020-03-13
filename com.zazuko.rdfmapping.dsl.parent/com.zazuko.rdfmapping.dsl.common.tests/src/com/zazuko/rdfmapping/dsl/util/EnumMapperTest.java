@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.zazuko.rdfmapping.dsl.common.util.EnumMapper;
+import com.zazuko.rdfmapping.dsl.common.util.EnumMapperBuilder;
+
 public class EnumMapperTest {
 
 	static enum Number {

@@ -7,13 +7,13 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.zazuko.rdfmapping.dsl.common.util.LazyMap;
 import com.zazuko.rdfmapping.dsl.generator.common.GlueingContext;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable;
-import com.zazuko.rdfmapping.dsl.util.LazyMap;
 
 public class CsvwDialectContext {
 

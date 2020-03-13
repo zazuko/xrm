@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.eclipse.xtend.lib;bundle-version="2.14.0",
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
- com.zazuko.rdfmapping.fanin.nq
+ com.zazuko.rdfmapping.fanin.nq,
+ com.zazuko.rdfmapping.dsl.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.zazuko.rdfmapping.dsl,
  com.zazuko.rdfmapping.dsl.common,
@@ -30,6 +31,5 @@ Export-Package: com.zazuko.rdfmapping.dsl,
  com.zazuko.rdfmapping.dsl.scoping,
  com.zazuko.rdfmapping.dsl.serializer,
  com.zazuko.rdfmapping.dsl.services,
- com.zazuko.rdfmapping.dsl.util,
  com.zazuko.rdfmapping.dsl.validation
 Import-Package: org.apache.log4j

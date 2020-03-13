@@ -7,7 +7,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
-import com.zazuko.rdfmapping.dsl.util.RootFinder
+import com.zazuko.rdfmapping.dsl.common.util.RootFinder
 import javax.inject.Inject
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference

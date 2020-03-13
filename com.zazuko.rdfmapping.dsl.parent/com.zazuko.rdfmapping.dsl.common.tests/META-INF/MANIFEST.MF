@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.zazuko.rdfmapping.dsl.tests
+Bundle-ManifestVersion: 2
+Bundle-Name: com.zazuko.rdfmapping.dsl.common.tests
+Bundle-Vendor: zazuko.com
+Bundle-Version: 0.11.0.qualifier
+Bundle-SymbolicName: com.zazuko.rdfmapping.dsl.common.tests;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.zazuko.rdfmapping.dsl,
+ org.junit.jupiter.api;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.xtext.testing,
+ org.eclipse.xtext.xbase.testing,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.junit,
+ com.zazuko.rdfmapping.dsl.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

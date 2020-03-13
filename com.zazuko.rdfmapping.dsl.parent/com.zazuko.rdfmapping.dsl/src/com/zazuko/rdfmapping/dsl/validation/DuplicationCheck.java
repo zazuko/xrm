@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import com.zazuko.rdfmapping.dsl.util.LazyMap;
+import com.zazuko.rdfmapping.dsl.common.util.LazyMap;
 
 public class DuplicationCheck<E> {
 

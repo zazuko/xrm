@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.util;
+package com.zazuko.rdfmapping.dsl.common.util;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

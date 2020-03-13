@@ -20,8 +20,9 @@
 		<additionalTestArguments></additionalTestArguments>
 	</properties>
 	<modules>
-		<module>com.zazuko.rdfmapping.dsl</module>
 		<module>com.zazuko.rdfmapping.dsl.common</module>
+		<module>com.zazuko.rdfmapping.dsl.common.tests</module>
+		<module>com.zazuko.rdfmapping.dsl</module>
 		<module>com.zazuko.rdfmapping.dsl.ide</module>
 		<module>com.zazuko.rdfmapping.dsl.ui</module>
 		<module>com.zazuko.rdfmapping.dsl.target</module>

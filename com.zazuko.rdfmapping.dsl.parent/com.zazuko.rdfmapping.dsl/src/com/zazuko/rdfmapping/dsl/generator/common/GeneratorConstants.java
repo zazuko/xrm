@@ -1,8 +1,8 @@
 package com.zazuko.rdfmapping.dsl.generator.common;
 
+import com.zazuko.rdfmapping.dsl.common.util.EnumMapper;
+import com.zazuko.rdfmapping.dsl.common.util.EnumMapperBuilder;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType;
-import com.zazuko.rdfmapping.dsl.util.EnumMapper;
-import com.zazuko.rdfmapping.dsl.util.EnumMapperBuilder;
 
 public class GeneratorConstants {
 	
