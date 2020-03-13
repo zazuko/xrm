@@ -31,6 +31,7 @@
 		<module>com.zazuko.rdfmapping.dsl.tests</module>
 		<module>com.zazuko.rdfmapping.dsl.ui.tests</module>
 		<module>com.zazuko.rdfmapping.fanin.nq</module>
+                <module>com.zazuko.rdfmapping.fanin.nq.tests</module>
 		<module>com.zazuko.rdfmapping.fanin.nq.ui</module>
 	</modules>
 	<dependencyManagement>
