@@ -21,6 +21,7 @@
 	</properties>
 	<modules>
 		<module>com.zazuko.rdfmapping.dsl</module>
+		<module>com.zazuko.rdfmapping.dsl.common</module>
 		<module>com.zazuko.rdfmapping.dsl.ide</module>
 		<module>com.zazuko.rdfmapping.dsl.ui</module>
 		<module>com.zazuko.rdfmapping.dsl.target</module>
@@ -29,6 +30,7 @@
 		<module>com.zazuko.rdfmapping.dsl.tests</module>
 		<module>com.zazuko.rdfmapping.dsl.ui.tests</module>
 		<module>com.zazuko.rdfmapping.fanin.nq</module>
+		<module>com.zazuko.rdfmapping.fanin.nq.ui</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>

@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.fanin.nq.nqfanin.components;
+package com.zazuko.rdfmapping.dsl.common.components;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
