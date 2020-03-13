@@ -14,7 +14,7 @@
       <!-- @generated Nq -->
       <parser
             type="nq"
-            class="com.zazuko.rdfmapping.fanin.nq.nqfanin.util.RealNqFaninResourceImpl"/>
+            class="com.zazuko.rdfmapping.fanin.nq.nqfanin.util.RealNqFaninResourceFactoryImpl"/>
    </extension>
 
 </plugin>

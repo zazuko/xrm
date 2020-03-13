@@ -30,7 +30,7 @@ Workflow {
 	component = com.zazuko.rdfmapping.dsl.common.components.StringReplacingComponent {
 		fileName =  "${rootPath}/${projectName}/plugin.xml"
 		oldValue = "com.zazuko.rdfmapping.fanin.nq.nqfanin.util.NqFaninResourceFactoryImpl"
-		newValue = "com.zazuko.rdfmapping.fanin.nq.nqfanin.util.RealNqFaninResourceImpl"
+		newValue = "com.zazuko.rdfmapping.fanin.nq.nqfanin.util.RealNqFaninResourceFactoryImpl"
 	
 	} 
 	
