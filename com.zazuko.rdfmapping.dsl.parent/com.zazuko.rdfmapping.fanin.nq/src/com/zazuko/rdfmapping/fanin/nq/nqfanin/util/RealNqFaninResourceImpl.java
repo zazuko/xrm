@@ -24,12 +24,13 @@ public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
 			if (line == null || line.isEmpty()) {
 				return;
 			}
-			NqThing thing = NqFaninFactory.eINSTANCE.createNqThing();
-			this.getContents().add(thing);
-			thing.setName(line);
+			if (line.startsWith("#") && line.length() > 1) {
+				// dummy implementation
+				NqThing thing = NqFaninFactory.eINSTANCE.createNqThing();
+				this.getContents().add(thing);
+				thing.setName(line.substring(1));
+			}
 		});
 	}
-	
-	
 
 }

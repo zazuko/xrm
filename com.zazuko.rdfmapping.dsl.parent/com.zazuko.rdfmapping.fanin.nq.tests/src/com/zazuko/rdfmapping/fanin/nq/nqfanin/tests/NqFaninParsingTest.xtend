@@ -15,7 +15,7 @@ class NqFaninParsingTest {
 	@Test
 	def void parseOneElement() {
 		val NqThing thing = parse('''
-			FooBar
+			#FooBar
 		''').extractOne(NqThing);
 		
 		Assert.assertNotNull(thing);
@@ -25,8 +25,8 @@ class NqFaninParsingTest {
 	@Test
 	def void parseManyElements() {
 		val Resource res = parse('''
-			Foo
-			Bar
+			#Foo
+			#Bar
 		''');
 		
 		val List<NqThing> things = res.contents.filter(NqThing).toList();
