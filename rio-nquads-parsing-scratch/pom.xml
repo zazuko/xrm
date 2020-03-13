@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.zazuko.scratch</groupId>
+	<artifactId>rio-nquads-parsing-scratch</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>scratch</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<rioVersion>3.1.2</rioVersion>
+	</properties>
+	
+	<dependencies>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.eclipse.rdf4j</groupId> -->
+<!-- 			<artifactId>rdf4j-runtime</artifactId> -->
+<!-- 			<version>3.1.2</version> -->
+<!-- 			<type>pom</type> -->
+<!-- 		</dependency> -->
+		
+		
+		<dependency>
+			<groupId>org.eclipse.rdf4j</groupId>
+			<artifactId>rdf4j-rio-api</artifactId>
+			<version>${rioVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.rdf4j</groupId>
+			<artifactId>rdf4j-rio-nquads</artifactId>
+			<version>${rioVersion}</version>
+		</dependency>
+	
+	</dependencies>
+</project>
