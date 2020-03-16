@@ -14,7 +14,7 @@ public class NqFaninEditorOpener extends LanguageSpecificURIEditorOpener {
 		if (uri.fragment() != null) {
 			TextEditor editor = openEditor.getAdapter(TextEditor.class);
 			if (editor != null) {
-				editor.selectAndReveal(0, 2); // TODO calculate correct location based on EObject hidden info (to be written)
+				editor.selectAndReveal(0, 2); // TODO calculate correct location  with only having the url, e.g. platform:/resource/editor-test/things.nq#/0
 			}
 		}
 	}

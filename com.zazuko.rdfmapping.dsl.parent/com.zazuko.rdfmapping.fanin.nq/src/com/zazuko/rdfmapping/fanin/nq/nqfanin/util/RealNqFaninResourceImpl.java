@@ -20,9 +20,10 @@ public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
 	@Override
 	protected void doLoad(InputStream inputStream, Map<?, ?> options) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-		reader.lines().forEach(line -> {
-			if (line == null || line.isEmpty()) {
-				return;
+		String line = null;
+		while ((line = reader.readLine()) != null) {
+			if (line.isEmpty()) {
+				continue;
 			}
 			if (line.startsWith("#") && line.length() > 1) {
 				// dummy implementation
@@ -30,7 +31,7 @@ public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
 				this.getContents().add(thing);
 				thing.setName(line.substring(1));
 			}
-		});
+		}
 	}
 
 }
