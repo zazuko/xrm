@@ -10,8 +10,8 @@ public class NqFaninRuntimeModule extends AbstractGenericResourceRuntimeModule {
 
 	@Override
 	protected String getLanguageName() {
-//		return "com.zazuko.rdfmapping.fanin.nq.NqFaninEditorID"; // ?
-		return "http://www.zazuko.com/rdfmapping/fanin/nq";
+		return "com.zazuko.rdfmapping.fanin.nq.NqFaninEditorID"; // ?
+//		return "http://www.zazuko.com/rdfmapping/fanin/nq"; //?
 	}
 
 	@Override
