@@ -12,5 +12,11 @@
     <genClasses ecoreClass="Nq.ecore#//NqThing">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqThing/name"/>
     </genClasses>
+    <genClasses ecoreClass="Nq.ecore#//NqVocabulary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqVocabulary/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqVocabulary/iri"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Nq.ecore#//NqVocabulary/classes"/>
+    </genClasses>
+    <genClasses ecoreClass="Nq.ecore#//NqClass"/>
   </genPackages>
 </genmodel:GenModel>

@@ -13,6 +13,7 @@ import org.eclipse.xtext.util.Tuples;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.zazuko.rdfmapping.dsl.common.util.RootFinder;
 
 public class NqFaninQualifiedNameProvider extends IQualifiedNameProvider.AbstractImpl {
 
@@ -20,6 +21,9 @@ public class NqFaninQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 
 	@Inject
 	private IResourceScopeCache cache = IResourceScopeCache.NullImpl.INSTANCE;
+	
+	@Inject
+	private RootFinder rootFinder;
 
 	@Override
 	public QualifiedName getFullyQualifiedName(final EObject obj) {
@@ -29,7 +33,11 @@ public class NqFaninQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 			public QualifiedName get() {
 				if (obj instanceof NqThing) {
 					return QualifiedName.create(((NqThing)obj).getName());
-				} 
+				} if (obj instanceof NqClass) { 
+					NqClass nqClass = (NqClass)obj;
+					NqVocabulary voca = rootFinder.findRoot(nqClass, NqVocabulary.class);
+					return QualifiedName.create(voca.getLabel(), nqClass.getName());
+				}
 				logger.error("no qname for " + obj);
 				return null;
 			}

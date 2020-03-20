@@ -12,12 +12,14 @@ import org.eclipse.emf.common.util.URI;
 
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqFaninFactory;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqThing;
+import com.zazuko.rdfmapping.fanin.nq.nqfanin.domain.GrammarToDomainConverter;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.Statement;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.StatementParser;
 
 public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
 
 	private StatementParser statementParser = new StatementParser();
+	private GrammarToDomainConverter converter = new GrammarToDomainConverter();
 	
 	public RealNqFaninResourceImpl(URI uri) {
 		super(uri);
@@ -36,15 +38,21 @@ public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
 			}
 			if (line.startsWith("#") && line.length() > 1) {
 				// dummy implementation
+				// TODO remove dummy
 				NqThing thing = NqFaninFactory.eINSTANCE.createNqThing();
 				this.getContents().add(thing);
 				thing.setName(line.substring(1));
-			} else if (line.startsWith("<")) {
+			} else {
 				// nq grammar: https://www.w3.org/TR/n-quads/#sec-grammar
 				Statement statement = this.statementParser.parse(lineNumber, line);
 				parsedStatements.add(statement);
 			}
 		}
+		this.converter.convert(extractName(), parsedStatements).ifPresent(vocabulary -> getContents().add(vocabulary));
+	}
+
+	private String extractName() {
+		return this.getURI().trimFileExtension().lastSegment();
 	}
 
 }

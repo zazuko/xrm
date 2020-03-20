@@ -66,4 +66,11 @@ public class Statement {
 		this.languageTag = languageTag;
 	}
 
+	@Override
+	public String toString() {
+		return "Statement [subject=" + subject + ", predicate=" + predicate + ", object=" + object
+				+ ", languageTag=" + languageTag + ", graphLabel=" + graphLabel + ", literal=" + literal + "]";
+	}
+
+	
 }
