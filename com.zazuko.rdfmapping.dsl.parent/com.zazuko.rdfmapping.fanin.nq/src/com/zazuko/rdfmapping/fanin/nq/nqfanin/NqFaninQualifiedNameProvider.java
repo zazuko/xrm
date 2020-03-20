@@ -31,9 +31,7 @@ public class NqFaninQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 
 			@Override
 			public QualifiedName get() {
-				if (obj instanceof NqThing) {
-					return QualifiedName.create(((NqThing)obj).getName());
-				} if (obj instanceof NqNameAware) { 
+				if (obj instanceof NqNameAware) { 
 					NqNameAware nqClass = (NqNameAware)obj;
 					NqVocabulary voca = rootFinder.findRoot(nqClass, NqVocabulary.class);
 					return QualifiedName.create(voca.getLabel(), nqClass.getName());

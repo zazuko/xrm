@@ -12,8 +12,8 @@ class StatementparserTest {
 
 	extension StatementParser = new StatementParser();
 
-	def private parse(CharSequence it) {
-		return parse(0, toString);
+	def private Statement parse(CharSequence it) {
+		return parse(0, 0, toString);
 	}
 	
 	@Test

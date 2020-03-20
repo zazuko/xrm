@@ -1,1 +1,3 @@
-nq nqThing
+nq skos.Collection
+nq skos.ConceptScheme
+nq skos.OrderedCollection

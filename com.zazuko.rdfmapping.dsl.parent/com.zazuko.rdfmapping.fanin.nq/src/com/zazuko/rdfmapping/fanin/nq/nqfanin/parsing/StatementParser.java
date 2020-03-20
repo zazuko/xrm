@@ -26,8 +26,8 @@ public class StatementParser {
 	// [160s]	PN_CHARS	::=	PN_CHARS_U | '-' | [0-9] | #x00B7 | [#x0300-#x036F] | [#x203F-#x2040]
 	// [162s]	HEX	::=	[0-9] | [A-F] | [a-f]
 
-	public Statement parse(int lineNumber, String line) {
-		LineContext ctx = new LineContext(line, lineNumber);
+	public Statement parse(int lineNumber, int position, String line) {
+		LineContext ctx = new LineContext(line, lineNumber, position);
 		Statement result = new Statement(ctx);
 
 		result.setSubject(parse(ctx, ValueType.IRI_REF, ValueType.BLANK_NODE_LABEL));

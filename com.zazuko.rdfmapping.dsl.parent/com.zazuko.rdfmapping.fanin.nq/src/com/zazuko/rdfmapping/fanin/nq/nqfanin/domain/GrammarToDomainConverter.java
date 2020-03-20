@@ -11,8 +11,10 @@ import org.apache.log4j.Logger;
 import com.zazuko.rdfmapping.dsl.common.util.LazyMap;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqClass;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqFaninFactory;
+import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqNameAware;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqProperty;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqVocabulary;
+import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.LineContext;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.Statement;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.ValueType;
 
@@ -71,26 +73,50 @@ public class GrammarToDomainConverter {
 				continue;
 			}
 			String groupName = group.getKey().substring(result.getIri().length());
-			transformGroup(result, groupName, iri, group.getValue());
+			NqNameAware newElement = transformGroup(result, groupName, iri, group.getValue());
+			
+			if (newElement != null) {
+				LineContext firstLineContext = group.getValue().get(0).getCtx();
+				LineContext lastConsecutiveLineContext = firstLineContext;
+				int startPosition = firstLineContext.getStartPosition();
+				int consecutivityChecker = firstLineContext.getLineNumber();
+				for (int a = 1; a < group.getValue().size();a++) {
+					LineContext candidate = group.getValue().get(a).getCtx();
+					if (++consecutivityChecker != candidate.getLineNumber()) {
+						break;
+					}
+					lastConsecutiveLineContext = candidate;
+				}
+				int endPosition = lastConsecutiveLineContext.getEndPosition();
+				
+				newElement.eAdapters().add(new PositionAdapter(startPosition, endPosition, newElement.getEid()));
+			}
 		}
 
 		return Optional.of(result);
 	}
 
-	private void transformGroup(NqVocabulary result, String name, String iri, List<Statement> statements) {
+	private NqNameAware transformGroup(NqVocabulary result, String name, String iri, List<Statement> statements) {
 		if (isClass(statements, iri)) {
 			NqClass nqClass = NqFaninFactory.eINSTANCE.createNqClass();
 			result.getClasses().add(nqClass);
 			nqClass.setName(name);
+			nqClass.setEid(NqClass.class.getSimpleName() + "_" + name);
+			return nqClass;
+			
 		} else if (isProperty(statements, iri)) {
 			NqProperty nqProperty = NqFaninFactory.eINSTANCE.createNqProperty();
 			result.getProperties().add(nqProperty);
 			nqProperty.setName(name);
-		} else {
-			if (logger.isDebugEnabled()) {
-				logger.debug("unclassifiable group of statements with name '" + name + "'");
-			}
+			nqProperty.setEid(NqProperty.class.getSimpleName() + "_" + name);
+			return nqProperty;
 		}
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("unclassifiable group of statements with name '" + name + "'");
+		}
+		return null;
+
 	}
 
 	private boolean isClass(List<Statement> statements, String ownIri) {

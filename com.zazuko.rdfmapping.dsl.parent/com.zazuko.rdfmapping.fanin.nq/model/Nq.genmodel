@@ -9,9 +9,6 @@
   <genPackages prefix="NqFanin" basePackage="com.zazuko.rdfmapping.fanin.nq" resource="Basic"
       disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
       fileExtensions="nq" ecorePackage="Nq.ecore#/">
-    <genClasses ecoreClass="Nq.ecore#//NqThing">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqThing/name"/>
-    </genClasses>
     <genClasses ecoreClass="Nq.ecore#//NqVocabulary">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqVocabulary/label"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqVocabulary/iri"/>
@@ -22,6 +19,7 @@
     <genClasses ecoreClass="Nq.ecore#//NqProperty"/>
     <genClasses image="false" ecoreClass="Nq.ecore#//NqNameAware">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqNameAware/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqNameAware/eid"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

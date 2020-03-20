@@ -4,13 +4,14 @@ public class LineContext {
 
 	private final String line;
 	private final int lineNumber;
-	
+	private final int startPosition;
+
 	private int position;
 
-
-	public LineContext(String line, int lineNumber) {
+	public LineContext(String line, int lineNumber, int startPosition) {
 		this.line = line;
 		this.lineNumber = lineNumber;
+		this.startPosition = startPosition;
 	}
 
 	public char peekChar() {
@@ -26,6 +27,7 @@ public class LineContext {
 	private void assertPositionOK() {
 		this.assertPositionOK(0);
 	}
+
 	private void assertPositionOK(int delta) {
 		if (this.position + delta >= this.line.length()) {
 			throw new ParseException(this, "out of characters");
@@ -34,11 +36,12 @@ public class LineContext {
 
 	public void consume(char expectedCharacter) {
 		if (this.peekChar() != expectedCharacter) {
-			throw new ParseException(this, String.format("expected '%s' but was '%s'", expectedCharacter, this.peekChar()));
+			throw new ParseException(this,
+					String.format("expected '%s' but was '%s'", expectedCharacter, this.peekChar()));
 		}
 		this.position++;
 	}
-	
+
 	public String consumeUntil(char endCharacter) {
 		this.assertPositionOK();
 		int endCharIndex = this.line.indexOf(endCharacter, this.position);
@@ -49,7 +52,7 @@ public class LineContext {
 		this.position = endCharIndex + 1;
 		return result;
 	}
-	
+
 	public String consumeUntil(CtxSearchCriteria criteria) {
 		this.assertPositionOK();
 		int a = this.position;
@@ -60,7 +63,7 @@ public class LineContext {
 		this.position = a + 1;
 		return result;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder b = new StringBuilder();
@@ -69,7 +72,7 @@ public class LineContext {
 		b.append(System.lineSeparator());
 		b.append(this.line);
 		b.append(System.lineSeparator());
-		for (int a = 0;a < this.position;a++) {
+		for (int a = 0; a < this.position; a++) {
 			b.append(' ');
 		}
 		b.append('^');
@@ -82,7 +85,16 @@ public class LineContext {
 		}
 	}
 
-	
-	
-	
+	public int getEndPosition() {
+		return this.startPosition + this.line.length();
+	}
+
+	public int getStartPosition() {
+		return this.startPosition;
+	}
+
+	public int getLineNumber() {
+		return this.lineNumber;
+	}
+
 }
