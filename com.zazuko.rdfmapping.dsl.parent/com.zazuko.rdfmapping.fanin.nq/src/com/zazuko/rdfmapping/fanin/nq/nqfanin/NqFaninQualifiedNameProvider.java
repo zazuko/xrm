@@ -33,8 +33,8 @@ public class NqFaninQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 			public QualifiedName get() {
 				if (obj instanceof NqThing) {
 					return QualifiedName.create(((NqThing)obj).getName());
-				} if (obj instanceof NqClass) { 
-					NqClass nqClass = (NqClass)obj;
+				} if (obj instanceof NqNameAware) { 
+					NqNameAware nqClass = (NqNameAware)obj;
 					NqVocabulary voca = rootFinder.findRoot(nqClass, NqVocabulary.class);
 					return QualifiedName.create(voca.getLabel(), nqClass.getName());
 				}

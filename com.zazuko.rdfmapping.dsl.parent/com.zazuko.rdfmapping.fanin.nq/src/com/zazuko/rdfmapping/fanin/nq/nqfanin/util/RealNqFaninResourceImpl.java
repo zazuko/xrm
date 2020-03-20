@@ -43,7 +43,6 @@ public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
 				this.getContents().add(thing);
 				thing.setName(line.substring(1));
 			} else {
-				// nq grammar: https://www.w3.org/TR/n-quads/#sec-grammar
 				Statement statement = this.statementParser.parse(lineNumber, line);
 				parsedStatements.add(statement);
 			}

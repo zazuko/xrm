@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import com.zazuko.rdfmapping.dsl.common.util.LazyMap;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqClass;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqFaninFactory;
+import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqProperty;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqVocabulary;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.Statement;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.ValueType;
@@ -81,6 +82,10 @@ public class GrammarToDomainConverter {
 			NqClass nqClass = NqFaninFactory.eINSTANCE.createNqClass();
 			result.getClasses().add(nqClass);
 			nqClass.setName(name);
+		} else if (isProperty(statements, iri)) {
+			NqProperty nqProperty = NqFaninFactory.eINSTANCE.createNqProperty();
+			result.getProperties().add(nqProperty);
+			nqProperty.setName(name);
 		} else {
 			if (logger.isDebugEnabled()) {
 				logger.debug("unclassifiable group of statements with name '" + name + "'");
@@ -91,6 +96,13 @@ public class GrammarToDomainConverter {
 	private boolean isClass(List<Statement> statements, String ownIri) {
 		return hasPredicateWithObject(statements, ValueType.IRI_REF, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 				ValueType.IRI_REF, "http://www.w3.org/2002/07/owl#Class")
+				&& hasPredicateWithObject(statements, ValueType.IRI_REF,
+						"http://www.w3.org/2000/01/rdf-schema#isDefinedBy", ValueType.IRI_REF, ownIri);
+	}
+
+	private boolean isProperty(List<Statement> statements, String ownIri) {
+		return hasPredicateWithObject(statements, ValueType.IRI_REF, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+				ValueType.IRI_REF, "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property")
 				&& hasPredicateWithObject(statements, ValueType.IRI_REF,
 						"http://www.w3.org/2000/01/rdf-schema#isDefinedBy", ValueType.IRI_REF, ownIri);
 	}
