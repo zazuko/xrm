@@ -22,7 +22,7 @@ Element:
 
 // TODO remove dummy NqRef
 NqRef:
-	'nq' thing=[nq::NqClass|QualifiedName]
+	'nq' nqClass=[nq::NqClass|QualifiedName] ('prop' nqProperty=[nq::NqProperty|QualifiedName])?
 ;
 
 Datatype:
