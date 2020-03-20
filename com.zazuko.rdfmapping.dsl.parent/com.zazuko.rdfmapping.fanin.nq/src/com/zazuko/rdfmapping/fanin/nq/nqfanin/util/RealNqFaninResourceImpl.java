@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.domain.GrammarToDomainConverter;
@@ -15,6 +16,8 @@ import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.Statement;
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing.StatementParser;
 
 public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
+
+	private static final Logger logger = Logger.getLogger(RealNqFaninResourceImpl.class);
 
 	private StatementParser statementParser = new StatementParser();
 	private GrammarToDomainConverter converter = new GrammarToDomainConverter();
@@ -44,6 +47,15 @@ public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
 
 	private String extractName() {
 		return this.getURI().trimFileExtension().lastSegment();
+	}
+
+	@Override
+	public void load(Map<?, ?> options) throws IOException {
+		try {
+			super.load(options);
+		} catch (RuntimeException e) {
+			logger.error(e.getMessage(), e);
+		}
 	}
 
 }

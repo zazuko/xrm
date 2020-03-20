@@ -21,7 +21,7 @@ public class NqFaninParseHelper {
 
 	public Resource parse(CharSequence text) throws Exception {
 		XtextResourceSet set = new XtextResourceSet();
-		URI uri = URI.createURI("__nqfanintestsfaked.nq");
+		URI uri = URI.createURI("testskos.nq");
 		RealNqFaninResourceImpl result = new RealNqFaninResourceImpl(uri);
 		set.getResources().add(result);
 

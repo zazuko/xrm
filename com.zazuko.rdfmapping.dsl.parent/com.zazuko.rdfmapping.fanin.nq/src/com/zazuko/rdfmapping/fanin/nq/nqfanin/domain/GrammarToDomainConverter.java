@@ -69,18 +69,20 @@ public class GrammarToDomainConverter {
 
 		for (Entry<String, List<Statement>> group : subject2Statements.entrySet()) {
 			if (group.getKey().length() <= result.getIri().length()) {
-				logger.warn("dropping unexpected group with key '" + group.getKey() + "'");
+				if (!group.getKey().equals(iri)) {
+					logger.warn("dropping unexpected group with key '" + group.getKey() + "'");
+				}
 				continue;
 			}
 			String groupName = group.getKey().substring(result.getIri().length());
 			NqNameAware newElement = transformGroup(result, groupName, iri, group.getValue());
-			
+
 			if (newElement != null) {
 				LineContext firstLineContext = group.getValue().get(0).getCtx();
 				LineContext lastConsecutiveLineContext = firstLineContext;
 				int startPosition = firstLineContext.getStartPosition();
 				int consecutivityChecker = firstLineContext.getLineNumber();
-				for (int a = 1; a < group.getValue().size();a++) {
+				for (int a = 1; a < group.getValue().size(); a++) {
 					LineContext candidate = group.getValue().get(a).getCtx();
 					if (++consecutivityChecker != candidate.getLineNumber()) {
 						break;
@@ -88,7 +90,7 @@ public class GrammarToDomainConverter {
 					lastConsecutiveLineContext = candidate;
 				}
 				int endPosition = lastConsecutiveLineContext.getEndPosition();
-				
+
 				newElement.eAdapters().add(new PositionAdapter(startPosition, endPosition, newElement.getEid()));
 			}
 		}
@@ -103,7 +105,7 @@ public class GrammarToDomainConverter {
 			nqClass.setName(name);
 			nqClass.setEid(NqClass.class.getSimpleName() + "_" + name);
 			return nqClass;
-			
+
 		} else if (isProperty(statements, iri)) {
 			NqProperty nqProperty = NqFaninFactory.eINSTANCE.createNqProperty();
 			result.getProperties().add(nqProperty);
