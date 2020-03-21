@@ -55,6 +55,7 @@ public class RealNqFaninResourceImpl extends NqFaninResourceImpl {
 			super.load(options);
 		} catch (RuntimeException e) {
 			logger.error(e.getMessage(), e);
+			throw e;
 		}
 	}
 
