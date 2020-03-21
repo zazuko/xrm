@@ -17,9 +17,9 @@ import org.eclipse.xtext.util.IAcceptor;
 import org.eclipse.xtext.util.IResourceScopeCache;
 
 public class NqFaninResourceDescription extends DefaultResourceDescription {
-	
+
 	private final static Logger log = Logger.getLogger(NqFaninResourceDescription.class);
-	
+
 	private IDefaultResourceDescriptionStrategy strategy;
 
 	public NqFaninResourceDescription(Resource resource, IDefaultResourceDescriptionStrategy strategy,
@@ -35,7 +35,7 @@ public class NqFaninResourceDescription extends DefaultResourceDescription {
 				getResource().load(null);
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
-				return Collections.<IEObjectDescription> emptyList();
+				return Collections.<IEObjectDescription>emptyList();
 			}
 		}
 		final List<IEObjectDescription> exportedEObjects = newArrayList();
@@ -45,7 +45,7 @@ public class NqFaninResourceDescription extends DefaultResourceDescription {
 				exportedEObjects.add(eObjectDescription);
 			}
 		};
-		
+
 		TreeIterator<EObject> allEObjects = getResource().getAllContents();
 		while (allEObjects.hasNext()) {
 			EObject content = allEObjects.next();

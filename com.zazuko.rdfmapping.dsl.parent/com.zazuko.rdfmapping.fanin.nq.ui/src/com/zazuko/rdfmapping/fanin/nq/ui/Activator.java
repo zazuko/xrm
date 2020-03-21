@@ -14,30 +14,29 @@ import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqFaninRuntimeModule;
 public class Activator extends AbstractUIPlugin {
 
 	private static final Logger logger = Logger.getLogger(Activator.class);
-	
+
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.zazuko.rdfmapping.fanin.nq.ui";
-	
+
 	// The shared instance
 	private static Activator plugin;
 
 	private Injector injector;
-	
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
-	
+
 	public Injector getInjector() {
 		return injector;
 	}
-	
+
 	private void initializeEcoreInjector() {
 		injector = Guice.createInjector(
-				Modules.override(Modules.override(new NqFaninRuntimeModule())
-				.with(new NqFaninUiModule(plugin)))
-				.with(new SharedStateModule()));
+				Modules.override(Modules.override(new NqFaninRuntimeModule()).with(new NqFaninUiModule(plugin)))
+						.with(new SharedStateModule()));
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 		try {
 			initializeEcoreInjector();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw e;
 		}

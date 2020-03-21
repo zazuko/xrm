@@ -4,8 +4,9 @@ public class BlankNodeValueParser implements ValueParser {
 
 	private static final char FIRST_CHARACTER_A = '_';
 	private static final char SECOND_CHARACTER_A = ':';
-	
+
 	private static final char FIRST_CHARACTER_B = '.';
+
 	@Override
 	public boolean canParse(LineContext ctx) {
 		char peekChar = ctx.peekChar();

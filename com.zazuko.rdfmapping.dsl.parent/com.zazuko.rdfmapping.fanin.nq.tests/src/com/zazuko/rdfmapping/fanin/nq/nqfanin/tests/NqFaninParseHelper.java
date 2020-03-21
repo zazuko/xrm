@@ -43,8 +43,11 @@ public class NqFaninParseHelper {
 	public ResourceSet parseFolder(String folder) throws Exception {
 		XtextResourceSet result = new XtextResourceSet();
 		Path dir = Paths.get(folder);
-		List<Path> nqFiles = Files.list(dir).peek(f -> System.out.println(f.getFileName())).filter(f -> f.getFileName().toString().endsWith("." + NqFaninRuntimeModule.NQ_FANIN_FILE_EXTENSION)).collect(Collectors.toList());
-		
+		List<Path> nqFiles = Files.list(dir)
+				// .peek(f -> System.out.println(f.getFileName()))
+				.filter(f -> f.getFileName().toString().endsWith("." + NqFaninRuntimeModule.NQ_FANIN_FILE_EXTENSION))
+				.collect(Collectors.toList());
+
 		for (Path nqFile : nqFiles) {
 			String absolute = nqFile.toAbsolutePath().toString();
 			URI uri = URI.createFileURI(absolute);

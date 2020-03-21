@@ -11,5 +11,5 @@ public class NqFaninResourceUIServiceProvider extends DefaultResourceUIServicePr
 	public NqFaninResourceUIServiceProvider(IResourceServiceProvider delegate) {
 		super(delegate);
 	}
-	
+
 }

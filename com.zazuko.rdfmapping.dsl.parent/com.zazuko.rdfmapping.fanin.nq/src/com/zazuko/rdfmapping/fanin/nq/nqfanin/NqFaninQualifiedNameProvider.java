@@ -21,7 +21,7 @@ public class NqFaninQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 
 	@Inject
 	private IResourceScopeCache cache = IResourceScopeCache.NullImpl.INSTANCE;
-	
+
 	@Inject
 	private RootFinder rootFinder;
 
@@ -31,10 +31,12 @@ public class NqFaninQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 
 			@Override
 			public QualifiedName get() {
-				if (obj instanceof NqNameAware) { 
-					NqNameAware nqClass = (NqNameAware)obj;
+				if (obj instanceof NqNameAware) {
+					NqNameAware nqClass = (NqNameAware) obj;
 					NqVocabulary voca = rootFinder.findRoot(nqClass, NqVocabulary.class);
 					return QualifiedName.create(voca.getLabel(), nqClass.getName());
+				} else if (obj instanceof NqVocabulary) {
+					return null; // noop - don't log, don't publish vocabulary on index
 				}
 				logger.error("no qname for " + obj);
 				return null;

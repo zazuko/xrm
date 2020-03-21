@@ -68,9 +68,8 @@ public class Statement {
 
 	@Override
 	public String toString() {
-		return "Statement [subject=" + subject + ", predicate=" + predicate + ", object=" + object
-				+ ", languageTag=" + languageTag + ", graphLabel=" + graphLabel + ", literal=" + literal + "]";
+		return "Statement [subject=" + subject + ", predicate=" + predicate + ", object=" + object + ", languageTag="
+				+ languageTag + ", graphLabel=" + graphLabel + ", literal=" + literal + "]";
 	}
 
-	
 }

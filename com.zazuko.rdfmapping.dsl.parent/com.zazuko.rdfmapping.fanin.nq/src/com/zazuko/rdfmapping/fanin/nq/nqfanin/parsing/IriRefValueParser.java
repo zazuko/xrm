@@ -1,7 +1,7 @@
 package com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing;
 
 public class IriRefValueParser implements ValueParser {
-	
+
 	private static final char FIRST_CHARACTER = '<';
 	private static final char LAST_CHARACTER = '>';
 

@@ -14,7 +14,7 @@ public class NsURIQualifiedNameProvider extends NqFaninQualifiedNameProvider {
 	protected String getCacheKey() {
 		return "nsURIfqn";
 	}
-	
+
 	@Override
 	protected boolean isRecurseParent(EObject obj) {
 		return !(obj instanceof EPackage) && super.isRecurseParent(obj);

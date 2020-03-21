@@ -33,7 +33,7 @@ public class NqFaninResourceDescriptionStrategy extends DefaultResourceDescripti
 		isProcessContents |= createEObjectDescriptions(nsURIQualifiedNameProvider, true, eObject, acceptor);
 		return isProcessContents;
 	}
-	
+
 	protected boolean createEObjectDescriptions(IQualifiedNameProvider qualifiedNameProvider, boolean isNsURI,
 			EObject eObject, IAcceptor<IEObjectDescription> acceptor) {
 		try {
@@ -43,12 +43,12 @@ public class NqFaninResourceDescriptionStrategy extends DefaultResourceDescripti
 				userData.put(NS_URI_INDEX_ENTRY, Boolean.toString(isNsURI));
 				for (Adapter candidate : eObject.eAdapters()) {
 					if (candidate instanceof PositionAdapter) {
-						PositionAdapter p = (PositionAdapter)candidate;
+						PositionAdapter p = (PositionAdapter) candidate;
 						p.toUserData(userData);
 						break;
 					}
 				}
-				
+
 				IEObjectDescription description = EObjectDescription.create(qualifiedName, eObject, userData);
 				acceptor.accept(description);
 				return true;
