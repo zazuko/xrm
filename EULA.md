@@ -1,24 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="com.zazuko.rdfmapping.dsl.feature"
-      label="RDF Mapping DSL"
-      version="1.0.0.qualifier"
-      provider-name="zazuko.com">
-
-   <description url="https://github.com/zazuko/rdf-mapping-dsl-user">
-      Provides an editor for data mappings to RDF. Generates mapping files in R2RML, RML, CARML and CSVW format.
-   </description>
-
-   <copyright>
-      Copyright (c) 2019, 2020 Zazuko GmbH
-   </copyright>
-
-   <license url="">
-      # End-User License Agreement (&quot;Agreement&quot;)
+# End-User License Agreement ("Agreement")
 
 Last updated: 2020-03-27
 
-Please read this End-User License Agreement (&quot;Agreement&quot;) carefully before downloading or using RDF Mapping DSL (&quot;Application&quot;).
+Please read this End-User License Agreement ("Agreement") carefully before downloading or using RDF Mapping DSL ("Application").
 
 By downloading or using the Application, you are agreeing to be bound by the terms and conditions of this Agreement.
 
@@ -55,34 +39,10 @@ If any provision of this Agreement is held to be unenforceable or invalid, such 
 
 ## Amendments to this Agreement
 
-Zazuko GmbH reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 30 days&apos; notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+Zazuko GmbH reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
 
 ## Contact Information
 
 If you have any questions about this Agreement, please contact us.
 
 https://zazuko.com/
-   </license>
-
-   <plugin
-         id="com.zazuko.rdfmapping.dsl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.zazuko.rdfmapping.dsl.ide"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.zazuko.rdfmapping.dsl.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-</feature>
