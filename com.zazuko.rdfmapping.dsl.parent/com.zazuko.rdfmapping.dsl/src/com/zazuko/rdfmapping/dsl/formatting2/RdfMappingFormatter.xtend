@@ -150,7 +150,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(RdfProperty it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.feature(pkg.rdfClass_Value).prepend[oneSpace];
+		regionFor.feature(pkg.rdfProperty_Value).prepend[oneSpace];
 	}
 
 	def dispatch void format(LogicalSource it, extension IFormattableDocument document) {
