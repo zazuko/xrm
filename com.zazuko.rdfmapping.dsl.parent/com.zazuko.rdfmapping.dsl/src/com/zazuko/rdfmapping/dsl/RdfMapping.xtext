@@ -129,8 +129,8 @@ Prefix:
 RdfProperty:
 	name=ID (value=STRING)?;
 	
-RdfClass:
-	name=ID (value=STRING)?;	
+RdfClass returns nq::NqClass:
+	name=ID;//(value=STRING)?;	
 
 TemplateDeclaration:
 	'template' name=ID value=TemplateValueDeclaration
@@ -156,7 +156,8 @@ Mapping:
 	BLOCK_END;
 	
 SubjectTypeMapping:	
-	type=[RdfClass|RdfPrefixedName]
+//	type=[RdfClass|RdfPrefixedName]
+	type=[nq::NqClass|QualifiedName]
 ;
 
 PredicateObjectMapping:	

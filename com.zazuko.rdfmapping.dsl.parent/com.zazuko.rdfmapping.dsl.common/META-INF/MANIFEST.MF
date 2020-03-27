@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.zazuko.rdfmapping.dsl.common;singleton:=true
-Automatic-Module-Name: com.zazuko.rdfmapping.fanin.dsl.common
+Automatic-Module-Name: com.zazuko.rdfmapping.dsl.common
 Bundle-Version: 0.11.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
@@ -12,7 +12,10 @@ Import-Package: org.apache.commons.logging;version="1.2.0",
  org.apache.log4j;version="1.2.15"
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.13.0",
  org.eclipse.emf.mwe2.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Export-Package: com.zazuko.rdfmapping.dsl.common.components,
- com.zazuko.rdfmapping.dsl.common.util
+ com.zazuko.rdfmapping.dsl.common.util,
+ com.zazuko.rdfmapping.dsl.common.rdfmappingcore,
+ com.zazuko.rdfmapping.dsl.common.rdfmappingcore.impl,
+ com.zazuko.rdfmapping.dsl.common.rdfmappingcore.util

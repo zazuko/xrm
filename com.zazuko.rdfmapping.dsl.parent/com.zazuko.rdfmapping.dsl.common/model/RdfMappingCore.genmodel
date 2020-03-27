@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.zazuko.rdfmapping.dsl.common/src-gen" modelPluginID="com.zazuko.rdfmapping.dsl.common"
+    modelName="RdfMappingCore" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>RdfMappingCore.ecore</foreignModel>
+  <genPackages prefix="rdfmappingcore" basePackage="com.zazuko.rdfmapping.dsl.common"
+      disposableProviderFactory="true" ecorePackage="RdfMappingCore.ecore#/">
+    <genClasses ecoreClass="RdfMappingCore.ecore#//RdfClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfMappingCore.ecore#//RdfClass/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfMappingCore.ecore#//RdfClass/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
