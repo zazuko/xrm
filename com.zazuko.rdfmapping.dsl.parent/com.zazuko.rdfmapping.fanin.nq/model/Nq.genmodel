@@ -4,7 +4,7 @@
     editorDirectory="/com.zazuko.rdfmapping.fanin.nq.editor/src-gen" modelPluginID="com.zazuko.rdfmapping.fanin.nq"
     modelName="Nq" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="../../com.zazuko.rdfmapping.dsl.common/model/RdfMappingCore.genmodel#//rdfmappingcore"
+    usedGenPackages="../../com.zazuko.rdfmapping.dsl.common/model/RdfMappingCore.genmodel#//rdfMappingCore"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Nq.ecore</foreignModel>
   <genPackages prefix="NqFanin" basePackage="com.zazuko.rdfmapping.fanin.nq" resource="Basic"
