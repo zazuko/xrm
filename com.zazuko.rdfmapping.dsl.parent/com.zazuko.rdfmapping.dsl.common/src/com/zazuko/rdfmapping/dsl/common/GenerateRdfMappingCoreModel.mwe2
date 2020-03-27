@@ -1,0 +1,28 @@
+module com.zazuko.rdfmapping.dsl.common.GenerateRdfMappingCoreModel
+
+import org.eclipse.xtext.xtext.generator.*
+import org.eclipse.xtext.xtext.generator.model.project.*
+
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe2.ecore.EcoreGenerator
+
+var projectName = "com.zazuko.rdfmapping.dsl.common"
+
+Workflow {
+	
+    bean = StandaloneSetup { 
+    	scanClassPath = true
+	}
+	
+	component = DirectoryCleaner {
+		directory = "./src-gen"
+	}
+	
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		genModel = "platform:/resource/${projectName}/model/RdfMappingCore.genmodel"
+		srcPath = "platform:/resource/${projectName}/src-gen"
+		lineDelimiter = "\n"
+	}
+	
+}
