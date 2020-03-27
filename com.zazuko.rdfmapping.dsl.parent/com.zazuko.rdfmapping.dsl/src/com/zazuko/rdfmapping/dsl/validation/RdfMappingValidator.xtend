@@ -247,6 +247,9 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 		if (term === null) {
 			error("ValuedTerm missing", null, "missing");
 		}
+		if (!lineEnd) {
+			error(RdfMappingConstants.TOKEN_LINE_END + " missing", null, RdfMappingValidationCodes.POM_LINE_END_MISSING);
+		}
 	}
 	
 

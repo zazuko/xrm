@@ -88,6 +88,22 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 		}
 	}
 
+	@Fix(RdfMappingValidationCodes.POM_LINE_END_MISSING)
+	public void pomLineEndMissing(Issue issue, IssueResolutionAcceptor acceptor) {
+		String msg = String.format("Add '%s'", RdfMappingConstants.TOKEN_LINE_END);
+		acceptor.accept(issue, msg, msg, null, new ISemanticModification() {
+
+			@Override
+			public void apply(EObject element, IModificationContext context) throws Exception {
+				if (!(element instanceof PredicateObjectMapping)) {
+					return;
+				}
+				PredicateObjectMapping pom = (PredicateObjectMapping) element;
+				pom.setLineEnd(true);
+			}
+		});
+	}
+
 	@Fix(RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS)
 	public void eObjectRemoval(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, "Remove", "Remove", null, new ISemanticModification() {
@@ -117,20 +133,22 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 			}
 		});
 	}
+
 	@Fix(RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR)
 	public void prefixLabelSanitizing(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, "Sanitize", "Remove invalid characters", null, new ISemanticModification() {
-			
+
 			@Override
 			public void apply(EObject element, IModificationContext context) throws Exception {
 				if (!(element instanceof Prefix)) {
 					return;
 				}
-				Prefix prefix = (Prefix)element;
+				Prefix prefix = (Prefix) element;
 				if (prefix.getLabel() == null) {
 					return;
 				}
-				String newLabel = prefix.getLabel().replaceAll(RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER_REGEX, "");
+				String newLabel = prefix.getLabel()
+						.replaceAll(RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER_REGEX, "");
 				prefix.setLabel(newLabel);
 			}
 		});
@@ -203,7 +221,7 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 
 				poMapping.setProperty(newProperty);
 				poMapping.setLineEnd(true);
-				
+
 				if (vocabularyInForeignFile) {
 					vocabulary.eResource().save(Collections.emptyMap());
 				}

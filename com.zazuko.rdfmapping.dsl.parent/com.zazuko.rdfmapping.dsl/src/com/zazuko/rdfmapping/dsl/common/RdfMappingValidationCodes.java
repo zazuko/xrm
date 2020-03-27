@@ -6,6 +6,8 @@ public interface RdfMappingValidationCodes {
 
 	String MAPPING_OUTPUTTYPE_MISSING = "mapping.outputtype.missing";
 	String MAPPING_OUTPUTTYPE_INCOMPATIBLE = "mapping.outputtype.incompatible";
+
+	String POM_LINE_END_MISSING = "predicateobjectmapping.linend.missing";
 	
 	String PARENTTRIPLESMAP_OUTPUTTYPE_INCOMPATIBLE = "parenttriplesmap.outputtype.incompatible";
 	
