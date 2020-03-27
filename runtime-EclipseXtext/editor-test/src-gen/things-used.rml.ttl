@@ -6,7 +6,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 <#EmployeeMappingFromNqSkos>
 	rml:logicalSource [
 		rml:source "EMP" ;
-		rml:referenceFormulation ql:XPath ;
+		rml:referenceFormulation ql:CSV ;
 		rml:iterator "/Employees/Employee" ;
 	];
 	

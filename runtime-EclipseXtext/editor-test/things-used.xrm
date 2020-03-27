@@ -6,7 +6,6 @@ nq skos.OrderedCollection prop skos.broader
 
 nq skos.Collection
 
-
 template anyTemplate "foo"
 
 map EmployeeMappingFromNqSkos from EMPLOYEE {
