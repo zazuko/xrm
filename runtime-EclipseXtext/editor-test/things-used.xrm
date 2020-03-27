@@ -1,10 +1,4 @@
-output rml
-
-nq skos.Collection
-nq skos.ConceptScheme
-nq skos.OrderedCollection prop skos.broader
-
-nq skos.Collection
+output csvw
 
 template anyTemplate "foo"
 

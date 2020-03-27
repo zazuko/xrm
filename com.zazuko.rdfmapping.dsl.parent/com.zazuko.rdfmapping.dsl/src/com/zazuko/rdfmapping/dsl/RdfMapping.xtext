@@ -18,12 +18,6 @@ Element:
     | DialectGroup
     | XmlNamespaceExtension
     | TemplateDeclaration
-    | NqRef
-;
-
-// TODO remove dummy NqRef
-NqRef:
-	'nq' nqClass=[nq::NqClass|QualifiedName] ('prop' nqProperty=[nq::NqProperty|QualifiedName])?
 ;
 
 Datatype:
