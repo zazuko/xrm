@@ -1,6 +1,20 @@
+output csvw
+
 nq skos.Collection
 nq skos.ConceptScheme
 nq skos.OrderedCollection prop skos.broader
 
 nq skos.Collection
 
+
+template anyTemplate "foo"
+
+map EmployeeMappingFromNqSkos from EMPLOYEE {
+	subject template "http://airport.example.com/{0}" with id;
+
+	types
+		skos.Collection
+
+	properties
+		employee.no from EMPNO;
+}

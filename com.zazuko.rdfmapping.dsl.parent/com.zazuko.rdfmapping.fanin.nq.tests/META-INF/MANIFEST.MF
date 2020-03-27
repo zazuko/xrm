@@ -11,5 +11,6 @@ Require-Bundle: org.junit.jupiter.api;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.xtext.xbase.testing,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
  org.junit,
- com.zazuko.rdfmapping.fanin.nq
+ com.zazuko.rdfmapping.fanin.nq,
+ com.zazuko.rdfmapping.dsl.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

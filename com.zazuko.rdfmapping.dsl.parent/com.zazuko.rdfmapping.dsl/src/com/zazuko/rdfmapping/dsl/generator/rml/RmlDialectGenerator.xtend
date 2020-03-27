@@ -17,6 +17,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import java.text.MessageFormat
 import java.util.List
 import javax.inject.Inject
+import com.zazuko.rdfmapping.dsl.generator.common.VocabularyRef
 
 class RmlDialectGenerator {
 
@@ -45,8 +46,8 @@ class RmlDialectGenerator {
 	
 	def prefixes(Iterable<Mapping> mappings) '''
 		«staticPrefixes»
-		«FOR prefixHolder:mappings.prefixesUsed.inDeterministicOrder»
-			PREFIX «prefixHolder.prefix.label»: <«prefixHolder.prefix.iri»>
+		«FOR VocabularyRef prefixHolder : mappings.prefixesUsed.inDeterministicOrder»
+			PREFIX «prefixHolder.label»: <«prefixHolder.iri»>
 		«ENDFOR»
 		
 	'''
@@ -66,7 +67,7 @@ class RmlDialectGenerator {
 		rr:subjectMap [
 			rr:template "«subjectIri»" ;
 			«FOR stm : subjectTypeMappings»
-				rr:class «stm.type.vocabulary.prefix.label»:«stm.type.valueResolved» ;
+				rr:class «stm.type.vocabularyRef.label»:«stm.type.valueResolved» ;
 			«ENDFOR»
 			«IF subjectIriMapping.termTypeRef?.type !== null»
 				rr:termType rr:«subjectIriMapping.termTypeRef.type» ;
@@ -75,7 +76,7 @@ class RmlDialectGenerator {
 	
 	def predicateObjectMap(PredicateObjectMapping it) '''
 		rr:predicateObjectMap [
-			rr:predicate «property.vocabulary.prefix.label»:«property.valueResolved» ;
+			rr:predicate «property.vocabularyRef.label»:«property.valueResolved» ;
 			rr:objectMap [
 				«term.objectTermMap»
 			];

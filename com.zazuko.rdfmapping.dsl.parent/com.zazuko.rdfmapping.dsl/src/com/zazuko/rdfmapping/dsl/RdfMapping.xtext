@@ -1,6 +1,7 @@
 grammar com.zazuko.rdfmapping.dsl.RdfMapping with org.eclipse.xtext.common.Terminals
 
 import "http://www.zazuko.com/rdfmapping/fanin/nq" as nq
+import "http://www.zazuko.com/rdfmapping/dsl/RdfMappingCore" as core
 
 generate rdfMapping "http://www.zazuko.com/rdfmapping/dsl/RdfMapping"
 
@@ -129,8 +130,8 @@ Prefix:
 RdfProperty:
 	name=ID (value=STRING)?;
 	
-RdfClass:
-	name=ID;//(value=STRING)?;	
+RdfClass returns core::RdfClass:
+	name=ID (value=STRING)?;	
 
 TemplateDeclaration:
 	'template' name=ID value=TemplateValueDeclaration
@@ -156,8 +157,7 @@ Mapping:
 	BLOCK_END;
 	
 SubjectTypeMapping:	
-//	type=[RdfClass|RdfPrefixedName]
-	type=[nq::NqClass|QualifiedName]
+	type=[core::RdfClass|QualifiedName]
 ;
 
 PredicateObjectMapping:	

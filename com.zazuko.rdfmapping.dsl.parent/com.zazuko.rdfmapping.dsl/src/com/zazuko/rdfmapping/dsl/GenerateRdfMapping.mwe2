@@ -48,6 +48,7 @@ Workflow {
 				generateStub = true
 			}
 			
+			referencedResource = "platform:/resource/com.zazuko.rdfmapping.dsl.common/model/RdfMappingCore.genmodel"
 			referencedResource = "platform:/resource/com.zazuko.rdfmapping.fanin.nq/model/Nq.genmodel"
 			
 		}

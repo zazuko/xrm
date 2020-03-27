@@ -1,5 +1,6 @@
 package com.zazuko.rdfmapping.dsl.generator.common
 
+import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfClass
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
@@ -14,24 +15,25 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceTypeRef
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
+import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqClass
+import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqVocabulary
 import java.net.URL
 import java.util.LinkedHashSet
 import java.util.List
 import java.util.Set
 import javax.inject.Inject
 import org.eclipse.emf.ecore.EObject
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueRef
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
 
 class ModelAccess {
 	
@@ -74,13 +76,31 @@ class ModelAccess {
 	def DialectGroup dialectResolved(SourceGroup it) {
 		return dialectExtractor.extractP(it);
 	}
-
-	def Vocabulary vocabulary(RdfClass it) {
-		return eContainer as Vocabulary;
+	
+	def dispatch VocabularyRef vocabularyRef(RdfClass it) {
+		return new VocabularyRef(eContainer as Vocabulary);
 	}
 
-	def Vocabulary vocabulary(RdfProperty it) {
-		return eContainer as Vocabulary;
+	def dispatch VocabularyRef vocabularyRef(NqClass it) {
+		return new VocabularyRef(eContainer as NqVocabulary);
+	}
+
+	def dispatch String vocabularyPrefixIri(RdfClass it) {
+		val Vocabulary voca = eContainer as Vocabulary;
+		return voca.prefix.iri;		
+	}
+
+	def dispatch String vocabularyPrefixIri(NqClass it) {
+		val NqVocabulary voca = eContainer as NqVocabulary;
+		return voca.iri;		
+	}
+
+//	def Vocabulary vocabulary(RdfProperty it) {
+//		return eContainer as Vocabulary;
+//	}
+
+	def VocabularyRef vocabularyRef(RdfProperty it) {
+		return new VocabularyRef(eContainer as Vocabulary);
 	}
 
 	def String toConstantValue(ConstantValuedTerm it) {
@@ -100,16 +120,16 @@ class ModelAccess {
 		}
 	}
 
-	def Set<Vocabulary> prefixesUsed(Mapping it) {
-		val Set<Vocabulary> result = new LinkedHashSet();
-		result.addAll(subjectTypeMappings.map[m|m.type.vocabulary]);
-		result.addAll(poMappings.map[m|m.property.vocabulary]);
+	def Set<VocabularyRef> prefixesUsed(Mapping it) {
+		val Set<VocabularyRef> result = new LinkedHashSet();
+		result.addAll(subjectTypeMappings.map[m|m.type.vocabularyRef]);
+		result.addAll(poMappings.map[m|m.property.vocabularyRef]);
 
 		for (PredicateObjectMapping poMapping : poMappings) {
 			val ValuedTerm term = poMapping.term
 			if (term instanceof ReferenceValuedTerm) {
 				if (term.datatype !== null) {
-					result.add(term.datatype.vocabulary)
+					result.add(term.datatype.vocabularyRef)
 				}
 			}
 		}
@@ -117,16 +137,20 @@ class ModelAccess {
 		return result
 	}
 	
-	def Set<Vocabulary> prefixesUsed(Iterable<Mapping> mappings) {
+	def Set<VocabularyRef> prefixesUsed(Iterable<Mapping> mappings) {
 		return mappings.map[m|m.prefixesUsed].flatten.toSet;
 	}
 
-	def List<Vocabulary> inDeterministicOrder(Iterable<Vocabulary> prefixHolders) {
-		return prefixHolders.toSet.toList.sortBy[s|s.prefix.label];
+	def List<VocabularyRef> inDeterministicOrder(Iterable<VocabularyRef> prefixHolders) {
+		return prefixHolders.toSet.toList.sortBy[s|s.label];
 	}
 
-	def Vocabulary vocabulary(Datatype it) {
+	def private Vocabulary vocabulary(Datatype it) {
 		return eContainer as Vocabulary;
+	}
+
+	def VocabularyRef vocabularyRef(Datatype it) {
+		return new VocabularyRef(eContainer as Vocabulary);
 	}
 
 	def Prefix prefix(Datatype it) {

@@ -114,7 +114,7 @@ class CsvwDialectGenerator {
 			{
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-				"valueUrl": "«stm.type.vocabulary.prefix.iri»«stm.type.valueResolved»"
+				"valueUrl": "«stm.type.vocabularyPrefixIri»«stm.type.valueResolved»"
 			}«ENDFOR»
 	'''
 	
@@ -123,7 +123,7 @@ class CsvwDialectGenerator {
 	def columns(Mapping it) '''
 		«FOR pom : poMappings SEPARATOR jsonListSeparator»
 			{
-				"propertyUrl": "«pom.property.vocabulary.prefix.iri»«pom.property.valueResolved»",
+				"propertyUrl": "«pom.property.vocabularyRef.iri»«pom.property.valueResolved»",
 				«pom.term.valueReference»
 			}«ENDFOR»
 	'''
