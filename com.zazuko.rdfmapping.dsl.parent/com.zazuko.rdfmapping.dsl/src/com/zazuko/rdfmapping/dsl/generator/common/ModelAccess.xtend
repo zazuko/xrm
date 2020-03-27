@@ -1,7 +1,7 @@
 package com.zazuko.rdfmapping.dsl.generator.common
 
-import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfClass
-import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfProperty
+import com.zazuko.rdfmapping.dsl.common.rdfMappingCore.RdfClass
+import com.zazuko.rdfmapping.dsl.common.rdfMappingCore.RdfProperty
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor

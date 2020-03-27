@@ -10,7 +10,7 @@
       <!-- @generated RdfMappingCore -->
       <package
             uri="http://www.zazuko.com/rdfmapping/dsl/RdfMappingCore"
-            class="com.zazuko.rdfmapping.dsl.common.rdfmappingcore.rdfmappingcorePackage"
+            class="com.zazuko.rdfmapping.dsl.common.rdfMappingCore.RdfMappingCorePackage"
             genModel="model/RdfMappingCore.genmodel"/>
    </extension>
 

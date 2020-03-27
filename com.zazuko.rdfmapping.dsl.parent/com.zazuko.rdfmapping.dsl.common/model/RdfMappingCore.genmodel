@@ -5,7 +5,7 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>RdfMappingCore.ecore</foreignModel>
-  <genPackages prefix="rdfmappingcore" basePackage="com.zazuko.rdfmapping.dsl.common"
+  <genPackages prefix="RdfMappingCore" basePackage="com.zazuko.rdfmapping.dsl.common"
       disposableProviderFactory="true" ecorePackage="RdfMappingCore.ecore#/">
     <genClasses ecoreClass="RdfMappingCore.ecore#//RdfClass">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfMappingCore.ecore#//RdfClass/name"/>

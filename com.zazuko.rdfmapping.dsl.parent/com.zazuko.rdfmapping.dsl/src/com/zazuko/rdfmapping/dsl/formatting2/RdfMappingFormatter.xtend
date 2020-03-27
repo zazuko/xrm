@@ -4,8 +4,8 @@
 package com.zazuko.rdfmapping.dsl.formatting2
 
 import com.google.inject.Inject
-import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfClass
-import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfProperty
+import com.zazuko.rdfmapping.dsl.common.rdfMappingCore.RdfClass
+import com.zazuko.rdfmapping.dsl.common.rdfMappingCore.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup

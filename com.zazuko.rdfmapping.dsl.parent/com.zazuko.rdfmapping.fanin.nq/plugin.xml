@@ -17,4 +17,12 @@
             class="com.zazuko.rdfmapping.fanin.nq.nqfanin.util.RealNqFaninResourceFactoryImpl"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Nq -->
+      <package
+            uri="http://www.zazuko.com/rdfmapping/dsl/RdfMappingCore"
+            class="rdfMappingCore.RdfMappingCorePackage"
+            genModel="model/Nq.genmodel"/>
+   </extension>
+
 </plugin>
