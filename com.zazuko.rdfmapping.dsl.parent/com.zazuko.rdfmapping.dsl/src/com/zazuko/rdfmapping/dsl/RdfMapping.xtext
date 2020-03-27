@@ -127,7 +127,7 @@ Vocabulary:
 Prefix:
 	'prefix' label=STRING iri=STRING;
     
-RdfProperty:
+RdfProperty  returns core::RdfProperty:
 	name=ID (value=STRING)?;
 	
 RdfClass returns core::RdfClass:
@@ -157,11 +157,11 @@ Mapping:
 	BLOCK_END;
 	
 SubjectTypeMapping:	
-	type=[core::RdfClass|QualifiedName]
+	type=[core::RdfClass|RdfPrefixedName]
 ;
 
 PredicateObjectMapping:	
-	property=[RdfProperty|RdfPrefixedName] 
+	property=[core::RdfProperty|RdfPrefixedName] 
 	term=ValuedTerm? // must be optional in order to get the quickfix working (must be serializable on missing term) --> manual validation for term === null
 	// see: com.zazuko.rdfmapping.dsl.ui.quickfix.RealRdfMappingQuickfixProvider.missingRdfProperty(Issue, IssueResolutionAcceptor)
 	lineEnd?=LINE_END // hack in order to improve code completion - see com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.complete_LINE_END(EObject, RuleCall, ContentAssistContext, ICompletionProposalAcceptor) --> isLineEnd

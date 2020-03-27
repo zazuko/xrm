@@ -4,6 +4,8 @@
 package com.zazuko.rdfmapping.dsl.formatting2
 
 import com.google.inject.Inject
+import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfClass
+import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
@@ -20,7 +22,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
@@ -142,14 +143,14 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		];
 	}
 
-//	def dispatch void format(RdfClass it, extension IFormattableDocument document) {
-//		prepend[setNewLines(1)];
+	def dispatch void format(RdfClass it, extension IFormattableDocument document) {
+		prepend[setNewLines(1)];
 //		regionFor.feature(pkg.rdfClass_Value).prepend[oneSpace];
-//	}
+	}
 
 	def dispatch void format(RdfProperty it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.feature(pkg.rdfProperty_Value).prepend[oneSpace];
+//		regionFor.feature(pkg.rdfProperty_Value).prepend[oneSpace];
 	}
 
 	def dispatch void format(LogicalSource it, extension IFormattableDocument document) {

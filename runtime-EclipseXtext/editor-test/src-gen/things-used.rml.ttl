@@ -1,0 +1,24 @@
+PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
+PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+<#EmployeeMappingFromNqSkos>
+	rml:logicalSource [
+		rml:source "EMP" ;
+		rml:referenceFormulation ql:XPath ;
+		rml:iterator "/Employees/Employee" ;
+	];
+	
+	rr:subjectMap [
+		rr:template "http://airport.example.com/{id}" ;
+		rr:class skos:Collection ;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate skos:broader ;
+		rr:objectMap [
+			rml:reference "EMPNO" ;
+		];
+	]
+.

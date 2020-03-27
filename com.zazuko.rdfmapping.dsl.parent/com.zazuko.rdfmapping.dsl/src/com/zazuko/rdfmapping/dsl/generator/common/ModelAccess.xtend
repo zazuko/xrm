@@ -1,6 +1,7 @@
 package com.zazuko.rdfmapping.dsl.generator.common
 
 import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfClass
+import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfProperty
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
@@ -15,7 +16,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
@@ -27,6 +27,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqClass
+import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqProperty
 import com.zazuko.rdfmapping.fanin.nq.nqfanin.NqVocabulary
 import java.net.URL
 import java.util.LinkedHashSet
@@ -99,8 +100,12 @@ class ModelAccess {
 //		return eContainer as Vocabulary;
 //	}
 
-	def VocabularyRef vocabularyRef(RdfProperty it) {
+	def dispatch VocabularyRef vocabularyRef(RdfProperty it) {
 		return new VocabularyRef(eContainer as Vocabulary);
+	}
+	
+	def dispatch VocabularyRef vocabularyRef(NqProperty it) {
+		return new VocabularyRef(eContainer as NqVocabulary);
 	}
 
 	def String toConstantValue(ConstantValuedTerm it) {
@@ -149,7 +154,7 @@ class ModelAccess {
 		return eContainer as Vocabulary;
 	}
 
-	def VocabularyRef vocabularyRef(Datatype it) {
+	def dispatch VocabularyRef vocabularyRef(Datatype it) {
 		return new VocabularyRef(eContainer as Vocabulary);
 	}
 

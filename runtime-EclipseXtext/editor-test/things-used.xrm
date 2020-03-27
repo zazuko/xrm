@@ -1,4 +1,4 @@
-output csvw
+output rml
 
 nq skos.Collection
 nq skos.ConceptScheme
@@ -16,5 +16,5 @@ map EmployeeMappingFromNqSkos from EMPLOYEE {
 		skos.Collection
 
 	properties
-		employee.no from EMPNO;
+		skos.broader from EMPNO;
 }

@@ -104,8 +104,7 @@ public class GrammarToDomainConverter {
 			result.getClasses().add(nqClass);
 			nqClass.setNqName(name);
 			nqClass.setEid(NqClass.class.getSimpleName() + "_" + name);
-			merge2Core(nqClass);
-			
+			merge2CoreStructure(nqClass);
 			return nqClass;
 
 		} else if (isProperty(statements, iri)) {
@@ -113,7 +112,7 @@ public class GrammarToDomainConverter {
 			result.getProperties().add(nqProperty);
 			nqProperty.setNqName(name);
 			nqProperty.setEid(NqProperty.class.getSimpleName() + "_" + name);
-			// TODO merge2Core(nqProperty);
+			merge2CoreStructure(nqProperty);
 			return nqProperty;
 		}
 
@@ -124,8 +123,12 @@ public class GrammarToDomainConverter {
 
 	}
 
-	private void merge2Core(NqClass nqClass) {
-		nqClass.setName(nqClass.getNqName());
+	private void merge2CoreStructure(NqClass target) {
+		target.setName(target.getNqName());
+	}
+	
+	private void merge2CoreStructure(NqProperty target) {
+		target.setName(target.getNqName());
 	}
 
 	private boolean isClass(List<Statement> statements, String ownIri) {

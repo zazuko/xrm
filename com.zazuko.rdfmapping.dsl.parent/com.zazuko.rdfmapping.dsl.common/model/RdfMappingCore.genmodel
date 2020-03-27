@@ -11,5 +11,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfMappingCore.ecore#//RdfClass/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfMappingCore.ecore#//RdfClass/value"/>
     </genClasses>
+    <genClasses ecoreClass="RdfMappingCore.ecore#//RdfProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfMappingCore.ecore#//RdfProperty/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfMappingCore.ecore#//RdfProperty/value"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

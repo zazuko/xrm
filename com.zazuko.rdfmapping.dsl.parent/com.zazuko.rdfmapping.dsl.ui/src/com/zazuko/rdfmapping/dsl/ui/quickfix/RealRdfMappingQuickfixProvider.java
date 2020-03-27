@@ -22,6 +22,8 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes;
+import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.RdfProperty;
+import com.zazuko.rdfmapping.dsl.common.rdfmappingcore.rdfmappingcoreFactory;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
@@ -29,7 +31,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.OutputTypeRef;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingFactory;
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary;
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility;
 import com.zazuko.rdfmapping.dsl.ui.contentassist.RdfMappingPrefixMatcher;
@@ -195,7 +196,7 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 					prefix.setIri("http://" + vocNameLowercase + ".example.org/");
 				}
 
-				RdfProperty newProperty = RdfMappingFactory.eINSTANCE.createRdfProperty();
+				RdfProperty newProperty = rdfmappingcoreFactory.eINSTANCE.createRdfProperty();
 				vocabulary.getProperties().add(newProperty);
 
 				newProperty.setName(propertyName);

@@ -5,9 +5,10 @@ package com.zazuko.rdfmapping.dsl.ui.labeling
 
 import com.google.inject.Inject
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants
+import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
+import com.zazuko.rdfmapping.dsl.generator.common.VocabularyRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
-import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 
@@ -19,13 +20,16 @@ import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 class RdfMappingLabelProvider extends DefaultEObjectLabelProvider {
 
 	@Inject
+	ModelAccess modelAccess
+
+	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
 
 	def text(PredicateObjectMapping pom) {
-		val vocab = pom.property.eContainer as Vocabulary;
-		vocab.name + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + pom.property.name
+		val VocabularyRef vocab = modelAccess.vocabularyRef(pom.property);
+		vocab.label + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + pom.property.name
 	}	
 	
 	def text(LanguageTagDefinition ltd) {
