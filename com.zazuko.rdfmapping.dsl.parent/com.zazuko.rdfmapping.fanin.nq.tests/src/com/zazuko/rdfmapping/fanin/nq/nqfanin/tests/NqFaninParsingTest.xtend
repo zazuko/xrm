@@ -45,7 +45,7 @@ class NqFaninParsingTest {
 	}
 
 	def NqClass getNqClass(NqVocabulary it, String name) {
-		return classes.findFirst[c | c.name.equals(name)];
+		return classes.findFirst[c | c.nqName.equals(name)];
 	}
 	@Test
 	def void parseProperty() {
@@ -66,7 +66,7 @@ class NqFaninParsingTest {
 	}
 	
 	def NqProperty getNqProperty(NqVocabulary it, String name) {
-		return properties.findFirst[c | c.name.equals(name)];
+		return properties.findFirst[c | c.nqName.equals(name)];
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ class NqFaninParsingTest {
 	def private String debugString(Collection<? extends NqNameAware> it) {
 		val StringBuilder b = new StringBuilder();
 		for (NqNameAware current : it) {
-			b.append(current.name);
+			b.append(current.nqName);
 			b.append(" ");
 		}
 		return b.toString();

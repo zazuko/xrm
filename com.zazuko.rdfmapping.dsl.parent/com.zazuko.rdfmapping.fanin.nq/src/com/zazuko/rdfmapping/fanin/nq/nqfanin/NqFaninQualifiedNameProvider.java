@@ -34,7 +34,7 @@ public class NqFaninQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 				if (obj instanceof NqNameAware) {
 					NqNameAware nqClass = (NqNameAware) obj;
 					NqVocabulary voca = rootFinder.findRoot(nqClass, NqVocabulary.class);
-					return QualifiedName.create(voca.getLabel(), nqClass.getName());
+					return QualifiedName.create(voca.getLabel(), nqClass.getNqName());
 				} else if (obj instanceof NqVocabulary) {
 					return null; // noop - don't log, don't publish vocabulary on index
 				}

@@ -18,7 +18,7 @@
     <genClasses ecoreClass="Nq.ecore#//NqClass"/>
     <genClasses ecoreClass="Nq.ecore#//NqProperty"/>
     <genClasses image="false" ecoreClass="Nq.ecore#//NqNameAware">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqNameAware/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqNameAware/nqName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqNameAware/eid"/>
     </genClasses>
   </genPackages>

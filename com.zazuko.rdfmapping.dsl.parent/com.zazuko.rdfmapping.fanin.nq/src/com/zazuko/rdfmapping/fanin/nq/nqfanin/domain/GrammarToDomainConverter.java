@@ -102,14 +102,14 @@ public class GrammarToDomainConverter {
 		if (isClass(statements, iri)) {
 			NqClass nqClass = NqFaninFactory.eINSTANCE.createNqClass();
 			result.getClasses().add(nqClass);
-			nqClass.setName(name);
+			nqClass.setNqName(name);
 			nqClass.setEid(NqClass.class.getSimpleName() + "_" + name);
 			return nqClass;
 
 		} else if (isProperty(statements, iri)) {
 			NqProperty nqProperty = NqFaninFactory.eINSTANCE.createNqProperty();
 			result.getProperties().add(nqProperty);
-			nqProperty.setName(name);
+			nqProperty.setNqName(name);
 			nqProperty.setEid(NqProperty.class.getSimpleName() + "_" + name);
 			return nqProperty;
 		}

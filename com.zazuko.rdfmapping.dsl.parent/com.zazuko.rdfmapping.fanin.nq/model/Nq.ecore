@@ -12,7 +12,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NqClass" eSuperTypes="#//NqNameAware"/>
   <eClassifiers xsi:type="ecore:EClass" name="NqProperty" eSuperTypes="#//NqNameAware"/>
   <eClassifiers xsi:type="ecore:EClass" name="NqNameAware" abstract="true" interface="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nqName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
