@@ -4,6 +4,7 @@
     editorDirectory="/com.zazuko.rdfmapping.fanin.nq.editor/src-gen" modelPluginID="com.zazuko.rdfmapping.fanin.nq"
     modelName="Nq" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../com.zazuko.rdfmapping.dsl.common/model/RdfMappingCore.genmodel#//rdfmappingcore"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Nq.ecore</foreignModel>
   <genPackages prefix="NqFanin" basePackage="com.zazuko.rdfmapping.fanin.nq" resource="Basic"
@@ -20,12 +21,6 @@
     <genClasses image="false" ecoreClass="Nq.ecore#//NqNameAware">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqNameAware/nqName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Nq.ecore#//NqNameAware/eid"/>
-    </genClasses>
-  </genPackages>
-  <genPackages prefix="Rdfmappingcore" ecorePackage="../../com.zazuko.rdfmapping.dsl.common/model/RdfMappingCore.ecore#/">
-    <genClasses ecoreClass="../../com.zazuko.rdfmapping.dsl.common/model/RdfMappingCore.ecore#//RdfClass">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../com.zazuko.rdfmapping.dsl.common/model/RdfMappingCore.ecore#//RdfClass/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../com.zazuko.rdfmapping.dsl.common/model/RdfMappingCore.ecore#//RdfClass/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
