@@ -12,8 +12,12 @@ map EmployeeMappingFromNqSkos from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
+		// TODO follow the reference, get the lines of 'skos.Collection' highlighted
 		skos.Collection
+		// TODO code completion: get Classes from skos.nq *and* from *.xrm offered
 
 	properties
+		// TODO follow the reference 'skos.broader', get the lines of 'skos.broader' highlighted
 		skos.broader from EMPNO;
+		// TODO code completion: get Properties from skos.nq *and* from *.xrm offered
 }
