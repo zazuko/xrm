@@ -14,7 +14,15 @@
       <!-- @generated Nq -->
       <parser
             type="nq"
-            class="com.zazuko.rdfmapping.fanin.nq.nqfanin.util.NqFaninResourceFactoryImpl"/>
+            class="com.zazuko.rdfmapping.fanin.nq.nqfanin.util.RealNqFaninResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Nq -->
+      <package
+            uri="http://www.zazuko.com/rdfmapping/dsl/RdfMappingCore"
+            class="rdfmappingcore.RdfmappingcorePackage"
+            genModel="model/Nq.genmodel"/>
    </extension>
 
 </plugin>

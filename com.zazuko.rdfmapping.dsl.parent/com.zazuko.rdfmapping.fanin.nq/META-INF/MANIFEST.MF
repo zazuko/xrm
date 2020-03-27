@@ -8,8 +8,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: com.zazuko.rdfmapping.fanin.nq.nqfanin;
-  uses:="org.eclipse.emf.ecore,
+Export-Package: com.zazuko.rdfmapping.fanin.nq.nqfanin; uses:="org.eclipse.emf.ecore,
    com.google.inject,
    org.eclipse.xtext.resource.generic,
    org.eclipse.xtext.resource.impl,
@@ -19,7 +18,10 @@ Export-Package: com.zazuko.rdfmapping.fanin.nq.nqfanin;
  com.zazuko.rdfmapping.fanin.nq.nqfanin.impl,
  com.zazuko.rdfmapping.fanin.nq.nqfanin.domain,
  com.zazuko.rdfmapping.fanin.nq.nqfanin.parsing,
- com.zazuko.rdfmapping.fanin.nq.nqfanin.util
+ com.zazuko.rdfmapping.fanin.nq.nqfanin.util,
+ rdfmappingcore,
+ rdfmappingcore.impl,
+ rdfmappingcore.util
 Import-Package: org.apache.commons.logging;version="1.2.0",
  org.apache.log4j;version="1.2.15"
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.13.0",
