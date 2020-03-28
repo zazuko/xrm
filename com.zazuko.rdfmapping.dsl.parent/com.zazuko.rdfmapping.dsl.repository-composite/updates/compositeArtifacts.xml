@@ -3,10 +3,9 @@
 <repository name='Zazuko'
     type='org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository' version='1.0.0'>
   <properties size='1'>
-    <property name='p2.timestamp' value='1585321066000'/>
+    <property name='p2.timestamp' value='1585388352000'/>
   </properties>
-  <children size='2'>
-    <child location='../releases/0.9.0'/>
+  <children size='1'>
     <child location='../releases/1.0.0'/>
   </children>
 </repository>
