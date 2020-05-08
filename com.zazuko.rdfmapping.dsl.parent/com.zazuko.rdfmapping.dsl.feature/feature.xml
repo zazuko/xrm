@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="com.zazuko.rdfmapping.dsl.feature"
-      label="RDF Mapping DSL"
+      label="Expressive RDF Mapper (XRM)"
       version="1.0.0.qualifier"
       provider-name="zazuko.com">
 
-   <description url="https://github.com/zazuko/rdf-mapping-dsl-user">
-      Provides an editor for data mappings to RDF. Generates mapping files in R2RML, RML, CARML and CSVW format.
+   <description url="https://github.com/zazuko/expressive-rdf-mapper">
+      Provides an editor for mappings of non-RDF resources to RDF. Generates mapping files in R2RML, RML, CARML and CSVW format.
    </description>
 
    <copyright>
@@ -14,32 +14,36 @@
    </copyright>
 
    <license url="">
-      # End-User License Agreement (&quot;Agreement&quot;)
+      End-User License Agreement (&quot;Agreement&quot;)
 
-Last updated: 2020-03-27
+Last updated: 2020-05-08
 
-Please read this End-User License Agreement (&quot;Agreement&quot;) carefully before downloading or using RDF Mapping DSL (&quot;Application&quot;).
+Please read this End-User License Agreement (&quot;Agreement&quot;) carefully before downloading or using the Expressive RDF Mapper XRM (&quot;Application&quot;).
 
 By downloading or using the Application, you are agreeing to be bound by the terms and conditions of this Agreement.
 
 If you do not agree to the terms of this Agreement, do not download or use the Application.
 
-## License
+
+License
 
 Zazuko GmbH grants you a revocable, non-exclusive, non-transferable, limited license to download, install and use the Application solely for your personal, non-commercial purposes strictly in accordance with the terms of this Agreement.
 
-## Restrictions
+
+Restrictions
 
 You agree not to, and you will not permit others to:
 
 a) license, sell, rent, lease, assign, distribute, transmit, host, outsource, disclose or otherwise commercially exploit the Application or make the Application available to any third party.
 b) Modify the Application or any of its source codes.
 
-## Modifications to Application
+
+Modifications to Application
 
 Zazuko GmbH reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without liability to you.
 
-## Term and Termination
+
+Term and Termination
 
 This Agreement shall remain in effect until terminated by you or Zazuko GmbH.
 
@@ -49,15 +53,18 @@ This Agreement will terminate immediately, without prior notice from Zazuko GmbH
 
 Upon termination of this Agreement, you shall cease all use of the Application and delete all copies of the Application from your desktop or from your servers.
 
-## Severability
+
+Severability
 
 If any provision of this Agreement is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.
 
-## Amendments to this Agreement
+
+Amendments to this Agreement
 
 Zazuko GmbH reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 30 days&apos; notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
 
-## Contact Information
+
+Contact Information
 
 If you have any questions about this Agreement, please contact us.
 
