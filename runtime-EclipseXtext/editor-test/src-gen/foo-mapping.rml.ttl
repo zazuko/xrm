@@ -35,6 +35,18 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		];
 	]
 .
+<#ReferenceTemplateFromOtherFile>
+	rml:logicalSource [
+		rml:source "EMP" ;
+		rml:referenceFormulation ql:XPath ;
+		rml:iterator "/Employees/Employee" ;
+	];
+	
+	rr:subjectMap [
+		rr:template "http://airport.example.com/{EMPNO}" ;
+	]
+	
+.
 <#TestImpactMapping>
 	rml:logicalSource [
 		rml:source "http://www.example.com/Foo.csv" ;

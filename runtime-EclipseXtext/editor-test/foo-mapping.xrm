@@ -24,6 +24,11 @@ map FooMapping from KEYWORDSOURCE {
 		// thing.bla
 }
 
+map ReferenceTemplateFromOtherFile from EMPLOYEE {
+	// TODO code completion at airportIri - get proposal for e.g. airportIri (from another file #88) 
+	subject template airportIri with EMPNO;
+}
+
 map TestImpactMapping from SomeSourceGroup.foo {
 	subject template "http://foo.example.com/{0}" with id;
 
