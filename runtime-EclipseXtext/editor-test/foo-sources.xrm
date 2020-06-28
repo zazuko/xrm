@@ -10,10 +10,11 @@ source-group SomeSourceGroup {
 			foo
 			bar
 	}
-	
+
 	logical-source fooCsv {
 		type csv
 		source "http://www.example.com/Foo.csv"
+		null "nullValue2"
 
 		referenceables
 			id

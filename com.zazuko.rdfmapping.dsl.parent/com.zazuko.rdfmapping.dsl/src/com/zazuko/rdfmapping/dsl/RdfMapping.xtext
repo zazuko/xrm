@@ -41,6 +41,7 @@ LogicalSource:
 	'logical-source' name=ID BLOCK_BEGIN
 		('type' typeRef=SourceTypeRef)?
 		('source' (sourceIsQuery ?= 'query')? source=STRING)?
+		(nullValueMarker=NullValueDeclaration)?
 		('dialect' dialect=[DialectGroup])?
     	('xml-namespace-extension' xmlNamespaceExtension=[XmlNamespaceExtension])?
 		('iterator' iterator=STRING)?
@@ -120,9 +121,9 @@ Prefix:
     
 RdfProperty:
 	name=ID (value=STRING)?;
-	
+
 RdfClass:
-	name=ID (value=STRING)?;	
+	name=ID (value=STRING)?;
 
 TemplateDeclaration:
 	'template' name=ID value=TemplateValueDeclaration

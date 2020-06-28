@@ -3,14 +3,15 @@ package com.zazuko.rdfmapping.dsl.generator.common
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
-import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceTypeExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.XmlNamespaceExtensionExtractor
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
+import com.zazuko.rdfmapping.dsl.rdfMapping.Element
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
@@ -21,6 +22,8 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceTypeRef
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
@@ -30,8 +33,6 @@ import java.util.List
 import java.util.Set
 import javax.inject.Inject
 import org.eclipse.emf.ecore.EObject
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueRef
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
 
 class ModelAccess {
 	
@@ -45,9 +46,6 @@ class ModelAccess {
 	SourceExtractor sourceExtractor;
 
 	@Inject
-	SourceTypeExtractor sourceTypeExtractor;
-	
-	@Inject
 	XmlNamespaceExtensionExtractor xmlNamespaceExtensionExtractor
 	
 
@@ -59,9 +57,32 @@ class ModelAccess {
 		return isQueryResolvedExtractor.extractC(it);
 	}
 
-	def SourceType typeResolved(LogicalSource it) {
-		return sourceTypeExtractor.extractC(it);
+	def dispatch SourceType typeResolved(LogicalSource it) {
+		if (typeRef !== null && typeRef?.type !== null) {
+			return typeRef.type;
+		}
+		return typeResolved(eContainer);
 	}
+	
+	def dispatch SourceType typeResolved(SourceGroup it) {
+		if (typeRef?.type !== null) {
+			return typeRef.type;
+		}
+		return null;
+	}
+	
+	def dispatch SourceType typeResolved(Referenceable it) {
+		return eContainer.typeResolved;
+	}
+	
+	def dispatch SourceType typeResolved(NullValueDeclaration it) {
+		return eContainer.typeResolved;
+	}
+
+	def dispatch SourceType typeResolved(Element it) {
+		return null; // last resort
+	}
+	
 
 	def XmlNamespaceExtension xmlNamespaceExtensionResolved(LogicalSource it) {
 		return xmlNamespaceExtensionExtractor.extractC(it);
@@ -195,5 +216,5 @@ class ModelAccess {
 	def dispatch String templateValueResolved(TemplateValueDeclaration it) {
 		return templateValue;
 	}
-
+	
 }

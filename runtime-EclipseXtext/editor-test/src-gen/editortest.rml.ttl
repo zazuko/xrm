@@ -7,7 +7,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 
 <#EmployeeMapping>
 	rml:logicalSource [
-		rml:source "EMP" ;
+		rml:query """EMP""" ;
 		rml:referenceFormulation ql:XPath ;
 		rml:iterator "/Employees/Employee" ;
 	];
@@ -39,7 +39,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 .
 <#EmployeeMapping2>
 	rml:logicalSource [
-		rml:source "EMP" ;
+		rml:query """EMP""" ;
 		rml:referenceFormulation ql:XPath ;
 		rml:iterator "/Employees/Employee" ;
 	];
