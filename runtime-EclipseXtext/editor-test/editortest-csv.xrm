@@ -12,10 +12,9 @@ map EmployeeMapping from EMPLOYEE {
 	properties
 		employee.no from EMPNO;
 		// TODO uncomment next line --> error no ParentTriplesMap on CSV
-		// thing.color parent-map EmployeeMapping2;
-
-		// TODO uncomment next line, do code-completion, 'parent-map' must not be offered 
-		// thing.color 
+// thing.color parent-map EmployeeMapping2;
+// TODO uncomment next line, do code-completion, 'parent-map' must not be offered 
+// thing.color 
 }
 
 
@@ -30,7 +29,30 @@ map EmployeeMapping2 from EMPLOYEE {
 		// TODO codeCompletion between EMPNO and ; must not give 'as'
 		keyword.^map template "{0}" with EMPNO;
 		// TODO uncomment next line, warning 'Literal' + quickfix
-		// keyword.^map template "{0}" with EMPNO as Literal;
+// keyword.^map template "{0}" with EMPNO as Literal;
+}
+
+// TODO check null-value-statements in editortest-csv.csv.meta.json
+map CsvSourceGroupWithNullValueOverride from CsvSourceGroupWithNullValue.fooCsv {
+	subject template "http://airport.example.com/{0}" with id;
+
+	types
+		employee.Employee
+
+	properties
+		thing.color from id; // nullValue from logical-source
+		thing.size from foo; // nullValue from referenceable
+}
+
+// TODO check null-value-statements in editortest-csv.csv.meta.json
+map CsvSourceGroupWithNullValueInherit from CsvSourceGroupWithNullValue.fooCsvInheritnullValue {
+	subject template "http://airport.example.com/{0}" with thing;
+
+	types
+		employee.Employee
+
+	properties
+		thing.color from thing; // nullValue from courceGroup
 }
 
 logical-source EMPLOYEE {

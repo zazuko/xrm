@@ -32,6 +32,7 @@ SourceGroup:
     'source-group' name=ID BLOCK_BEGIN
     	('type' typeRef=SourceTypeRef)?
     	('source' (sourceIsQuery ?= 'query')? source=STRING)?
+    	(nullValueMarker=NullValueDeclaration)?
     	('dialect' dialect=[DialectGroup])?
     	('xml-namespace-extension' xmlNamespaceExtension=[XmlNamespaceExtension])?
     	(logicalSources+=LogicalSource)*

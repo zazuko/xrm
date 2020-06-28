@@ -53,7 +53,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.assignment(ga.sourceGroupAccess.nameAssignment_1).surround[oneSpace];
 		interior(
 			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_BEGINTerminalRuleCall_2),
-			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_ENDTerminalRuleCall_8)
+			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_ENDTerminalRuleCall_9)
 		)[indent];
 
 		// 'type'
@@ -63,9 +63,20 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.sourceGroupAccess.sourceKeyword_4_0).prepend[setNewLines(1)];
 		regionFor.assignment(ga.sourceGroupAccess.sourceIsQueryAssignment_4_1).prepend[oneSpace];
 		regionFor.assignment(ga.sourceGroupAccess.sourceAssignment_4_2).prepend[oneSpace];
+		
+		if (nullValueMarker !== null) {
+			if (source !== null) {
+				regionFor.assignment(ga.sourceGroupAccess.sourceAssignment_4_2).append[setNewLines(1)];
+			} else if (typeRef !== null) {
+				// ! delegation to typeRef
+				typeRef.regionFor.assignment(ga.sourceTypeRefAccess.typeAssignment).append[setNewLines(1)];
+			}	
+			regionFor.keyword(ga.nullValueDeclarationAccess.nullKeyword_0).prepend[setNewLines(1)];
+			nullValueMarker.format;
+		}
 
-		regionFor.keyword(ga.sourceGroupAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.sourceGroupAccess.xmlNamespaceExtensionKeyword_6_0).prepend[setNewLines(1)].append [
+		regionFor.keyword(ga.sourceGroupAccess.dialectKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.sourceGroupAccess.xmlNamespaceExtensionKeyword_7_0).prepend[setNewLines(1)].append [
 			oneSpace
 		];
 

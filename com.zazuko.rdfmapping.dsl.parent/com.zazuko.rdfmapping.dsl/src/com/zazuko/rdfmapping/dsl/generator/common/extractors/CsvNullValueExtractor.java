@@ -11,8 +11,8 @@ public class CsvNullValueExtractor extends TwoLevelShadowedConfigExtractor<Logic
 	@Inject
 	public CsvNullValueExtractor(LogicalSource2SourceGroupNavigation nav) {
 		super(//
-				ls -> value(ls.getNullValueMarker()),//
-				sg -> null, // TODO replace with value(sg.getNullValueMarker()),//
+				ls -> value(ls.getNullValueMarker()), //
+				sg -> value(sg.getNullValueMarker()), //
 				nav);
 	}
 

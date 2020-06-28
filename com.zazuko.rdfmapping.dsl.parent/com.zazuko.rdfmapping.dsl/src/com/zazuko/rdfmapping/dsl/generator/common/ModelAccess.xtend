@@ -36,29 +36,33 @@ import javax.inject.Inject
 import org.eclipse.emf.ecore.EObject
 
 class ModelAccess {
-	
+
 	@Inject
 	DialectGroupExtractor dialectExtractor;
 
 	@Inject
 	IsQueryResolvedExtractor isQueryResolvedExtractor;
-	
+
 	@Inject
 	CsvNullValueExtractor csvNullValueExtractor;
-	
+
 	@Inject
 	SourceExtractor sourceExtractor;
 
 	@Inject
 	XmlNamespaceExtensionExtractor xmlNamespaceExtensionExtractor
-	
 
 	def String sourceResolved(LogicalSource it) {
 		return sourceExtractor.extractC(it);
 	}
-	
+
 	def boolean sourceIsQueryResolved(LogicalSource it) {
 		return isQueryResolvedExtractor.extractC(it);
+	}
+
+	// we are in an editor runtime - so also cover the null case :-(
+	def dispatch SourceType typeResolved(Void it) {
+		return null;
 	}
 
 	def dispatch SourceType typeResolved(LogicalSource it) {
@@ -67,18 +71,18 @@ class ModelAccess {
 		}
 		return typeResolved(eContainer);
 	}
-	
+
 	def dispatch SourceType typeResolved(SourceGroup it) {
 		if (typeRef?.type !== null) {
 			return typeRef.type;
 		}
 		return null;
 	}
-	
+
 	def dispatch SourceType typeResolved(Referenceable it) {
 		return eContainer.typeResolved;
 	}
-	
+
 	def dispatch SourceType typeResolved(NullValueDeclaration it) {
 		return eContainer.typeResolved;
 	}
@@ -86,12 +90,11 @@ class ModelAccess {
 	def dispatch SourceType typeResolved(Element it) {
 		return null; // last resort
 	}
-	
 
 	def XmlNamespaceExtension xmlNamespaceExtensionResolved(LogicalSource it) {
 		return xmlNamespaceExtensionExtractor.extractC(it);
 	}
-	
+
 	def DialectGroup dialectResolved(LogicalSource it) {
 		return dialectExtractor.extractC(it);
 	}
@@ -141,7 +144,7 @@ class ModelAccess {
 
 		return result
 	}
-	
+
 	def Set<Vocabulary> prefixesUsed(Iterable<Mapping> mappings) {
 		return mappings.map[m|m.prefixesUsed].flatten.toSet;
 	}
@@ -189,19 +192,19 @@ class ModelAccess {
 			return name;
 		}
 	}
-	
+
 	def String referenceFormulation(SourceTypeRef it) {
 		return it?.type?.referenceFormulation;
 	}
-	
+
 	def String referenceFormulation(SourceType it) {
 		return GeneratorConstants.REFERENCE_FORMULATION.toStringValue(it);
 	}
-	
+
 	def OutputType outputType(EObject it) {
 		return findParent(Domainmodel)?.outputType?.type;
 	}
-	
+
 	def <C extends EObject> C findParent(EObject it, Class<C> clazz) {
 		var EObject tmp = it;
 		while (tmp !== null) {
@@ -212,17 +215,17 @@ class ModelAccess {
 		}
 		return null;
 	}
-	
+
 	def dispatch String templateValueResolved(TemplateValueRef it) {
 		return templateDeclaration?.value?.templateValue;
 	}
-	
+
 	def dispatch String templateValueResolved(TemplateValueDeclaration it) {
 		return templateValue;
 	}
-	
+
 	def String csvNullValue(LogicalSource it) {
 		return csvNullValueExtractor.extractC(it);
 	}
-	
+
 }

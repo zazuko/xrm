@@ -146,6 +146,10 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 		return RdfMappingPackage.Literals.LOGICAL_SOURCE__NULL_VALUE_MARKER;
 	}
 
+	def private dispatch resolveNullValueFeature(SourceGroup it) {
+		return RdfMappingPackage.Literals.SOURCE_GROUP__NULL_VALUE_MARKER;
+	}
+
 	@Check
 	def void check(Domainmodel it) {
 		if (outputType !== null && elements.filter(typeof(Mapping)).empty) {
