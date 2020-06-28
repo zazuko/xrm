@@ -16,6 +16,7 @@
 	},
 	"tableSchema": {
 		"aboutUrl": "http://foo.example.com/{id}",
+		"null": "nullValue2",
 		"columns": [
 			{
 				"virtual": true,

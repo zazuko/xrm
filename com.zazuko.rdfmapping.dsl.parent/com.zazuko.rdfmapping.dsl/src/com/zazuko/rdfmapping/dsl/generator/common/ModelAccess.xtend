@@ -1,5 +1,6 @@
 package com.zazuko.rdfmapping.dsl.generator.common
 
+import com.zazuko.rdfmapping.dsl.generator.common.extractors.CsvNullValueExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
@@ -41,6 +42,9 @@ class ModelAccess {
 
 	@Inject
 	IsQueryResolvedExtractor isQueryResolvedExtractor;
+	
+	@Inject
+	CsvNullValueExtractor csvNullValueExtractor;
 	
 	@Inject
 	SourceExtractor sourceExtractor;
@@ -215,6 +219,10 @@ class ModelAccess {
 	
 	def dispatch String templateValueResolved(TemplateValueDeclaration it) {
 		return templateValue;
+	}
+	
+	def String csvNullValue(LogicalSource it) {
+		return csvNullValueExtractor.extractC(it);
 	}
 	
 }
