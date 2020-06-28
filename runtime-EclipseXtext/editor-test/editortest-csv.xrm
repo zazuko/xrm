@@ -1,6 +1,9 @@
 // TODO comment next line --> warning on map + quickfix
 output csvw
 
+
+template anyTemplate "foo"
+
 map EmployeeMapping from EMPLOYEE {
 	subject template "http://airport.example.com/{0}" with id;
 
