@@ -53,6 +53,8 @@ logical-source EMPLOYEE {
 	// TODO add another whitespace between 'query' and 'EMP', format --> have 1 whitespace again
 	source query "EMP"
 	// TODO uncomment next line --> error because of sourceType==xml
+	// null "nullX"
+	// TODO uncomment next line --> error because of sourceType==xml
 	// dialect MyDialect
 	iterator "/Employees/Employee"
 

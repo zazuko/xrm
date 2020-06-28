@@ -13,7 +13,7 @@ map EmployeeMapping from EMPLOYEE {
 		employee.no from EMPNO;
 		// TODO uncomment next line --> error no ParentTriplesMap on CSV
 		// thing.color parent-map EmployeeMapping2;
-		
+
 		// TODO uncomment next line, do code-completion, 'parent-map' must not be offered 
 		// thing.color 
 }
@@ -31,15 +31,14 @@ map EmployeeMapping2 from EMPLOYEE {
 		keyword.^map template "{0}" with EMPNO;
 		// TODO uncomment next line, warning 'Literal' + quickfix
 		// keyword.^map template "{0}" with EMPNO as Literal;
-		
 }
 
 logical-source EMPLOYEE {
 	type csv
 	source "EMP"
 	// TODO uncomment next line --> 2errors:
-	//// on both mappings above, referencing this source --> with quickfix
-	//// error here: no xml-stuff on srcType CSV
+	// // on both mappings above, referencing this source --> with quickfix
+	// // error here: no xml-stuff on srcType CSV
 	// xml-namespace-extension SomeXmlNsExtension
 	iterator "/Employees/Employee"
 
