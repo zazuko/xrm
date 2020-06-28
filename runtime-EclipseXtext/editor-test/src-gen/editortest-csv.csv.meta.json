@@ -14,7 +14,8 @@
 					,
 					{
 						"propertyUrl": "http://example.com/employeeno",
-						"titles": "EMPNO"
+						"titles": "EMPNO",
+						"null": "X"
 					}
 					,
 					{
@@ -38,7 +39,8 @@
 					,
 					{
 						"propertyUrl": "http://example.com/employeeno",
-						"titles": "EMPNO"
+						"titles": "EMPNO",
+						"null": "X"
 					},
 					{
 						"propertyUrl": "http://example.com/employeemap",

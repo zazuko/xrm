@@ -3,12 +3,22 @@ source-group SomeSourceGroup {
 	dialect SomeDialect
 	logical-source foo {
 		type xml
-		source "http://www.example.com/Foo.csv"
+		source "http://www.example.com/Foo.xml"
 
 		referenceables
 			id
 			foo
 			bar
+	}
+	
+	logical-source fooCsv {
+		type csv
+		source "http://www.example.com/Foo.csv"
+
+		referenceables
+			id
+			foo null "fooNullValue"
+			bar null "barNullValue"
 	}
 
 }

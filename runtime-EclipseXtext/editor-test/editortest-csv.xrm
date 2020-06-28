@@ -45,7 +45,7 @@ logical-source EMPLOYEE {
 
 	referenceables
 		id
-		EMPNO
+		EMPNO null "X"
 }
 
 vocabulary employee {
