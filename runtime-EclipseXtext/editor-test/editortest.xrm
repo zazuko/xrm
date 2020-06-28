@@ -1,6 +1,7 @@
 // TODO uncomment next line --> warning on 'map' + quickfix
 output rml
 
+template anyTemplate "foo"
 template airportIri "http://airport.example.com/{0}"
 template exampleIri "http://example.com/"
 // TODO uncomment next line --> error for duplicated template name

@@ -12,7 +12,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://foo.example.com/{id}" ;
+		rr:template "foo" ;
 		rr:class employee:Employee ;
 	];
 	
@@ -38,7 +38,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 <#ReferenceTemplateFromOtherFile>
 	rml:logicalSource [
 		rml:source "EMP" ;
-		rml:referenceFormulation ql:XPath ;
+		rml:referenceFormulation ql:CSV ;
 		rml:iterator "/Employees/Employee" ;
 	];
 	

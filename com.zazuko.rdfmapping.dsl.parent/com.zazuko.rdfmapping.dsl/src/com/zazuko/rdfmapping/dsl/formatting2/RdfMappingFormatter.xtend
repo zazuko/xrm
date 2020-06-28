@@ -277,9 +277,9 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(TemplateValuedTerm it, extension IFormattableDocument document) {
 		regionFor.keyword(ga.templateValuedTermAccess.templateKeyword_0).surround[oneSpace];
-		regionFor.keyword(ga.templateValuedTermAccess.withKeyword_2).prepend[oneSpace];
-		regionFor.assignment(ga.templateValuedTermAccess.referencesAssignment_3).prepend[oneSpace];
-		regionFor.keyword(ga.templateValuedTermAccess.asKeyword_4_0).surround[oneSpace];
+		regionFor.keyword(ga.templateValuedTermAccess.withKeyword_2_0).prepend[oneSpace];
+		regionFor.assignment(ga.templateValuedTermAccess.referencesAssignment_2_1).prepend[oneSpace];
+		regionFor.keyword(ga.templateValuedTermAccess.asKeyword_3_0).surround[oneSpace];
 	}
 
 	def dispatch void format(ParentTriplesMapTerm it, extension IFormattableDocument document) {

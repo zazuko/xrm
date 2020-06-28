@@ -183,7 +183,7 @@ ConstantValuedTerm:
 ;
 
 TemplateValuedTerm:
-	'template' template=TemplateValue 'with' (references+=[Referenceable])+
+	'template' template=TemplateValue ('with' (references+=[Referenceable])+)?
 	('as' termTypeRef=TermTypeRef)?
 ;
 	
