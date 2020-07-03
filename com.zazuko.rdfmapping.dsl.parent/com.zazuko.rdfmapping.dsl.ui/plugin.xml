@@ -442,6 +442,10 @@
              name="appName"
              value="Expressive RDF Mapper (XRM)">
        </property>
+       <property
+             name="aboutText"
+             value="About Expressive RDF Mapper (XRM) by zazuko.com">
+       </property>
     </product>
  </extension>
 </plugin>

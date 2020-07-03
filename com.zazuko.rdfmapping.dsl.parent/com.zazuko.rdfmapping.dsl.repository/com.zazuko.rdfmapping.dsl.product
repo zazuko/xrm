@@ -3,6 +3,12 @@
 
 <product name="Expressive RDF Mapper (XRM)" uid="com.zazuko.rdfmapping.dsl" id="com.zazuko.rdfmapping.dsl.ui.expressive_rdf_mapper" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
+   <aboutInfo>
+      <text>
+         About Expressive RDF Mapper (XRM) by zazuko.com
+      </text>
+   </aboutInfo>
+
    <configIni use="default">
    </configIni>
 
@@ -22,6 +28,7 @@
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
