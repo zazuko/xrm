@@ -433,6 +433,7 @@
 	</extension>
  <extension
        id="expressive_rdf_mapper"
+       name="Expressive RDF Mapper (XRM)"
        point="org.eclipse.core.runtime.products">
     <product
           application="org.eclipse.ui.ide.workbench"
