@@ -9,23 +9,4 @@
 	</parent>
 	<artifactId>com.zazuko.rdfmapping.dsl.target</artifactId>
 	<packaging>eclipse-target-definition</packaging>
-
-<!-- 	<build> -->
-<!-- 		<plugins> -->
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.eclipse.tycho</groupId> -->
-<!-- 				<artifactId>target-platform-configuration</artifactId> -->
-<!-- 				<version>${tycho-version}</version> -->
-<!-- 				<configuration> -->
-<!-- 					<target> -->
-<!-- 						<artifact> -->
-<!-- 							<groupId>some-group-id</groupId> -->
-<!-- 							<artifactId>target-definition-id</artifactId> -->
-<!-- 							<version>target-definition-version</version> -->
-<!-- 						</artifact> -->
-<!-- 					</target> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
-<!-- 		</plugins> -->
-<!-- 	</build> -->
 </project>
