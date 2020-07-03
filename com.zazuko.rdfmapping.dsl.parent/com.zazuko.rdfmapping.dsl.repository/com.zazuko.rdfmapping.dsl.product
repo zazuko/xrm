@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Expressive RDF Mapper (XRM)" uid="com.zazuko.rdfmapping.dsl" id="com.zazuko.rdfmapping.dsl.ui.expressive_rdf_mapper" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="Expressive RDF Mapper (XRM)" uid="com.zazuko.rdfmapping.dsl.product" id="com.zazuko.rdfmapping.dsl.ui.expressive_rdf_mapper" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <text>
@@ -28,7 +28,6 @@
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
