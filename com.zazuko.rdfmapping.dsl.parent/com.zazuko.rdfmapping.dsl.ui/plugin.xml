@@ -431,4 +431,16 @@
 			type="text">
 		</fileTypes>
 	</extension>
+ <extension
+       id="expressive_rdf_mapper"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="org.eclipse.ui.ide.workbench"
+          name="Expressive RDF Mapper (XRM)">
+       <property
+             name="appName"
+             value="Expressive RDF Mapper (XRM)">
+       </property>
+    </product>
+ </extension>
 </plugin>

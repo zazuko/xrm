@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="Expressive RDF Mapper (XRM)" uid="com.zazuko.rdfmapping.dsl.product" id="com.zazuko.rdfmapping.dsl.ui.expressive_rdf_mapper" application="org.eclipse.ui.ide.workbench" useFeatures="false" includeLaunchers="true">
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <plugins>
+   </plugins>
+
+
+</product>
