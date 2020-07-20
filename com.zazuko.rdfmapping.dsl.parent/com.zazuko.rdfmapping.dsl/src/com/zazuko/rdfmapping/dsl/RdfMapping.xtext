@@ -143,6 +143,7 @@ TemplateValueRef:
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
 		'subject' subjectIriMapping=TemplateValuedTerm LINE_END
+		 ('graph' graphMappings+=GraphMapping)*
 		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
 	BLOCK_END;
@@ -156,6 +157,10 @@ PredicateObjectMapping:
 	term=ValuedTerm? // must be optional in order to get the quickfix working (must be serializable on missing term) --> manual validation for term === null
 	// see: com.zazuko.rdfmapping.dsl.ui.quickfix.RealRdfMappingQuickfixProvider.missingRdfProperty(Issue, IssueResolutionAcceptor)
 	lineEnd?=LINE_END // hack in order to improve code completion - see com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.complete_LINE_END(EObject, RuleCall, ContentAssistContext, ICompletionProposalAcceptor) --> isLineEnd
+;
+
+GraphMapping:
+	TemplateValuedTerm | ConstantValuedTerm
 ;
 	
 ValuedTerm:

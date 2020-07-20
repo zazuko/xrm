@@ -71,6 +71,9 @@ class RmlDialectGenerator {
 			«IF subjectIriMapping.termTypeRef?.type !== null»
 				rr:termType rr:«subjectIriMapping.termTypeRef.type» ;
 			«ENDIF»
+			«FOR graphMapping : graphMappings»
+				«graphMap(graphMapping)» ;
+			«ENDFOR»
 		]'''
 	
 	def predicateObjectMap(PredicateObjectMapping it) '''
@@ -79,6 +82,19 @@ class RmlDialectGenerator {
 			rr:objectMap [
 				«term.objectTermMap»
 			];
+		]
+	'''
+	
+	def dispatch graphMap(TemplateValuedTerm it) '''
+		rr:graphMap [
+		  rr:template "«toTemplateString»"
+		]
+	'''
+	
+	
+	def dispatch graphMap(ConstantValuedTerm it) '''
+		rr:graphMap [
+		  rr:constant "«constant»"
 		]
 	'''
 	
