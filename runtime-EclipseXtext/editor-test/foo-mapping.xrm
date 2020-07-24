@@ -1,7 +1,7 @@
 output rml
 
 map FooMapping from KEYWORDSOURCE {
-	subject template anyTemplate;
+	subject template UniqTemplate;
 
 	types
 		employee.Employee
