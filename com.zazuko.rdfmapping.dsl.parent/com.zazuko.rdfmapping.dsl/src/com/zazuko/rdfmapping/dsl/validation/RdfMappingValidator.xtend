@@ -28,6 +28,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility
 import com.zazuko.rdfmapping.dsl.util.LazyMap
+import com.zazuko.rdfmapping.dsl.validation.TemplateFormatAnalyzer.TemplateFormatAnalyzerException
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
@@ -35,7 +36,7 @@ import java.util.Set
 import java.util.TreeMap
 import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
-import com.zazuko.rdfmapping.dsl.validation.TemplateFormatAnalyzer.TemplateFormatAnalyzerException
+import org.eclipse.xtext.validation.CheckType
 
 /**
  * This class contains custom validation rules. 
@@ -49,9 +50,17 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Inject
 	extension InputOutputCompatibility
-	
+
 	@Inject
 	TemplateFormatAnalyzer templateAnalyzer
+
+	@Inject
+	DuplicatedQualifiedNameValidator duplicatedQNameValidator
+
+	@Check(CheckType.NORMAL)
+	def checkDuplicatedTemplateDeclaration(TemplateDeclaration it) {
+		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.TEMPLATE_DECLARATION, [ msg | error(msg, RdfMappingPackage.Literals.TEMPLATE_DECLARATION__NAME)]);
+	}
 
 	@Check
 	def void checkTypeDeclarations(LogicalSource logicalSource) {
@@ -98,19 +107,20 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 		}
 	}
-	
+
 	@Check
 	def void checkSourceTypeSpecificRules(SourceGroup it) {
 		val SourceType type = typeRef?.type;
 		if (type === null) {
 			return;
 		}
-		
+
 		if (!SourceType.CSV.equals(type) && dialect !== null) {
 			error("Dialect is for sourceType CSV only", RdfMappingPackage.Literals.SOURCE_GROUP__DIALECT);
 		}
 		if (!SourceType.XML.equals(type) && xmlNamespaceExtension !== null) {
-			error("xml-namespace-extension is for sourceType XML only", RdfMappingPackage.Literals.SOURCE_GROUP__XML_NAMESPACE_EXTENSION);
+			error("xml-namespace-extension is for sourceType XML only",
+				RdfMappingPackage.Literals.SOURCE_GROUP__XML_NAMESPACE_EXTENSION);
 		}
 	}
 
@@ -120,12 +130,13 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 		if (type === null) {
 			return;
 		}
-		
+
 		if (!SourceType.CSV.equals(type) && dialect !== null) {
 			error("Dialect is for sourceType CSV only", RdfMappingPackage.Literals.LOGICAL_SOURCE__DIALECT);
 		}
 		if (!SourceType.XML.equals(type) && xmlNamespaceExtension !== null) {
-			error("xml-namespace-extension is for sourceType XML only", RdfMappingPackage.Literals.LOGICAL_SOURCE__XML_NAMESPACE_EXTENSION);
+			error("xml-namespace-extension is for sourceType XML only",
+				RdfMappingPackage.Literals.LOGICAL_SOURCE__XML_NAMESPACE_EXTENSION);
 		}
 	}
 
@@ -156,12 +167,16 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 				RdfMappingPackage.Literals.DOMAINMODEL__OUTPUT_TYPE,
 				RdfMappingValidationCodes.DOMAINMODEL_OUTPUTTYPE_SUPERFLUOUS);
 		}
-		
-		new DuplicationCheck().check(elements.filter(TemplateDeclaration).toList,
+
+		new DuplicationCheck().check(
+			elements.filter(TemplateDeclaration).toList,
 			[name],
-			[name, declaration | error("Declaration name already in use: " + name, declaration, RdfMappingPackage.Literals.TEMPLATE_DECLARATION__NAME);]
+			[ name, declaration |
+				error("Declaration name already in use: " + name, declaration,
+					RdfMappingPackage.Literals.TEMPLATE_DECLARATION__NAME);
+			]
 		)
-		
+
 	}
 
 	@Check
@@ -202,22 +217,22 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE);
 				}
 			}
-			
+
 			if (source?.xmlNamespaceExtensionResolved !== null) {
 				if (!OutputType.CARML.equals(domainModel.outputType.type)) {
-					val String msg = "Source with xml-namespace-extension requires OutputType " + OutputType.CARML.serialize2Message;
+					val String msg = "Source with xml-namespace-extension requires OutputType " +
+						OutputType.CARML.serialize2Message;
 					error(msg, RdfMappingPackage.Literals.MAPPING__SOURCE,
 						RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE);
 				}
 			}
 		}
-		
+
 		// no literal on subjectIriMapping
-		if (subjectIriMapping !== null 
-			&& subjectIriMapping.termTypeRef !== null
-			&& TermType.LITERAL.equals(subjectIriMapping.termTypeRef.type)
-		) {
-			error("Literal is invalid on the subject", subjectIriMapping.termTypeRef, RdfMappingPackage.Literals.TERM_TYPE_REF__TYPE);
+		if (subjectIriMapping !== null && subjectIriMapping.termTypeRef !== null &&
+			TermType.LITERAL.equals(subjectIriMapping.termTypeRef.type)) {
+			error("Literal is invalid on the subject", subjectIriMapping.termTypeRef,
+				RdfMappingPackage.Literals.TERM_TYPE_REF__TYPE);
 		}
 	}
 
@@ -241,40 +256,42 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	def void check(TermTypeRef it) {
 		onlyOnRmlishType(outputType);
 	}
-	
+
 	@Check
 	def void check(PredicateObjectMapping it) {
 		if (term === null) {
 			error("ValuedTerm missing", null, "missing");
 		}
 	}
-	
 
 	@Check
 	def void check(MultiReferenceValuedTerm it) {
 		carmlOnly(outputType);
 	}
-	
+
 	def private carmlOnly(OutputType outputType) {
 		if (outputType === null) {
 			return;
 		}
 		if (!OutputType.CARML.equals(outputType)) {
-			error("Not on output of type '" + outputType.literal + "' - only valid on " +
-				OutputType.CARML.serialize2Message, null,
+			error(
+				"Not on output of type '" + outputType.literal + "' - only valid on " +
+					OutputType.CARML.serialize2Message,
+				null,
 				// no quickfix - it would be complicated and the case should not happen at all (omitted completion)
 				RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS_NOFIX
-				);
+			);
 		}
 	}
-	
+
 	@Check
 	def void prefixLabelWithoutSeparator(Prefix it) {
 		if (label !== null && label.contains(RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER)) {
-			error("No separator characters allowed", it, RdfMappingPackage.eINSTANCE.prefix_Label, RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR);
+			error("No separator characters allowed", it, RdfMappingPackage.eINSTANCE.prefix_Label,
+				RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR);
 		}
 	}
-	
+
 	@Check
 	def void xmlNamespaceExtension(XmlNamespaceExtension it) {
 		val LazyMap<String, List<Prefix>> label2Prefix = new LazyMap(new TreeMap, [new LinkedList]);
@@ -283,14 +300,12 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 				label2Prefix.getOrInit(current.label).add(current);
 			}
 		}
-		
-		label2Prefix.values.stream().filter[list | list.size > 1]
-			.flatMap[list | list.stream]
-			.forEach[duplicatedPrefix |
+
+		label2Prefix.values.stream().filter[list|list.size > 1].flatMap[list|list.stream].forEach [ duplicatedPrefix |
 			error("Duplicated Label", duplicatedPrefix, RdfMappingPackage.eINSTANCE.prefix_Label);
 		];
 	}
-	
+
 	@Check
 	def void templateFormat(TemplateValueDeclaration it) {
 		if (templateValue !== null) {
@@ -298,15 +313,17 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			try {
 				data = templateAnalyzer.analyzeFormats(templateValue);
 			} catch (TemplateFormatAnalyzerException e) {
-				error("Pattern invalid: " + e.message, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
+				error("Pattern invalid: " + e.message, it,
+					RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
 				return;
 			}
 			if (!data.getSkippedKeys.empty) {
-				error("Pattern invalid, skipped keys " + data.getSkippedKeys.toList.toString, it, RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
+				error("Pattern invalid, skipped keys " + data.getSkippedKeys.toList.toString, it,
+					RdfMappingPackage.eINSTANCE.templateValueDeclaration_TemplateValue);
 			}
 		}
 	}
-	
+
 	@Check
 	def void templateValuedTerm_parameterSatisfied(TemplateValuedTerm it) {
 		if (template === null) {
@@ -320,13 +337,15 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 			// this is not an issue to be marked here - just go away
 			return;
 		}
-		
+
 		if (data.getUsedKeys.size != references.size) {
-			warning("Pattern '" + templateValue + "' requires " + data.getUsedKeys.size + " argument(s), but there are " + references.size,
+			warning(
+				"Pattern '" + templateValue + "' requires " + data.getUsedKeys.size + " argument(s), but there are " +
+					references.size,
 				it,
 				null
 			);
 		}
-	} 
+	}
 
 }

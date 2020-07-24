@@ -12,7 +12,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://foo.example.com/{id}" ;
+		rr:template "foo" ;
 		rr:class employee:Employee ;
 	];
 	
@@ -34,6 +34,18 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			rml:reference "map" ;
 		];
 	]
+.
+<#ReferenceTemplateFromOtherFile>
+	rml:logicalSource [
+		rml:source "EMP" ;
+		rml:referenceFormulation ql:CSV ;
+		rml:iterator "/Employees/Employee" ;
+	];
+	
+	rr:subjectMap [
+		rr:template "http://airport.example.com/{EMPNO}" ;
+	]
+	
 .
 <#TestImpactMapping>
 	rml:logicalSource [

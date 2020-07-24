@@ -1,7 +1,7 @@
 output rml
 
 map FooMapping from KEYWORDSOURCE {
-	subject template "http://foo.example.com/{0}" with id;
+	subject template anyTemplate;
 
 	types
 		employee.Employee
@@ -22,6 +22,11 @@ map FooMapping from KEYWORDSOURCE {
 		// for the next one, please make sure to select the project 'editor-test' in the package explorer and hit refresh before testing!
 		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'thing' in file 'foo-vocabularies.xrm' gets modified --> error for missing Term
 		// thing.bla
+}
+
+map ReferenceTemplateFromOtherFile from EMPLOYEE {
+	// TODO code completion at airportIri - get proposal for e.g. airportIri (from another file #88) 
+	subject template airportIri with EMPNO;
 }
 
 map TestImpactMapping from SomeSourceGroup.foo {

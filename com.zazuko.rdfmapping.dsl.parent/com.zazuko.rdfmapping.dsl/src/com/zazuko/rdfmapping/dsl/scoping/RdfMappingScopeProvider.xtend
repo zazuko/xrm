@@ -1,11 +1,9 @@
 package com.zazuko.rdfmapping.dsl.scoping
 
-import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import com.zazuko.rdfmapping.dsl.util.RootFinder
 import javax.inject.Inject
@@ -33,10 +31,6 @@ class RdfMappingScopeProvider extends AbstractRdfMappingScopeProvider {
 			return scopeForReferenceables(context.findRoot(Mapping))
 
 		} else if (context instanceof TemplateValuedTerm &&
-			reference == RdfMappingPackage.Literals.TEMPLATE_VALUE_REF__TEMPLATE_DECLARATION) {
-			return scopeForReferenceablesTemplates(context.findRoot(Domainmodel))
-
-		} else if (context instanceof TemplateValuedTerm &&
 			reference == RdfMappingPackage.Literals.TEMPLATE_VALUED_TERM__REFERENCES) {
 			return scopeForReferenceables(context.findRoot(Mapping))
 
@@ -46,8 +40,5 @@ class RdfMappingScopeProvider extends AbstractRdfMappingScopeProvider {
 
 	def private scopeForReferenceables(Mapping mapping) {
 		return Scopes.scopeFor(mapping.source.referenceables);
-	}
-	def private scopeForReferenceablesTemplates(Domainmodel it) {
-		return Scopes.scopeFor(elements.filter(TemplateDeclaration));
 	}
 }
