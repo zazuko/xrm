@@ -23,13 +23,13 @@ class RdfMappingLabelProvider extends DefaultEObjectLabelProvider {
 		super(delegate);
 	}
 
-	def text(PredicateObjectMapping pom) {
-		val vocab = pom.property.eContainer as Vocabulary;
-		vocab.name + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + pom.property.name
-	}	
+	def String text(PredicateObjectMapping it) {
+		val vocab = property.eContainer as Vocabulary;
+		return vocab.name + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + property.name;
+	}
 	
-	def text(LanguageTagDefinition ltd) {
-		"language-tags"
-	}	
+	def String text(LanguageTagDefinition it) {
+		return "language-tags";
+	}
 	
 }

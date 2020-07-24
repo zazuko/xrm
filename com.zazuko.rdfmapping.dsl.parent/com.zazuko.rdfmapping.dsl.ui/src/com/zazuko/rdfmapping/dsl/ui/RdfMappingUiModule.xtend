@@ -7,6 +7,7 @@ import com.google.inject.Binder
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingFactory
 import com.zazuko.rdfmapping.dsl.ui.contentassist.RdfMappingPrefixMatcher
 import com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider
+import com.zazuko.rdfmapping.dsl.ui.labeling.RdfHoverDocumentationProvider
 import com.zazuko.rdfmapping.dsl.ui.labeling.RdfMappingLabelProvider
 import com.zazuko.rdfmapping.dsl.ui.outline.RdfMappingOutlineTreeProvider
 import com.zazuko.rdfmapping.dsl.ui.quickfix.RealRdfMappingQuickfixProvider
@@ -14,6 +15,7 @@ import org.eclipse.jface.viewers.LabelProvider
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider
 import org.eclipse.xtext.ui.editor.contentassist.PrefixMatcher
+import org.eclipse.xtext.ui.editor.hover.html.IEObjectHoverDocumentationProvider
 import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider
 
@@ -46,6 +48,7 @@ class RdfMappingUiModule extends AbstractRdfMappingUiModule {
 	override configure(Binder it) {
 		super.configure(it);
 		bind(RdfMappingFactory).toInstance(RdfMappingFactory.eINSTANCE);
+		bind(IEObjectHoverDocumentationProvider).to(RdfHoverDocumentationProvider);
 	}
 
 }

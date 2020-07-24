@@ -35,6 +35,12 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			rr:template "{EMPNO}" ;
 			rr:termType rr:Literal ;
 		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate employee:yes ;
+		rr:objectMap [
+			rr:constant "constant-yes" ;
+		];
 	]
 .
 <#EmployeeMapping2>

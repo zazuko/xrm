@@ -21,6 +21,7 @@ map EmployeeMapping from EMPLOYEE {
 	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
 	// subject template "http://airport.example.com/{0}" with id as Literal;
 	types
+		// TODO hover over '.Employee', see the description of the class 'Employee' in the tooltip
 		employee.Employee
 
 	properties
@@ -36,6 +37,8 @@ map EmployeeMapping from EMPLOYEE {
 		// TODO uncomment next line --> error
 		// TODO code completion: no suggestion 'multi-reference'
 		// keyword.^map multi-reference from EMPNO ;
+		// TODO hover over '.yes', see the description of the property 'yes' in the tooltip
+		employee.yes constant "constant-yes";
 }
 
 map EmployeeMapping2 from EMPLOYEE {
@@ -72,10 +75,10 @@ vocabulary employee {
 	prefix "employee" "http://example.com/employee"
 
 	classes
-		Employee
+		Employee ("a person employed for wages or salary, especially at non-executive level")
 
 	properties
 		no
-		yes
+		yes ("an English progressive rock band formed in London in 1968 by singer Jon Anderson")
 }
 

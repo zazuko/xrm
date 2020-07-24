@@ -121,10 +121,10 @@ Prefix:
 	'prefix' label=STRING iri=STRING;
     
 RdfProperty:
-	name=ID (value=STRING)?;
+	name=ID (value=STRING)? ('('description=STRING')')?;
 
 RdfClass:
-	name=ID (value=STRING)?;
+	name=ID (value=STRING)? ('('description=STRING')')?;
 
 TemplateDeclaration:
 	'template' name=ID value=TemplateValueDeclaration
