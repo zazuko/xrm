@@ -3,7 +3,7 @@ source-group SomeSourceGroup {
 	dialect SomeDialect
 	logical-source foo {
 		type xml
-		source "http://www.example.com/Foo.csv"
+		source "http://www.example.com/Foo.xml"
 
 		referenceables
 			id
@@ -11,7 +11,48 @@ source-group SomeSourceGroup {
 			bar
 	}
 
+	logical-source fooCsv {
+		type csv
+		source "http://www.example.com/Foo.csv"
+		null "nullValue2"
+
+		referenceables
+			id
+			foo null "fooNullValue"
+			bar null "barNullValue"
+	}
+
 }
+
+source-group CsvSourceGroupWithNullValue {
+	type csv
+	null "nullValue@sourceGroup"
+
+	logical-source fooCsv {
+		source "http://www.example.com/Foo.csv"
+		null "nullValueOverride@LogicalSource"
+
+		referenceables
+			id
+			foo null "nullValue@referenceable"
+	}
+
+	logical-source fooCsvInheritnullValue {
+		source "http://www.example.com/Foo.csv"
+
+		referenceables
+			thing
+	}
+}
+
+source-group SomeSourceGroupWithXml {
+	type xml
+	// TODO uncomment next line --> get an error due to type !=csv
+	// null "nullOnCsvOnly"
+	// TODO uncomment next line --> get an error due to type !=csv
+	// dialect SomeDialect
+}
+
 
 dialect SomeDialect {
 	delimiter ","

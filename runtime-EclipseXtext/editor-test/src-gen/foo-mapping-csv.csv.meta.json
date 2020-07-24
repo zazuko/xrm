@@ -1,0 +1,49 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"url": "http://www.example.com/Foo.csv",
+	"dialect": {
+		"delimiter": ","
+		,"commentPrefix": "#"
+		,"doubleQuote": true
+		,"encoding": "utf-8"
+		,"header": true
+		,"headerRowCount": "1"
+		,"lineTerminators": "\r\n"
+		,"quoteChar": "\""
+		,"skipBlankRows": false
+		,"skipInitialSpace": false
+		,"trim": false
+	},
+	"tableSchema": {
+		"aboutUrl": "http://foo.example.com/{id}",
+		"null": "nullValue2",
+		"columns": [
+			{
+				"virtual": true,
+				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+				"valueUrl": "http://example.com/employeeEmployee"
+			}
+			,
+			{
+				"propertyUrl": "http://foobar.com/things/thing/color",
+				"virtual": true,
+				"valueUrl": "blue"
+			},
+			{
+				"propertyUrl": "http://example.com/employeemap",
+				"titles": "bar",
+				"null": "barNullValue"
+			},
+			{
+				"propertyUrl": "http://foobar.com/things/thing/size",
+				"titles": "foo",
+				"null": "fooNullValue"
+			}
+			,
+			{
+				"suppressOutput": true,
+				"titles": "id"
+			}
+		] 
+	}
+}

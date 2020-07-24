@@ -49,7 +49,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 .
 <#TestImpactMapping>
 	rml:logicalSource [
-		rml:source "http://www.example.com/Foo.csv" ;
+		rml:source "http://www.example.com/Foo.xml" ;
 		rml:referenceFormulation ql:XPath
 	];
 	

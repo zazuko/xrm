@@ -3,6 +3,7 @@ package com.zazuko.rdfmapping.dsl.generator.csvw
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroupDescription
+import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
@@ -93,12 +94,17 @@ class CsvwDialectGenerator {
 		«ENDIF»
 		"tableSchema": {
 			«subjectMap()»,
+			«source.csvNullValueStatement()»
 			"columns": [
 				«subjectTypeMappings()»«IF ctx.needsColumnsGlueing(it)»,«ENDIF»
 				«columns()»«IF ctx.needsColumnsGlueing(it)»,«ENDIF»
 				«suppressOutput(ctx)»
 			] 
 		}
+	'''
+	
+	def csvNullValueStatement(LogicalSource it) '''
+		«IF csvNullValue !== null»"null": "«csvNullValue»",«ENDIF»
 	'''
 	
 	def suppressOutput(Mapping it, CsvwDialectContext ctx)'''

@@ -142,22 +142,23 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 
 	@Check
 	def void checkReferenceableDeclarationNullValueMarker(NullValueDeclaration it) {
-		val Referenceable ref = eContainer as Referenceable;
-		if (ref === null) {
-			return;
-		}
-		if (ref.nullValueMarker === null) {
-			return;
-		}
-		val LogicalSource ls = ref.eContainer as LogicalSource;
-		if (ls === null) {
-			return;
-		}
-		val SourceType type = ls.typeResolved;
+		val SourceType type = typeResolved;
 		if (type !== null && !SourceType.CSV.equals(type)) {
-			error("Type 'csv' required for null value declaration, but was '" + type + "'", ref,
-				RdfMappingPackage.Literals.REFERENCEABLE__NULL_VALUE_MARKER);
+			error("Type 'csv' required for null value declaration, but was '" + type + "'", eContainer,
+				resolveNullValueFeature(eContainer));
 		}
+	}
+	
+	def private dispatch resolveNullValueFeature(Referenceable it) {
+		return RdfMappingPackage.Literals.REFERENCEABLE__NULL_VALUE_MARKER;
+	}
+	
+	def private dispatch resolveNullValueFeature(LogicalSource it) {
+		return RdfMappingPackage.Literals.LOGICAL_SOURCE__NULL_VALUE_MARKER;
+	}
+
+	def private dispatch resolveNullValueFeature(SourceGroup it) {
+		return RdfMappingPackage.Literals.SOURCE_GROUP__NULL_VALUE_MARKER;
 	}
 
 	@Check

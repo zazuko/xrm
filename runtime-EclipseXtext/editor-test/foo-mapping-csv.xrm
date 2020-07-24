@@ -1,0 +1,15 @@
+output csvw
+
+map TestImpactMappingCsv from SomeSourceGroup.fooCsv {
+	subject template "http://foo.example.com/{0}" with id;
+
+	types
+		employee.Employee
+
+	properties
+		thing.color constant "blue";
+		keyword.^map from bar;
+		thing.size from foo;
+}
+
+

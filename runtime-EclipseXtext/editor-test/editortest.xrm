@@ -17,9 +17,9 @@ map EmployeeMapping from EMPLOYEE {
 	// TODO code complete on airportIri - get proposals of templates declared within this file
 	// TODO add 'EMPNO' after id --> warn nr of arguments not matching with pattern
 	subject template airportIri with id;
+
 	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
 	// subject template "http://airport.example.com/{0}" with id as Literal;
-
 	types
 		employee.Employee
 
@@ -53,7 +53,10 @@ map EmployeeMapping2 from EMPLOYEE {
 
 logical-source EMPLOYEE {
 	type xml
-	source "EMP"
+	// TODO add another whitespace between 'query' and 'EMP', format --> have 1 whitespace again
+	source query "EMP"
+	// TODO uncomment next line --> error because of sourceType==xml
+	// null "nullX"
 	// TODO uncomment next line --> error because of sourceType==xml
 	// dialect MyDialect
 	iterator "/Employees/Employee"

@@ -1,0 +1,19 @@
+output csvw
+
+// TODO check null-value-statements in csvw-nullvalue-cascade-mapping.csv.meta.json
+map FooMapping from CsvSourceGroupWithNullValueCascade.fooSourceWithNullValue {
+	subject template "http://airport.example.com/{0}" with id;
+
+	properties
+		thing.color from foo1; // nullValue from logical-source
+		thing.color from foo2; // nullValue from referenceable
+}
+
+// TODO check null-value-statements in csvw-nullvalue-cascade-mapping.csv.meta.json
+map BarMapping from CsvSourceGroupWithNullValueCascade.barSourceWithoutNullValue {
+	subject template "http://airport.example.com/{0}" with id;
+
+	properties
+		thing.color from bar1; // nullValue from sourceGroup
+		thing.color from bar2; // nullValue from referenceable
+}

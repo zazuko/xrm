@@ -14,7 +14,8 @@
 					,
 					{
 						"propertyUrl": "http://example.com/employeeno",
-						"titles": "EMPNO"
+						"titles": "EMPNO",
+						"null": "X"
 					}
 					,
 					{
@@ -38,7 +39,8 @@
 					,
 					{
 						"propertyUrl": "http://example.com/employeeno",
-						"titles": "EMPNO"
+						"titles": "EMPNO",
+						"null": "X"
 					},
 					{
 						"propertyUrl": "http://example.com/employeemap",
@@ -49,6 +51,51 @@
 					{
 						"suppressOutput": true,
 						"titles": "id"
+					}
+				] 
+			}
+		},
+		
+		{
+			"url": "http://www.example.com/Foo.csv",
+			"tableSchema": {
+				"aboutUrl": "http://airport.example.com/{id}",
+				"null": "nullValueOverride@LogicalSource",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://example.com/employeeEmployee"
+					}
+					,
+					{
+						"propertyUrl": "http://foobar.com/things/thing/color",
+						"titles": "id"
+					},
+					{
+						"propertyUrl": "http://foobar.com/things/thing/size",
+						"titles": "foo",
+						"null": "nullValue@referenceable"
+					}
+				] 
+			}
+		},
+		
+		{
+			"url": "http://www.example.com/Foo.csv",
+			"tableSchema": {
+				"aboutUrl": "http://airport.example.com/{thing}",
+				"null": "nullValue@sourceGroup",
+				"columns": [
+					{
+						"virtual": true,
+						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+						"valueUrl": "http://example.com/employeeEmployee"
+					}
+					,
+					{
+						"propertyUrl": "http://foobar.com/things/thing/color",
+						"titles": "thing"
 					}
 				] 
 			}

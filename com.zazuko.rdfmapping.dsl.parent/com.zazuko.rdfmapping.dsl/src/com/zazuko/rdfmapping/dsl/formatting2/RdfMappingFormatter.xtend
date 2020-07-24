@@ -53,7 +53,7 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.assignment(ga.sourceGroupAccess.nameAssignment_1).surround[oneSpace];
 		interior(
 			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_BEGINTerminalRuleCall_2),
-			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_ENDTerminalRuleCall_8)
+			regionFor.ruleCall(ga.sourceGroupAccess.BLOCK_ENDTerminalRuleCall_9)
 		)[indent];
 
 		// 'type'
@@ -63,9 +63,20 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.keyword(ga.sourceGroupAccess.sourceKeyword_4_0).prepend[setNewLines(1)];
 		regionFor.assignment(ga.sourceGroupAccess.sourceIsQueryAssignment_4_1).prepend[oneSpace];
 		regionFor.assignment(ga.sourceGroupAccess.sourceAssignment_4_2).prepend[oneSpace];
+		
+		if (nullValueMarker !== null) {
+			if (source !== null) {
+				regionFor.assignment(ga.sourceGroupAccess.sourceAssignment_4_2).append[setNewLines(1)];
+			} else if (typeRef !== null) {
+				// ! delegation to typeRef
+				typeRef.regionFor.assignment(ga.sourceTypeRefAccess.typeAssignment).append[setNewLines(1)];
+			}	
+			regionFor.keyword(ga.nullValueDeclarationAccess.nullKeyword_0).prepend[setNewLines(1)];
+			nullValueMarker.format;
+		}
 
-		regionFor.keyword(ga.sourceGroupAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.sourceGroupAccess.xmlNamespaceExtensionKeyword_6_0).prepend[setNewLines(1)].append [
+		regionFor.keyword(ga.sourceGroupAccess.dialectKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.sourceGroupAccess.xmlNamespaceExtensionKeyword_7_0).prepend[setNewLines(1)].append [
 			oneSpace
 		];
 
@@ -156,28 +167,37 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	def dispatch void format(LogicalSource it, extension IFormattableDocument document) {
 		interior(
 			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_BEGINTerminalRuleCall_2),
-			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_10)
+			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_11)
 		)[indent];
 
 		regionFor.keyword(ga.logicalSourceAccess.logicalSourceKeyword_0).prepend[setNewLines(0, 1, 2)].append[oneSpace];
 		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_BEGINTerminalRuleCall_2).prepend[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.typeKeyword_3_0).prepend[setNewLines(1)].append[oneSpace];
 		regionFor.keyword(ga.logicalSourceAccess.sourceKeyword_4_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.logicalSourceAccess.dialectKeyword_5_0).prepend[setNewLines(1)].append[oneSpace];
-		regionFor.keyword(ga.logicalSourceAccess.xmlNamespaceExtensionKeyword_6_0).prepend[setNewLines(1)].append [
+		if (sourceIsQuery) {
+			regionFor.keyword(ga.logicalSourceAccess.sourceIsQueryQueryKeyword_4_1_0).append[oneSpace];				
+		}
+		
+		if (nullValueMarker !== null) {
+			regionFor.assignment(ga.logicalSourceAccess.sourceAssignment_4_2).append[setNewLines(1)];				
+			nullValueMarker.format;
+		}
+		
+		regionFor.keyword(ga.logicalSourceAccess.dialectKeyword_6_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.xmlNamespaceExtensionKeyword_7_0).prepend[setNewLines(1)].append [
 			oneSpace
 		];
-		regionFor.keyword(ga.logicalSourceAccess.iteratorKeyword_7_0).prepend[setNewLines(1)].append[oneSpace];
+		regionFor.keyword(ga.logicalSourceAccess.iteratorKeyword_8_0).prepend[setNewLines(1)].append[oneSpace];
 
 		interior(
-			regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_8),
-			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_10)
+			regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_9),
+			regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_11)
 		)[indent];
-		regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_8).prepend[setNewLines(2)];
+		regionFor.keyword(ga.logicalSourceAccess.referenceablesKeyword_9).prepend[setNewLines(2)];
 
 		referenceables.forEach[format];
 
-		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_10).prepend[setNewLines(1)];
+		regionFor.ruleCall(ga.logicalSourceAccess.BLOCK_ENDTerminalRuleCall_11).prepend[setNewLines(1)];
 	}
 
 	def dispatch void format(Referenceable it, extension IFormattableDocument document) {
@@ -191,7 +211,8 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(TemplateDeclaration it, extension IFormattableDocument document) {
 		regionFor.assignment(ga.templateDeclarationAccess.nameAssignment_1).surround[oneSpace];
-		regionFor.assignment(ga.templateDeclarationAccess.valueAssignment_2).append[setNewLines(1, 1, 2)];
+		// !!! accessing templateVALUEdeclaration, and that's the right thing to do here
+		regionFor.assignment(ga.templateValueDeclarationAccess.templateValueAssignment).append[setNewLines(1, 1, 2)];
 	}
 
 	def dispatch void format(Mapping it, extension IFormattableDocument document) {

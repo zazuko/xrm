@@ -1,0 +1,52 @@
+{
+	"@context": "http://www.w3.org/ns/csvw",
+	"tables": [
+		{
+			"url": "http://www.example.com/Foo.csv",
+			"tableSchema": {
+				"aboutUrl": "http://airport.example.com/{id}",
+				"null": "nullValue@LogicalSource",
+				"columns": [
+					{
+						"propertyUrl": "http://foobar.com/things/thing/color",
+						"titles": "foo1"
+					},
+					{
+						"propertyUrl": "http://foobar.com/things/thing/color",
+						"titles": "foo2",
+						"null": "nullValue@referenceable"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "id"
+					}
+				] 
+			}
+		},
+		
+		{
+			"url": "http://www.example.com/Bar.csv",
+			"tableSchema": {
+				"aboutUrl": "http://airport.example.com/{id}",
+				"null": "nullValue@sourceGroup",
+				"columns": [
+					{
+						"propertyUrl": "http://foobar.com/things/thing/color",
+						"titles": "bar1"
+					},
+					{
+						"propertyUrl": "http://foobar.com/things/thing/color",
+						"titles": "bar2",
+						"null": "nullValue@referenceable"
+					}
+					,
+					{
+						"suppressOutput": true,
+						"titles": "id"
+					}
+				] 
+			}
+		}
+	]
+}

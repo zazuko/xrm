@@ -1,0 +1,23 @@
+source-group CsvSourceGroupWithNullValueCascade {
+	type csv
+	null "nullValue@sourceGroup"
+
+	logical-source fooSourceWithNullValue {
+		source "http://www.example.com/Foo.csv"
+		null "nullValue@LogicalSource"
+
+		referenceables
+			id
+			foo1
+			foo2 null "nullValue@referenceable"
+	}
+
+	logical-source barSourceWithoutNullValue {
+		source "http://www.example.com/Bar.csv"
+
+		referenceables
+			id
+			bar1
+			bar2 null "nullValue@referenceable"
+	}
+}
