@@ -20,7 +20,7 @@ map EmployeeMapping from EMPLOYEE {
 	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
 	// subject template "http://airport.example.com/{0}" with id as Literal;
 	types
-		// TODO hover over '.Employee', see the description of the class 'Employee' in the tooltip
+		// TODO hover over '.Employee', see the description of the class 'Employee' in the tooltip. the order is label, description, any other entries in order of the definition within the omnimap
 		employee.Employee
 
 	properties
@@ -74,6 +74,7 @@ vocabulary employee {
 
 	classes
 		Employee {
+			"foobar" : "some additional description",
 			"label": "Worker",
 			"description": "a person employed for wages or salary, especially at non-executive level",
 			"similar": "labourer"
