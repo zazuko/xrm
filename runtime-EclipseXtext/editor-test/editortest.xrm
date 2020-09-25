@@ -50,7 +50,6 @@ map EmployeeMapping2 from EMPLOYEE {
 		employee.no from EMPNO;
 		thing.color template airportIri with id;
 		thing.color template "http://manualstuff.com/colors/{0}" with id;
-		
 }
 
 logical-source EMPLOYEE {
@@ -74,10 +73,17 @@ vocabulary employee {
 	prefix "employee" "http://example.com/employee"
 
 	classes
-		Employee ("a person employed for wages or salary, especially at non-executive level")
+		Employee {
+			"label": "Worker",
+			"description": "a person employed for wages or salary, especially at non-executive level",
+			"similar": "labourer"
+		}
 
 	properties
 		no
-		yes ("an English progressive rock band formed in London in 1968 by singer Jon Anderson")
+		yes {
+			"description": "an English progressive rock band formed in London in 1968 by singer Jon Anderson"
+			// TODO add a , then do code completion - get proposal "label" (among others, but not "description", since this is already in place)
+		}
 }
 

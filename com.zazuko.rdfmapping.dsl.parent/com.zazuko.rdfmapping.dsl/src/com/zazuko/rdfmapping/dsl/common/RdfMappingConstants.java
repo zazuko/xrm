@@ -26,4 +26,6 @@ public interface RdfMappingConstants {
 	public static final Set<OutputType> RMLISH_OUTPUTTYPES = Collections
 			.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(new OutputType[] { OutputType.RML, OutputType.R2RML, OutputType.CARML })));
 
+	public static final String OMNIMAP_KEY_LABEL = "label";
+	public static final String OMNIMAP_KEY_DESCRIPTION = "description";
 }

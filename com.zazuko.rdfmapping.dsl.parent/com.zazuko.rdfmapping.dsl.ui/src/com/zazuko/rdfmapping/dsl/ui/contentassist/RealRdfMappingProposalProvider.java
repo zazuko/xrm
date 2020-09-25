@@ -1,6 +1,7 @@
 package com.zazuko.rdfmapping.dsl.ui.contentassist;
 
 import java.util.Collections;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
@@ -19,6 +21,7 @@ import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
+import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
@@ -39,6 +42,9 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 
 	@Inject
 	private ModelAccess modelAccess;
+
+	@Inject
+	private OmniMapKeyProposalGenerator omniMapKeyProposalGenerator;
 
 	protected StyledString getStyledDisplayString(IEObjectDescription description) {
 		EObject eo = description.getEObjectOrProxy();
@@ -143,6 +149,18 @@ public class RealRdfMappingProposalProvider extends AbstractRdfMappingProposalPr
 		}
 		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_LINE_END,
 				RdfMappingConstants.TOKEN_LINE_END, null, context));
+	}
+
+	@Override
+	public void completeOmniMapEntry_Key(EObject model, Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		Set<String> proposals = this.omniMapKeyProposalGenerator.createKeyProposals((OmniMap)model);
+		for (String proposal: proposals) {
+			if (!acceptor.canAcceptMoreProposals()) {
+				return;
+			}
+			acceptor.accept(this.createCompletionProposal(proposal, proposal, null, context));
+		}
 	}
 
 }
