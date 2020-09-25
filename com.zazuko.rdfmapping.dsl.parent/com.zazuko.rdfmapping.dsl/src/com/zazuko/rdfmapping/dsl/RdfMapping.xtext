@@ -121,10 +121,10 @@ Prefix:
 	'prefix' label=STRING iri=STRING;
     
 RdfProperty:
-	name=ID (value=STRING)? ('('description=STRING')')?;
+	name=ID (value=STRING)? ( omniMap=OmniMap )?;
 
 RdfClass:
-	name=ID (value=STRING)? ('('description=STRING')')?;
+	name=ID (value=STRING)? ( omniMap=OmniMap )?;
 
 TemplateDeclaration:
 	'template' name=ID value=TemplateValueDeclaration
@@ -217,4 +217,16 @@ enum TermType:
 // reference with the first entry of the enum instead of null.
 TermTypeRef:
 	type=TermType
+;
+
+OmniMap:
+	BLOCK_BEGIN
+	  entries+=OmniMapEntry(','
+	  	entries+=OmniMapEntry
+	  )*
+	BLOCK_END
+;
+
+OmniMapEntry:
+	key=STRING':' value=STRING
 ;

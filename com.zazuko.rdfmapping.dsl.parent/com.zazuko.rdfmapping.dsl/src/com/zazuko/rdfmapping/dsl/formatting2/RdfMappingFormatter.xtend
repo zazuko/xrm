@@ -15,6 +15,8 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap
+import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMapEntry
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
@@ -157,13 +159,29 @@ class RdfMappingFormatter extends AbstractFormatter2 {
 	def dispatch void format(RdfClass it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
 		regionFor.feature(pkg.rdfClass_Value).prepend[oneSpace];
-		regionFor.feature(pkg.rdfClass_Description).surround[noSpace];
+		omniMap?.format;
 	}
 
 	def dispatch void format(RdfProperty it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
 		regionFor.feature(pkg.rdfProperty_Value).prepend[oneSpace];
-		regionFor.feature(pkg.rdfProperty_Description).surround[noSpace];
+		omniMap?.format;
+	}
+	
+	def dispatch void format(OmniMap it, extension IFormattableDocument document) {
+		interior(
+			regionFor.ruleCall(ga.omniMapAccess.BLOCK_BEGINTerminalRuleCall_0),
+			regionFor.ruleCall(ga.omniMapAccess.BLOCK_ENDTerminalRuleCall_3)
+		)[indent];
+		regionFor.ruleCall(ga.omniMapAccess.BLOCK_BEGINTerminalRuleCall_0).prepend[oneSpace];
+		regionFor.keyword(ga.omniMapAccess.commaKeyword_2_0).prepend[noSpace];
+		
+		entries.forEach[format];
+	}
+
+	def dispatch void format(OmniMapEntry it, extension IFormattableDocument document) {
+		regionFor.assignment(ga.omniMapEntryAccess.keyAssignment_0).prepend[setNewLines(1, 1, 2)];
+		regionFor.keyword(ga.omniMapEntryAccess.colonKeyword_1).prepend[noSpace].append[oneSpace];
 	}
 
 	def dispatch void format(LogicalSource it, extension IFormattableDocument document) {
