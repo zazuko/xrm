@@ -84,6 +84,12 @@ vocabulary employee {
 		yes {
 			"description": "an English progressive rock band formed in London in 1968 by singer Jon Anderson"
 			// TODO add a , then do code completion - get proposal "label" (among others, but not "description", since this is already in place)
+			
+			// TODO uncomment next line --> error on duplicated description
+			//, "description" : "duplicated description"
+
+			// TODO uncomment next line --> error on key with whitespaces & quickfix to trim
+			//, " whitspaced" : "whitespaces are bad"
 		}
 }
 

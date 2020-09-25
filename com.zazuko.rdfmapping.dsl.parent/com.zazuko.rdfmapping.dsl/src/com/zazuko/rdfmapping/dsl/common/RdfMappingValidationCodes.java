@@ -13,4 +13,6 @@ public interface RdfMappingValidationCodes {
 	String EOBJECT_SUPERFLUOUS_NOFIX = EOBJECT_SUPERFLUOUS + ".nofix";
 
 	String PREFIX_LABEL_SEPARATOR = "prefix.label.with.separator";
+	
+	String OMNIMAPENTRY_KEY_UNTRIMMED = "omnimapentry.key.untrimmed";
 }

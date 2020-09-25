@@ -24,6 +24,7 @@ import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
+import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMapEntry;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputTypeRef;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
@@ -223,4 +224,23 @@ public class RealRdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 			}
 		});
 	}
+	
+	@Fix(RdfMappingValidationCodes.OMNIMAPENTRY_KEY_UNTRIMMED)
+	public void trimOmniMapKey(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, "Trim", "Trim key.", null, new ISemanticModification() {
+
+			@Override
+			public void apply(EObject element, IModificationContext context) throws Exception {
+				if (!(element instanceof OmniMapEntry)) {
+					return;
+				}
+				OmniMapEntry target = (OmniMapEntry) element;
+				String key = target.getKey();
+				if (key != null) {
+					target.setKey(key.trim());
+				}
+			}
+		});
+	}
+
 }

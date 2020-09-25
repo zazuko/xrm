@@ -37,8 +37,8 @@ PREFIX thing: <http://foobar.com/things/thing/>
 .
 <#ReferenceTemplateFromOtherFile>
 	rml:logicalSource [
-		rml:query """EMP""" ;
-		rml:referenceFormulation ql:XPath ;
+		rml:source "EMP" ;
+		rml:referenceFormulation ql:CSV ;
 		rml:iterator "/Employees/Employee" ;
 	];
 	

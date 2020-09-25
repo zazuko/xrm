@@ -12,6 +12,8 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
+import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap
+import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMapEntry
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
@@ -346,6 +348,38 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 				it,
 				null
 			);
+		}
+	}
+	
+	@Check
+	def void omniMap(OmniMap it) {
+		val LazyMap<String, List<OmniMapEntry>> key2entry = new LazyMap(new TreeMap, [new LinkedList]);
+		for (OmniMapEntry current : entries) {
+			if (current.key !== null) {
+				key2entry.getOrInit(current.key.trim).add(current);
+			}
+		}
+
+		key2entry.values.stream().filter[list|list.size > 1].flatMap[list|list.stream].forEach [ current |
+			error("Duplicated entry", current, RdfMappingPackage.eINSTANCE.omniMapEntry_Key);
+		];
+	}
+	
+	@Check
+	def void omniMapEntry(OmniMapEntry it) {
+		if (key !== null) {
+			val keyTrimmed = key.trim();
+			if (keyTrimmed.empty) {
+				error("Key missing", it, RdfMappingPackage.eINSTANCE.omniMapEntry_Key);
+			} else {
+				if (!key.equals(keyTrimmed)) {
+					error("Key must not be surrounded whith whitespaces", 
+						it, 
+						RdfMappingPackage.eINSTANCE.omniMapEntry_Key, 
+						RdfMappingValidationCodes.OMNIMAPENTRY_KEY_UNTRIMMED
+					);
+				}
+			}
 		}
 	}
 
