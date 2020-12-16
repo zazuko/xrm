@@ -112,10 +112,18 @@ class ModelAccess {
 	}
 
 	def String toConstantValue(ConstantValuedTerm it) {
-		if (constant.isValidURI()) {
-			return '''<«constant»>'''
-		} else {
-			return '''"«constant»"'''
+		if(constant !== null) {
+			if (constant.isValidURI()) {
+				return '''"<«constant»>"'''
+			} else {
+				return '''"«constant»"'''
+			}
+		} else if (constantRdfsClass !== null){
+			return '''«constantRdfsClass.vocabulary.prefix.label»:«constantRdfsClass.valueResolved»''' 
+		} else if (constantRdfsProperty !== null){
+			return '''«constantRdfsProperty.vocabulary.prefix.label»:«constantRdfsProperty.valueResolved»''' 
+		} else if (constantDatatype !== null){
+			return '''«constantDatatype.vocabulary.prefix.label»:«constantDatatype.valueResolved»''' 
 		}
 	}
 

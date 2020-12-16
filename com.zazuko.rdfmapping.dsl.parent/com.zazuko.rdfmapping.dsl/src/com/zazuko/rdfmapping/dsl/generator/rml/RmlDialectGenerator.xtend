@@ -52,7 +52,7 @@ class RmlDialectGenerator {
 	'''
 	
 	def triplesMap(Mapping it) '''
-		<«localId»>
+		<«localId»> a rr:TriplesMap ;
 			«logicalSource»
 			
 			«subjectMap()»«IF ! poMappings.empty»;«ENDIF»
@@ -71,7 +71,24 @@ class RmlDialectGenerator {
 			«IF subjectIriMapping.termTypeRef?.type !== null»
 				rr:termType rr:«subjectIriMapping.termTypeRef.type» ;
 			«ENDIF»
+			
+			«FOR graphMapping : graphMappings»
+				«graphMap(graphMapping)» ;
+			«ENDFOR»
 		]'''
+		
+	def dispatch graphMap(TemplateValuedTerm it) '''
+		rr:graphMap [
+		  rr:template "«toTemplateString»" ;
+		]
+	'''
+	
+	
+	def dispatch graphMap(ConstantValuedTerm it) '''
+		rr:graphMap [
+		  rr:constant «toConstantValue»;
+		]
+	'''	
 	
 	def predicateObjectMap(PredicateObjectMapping it) '''
 		rr:predicateObjectMap [
