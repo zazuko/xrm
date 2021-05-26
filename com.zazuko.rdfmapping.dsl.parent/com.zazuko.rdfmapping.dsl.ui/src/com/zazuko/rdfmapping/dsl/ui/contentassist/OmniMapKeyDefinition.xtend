@@ -1,6 +1,7 @@
 package com.zazuko.rdfmapping.dsl.ui.contentassist
 
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants
+import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import java.util.HashSet
@@ -25,6 +26,13 @@ class OmniMapKeyDefinition {
 	}
 
 	def dispatch Set<String> knownKeys(RdfProperty it) {
+		return newLinkedHashSet(
+			RdfMappingConstants.OMNIMAP_KEY_LABEL,
+			RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION
+		);
+	}
+	
+	def dispatch Set<String> knownKeys(Datatype it) {
 		return newLinkedHashSet(
 			RdfMappingConstants.OMNIMAP_KEY_LABEL,
 			RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION

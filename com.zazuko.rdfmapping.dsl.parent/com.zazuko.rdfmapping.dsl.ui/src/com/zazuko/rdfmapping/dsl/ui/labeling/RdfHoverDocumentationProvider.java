@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.hover.html.DefaultHoverDocumentationProvider;
 
 import com.google.inject.Inject;
+import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMapEntry;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
@@ -39,6 +40,8 @@ public class RdfHoverDocumentationProvider extends DefaultHoverDocumentationProv
 			return toDocumentation((RdfClass) object);
 		} else if (object instanceof RdfProperty) {
 			return toDocumentation((RdfProperty) object);
+		} else if (object instanceof Datatype) {
+			return toDocumentation((Datatype) object);
 		}
 
 		return super.getDocumentation(object);
@@ -49,6 +52,10 @@ public class RdfHoverDocumentationProvider extends DefaultHoverDocumentationProv
 	}
 
 	private String toDocumentation(RdfProperty object) {
+		return toHtmlString(harvestOmniMap(object.getOmniMap()));
+	}
+	
+	private String toDocumentation(Datatype object) {
 		return toHtmlString(harvestOmniMap(object.getOmniMap()));
 	}
 	

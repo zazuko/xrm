@@ -50,6 +50,7 @@ map EmployeeMapping2 from EMPLOYEE {
 		employee.no from EMPNO;
 		thing.color template airportIri with id;
 		thing.color template "http://manualstuff.com/colors/{0}" with id;
+		thing.size from EMPNO with datatype employee.myDatatype;
 }
 
 logical-source EMPLOYEE {
@@ -91,6 +92,11 @@ vocabulary employee {
 
 			// TODO uncomment next line --> error on key with whitespaces & quickfix to trim
 			//, " whitspaced" : "whitespaces are bad"
+		}
+
+	datatypes
+		myDatatype {
+			"label": "the label text for myDatatype"			
 		}
 }
 

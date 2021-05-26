@@ -16,9 +16,6 @@ Element:
     | XmlNamespaceExtension
     | TemplateDeclaration
 ;
-
-Datatype:
-	name=ID (value=STRING)?;
 	
 LanguageTagDefinition: {LanguageTagDefinition}
 	'language-tags' BLOCK_BEGIN
@@ -124,6 +121,9 @@ RdfProperty:
 	name=ID (value=STRING)? ( omniMap=OmniMap )?;
 
 RdfClass:
+	name=ID (value=STRING)? ( omniMap=OmniMap )?;
+
+Datatype:
 	name=ID (value=STRING)? ( omniMap=OmniMap )?;
 
 TemplateDeclaration:

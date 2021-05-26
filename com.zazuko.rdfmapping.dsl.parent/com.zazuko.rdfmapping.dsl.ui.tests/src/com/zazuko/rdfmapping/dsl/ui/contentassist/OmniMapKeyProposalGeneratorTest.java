@@ -40,8 +40,8 @@ public class OmniMapKeyProposalGeneratorTest {
 
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
-		Assert.assertEquals(RdfMappingConstants.OMNIMAP_KEY_LABEL, actualList.get(i++));
-		Assert.assertEquals(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION, actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_LABEL), actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class OmniMapKeyProposalGeneratorTest {
 
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
-		Assert.assertEquals(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION, actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class OmniMapKeyProposalGeneratorTest {
 
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
-		Assert.assertEquals(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION, actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
 	}
 
 	@Test
@@ -82,8 +82,8 @@ public class OmniMapKeyProposalGeneratorTest {
 
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
-		Assert.assertEquals(RdfMappingConstants.OMNIMAP_KEY_LABEL, actualList.get(i++));
-		Assert.assertEquals(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION, actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_LABEL), actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
 	}
 
 	@Test
@@ -94,7 +94,7 @@ public class OmniMapKeyProposalGeneratorTest {
 
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
-		Assert.assertEquals(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION, actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
 	}
 
 	private OmniMap rdfClass(String... keys) {
@@ -110,6 +110,10 @@ public class OmniMapKeyProposalGeneratorTest {
 			}
 		}
 		return result;
+	}
+	
+	private String quote(String s) {
+		return s == null ? null : "\"" + s + "\"";
 	}
 
 }

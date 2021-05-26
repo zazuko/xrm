@@ -28,6 +28,12 @@ public class OmniMapKeyProposalGenerator {
 				.map(String::trim)
 				.collect(Collectors.toList())); // not toSet, this will explode on duplicated entries (which we do not care here)
 		result.removeAll(existing);
+		
+		// quote the proposals, so the user does not have to add String quotes manually
+		result = new HashSet<>(result.stream()
+				.map(proposal -> "\"" + proposal + "\"")
+				.collect(Collectors.toList()));
+		
 		return result;
 	}
 }
