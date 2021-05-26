@@ -1,6 +1,6 @@
 output csvw
 
-logical-source stromnetz {
+logical-source stromnetzB {
 	type csv
 	source "http://www.example.com/usageCategories.csv"
 
@@ -9,7 +9,7 @@ logical-source stromnetz {
 		desc
 }
 
-map KategorienConceptMapping from stromnetz {
+map KategorienConceptMapping from stromnetzB {
 	subject template "http://elcom.zazuko.com/category/{0}" with id;
 
 	types
@@ -20,7 +20,7 @@ map KategorienConceptMapping from stromnetz {
 		skos.topConceptOf constant "http://elcom.zazuko.com/category/conceptscheme";
 }
 
-map KategorienConceptSchemeMapping from stromnetz {
+map KategorienConceptSchemeMapping from stromnetzB {
 	subject template "http://elcom.zazuko.com/category/conceptscheme/{0}" with id;
 
 	types

@@ -1,17 +1,14 @@
 // TODO comment next line --> warning on map + quickfix
 output csvw
 
-
-template anyTemplate "foo"
-
-map EmployeeMapping from EMPLOYEE {
+map EmployeeMapping from EMPLOYEEeditorTest {
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
-		employee.Employee
+		employeeEditorTestCsv.Employee
 
 	properties
-		employee.no from EMPNO;
+		employeeEditorTestCsv.no from EMPNO;
 		// TODO uncomment next line --> error no ParentTriplesMap on CSV
 // thing.color parent-map EmployeeMapping2;
 // TODO uncomment next line, do code-completion, 'parent-map' must not be offered 
@@ -19,14 +16,14 @@ map EmployeeMapping from EMPLOYEE {
 }
 
 
-map EmployeeMapping2 from EMPLOYEE {
+map EmployeeMapping2 from EMPLOYEEeditorTest {
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
-		employee.Employee
+		employeeEditorTestCsv.Employee
 
 	properties
-		employee.no from EMPNO;
+		employeeEditorTestCsv.no from EMPNO;
 		// TODO codeCompletion between EMPNO and ; must not give 'as'
 		keyword.^map template "{0}" with EMPNO;
 		// TODO uncomment next line, warning 'Literal' + quickfix
@@ -38,7 +35,7 @@ map CsvSourceGroupWithNullValueOverride from CsvSourceGroupWithNullValue.fooCsv 
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
-		employee.Employee
+		employeeEditorTestCsv.Employee
 
 	properties
 		thing.color from id; // nullValue from logical-source
@@ -50,13 +47,13 @@ map CsvSourceGroupWithNullValueInherit from CsvSourceGroupWithNullValue.fooCsvIn
 	subject template "http://airport.example.com/{0}" with thing;
 
 	types
-		employee.Employee
+		employeeEditorTestCsv.Employee
 
 	properties
 		thing.color from thing; // nullValue from courceGroup
 }
 
-logical-source EMPLOYEE {
+logical-source EMPLOYEEeditorTest {
 	type csv
 	source "EMP"
 	// TODO uncomment next line --> 2errors:
@@ -70,7 +67,7 @@ logical-source EMPLOYEE {
 		EMPNO null "X"
 }
 
-vocabulary employee {
+vocabulary employeeEditorTestCsv {
 	prefix "employee" "http://example.com/employee"
 
 	classes

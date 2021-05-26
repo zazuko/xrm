@@ -1,7 +1,7 @@
 output rml
 
-map FooMapping from KEYWORDSOURCE {
-	subject template anyTemplate;
+map FooMapping from KEYWORDSOURCEfoo {
+	subject template UniqTemplate;
 
 	types
 		employee.Employee
@@ -40,7 +40,7 @@ map TestImpactMapping from SomeSourceGroup.foo {
 		keyword.^map from bar;
 }
 
-logical-source KEYWORDSOURCE {
+logical-source KEYWORDSOURCEfoo {
 	type xml
 	source "KWS"
 
