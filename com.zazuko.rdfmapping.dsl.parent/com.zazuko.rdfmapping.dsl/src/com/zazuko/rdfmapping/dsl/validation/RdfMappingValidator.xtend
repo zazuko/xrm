@@ -40,6 +40,9 @@ import javax.inject.Inject
 import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.validation.CheckType
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
+import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
+import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
+import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 
 /**
  * This class contains custom validation rules. 
@@ -61,38 +64,57 @@ class RdfMappingValidator extends AbstractRdfMappingValidator {
 	DuplicatedQualifiedNameValidator duplicatedQNameValidator
 
 	@Check(CheckType.NORMAL)
-	def checkDuplicatedTemplateDeclaration(SourceGroup it) {
+	def checkDuplicatedSourceGroup(SourceGroup it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.SOURCE_GROUP, [ msg | error(msg, RdfMappingPackage.Literals.SOURCE_GROUP__NAME)]);
 	}
 	
 	@Check(CheckType.NORMAL)
-	def checkDuplicatedTemplateDeclaration(LogicalSource it) {
+	def checkDuplicatedLogicalSource(LogicalSource it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.LOGICAL_SOURCE, [ msg | error(msg, RdfMappingPackage.Literals.LOGICAL_SOURCE__NAME)]);
 	}
-
+	
 	@Check(CheckType.NORMAL)
-	def checkDuplicatedTemplateDeclaration(Vocabulary it) {
-		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.VOCABULARY, [ msg | error(msg, RdfMappingPackage.Literals.VOCABULARY__NAME)]);
+	def checkDuplicatedReferenceable(Referenceable it) {
+		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.REFERENCEABLE, [ msg | error(msg, RdfMappingPackage.Literals.REFERENCEABLE__NAME)]);
 	}
 
-// NOT checking the uniqueness of a Mapping, since it is never referenced
-//	@Check(CheckType.NORMAL)
-//	def checkDuplicatedTemplateDeclaration(Mapping it) {
-//		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.MAPPING, [ msg | error(msg, RdfMappingPackage.Literals.MAPPING__NAME)]);
-//	}
+	@Check(CheckType.NORMAL)
+	def checkDuplicatedVocabulary(Vocabulary it) {
+		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.VOCABULARY, [ msg | error(msg, RdfMappingPackage.Literals.VOCABULARY__NAME)]);
+	}
+	
+	@Check(CheckType.NORMAL)
+	def checkDuplicatedRdfClass(RdfClass it) {
+		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.RDF_CLASS, [ msg | error(msg, RdfMappingPackage.Literals.RDF_CLASS__NAME)]);
+	}
+	
+	@Check(CheckType.NORMAL)
+	def checkDuplicatedRdfProperty(RdfProperty it) {
+		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.RDF_PROPERTY, [ msg | error(msg, RdfMappingPackage.Literals.RDF_PROPERTY__NAME)]);
+	}
+	
+	@Check(CheckType.NORMAL)
+	def checkDuplicatedDatatype(Datatype it) {
+		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.DATATYPE, [ msg | error(msg, RdfMappingPackage.Literals.DATATYPE__NAME)]);
+	}
 
 	@Check(CheckType.NORMAL)
-	def checkDuplicatedTemplateDeclaration(LanguageTag it) {
+	def checkDuplicatedMapping(Mapping it) {
+		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.MAPPING, [ msg | error(msg, RdfMappingPackage.Literals.MAPPING__NAME)]);
+	}
+
+	@Check(CheckType.NORMAL)
+	def checkDuplicatedLanguageTag(LanguageTag it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.LANGUAGE_TAG, [ msg | error(msg, RdfMappingPackage.Literals.LANGUAGE_TAG__NAME)]);
 	}
 
 	@Check(CheckType.NORMAL)
-	def checkDuplicatedTemplateDeclaration(DialectGroup it) {
+	def checkDuplicatedDialectGroup(DialectGroup it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.DIALECT_GROUP, [ msg | error(msg, RdfMappingPackage.Literals.DIALECT_GROUP__NAME)]);
 	}
 	
 	@Check(CheckType.NORMAL)
-	def checkDuplicatedTemplateDeclaration(XmlNamespaceExtension it) {
+	def checkDuplicatedXmlNamespaceExtension(XmlNamespaceExtension it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.XML_NAMESPACE_EXTENSION, [ msg | error(msg, RdfMappingPackage.Literals.XML_NAMESPACE_EXTENSION__NAME)]);
 	}
 	

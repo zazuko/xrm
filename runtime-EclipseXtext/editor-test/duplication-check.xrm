@@ -1,7 +1,6 @@
-output csvw 
+output csvw
 
 // TODO copy this file, get a duplication error on every declaration (on this file, the errors come on a refresh) 
-
 template UniqTemplate "foo"
 
 logical-source UniqLogicalSource {
@@ -9,7 +8,7 @@ logical-source UniqLogicalSource {
 	source "http://www.example.com/UniqLogicalSource.csv"
 
 	referenceables
-		id
+		uniqId
 }
 
 source-group UniqSourceGroup {
@@ -18,12 +17,21 @@ source-group UniqSourceGroup {
 		source "http://www.example.com/UniqLogicalSource.csv"
 
 		referenceables
-			id			
+			uniqId
 	}
 }
 
 vocabulary UniqVocabulary {
 	prefix "uniq" "http://foobar.com/uniq/"
+
+	classes
+		UniqClass
+
+	properties
+		uniqProperty
+
+	datatypes
+		uniqDatatype
 }
 
 map UniqMapping from SomeSourceGroup.fooCsv {
