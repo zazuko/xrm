@@ -1,7 +1,7 @@
 // TODO comment next line --> warning on map + quickfix
 output csvw
 
-map EmployeeMapping from EMPLOYEEeditorTest {
+map EmployeeMappingCsv from EMPLOYEEeditorTest {
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
@@ -16,7 +16,7 @@ map EmployeeMapping from EMPLOYEEeditorTest {
 }
 
 
-map EmployeeMapping2 from EMPLOYEEeditorTest {
+map EmployeeMappingCsv2 from EMPLOYEEeditorTest {
 	subject template "http://airport.example.com/{0}" with id;
 
 	types

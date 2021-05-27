@@ -4,7 +4,7 @@ output csvw
 //// editortest-csv-onemappingonly.csv.meta.json
 //// editortest-csv.csv.meta.json
 //// --> onemapping does not show field "tables"
-map EmployeeMapping from EMPLOYEEcsvOneMapping {
+map EmployeeMappingCsvOneMapping from EMPLOYEEcsvOneMapping {
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
