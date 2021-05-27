@@ -20,7 +20,7 @@ map EmployeeMapping from EMPLOYEE {
 	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
 	// subject template "http://airport.example.com/{0}" with id as Literal;
 	types
-		// TODO hover over '.Employee', see the description of the class 'Employee' in the tooltip. the order is label, description, any other entries in order of the definition within the omnimap
+		// TODO hover over '.Employee', see the description of the class 'Employee' in the tooltip. the order is label, comment, any other entries in order of the definition within the omnimap
 		employee.Employee
 
 	properties
@@ -77,18 +77,18 @@ vocabulary employee {
 		Employee {
 			"foobar" : "some additional description",
 			"label": "Worker",
-			"description": "a person employed for wages or salary, especially at non-executive level",
+			"comment": "a person employed for wages or salary, especially at non-executive level",
 			"similar": "labourer"
 		}
 
 	properties
 		no
 		yes {
-			"description": "an English progressive rock band formed in London in 1968 by singer Jon Anderson"
-			// TODO add a , then do code completion - get proposal "label" (among others, but not "description", since this is already in place)
+			"comment": "an English progressive rock band formed in London in 1968 by singer Jon Anderson"			
+			// TODO add a , then do code completion - get proposal "label" (among others, but not "comment", since this is already in place)
 			
-			// TODO uncomment next line --> error on duplicated description
-			//, "description" : "duplicated description"
+			// TODO uncomment next line --> error on duplicated comment
+//			, "comment" : "duplicated comment"
 
 			// TODO uncomment next line --> error on key with whitespaces & quickfix to trim
 			//, " whitspaced" : "whitespaces are bad"

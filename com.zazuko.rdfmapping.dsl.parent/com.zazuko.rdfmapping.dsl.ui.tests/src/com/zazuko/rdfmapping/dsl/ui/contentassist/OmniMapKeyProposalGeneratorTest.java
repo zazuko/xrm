@@ -41,7 +41,7 @@ public class OmniMapKeyProposalGeneratorTest {
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
 		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_LABEL), actualList.get(i++));
-		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_COMMENT), actualList.get(i++));
 	}
 
 	@Test
@@ -52,13 +52,13 @@ public class OmniMapKeyProposalGeneratorTest {
 
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
-		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_COMMENT), actualList.get(i++));
 	}
 
 	@Test
 	public void rdfClass_allInUse() {
 		Set<String> actual = this.gen.createKeyProposals(
-				rdfClass(RdfMappingConstants.OMNIMAP_KEY_LABEL, RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION));
+				rdfClass(RdfMappingConstants.OMNIMAP_KEY_LABEL, RdfMappingConstants.OMNIMAP_KEY_COMMENT));
 
 		Assert.assertEquals(0, actual.size());
 	}
@@ -71,7 +71,7 @@ public class OmniMapKeyProposalGeneratorTest {
 
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
-		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_COMMENT), actualList.get(i++));
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class OmniMapKeyProposalGeneratorTest {
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
 		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_LABEL), actualList.get(i++));
-		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_COMMENT), actualList.get(i++));
 	}
 
 	@Test
@@ -94,7 +94,7 @@ public class OmniMapKeyProposalGeneratorTest {
 
 		List<String> actualList = new ArrayList<>(actual);
 		int i = 0;
-		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION), actualList.get(i++));
+		Assert.assertEquals(quote(RdfMappingConstants.OMNIMAP_KEY_COMMENT), actualList.get(i++));
 	}
 
 	private OmniMap rdfClass(String... keys) {

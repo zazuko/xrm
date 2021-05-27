@@ -21,21 +21,21 @@ class OmniMapKeyDefinition {
 	def dispatch Set<String> knownKeys(RdfClass it) {
 		return newLinkedHashSet(
 			RdfMappingConstants.OMNIMAP_KEY_LABEL,
-			RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION
+			RdfMappingConstants.OMNIMAP_KEY_COMMENT
 		);
 	}
 
 	def dispatch Set<String> knownKeys(RdfProperty it) {
 		return newLinkedHashSet(
 			RdfMappingConstants.OMNIMAP_KEY_LABEL,
-			RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION
+			RdfMappingConstants.OMNIMAP_KEY_COMMENT
 		);
 	}
 	
 	def dispatch Set<String> knownKeys(Datatype it) {
 		return newLinkedHashSet(
 			RdfMappingConstants.OMNIMAP_KEY_LABEL,
-			RdfMappingConstants.OMNIMAP_KEY_DESCRIPTION
+			RdfMappingConstants.OMNIMAP_KEY_COMMENT
 		);
 	}
 }
