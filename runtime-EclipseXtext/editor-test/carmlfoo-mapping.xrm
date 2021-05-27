@@ -1,6 +1,6 @@
 output carml
 
-map FooMapping from KEYWORDSOURCE {
+map CarmlFooMapping from KEYWORDSOURCE {
 	subject template "http://foo.example.com/{0}" with id;
 
 	types
