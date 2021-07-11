@@ -21,7 +21,7 @@ map EmployeeMapping from EMPLOYEE {
 	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
 	// subject template "http://airport.example.com/{0}" with id as Literal;
 	types
-		// TODO hover over '.Employee', see the description of the class 'Employee' in the tooltip. the order is label, comment, any other entries in order of the definition within the omnimap
+		// TODO hover over '.Employee', see the description "Worker" of the class 'Employee'.'label' in the tooltip. the order is label, comment, any other entries in order of the definition within the omnimap
 		employee.Employee
 
 	properties
