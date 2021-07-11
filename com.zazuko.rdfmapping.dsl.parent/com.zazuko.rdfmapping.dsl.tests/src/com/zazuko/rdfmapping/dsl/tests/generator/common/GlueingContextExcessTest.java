@@ -1,7 +1,7 @@
 package com.zazuko.rdfmapping.dsl.tests.generator.common;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.zazuko.rdfmapping.dsl.generator.common.GlueingContext;
 
@@ -24,9 +24,9 @@ public class GlueingContextExcessTest {
 		// fail
 		try {
 			ctx.needsGlueing();
-			Assert.fail();
+			Assertions.fail();
 		} catch (IllegalStateException e) {
-			Assert.assertEquals("nrOfMaxCalls is 2 and this is call number 3", e.getMessage());
+			Assertions.assertEquals("nrOfMaxCalls is 2 and this is call number 3", e.getMessage());
 		}
 	}
 }

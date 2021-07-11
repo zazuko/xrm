@@ -1,51 +1,51 @@
 package com.zazuko.rdfmapping.dsl.ui.contentassist;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 
-@RunWith(Parameterized.class)
 public class RdfMappingPrefixMatcherTest {
 
 	private RdfMappingPrefixMatcher matcher;
 
-	private final String name;
-	private final String prefix;
-	private final boolean expectMatch;
-
-	public RdfMappingPrefixMatcherTest(String name, String prefix, boolean expectMatch) {
-		super();
-		this.name = name;
-		this.prefix = prefix;
-		this.expectMatch = expectMatch;
-	}
-
-	@Before
+	@BeforeAll
 	public void before() {
 		this.matcher = new RdfMappingPrefixMatcher();
 	}
 
-	@Test
-	public void test() {
-		boolean actualMatch = this.matcher.isCandidateMatchingPrefix(this.name, this.prefix);
-		Assert.assertEquals(this.name + " " + this.prefix, this.expectMatch, actualMatch);
+	@ParameterizedTest
+	@MethodSource("data")
+	public void test(Params params) {
+		boolean actualMatch = this.matcher.isCandidateMatchingPrefix(params.name, params.prefix);
+		Assertions.assertEquals(params.expectMatch, actualMatch, params.name + " " + params.prefix);
 	}
 
-	@Parameters(name = "{0} {1} {2}")
-	public static Collection<Object[]> data() {
-		List<Object[]> result = new ArrayList<>();
+	static class Params {
+		private final String name;
+		private final String prefix;
+		private final boolean expectMatch;
+
+		public Params(String name, String prefix, boolean expectMatch) {
+			super();
+			this.name = name;
+			this.prefix = prefix;
+			this.expectMatch = expectMatch;
+		}
+
+	}
+
+	public static Stream<Params> data() {
+		List<Params> result = new ArrayList<>();
 		class Builder {
 			public void register(String name, String prefix, boolean expectMatch) {
-				result.add(new Object[] { name, prefix, expectMatch });
+				result.add(new Params(name, prefix, expectMatch));
 			}
 		}
 		Builder b = new Builder();
@@ -58,6 +58,6 @@ public class RdfMappingPrefixMatcherTest {
 		b.register("exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", "plz", true);
 		b.register("exPLZ" + RdfMappingConstants.TOKEN_QNAME_SEPARATOR_RDFPREFIX + "bar", "ar", true);
 		// @formatter:off
-		return result;
+		return result.stream();
 	}
 }
