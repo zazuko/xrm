@@ -41,7 +41,8 @@ import com.zazuko.rdfmapping.dsl.ui.contentassist.RdfMappingPrefixMatcher;
 /**
  * Custom quickfixes.
  *
- * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes
+ * See
+ * https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes
  */
 public class RdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -111,34 +112,37 @@ public class RdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 				}
 				EList<EReference> containments = container.eClass().getEAllContainments();
 				for (EReference ref : containments) {
-
-					if (ref.isMany()) {
-						Collection<?> containingList = (Collection<?>) container.eGet(ref);
-						if (containingList.contains(element)) {
-							containingList.remove(element);
+					if (ref.getEReferenceType().equals(element.eClass())) {
+						if (ref.isMany()) {
+							Collection<?> containingList = (Collection<?>) container.eGet(ref);
+							if (containingList.contains(element)) {
+								containingList.remove(element);
+							}
+						} else {
+							container.eUnset(ref);
 						}
-					} else {
-						container.eUnset(ref);
 					}
 				}
 
 			}
 		});
 	}
+
 	@Fix(RdfMappingValidationCodes.PREFIX_LABEL_SEPARATOR)
 	public void prefixLabelSanitizing(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, "Sanitize", "Remove invalid characters", null, new ISemanticModification() {
-			
+
 			@Override
 			public void apply(EObject element, IModificationContext context) throws Exception {
 				if (!(element instanceof Prefix)) {
 					return;
 				}
-				Prefix prefix = (Prefix)element;
+				Prefix prefix = (Prefix) element;
 				if (prefix.getLabel() == null) {
 					return;
 				}
-				String newLabel = prefix.getLabel().replaceAll(RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER_REGEX, "");
+				String newLabel = prefix.getLabel()
+						.replaceAll(RdfMappingConstants.PREFIX_LABEL_SEPARATOR_CHARACTER_REGEX, "");
 				prefix.setLabel(newLabel);
 			}
 		});
@@ -211,7 +215,7 @@ public class RdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 
 				poMapping.setProperty(newProperty);
 				poMapping.setLineEnd(true);
-				
+
 				if (vocabularyInForeignFile) {
 					vocabulary.eResource().save(Collections.emptyMap());
 				}
@@ -232,7 +236,7 @@ public class RdfMappingQuickfixProvider extends DefaultQuickfixProvider {
 			}
 		});
 	}
-	
+
 	@Fix(RdfMappingValidationCodes.OMNIMAPENTRY_KEY_UNTRIMMED)
 	public void trimOmniMapKey(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, "Trim", "Trim key.", null, new ISemanticModification() {
