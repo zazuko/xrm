@@ -86,7 +86,7 @@ vocabulary employee {
 		no
 		yes {
 			"comment": "an English progressive rock band formed in London in 1968 by singer Jon Anderson"			
-			// TODO add a , then do code completion - get proposal "label" (among others, but not "comment", since this is already in place)
+			// TODO add a ',' then do code completion - get proposal "label" (among others, but not "comment", since this is already in place)
 			
 			// TODO uncomment next line --> error on duplicated comment
 //			, "comment" : "duplicated comment"
