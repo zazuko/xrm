@@ -26,11 +26,11 @@
 		<handler
 			class="com.zazuko.rdfmapping.dsl.ui.RdfMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
 			commandId="com.zazuko.rdfmapping.dsl.RdfMapping.validate">
-		<activeWhen>
-			<reference
+			<activeWhen>
+				<reference
 					definitionId="com.zazuko.rdfmapping.dsl.RdfMapping.Editor.opened">
-			</reference>
-		</activeWhen>
+				</reference>
+			</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
