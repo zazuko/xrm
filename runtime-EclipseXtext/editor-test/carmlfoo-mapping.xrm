@@ -33,6 +33,6 @@ xml-namespace-extension SomeXmlNsExtension {
 	// TODO uncomment next line --> two errors for duplcated label on all prefixes with "exa"
 // prefix "exa" "http://www.example.com/audios/1.0/"
 // TODO uncomment next line --> error because of ':' in label
-// prefix "exb" "http://www.example.com/books/1.0/"
+// prefix "exb:" "http://www.example.com/books/1.0/"
 }
 
