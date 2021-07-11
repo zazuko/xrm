@@ -1,4 +1,5 @@
-// TODO uncomment next line --> warning on 'map' + quickfix
+// TODO swap comments on next two lines --> warning on 'map' + quickfix
+//output csvw
 output rml
 
 // TODO uncomment next line - get error for duplicated TemplateDeclaration (also declared in editotest-csv.xrm)
