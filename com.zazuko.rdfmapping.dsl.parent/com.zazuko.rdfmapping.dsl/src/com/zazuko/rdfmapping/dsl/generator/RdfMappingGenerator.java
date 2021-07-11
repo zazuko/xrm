@@ -74,19 +74,19 @@ public class RdfMappingGenerator extends AbstractGenerator {
 		String outFileBase = dslFileName.substring(0, dslFileName.lastIndexOf("."));
 
 		switch (outputType) {
-		case RML: {
+		case RML:
 			fsa.generateFile(outFileBase + ".rml.ttl", rmlGenerator.generateTurtle(mappings));
-		}
-		case R2RML: {
+			break;
+		case R2RML:
 			fsa.generateFile(outFileBase + ".r2rml.ttl", r2rmlGenerator.generateTurtle(mappings));
-		}
-		case CARML: {
+			break;
+		case CARML:
 			fsa.generateFile(outFileBase + ".carml.ttl", carmlGenerator.generateTurtle(mappings));
-		}
-		case CSVW: {
+			break;
+		case CSVW:
 			CsvwDialectContext ctx = new CsvwDialectContext(modelAccess, mappings);
 			fsa.generateFile(outFileBase + ".csv.meta.json", csvwGenerator.generateJson(mappings, ctx));
-		}
+			break;
 		}
 	}
 
