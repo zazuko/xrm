@@ -2,7 +2,7 @@
 //output csvw
 output rml
 
-// TODO uncomment next line - get error for duplicated TemplateDeclaration (also declared in editotest-csv.xrm)
+// TODO uncomment next line - get error for duplicated TemplateDeclaration (also declared in editortest-csv.xrm)
 //template anyTemplate "foo"
 template airportIri "http://airport.example.com/{0}"
 template exampleIri "http://example.com/"
