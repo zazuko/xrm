@@ -65,6 +65,11 @@ class ModelAccess {
 		return null;
 	}
 
+	// we can cope with null as an answer - this is better than swallowed exceptions like text.validation.CompositeEValidator  - Error executing EValidator
+	def dispatch SourceType typeResolved(EObject it) {
+		return null;
+	}
+
 	def dispatch SourceType typeResolved(LogicalSource it) {
 		if (typeRef !== null && typeRef?.type !== null) {
 			return typeRef.type;
