@@ -1,7 +1,7 @@
 package com.zazuko.rdfmapping.dsl.util;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class EnumMapperTest {
@@ -12,7 +12,7 @@ public class EnumMapperTest {
 
 	private EnumMapper<Number> mapper;
 
-	@BeforeAll
+	@BeforeEach
 	public void before() {
 		this.mapper = new EnumMapperBuilder<Number>() //
 				.add("one", Number.ONE) //

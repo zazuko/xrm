@@ -381,12 +381,11 @@ class ValidationRuleTest {
 
 	@Test
 	def void xmlNsExtension_label_duplicated() {
-		val result = parseHelper.parse(xmlNamespaceExtensionSnippets.duplicatedPrefix());
-		
+		val Domainmodel result = parseHelper.parse(xmlNamespaceExtensionSnippets.duplicatedPrefix());
 		validationTester.assertError(result, 
 			RdfMappingPackage.eINSTANCE.prefix, 
 			null, 
-			"Duplicated label"
+			"DuplicatedLabel"
 		);
 	}
 	

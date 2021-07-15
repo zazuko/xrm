@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -17,13 +17,13 @@ public class TemplateFormatAnalyzerTest {
 
 	private TemplateFormatAnalyzer analyzer;
 
-	@BeforeAll
+	@BeforeEach
 	public void before() {
 		this.analyzer = new TemplateFormatAnalyzer();
 	}
 
 	@ParameterizedTest
-	@MethodSource("provide")
+	@MethodSource("data")
 	public void test(Params params) throws Exception {
 		TemplateFormatAnalysis actual = this.analyzer.analyzeFormats(params.input);
 		compare(params.usedKeys, actual.getUsedKeys());
@@ -44,7 +44,7 @@ public class TemplateFormatAnalyzerTest {
 
 	}
 
-	public static Stream<Params> provide() {
+	public static Stream<Params> data() {
 		List<Params> result = new ArrayList<>();
 
 		result.add(new Params(new int[] { 0, 1, 2 }, new int[] {}, "http://city.example.com/{0}/{1}/{2}"));
