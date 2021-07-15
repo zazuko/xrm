@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.inject.Guice;
@@ -21,7 +21,7 @@ public class OmniMapKeyProposalGeneratorTest {
 	@Inject
 	private OmniMapKeyProposalGenerator gen;
 
-	@BeforeAll
+	@BeforeEach
 	public void before() {
 		Guice.createInjector().injectMembers(this);
 	}
