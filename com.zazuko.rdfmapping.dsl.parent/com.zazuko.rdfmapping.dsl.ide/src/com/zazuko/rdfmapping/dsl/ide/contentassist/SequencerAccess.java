@@ -11,4 +11,8 @@ public class SequencerAccess extends RdfMappingSyntacticSequencer {
 	public String getBLOCK_ENDToken() {
 		return this.getBLOCK_ENDToken(null, null, null);
 	}
+
+	public String getLINE_ENDToken() {
+		return this.getLINE_ENDToken(null, null, null);
+	}
 }

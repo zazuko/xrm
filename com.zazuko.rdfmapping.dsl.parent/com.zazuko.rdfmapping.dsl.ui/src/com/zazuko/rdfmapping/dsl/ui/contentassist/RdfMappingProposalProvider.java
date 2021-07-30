@@ -10,22 +10,19 @@ import javax.inject.Inject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
-import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
-import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
-import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
 import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
 
 /**
- * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#content-assist
+ * See
+ * https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#content-assist
  * on how to customize the content assistant.
  */
 @Deprecated
@@ -53,25 +50,11 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 		return super.getStyledDisplayString(description);
 	}
 
-	
-	@Override
-	public void complete_LINE_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		if (model instanceof PredicateObjectMapping) {
-			PredicateObjectMapping pom = (PredicateObjectMapping)model;
-			if (pom.getTerm() == null || pom.isLineEnd()) {
-				return; // do not offer ';' if there is no valuedTerm or there is already a ';'
-			}
-		}
-		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_LINE_END,
-				RdfMappingConstants.TOKEN_LINE_END, null, context));
-	}
-
 	@Override
 	public void completeOmniMapEntry_Key(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		Set<String> proposals = this.omniMapKeyProposalGenerator.createKeyProposals((OmniMap)model);
-		for (String proposal: proposals) {
+		Set<String> proposals = this.omniMapKeyProposalGenerator.createKeyProposals((OmniMap) model);
+		for (String proposal : proposals) {
 			if (!acceptor.canAcceptMoreProposals()) {
 				return;
 			}

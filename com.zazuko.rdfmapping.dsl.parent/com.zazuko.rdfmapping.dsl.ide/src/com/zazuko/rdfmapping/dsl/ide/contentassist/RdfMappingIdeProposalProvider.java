@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.inject.Inject;
 
+import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.ide.editor.contentassist.ContentAssistContext;
@@ -19,7 +20,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
-import com.zazuko.rdfmapping.dsl.serializer.RdfMappingSyntacticSequencer;
 import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess;
 
 public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
@@ -32,7 +32,7 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 	private IdeContentProposalCreator proposalCreator;
 	@Inject
 	private SequencerAccess sequencer;
-	
+
 	@Inject
 	private IdeContentProposalPriorities proposalPriorities;
 
@@ -44,7 +44,22 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 	public void createProposals(Collection<ContentAssistContext> contexts, IIdeContentProposalAcceptor acceptor) {
 		debug("createProposals hook called");
 		// set a breakpoint here in order see when this is invoked
-		super.createProposals(contexts, acceptor);
+
+		IIdeContentProposalAcceptor delegate = new IIdeContentProposalAcceptor() {
+
+			@Override
+			public void accept(ContentAssistEntry entry, int priority) {
+				// to sniff proposals coming in - add a (conditional) breakpoint on next line
+				acceptor.accept(entry, priority);
+			}
+
+			@Override
+			public boolean canAcceptMoreProposals() {
+				return acceptor.canAcceptMoreProposals();
+			}
+
+		};
+		super.createProposals(contexts, delegate);
 	}
 
 	// in VS-code, this is visible in the tab "OUTPUT" for Xtext Server
@@ -77,14 +92,47 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 	@Override
 	protected void _createProposals(RuleCall ruleCall, ContentAssistContext context,
 			IIdeContentProposalAcceptor acceptor) {
-		if (ruleCall.getRule() == grammarAccess.getBLOCK_BEGINRule()) {
-			ContentAssistEntry proposal = this.proposalCreator.createProposal(this.sequencer.getBLOCK_BEGINToken(), context);
+		if (ruleCall.getRule() == this.grammarAccess.getBLOCK_BEGINRule()) {
+			ContentAssistEntry proposal = this.proposalCreator.createProposal(this.sequencer.getBLOCK_BEGINToken(),
+					context);
 			acceptor.accept(proposal, this.proposalPriorities.getDefaultPriority(proposal));
-			
-		} else if (ruleCall.getRule() == grammarAccess.getBLOCK_ENDRule()) {
-			ContentAssistEntry proposal = this.proposalCreator.createProposal(this.sequencer.getBLOCK_ENDToken(), context);
+
+		} else if (ruleCall.getRule() == this.grammarAccess.getBLOCK_ENDRule()) {
+			ContentAssistEntry proposal = this.proposalCreator.createProposal(this.sequencer.getBLOCK_ENDToken(),
+					context);
+			acceptor.accept(proposal, this.proposalPriorities.getDefaultPriority(proposal));
+
+		} else if (ruleCall.getRule() == this.grammarAccess.getLINE_ENDRule()) {
+			if (context.getCurrentModel() instanceof PredicateObjectMapping) {
+				// deal with PredicateObjectMapping+LINE_END in
+				// _createProposals(Assignment assignment, ...
+				return;
+			}
+			ContentAssistEntry proposal = this.proposalCreator.createProposal(this.sequencer.getLINE_ENDToken(),
+					context);
 			acceptor.accept(proposal, this.proposalPriorities.getDefaultPriority(proposal));
 		}
 
 	}
+
+	@Override
+	protected void _createProposals(Assignment assignment, ContentAssistContext context,
+			IIdeContentProposalAcceptor acceptor) {
+		if (context.getCurrentModel() instanceof PredicateObjectMapping
+				&& (assignment.getTerminal() instanceof RuleCall)
+				&& ((RuleCall) assignment.getTerminal()).getRule() == this.grammarAccess.getLINE_ENDRule()) {
+			PredicateObjectMapping pom = (PredicateObjectMapping) context.getCurrentModel();
+			if (pom.getTerm() == null || pom.isLineEnd()) {
+				return; // do not offer ';' if there is no valuedTerm or there is already a ';'
+			} else {
+				ContentAssistEntry proposal = this.proposalCreator.createProposal(this.sequencer.getLINE_ENDToken(),
+						context);
+				acceptor.accept(proposal, this.proposalPriorities.getDefaultPriority(proposal));
+			}
+
+		} else {
+			super._createProposals(assignment, context, acceptor);
+		}
+	}
+
 }
