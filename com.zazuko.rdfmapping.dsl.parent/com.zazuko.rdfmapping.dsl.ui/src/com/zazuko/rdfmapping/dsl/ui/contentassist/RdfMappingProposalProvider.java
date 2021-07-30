@@ -53,19 +53,6 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 		return super.getStyledDisplayString(description);
 	}
 
-	@Override
-	public void complete_BLOCK_BEGIN(EObject model, RuleCall ruleCall, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_BEGIN,
-				RdfMappingConstants.TOKEN_BLOCK_BEGIN, null, context));
-	}
-
-	@Override
-	public void complete_BLOCK_END(EObject model, RuleCall ruleCall, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		acceptor.accept(this.createCompletionProposal(RdfMappingConstants.TOKEN_BLOCK_END,
-				RdfMappingConstants.TOKEN_BLOCK_END, null, context));
-	}
 	
 	@Override
 	public void complete_LINE_END(EObject model, RuleCall ruleCall, ContentAssistContext context,

@@ -5,8 +5,12 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.ide.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.ide.editor.contentassist.ContentAssistEntry;
 import org.eclipse.xtext.ide.editor.contentassist.IIdeContentProposalAcceptor;
+import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalCreator;
+import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalPriorities;
 import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalProvider;
 
 import com.zazuko.rdfmapping.dsl.ide.contentassist.keywordfilter.KeywordFilter;
@@ -15,11 +19,22 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
+import com.zazuko.rdfmapping.dsl.serializer.RdfMappingSyntacticSequencer;
+import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess;
 
 public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 
 	@Inject
 	private KeywordFilter keywordFilter;
+	@Inject
+	private RdfMappingGrammarAccess grammarAccess;
+	@Inject
+	private IdeContentProposalCreator proposalCreator;
+	@Inject
+	private SequencerAccess sequencer;
+	
+	@Inject
+	private IdeContentProposalPriorities proposalPriorities;
 
 	public RdfMappingIdeProposalProvider() {
 		debug("RdfMappingIdeProposalProvider init");
@@ -43,19 +58,33 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 	protected boolean filterKeyword(Keyword keyword, ContentAssistContext context) {
 		if (context.getCurrentModel() instanceof PredicateObjectMapping) {
 			return this.keywordFilter.filter((PredicateObjectMapping) context.getCurrentModel(), keyword, context);
-			
+
 		} else if (context.getCurrentModel() instanceof ReferenceValuedTerm) {
 			return this.keywordFilter.filter((ReferenceValuedTerm) context.getCurrentModel(), keyword, context);
-			
+
 		} else if (context.getCurrentModel() instanceof TemplateValuedTerm) {
 			return this.keywordFilter.filter((TemplateValuedTerm) context.getCurrentModel(), keyword, context);
-			
+
 		} else if (context.getCurrentModel() instanceof SourceGroup) {
 			return this.keywordFilter.filter((SourceGroup) context.getCurrentModel(), keyword, context);
-			
+
 		} else if (context.getCurrentModel() instanceof LogicalSource) {
 			return this.keywordFilter.filter((LogicalSource) context.getCurrentModel(), keyword, context);
 		}
 		return true;
+	}
+
+	@Override
+	protected void _createProposals(RuleCall ruleCall, ContentAssistContext context,
+			IIdeContentProposalAcceptor acceptor) {
+		if (ruleCall.getRule() == grammarAccess.getBLOCK_BEGINRule()) {
+			ContentAssistEntry proposal = this.proposalCreator.createProposal(this.sequencer.getBLOCK_BEGINToken(), context);
+			acceptor.accept(proposal, this.proposalPriorities.getDefaultPriority(proposal));
+			
+		} else if (ruleCall.getRule() == grammarAccess.getBLOCK_ENDRule()) {
+			ContentAssistEntry proposal = this.proposalCreator.createProposal(this.sequencer.getBLOCK_ENDToken(), context);
+			acceptor.accept(proposal, this.proposalPriorities.getDefaultPriority(proposal));
+		}
+
 	}
 }
