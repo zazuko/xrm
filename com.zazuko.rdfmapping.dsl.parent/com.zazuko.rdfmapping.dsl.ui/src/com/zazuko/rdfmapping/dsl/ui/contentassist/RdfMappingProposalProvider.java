@@ -39,6 +39,7 @@ import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#content-assist
  * on how to customize the content assistant.
  */
+@Deprecated
 public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvider {
 	@Inject
 	private IQualifiedNameConverter qualifiedNameConverter;
@@ -52,6 +53,7 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 	@Inject
 	private OmniMapKeyProposalGenerator omniMapKeyProposalGenerator;
 
+	// TODO how to re-implement this?
 	protected StyledString getStyledDisplayString(IEObjectDescription description) {
 		EObject eo = description.getEObjectOrProxy();
 		if (eo instanceof RdfProperty //
@@ -65,70 +67,70 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 		return super.getStyledDisplayString(description);
 	}
 
-	@Override
-	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
-			ICompletionProposalAcceptor acceptor) {
-		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
-			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
-			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("parent-map",
-					keyword, type)//
-							.and(new WhitelistedEnumTypeCompletionProposalPredicate<OutputType>("multi-reference",
-									keyword, Collections.singleton(OutputType.CARML), type));
-			super.completeKeyword(keyword, contentAssistContext,
-					new FilteringCompletionProposalAcceptor(acceptor, filter));
-
-		} else if (contentAssistContext.getCurrentModel() instanceof ReferenceValuedTerm
-				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
-			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
-			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("as", keyword, type);
-			
-			// #30 for a subjectIriMapping, don't offer 'Literal'
-			if (contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
-				EObject container = contentAssistContext.getCurrentModel().eContainer();
-				if (container instanceof Mapping) {
-					Mapping mapping = (Mapping) container;
-					// make sure we really have subjetIriMapping in our hands
-					if (mapping.getSubjectIriMapping() == contentAssistContext.getCurrentModel()) {
-						filter = filter.and(new BlacklistedCompletionProposalPredicate("Literal", keyword));
-					}
-				}
-			}
-			
-			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
-					filter));
-
-		} else if (contentAssistContext.getCurrentModel() instanceof SourceGroup) {
-			SourceGroup cast = (SourceGroup) contentAssistContext.getCurrentModel();
-			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
-					cast.getTypeRef() != null ? cast.getTypeRef().getType() : null);
-
-		} else if (contentAssistContext.getCurrentModel() instanceof LogicalSource) {
-			LogicalSource cast = (LogicalSource) contentAssistContext.getCurrentModel();
-			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
-					cast.getTypeRef() != null ? cast.getTypeRef().getType() : null);
-
-		} else {
-			super.completeKeyword(keyword, contentAssistContext, acceptor);
-		}
-	}
-
-	private void completeKeywordForSourceDefinition(Keyword keyword, ContentAssistContext contentAssistContext,
-			ICompletionProposalAcceptor acceptor, SourceType type) {
-
-		Predicate<ICompletionProposal> filter = //
-				new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("xml-namespace-extension", keyword, //
-						Collections.singleton(SourceType.XML), //
-						type) //
-								.and( //
-										new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("dialect",
-												keyword, //
-												Collections.singleton(SourceType.CSV), //
-												type)//
-								);
-
-		super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor, filter));
-
-	}
+//	@Override
+//	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
+//			ICompletionProposalAcceptor acceptor) {
+//		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
+//			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+//			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("parent-map",
+//					keyword, type)//
+//							.and(new WhitelistedEnumTypeCompletionProposalPredicate<OutputType>("multi-reference",
+//									keyword, Collections.singleton(OutputType.CARML), type));
+//			super.completeKeyword(keyword, contentAssistContext,
+//					new FilteringCompletionProposalAcceptor(acceptor, filter));
+//
+//		} else if (contentAssistContext.getCurrentModel() instanceof ReferenceValuedTerm
+//				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
+//			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
+//			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("as", keyword, type);
+//			
+//			// #30 for a subjectIriMapping, don't offer 'Literal'
+//			if (contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
+//				EObject container = contentAssistContext.getCurrentModel().eContainer();
+//				if (container instanceof Mapping) {
+//					Mapping mapping = (Mapping) container;
+//					// make sure we really have subjetIriMapping in our hands
+//					if (mapping.getSubjectIriMapping() == contentAssistContext.getCurrentModel()) {
+//						filter = filter.and(new BlacklistedCompletionProposalPredicate("Literal", keyword));
+//					}
+//				}
+//			}
+//			
+//			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
+//					filter));
+//
+//		} else if (contentAssistContext.getCurrentModel() instanceof SourceGroup) {
+//			SourceGroup cast = (SourceGroup) contentAssistContext.getCurrentModel();
+//			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
+//					cast.getTypeRef() != null ? cast.getTypeRef().getType() : null);
+//
+//		} else if (contentAssistContext.getCurrentModel() instanceof LogicalSource) {
+//			LogicalSource cast = (LogicalSource) contentAssistContext.getCurrentModel();
+//			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
+//					cast.getTypeRef() != null ? cast.getTypeRef().getType() : null);
+//
+//		} else {
+//			super.completeKeyword(keyword, contentAssistContext, acceptor);
+//		}
+//	}
+//
+//	private void completeKeywordForSourceDefinition(Keyword keyword, ContentAssistContext contentAssistContext,
+//			ICompletionProposalAcceptor acceptor, SourceType type) {
+//
+//		Predicate<ICompletionProposal> filter = //
+//				new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("xml-namespace-extension", keyword, //
+//						Collections.singleton(SourceType.XML), //
+//						type) //
+//								.and( //
+//										new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("dialect",
+//												keyword, //
+//												Collections.singleton(SourceType.CSV), //
+//												type)//
+//								);
+//
+//		super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor, filter));
+//
+//	}
 
 	@Override
 	public void complete_BLOCK_BEGIN(EObject model, RuleCall ruleCall, ContentAssistContext context,

@@ -1,28 +1,25 @@
-package com.zazuko.rdfmapping.dsl.ui.contentassist;
+package com.zazuko.rdfmapping.dsl.ide.contentassist.keywordfilter;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.Keyword;
 
-public class WhitelistedEnumTypeCompletionProposalPredicate<T extends Enumerator> implements Predicate<ICompletionProposal> {
+public class WhitelistedEnumTypeCompletionProposalPredicate<T extends Enumerator> implements Predicate<Keyword> {
 
 	private final String keywordLiteral;
-	private final Keyword keyword;
 	private final T actualType;
 	private final Set<T> expectedTypes;
 
-	public WhitelistedEnumTypeCompletionProposalPredicate(String keywordLiteral, Keyword keyword, Set<T> expectedTypes, T actualType) {
+	public WhitelistedEnumTypeCompletionProposalPredicate(String keywordLiteral, Set<T> expectedTypes, T actualType) {
 		this.keywordLiteral = keywordLiteral;
-		this.keyword = keyword;
 		this.expectedTypes = expectedTypes;
 		this.actualType = actualType;
 	}
 
 	@Override
-	public boolean test(ICompletionProposal proposal) {
+	public boolean test(Keyword keyword) {
 		if (this.actualType == null) {
 			return true;
 		}
