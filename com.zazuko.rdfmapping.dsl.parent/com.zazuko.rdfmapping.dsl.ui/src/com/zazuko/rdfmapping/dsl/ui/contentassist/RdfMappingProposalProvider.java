@@ -70,35 +70,6 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 //	@Override
 //	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
 //			ICompletionProposalAcceptor acceptor) {
-//		if (contentAssistContext.getCurrentModel() instanceof PredicateObjectMapping) {
-//			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
-//			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("parent-map",
-//					keyword, type)//
-//							.and(new WhitelistedEnumTypeCompletionProposalPredicate<OutputType>("multi-reference",
-//									keyword, Collections.singleton(OutputType.CARML), type));
-//			super.completeKeyword(keyword, contentAssistContext,
-//					new FilteringCompletionProposalAcceptor(acceptor, filter));
-//
-//		} else if (contentAssistContext.getCurrentModel() instanceof ReferenceValuedTerm
-//				|| contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
-//			OutputType type = modelAccess.outputType(contentAssistContext.getCurrentModel());
-//			Predicate<ICompletionProposal> filter = new RmlishOutputTypeCompletionProposalPredicate("as", keyword, type);
-//			
-//			// #30 for a subjectIriMapping, don't offer 'Literal'
-//			if (contentAssistContext.getCurrentModel() instanceof TemplateValuedTerm) {
-//				EObject container = contentAssistContext.getCurrentModel().eContainer();
-//				if (container instanceof Mapping) {
-//					Mapping mapping = (Mapping) container;
-//					// make sure we really have subjetIriMapping in our hands
-//					if (mapping.getSubjectIriMapping() == contentAssistContext.getCurrentModel()) {
-//						filter = filter.and(new BlacklistedCompletionProposalPredicate("Literal", keyword));
-//					}
-//				}
-//			}
-//			
-//			super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor,
-//					filter));
-//
 //		} else if (contentAssistContext.getCurrentModel() instanceof SourceGroup) {
 //			SourceGroup cast = (SourceGroup) contentAssistContext.getCurrentModel();
 //			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
