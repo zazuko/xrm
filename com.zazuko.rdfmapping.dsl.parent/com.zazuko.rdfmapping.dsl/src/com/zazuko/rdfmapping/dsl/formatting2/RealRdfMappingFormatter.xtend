@@ -36,7 +36,8 @@ import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 
-class RdfMappingFormatter extends AbstractFormatter2 {
+// TODO implement in RdfMappingFormatter.java
+class RealRdfMappingFormatter extends AbstractFormatter2 {
 
 	@Inject RdfMappingGrammarAccess ga
 	RdfMappingPackage pkg = RdfMappingPackage.eINSTANCE;
