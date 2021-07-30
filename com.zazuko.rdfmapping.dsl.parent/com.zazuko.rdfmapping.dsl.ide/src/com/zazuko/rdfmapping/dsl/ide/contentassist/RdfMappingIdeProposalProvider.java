@@ -10,8 +10,10 @@ import org.eclipse.xtext.ide.editor.contentassist.IIdeContentProposalAcceptor;
 import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalProvider;
 
 import com.zazuko.rdfmapping.dsl.ide.contentassist.keywordfilter.KeywordFilter;
+import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
+import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
 
 public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
@@ -41,11 +43,18 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 	protected boolean filterKeyword(Keyword keyword, ContentAssistContext context) {
 		if (context.getCurrentModel() instanceof PredicateObjectMapping) {
 			return this.keywordFilter.filter((PredicateObjectMapping) context.getCurrentModel(), keyword, context);
+			
 		} else if (context.getCurrentModel() instanceof ReferenceValuedTerm) {
 			return this.keywordFilter.filter((ReferenceValuedTerm) context.getCurrentModel(), keyword, context);
+			
 		} else if (context.getCurrentModel() instanceof TemplateValuedTerm) {
 			return this.keywordFilter.filter((TemplateValuedTerm) context.getCurrentModel(), keyword, context);
-
+			
+		} else if (context.getCurrentModel() instanceof SourceGroup) {
+			return this.keywordFilter.filter((SourceGroup) context.getCurrentModel(), keyword, context);
+			
+		} else if (context.getCurrentModel() instanceof LogicalSource) {
+			return this.keywordFilter.filter((LogicalSource) context.getCurrentModel(), keyword, context);
 		}
 		return true;
 	}

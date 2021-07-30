@@ -3,17 +3,13 @@
  */
 package com.zazuko.rdfmapping.dsl.ui.contentassist;
 
-import java.util.Collections;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -22,17 +18,10 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
-import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
-import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
-import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
-import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
-import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
-import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType;
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
 import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
 
 /**
@@ -46,9 +35,6 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 
 	@Inject
 	private RdfPrefixedNameConverter rdfDslConverter;
-
-	@Inject
-	private ModelAccess modelAccess;
 
 	@Inject
 	private OmniMapKeyProposalGenerator omniMapKeyProposalGenerator;
@@ -66,42 +52,6 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 		}
 		return super.getStyledDisplayString(description);
 	}
-
-//	@Override
-//	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext,
-//			ICompletionProposalAcceptor acceptor) {
-//		} else if (contentAssistContext.getCurrentModel() instanceof SourceGroup) {
-//			SourceGroup cast = (SourceGroup) contentAssistContext.getCurrentModel();
-//			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
-//					cast.getTypeRef() != null ? cast.getTypeRef().getType() : null);
-//
-//		} else if (contentAssistContext.getCurrentModel() instanceof LogicalSource) {
-//			LogicalSource cast = (LogicalSource) contentAssistContext.getCurrentModel();
-//			this.completeKeywordForSourceDefinition(keyword, contentAssistContext, acceptor,
-//					cast.getTypeRef() != null ? cast.getTypeRef().getType() : null);
-//
-//		} else {
-//			super.completeKeyword(keyword, contentAssistContext, acceptor);
-//		}
-//	}
-//
-//	private void completeKeywordForSourceDefinition(Keyword keyword, ContentAssistContext contentAssistContext,
-//			ICompletionProposalAcceptor acceptor, SourceType type) {
-//
-//		Predicate<ICompletionProposal> filter = //
-//				new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("xml-namespace-extension", keyword, //
-//						Collections.singleton(SourceType.XML), //
-//						type) //
-//								.and( //
-//										new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("dialect",
-//												keyword, //
-//												Collections.singleton(SourceType.CSV), //
-//												type)//
-//								);
-//
-//		super.completeKeyword(keyword, contentAssistContext, new FilteringCompletionProposalAcceptor(acceptor, filter));
-//
-//	}
 
 	@Override
 	public void complete_BLOCK_BEGIN(EObject model, RuleCall ruleCall, ContentAssistContext context,
