@@ -1,6 +1,7 @@
 package com.zazuko.rdfmapping.dsl.ide.contentassist;
 
 import java.util.Collection;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -15,7 +16,9 @@ import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalPriorities;
 import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalProvider;
 
 import com.zazuko.rdfmapping.dsl.ide.contentassist.keywordfilter.KeywordFilter;
+import com.zazuko.rdfmapping.dsl.ide.contentassist.omnimap.OmniMapKeyProposalGenerator;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
+import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
@@ -32,9 +35,11 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 	private IdeContentProposalCreator proposalCreator;
 	@Inject
 	private SequencerAccess sequencer;
-
 	@Inject
 	private IdeContentProposalPriorities proposalPriorities;
+
+	@Inject
+	private OmniMapKeyProposalGenerator omniMapKeyProposalGenerator;
 
 	public RdfMappingIdeProposalProvider() {
 		debug("RdfMappingIdeProposalProvider init");
@@ -130,8 +135,25 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 				acceptor.accept(proposal, this.proposalPriorities.getDefaultPriority(proposal));
 			}
 
+		} else if (context.getCurrentModel() instanceof OmniMap && (assignment.getTerminal() instanceof RuleCall)
+				&& ((RuleCall) assignment.getTerminal()).getRule() == this.grammarAccess.getOmniMapEntryRule()) {
+			this.completeOmniMapEntries((OmniMap) context.getCurrentModel(), context, acceptor);
+
 		} else {
 			super._createProposals(assignment, context, acceptor);
+		}
+	}
+
+	private void completeOmniMapEntries(OmniMap in, ContentAssistContext context, IIdeContentProposalAcceptor acceptor) {
+		Set<String> proposalTexts = this.omniMapKeyProposalGenerator.createKeyProposals(in);
+		for (String text : proposalTexts) {
+			if (!acceptor.canAcceptMoreProposals()) {
+				return;
+			}
+			
+			ContentAssistEntry proposal = this.proposalCreator.createProposal(text,
+					context);
+			acceptor.accept(proposal, this.proposalPriorities.getDefaultPriority(proposal));
 		}
 	}
 

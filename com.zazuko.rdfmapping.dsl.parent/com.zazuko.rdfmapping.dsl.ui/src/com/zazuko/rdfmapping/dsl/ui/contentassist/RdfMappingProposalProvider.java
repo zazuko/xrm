@@ -3,19 +3,13 @@
  */
 package com.zazuko.rdfmapping.dsl.ui.contentassist;
 
-import java.util.Set;
-
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.StyledString;
-import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
-import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
-import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
 import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
@@ -33,8 +27,7 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 	@Inject
 	private RdfPrefixedNameConverter rdfDslConverter;
 
-	@Inject
-	private OmniMapKeyProposalGenerator omniMapKeyProposalGenerator;
+	
 
 	// TODO how to re-implement this?
 	protected StyledString getStyledDisplayString(IEObjectDescription description) {
@@ -48,18 +41,6 @@ public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvid
 					qualifiedNameConverter.toString(description.getName()));
 		}
 		return super.getStyledDisplayString(description);
-	}
-
-	@Override
-	public void completeOmniMapEntry_Key(EObject model, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		Set<String> proposals = this.omniMapKeyProposalGenerator.createKeyProposals((OmniMap) model);
-		for (String proposal : proposals) {
-			if (!acceptor.canAcceptMoreProposals()) {
-				return;
-			}
-			acceptor.accept(this.createCompletionProposal(proposal, proposal, null, context));
-		}
 	}
 
 }

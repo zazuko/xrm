@@ -23,6 +23,7 @@
 	<modules>
 		<module>com.zazuko.rdfmapping.dsl</module>
 		<module>com.zazuko.rdfmapping.dsl.ide</module>
+		<module>com.zazuko.rdfmapping.dsl.ide.tests</module>
 		<module>com.zazuko.rdfmapping.dsl.ui</module>
 		<module>com.zazuko.rdfmapping.dsl.target</module>
 		<module>com.zazuko.rdfmapping.dsl.feature</module>

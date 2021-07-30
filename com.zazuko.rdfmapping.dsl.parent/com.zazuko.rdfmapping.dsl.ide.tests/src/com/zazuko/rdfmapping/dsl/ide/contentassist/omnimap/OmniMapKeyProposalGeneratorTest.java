@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.ui.contentassist;
+package com.zazuko.rdfmapping.dsl.ide.contentassist.omnimap;
 
 import java.util.ArrayList;
 import java.util.List;

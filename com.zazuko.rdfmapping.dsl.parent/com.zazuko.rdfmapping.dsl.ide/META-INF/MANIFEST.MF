@@ -13,4 +13,5 @@ Require-Bundle: com.zazuko.rdfmapping.dsl,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: com.zazuko.rdfmapping.dsl.ide.contentassist,
  com.zazuko.rdfmapping.dsl.ide.contentassist.antlr,
- com.zazuko.rdfmapping.dsl.ide.contentassist.antlr.internal
+ com.zazuko.rdfmapping.dsl.ide.contentassist.antlr.internal,
+ com.zazuko.rdfmapping.dsl.ide.contentassist.omnimap
