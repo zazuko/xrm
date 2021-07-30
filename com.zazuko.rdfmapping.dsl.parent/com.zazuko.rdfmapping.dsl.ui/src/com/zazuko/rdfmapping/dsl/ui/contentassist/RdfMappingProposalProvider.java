@@ -3,44 +3,11 @@
  */
 package com.zazuko.rdfmapping.dsl.ui.contentassist;
 
-import javax.inject.Inject;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.StyledString;
-import org.eclipse.xtext.naming.IQualifiedNameConverter;
-import org.eclipse.xtext.resource.IEObjectDescription;
-
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
-import com.zazuko.rdfmapping.dsl.services.RdfPrefixedNameConverter;
-
 /**
  * See
  * https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#content-assist
  * on how to customize the content assistant.
  */
-@Deprecated
 public class RdfMappingProposalProvider extends AbstractRdfMappingProposalProvider {
-	@Inject
-	private IQualifiedNameConverter qualifiedNameConverter;
-
-	@Inject
-	private RdfPrefixedNameConverter rdfDslConverter;
-
-	
-
-	// TODO how to re-implement this?
-	protected StyledString getStyledDisplayString(IEObjectDescription description) {
-		EObject eo = description.getEObjectOrProxy();
-		if (eo instanceof RdfProperty //
-				|| eo instanceof RdfClass //
-		) {
-			String origQualifiedNameString = this.qualifiedNameConverter.toString(description.getQualifiedName());
-			String qualifiedNameString = this.rdfDslConverter.toString(origQualifiedNameString);
-			return getStyledDisplayString(eo, qualifiedNameString,
-					qualifiedNameConverter.toString(description.getName()));
-		}
-		return super.getStyledDisplayString(description);
-	}
 
 }
