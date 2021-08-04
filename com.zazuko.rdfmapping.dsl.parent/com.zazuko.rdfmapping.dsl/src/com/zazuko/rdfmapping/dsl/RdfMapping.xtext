@@ -240,35 +240,63 @@ Shape:
 NodeShape:
 	'node-shape' name=ID BLOCK_BEGIN
     	(deactivated ?= 'deactivated')?
-    	('target-classes' (targetClassReferences+=TargetClassRef)+)?
+    	('target-classes' (targetClasses+=[RdfClass|RdfPrefixedName])+)?
     	(closed ?= 'closed')?
-    	('ignored-properties' (ignoredPropertyReferences+=IgnoredPropertyRef)+)?
-    	('properties' (propertyShapes+=PropertyShapeElement)+)?
+    	('ignored-properties' (ignoredProperties+=[RdfProperty|RdfPrefixedName])+)?
+    	('properties' (propertyShapes+=[PropertyShape] | embeddedPropertyShapes+=EmbeddedPropertyShape)+)?
     BLOCK_END;
 
-TargetClassRef:	
-	targetClass=[RdfClass|RdfPrefixedName];
-
-IgnoredPropertyRef:
-	ignoredProperty=[RdfProperty|RdfPrefixedName];
-
-PropertyShapeElement:
-	PropertyShapeRef
-	| EmbeddedPropertyShape
-	;
-
-PropertyShapeRef:
-	propertyShape=[PropertyShape];
-
 EmbeddedPropertyShape:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind';
+	EmbeddedPropertyShapeNode
+	| EmbeddedPropertyShapeLiteral
+	| EmbeddedPropertyShapeNodeOrLiteral
+	;
+	
+// sh:BlankNode, sh:IRI, sh:BlankNodeOrIRI
+EmbeddedPropertyShapeNode:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' nodeKind=NodeKindNodeRef
+	(LINE_END |
+	(BLOCK_BEGIN
+		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
+		('node-shapes' (nodeShapes+=[NodeShape])+)?
+	BLOCK_END)
+	);
+
+// sh:Literal	
+EmbeddedPropertyShapeLiteral:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'Literal'
+	(LINE_END |
+	(BLOCK_BEGIN		
+		('datatype' datatype=[Datatype|RdfPrefixedName])?
+		('pattern' pattern=STRING)?		
+	BLOCK_END)
+	);
+
+// sh:BlankNodeOrLiteral and sh:IRIOrLiteral
+EmbeddedPropertyShapeNodeOrLiteral:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' nodeKind=NodeKindNodeOrLiteralRef
+	LINE_END;
+	
+enum NodeKindNode:
+	BlankNode = 'BlankNode'
+	| IRI = 'IRI'
+	| BlankNodeOrIRI = 'BlankNodeOrIRI'
+	;
+	
+NodeKindNodeRef:
+	type=NodeKindNode;
+	
+enum NodeKindNodeOrLiteral:
+	BlankNodeOrLiteral = 'BlankNodeOrLiteral'
+	| IRIOrLiteral = 'IRIOrLiteral'
+	;	
+
+NodeKindNodeOrLiteralRef:
+	type=NodeKindNodeOrLiteral;
 
 PropertyShape:
 	'property-shape' name=ID BLOCK_BEGIN
     	(deactivated ?= 'deactivated')?
     	('path' property=[RdfProperty|RdfPrefixedName])?
-    	('node-shapes' (nodeShapesReferences+=NodeShapeRef)+)?
+    	('node-shapes' (nodeShapes+=[NodeShape])+)?
     BLOCK_END;
-    
-NodeShapeRef:
-	nodeShape=[NodeShape];

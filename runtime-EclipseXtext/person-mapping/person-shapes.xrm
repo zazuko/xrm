@@ -14,22 +14,22 @@ node-shape PersonNodeShape {
 		rdf.^type
 	
 	properties
-		ex.ssn node-kind
+		ex.ssn node-kind Literal {
 //		ex.ssn node-kind Literal [0..1] {
-//			datatype xsd.string
-//			pattern "^\\d{3}-\\d{2}-\\d{4}$"
-//		}
+			datatype xsd.string
+			pattern "^\\d{3}-\\d{2}-\\d{4}$"
+		}
 		// sh:NodeKind: sh:BlankNode, sh:IRI, sh:Literal sh:BlankNodeOrIRI, sh:BlankNodeOrLiteral and sh:IRIOrLiteral. A shape has at most one value for sh:nodeKind.
 		
-		ex.worksFor node-kind
+		ex.worksFor node-kind IRI {
 //		ex.worksFor node-kind IRI [0..*] {
-//			classes ex.Company
-//		}
+			classes ex.Company
+		}
 	
-		ex.address node-kind
+		ex.address node-kind BlankNode {
 //		ex.address node-kind BlankNode [0..1] {
-//			node-shapes AddressNodeShape
-//		}
+			node-shapes AddressNodeShape
+		}
 		
 		// alternatively to embedded property shapes, also support using externalized property shapes
 		AddressPropertyShape
@@ -37,15 +37,15 @@ node-shape PersonNodeShape {
 
 node-shape AddressNodeShape {
 	properties
-		ex.city node-kind
+		ex.city node-kind Literal {
 //		ex.city node-kind Literal [1..1] {
-//			datatype xsd.string
-//		}
+			datatype xsd.string
+		}
 
-		ex.postalCode node-kind
+		ex.postalCode node-kind Literal {
 //		ex.postalCode node-kind Literal [1..1] {
-//			datatype xsd:string
-//		}
+			datatype xsd.string
+		}
 }
 
 property-shape AddressPropertyShape {

@@ -1,5 +1,5 @@
 vocabulary rdf {
-	prefix "rdf" "http://www.w3.org/1999/02/22-rdf-syntax-ns#"	
+	prefix "rdf" "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 
 	properties
 		^type
@@ -17,7 +17,8 @@ vocabulary ex {
 	prefix "ex" "https://schema.example.org/"
 
 	classes
-	Person
+		Company
+		Person
 
 	properties
 		address
@@ -25,6 +26,5 @@ vocabulary ex {
 		postalCode
 		ssn
 		worksFor
-		
 }
 
