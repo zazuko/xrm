@@ -1,0 +1,30 @@
+vocabulary rdf {
+	prefix "rdf" "http://www.w3.org/1999/02/22-rdf-syntax-ns#"	
+
+	properties
+		^type
+}
+
+vocabulary xsd {
+	prefix "xsd" "http://www.w3.org/2001/XMLSchema#"
+
+	datatypes
+		int
+		string
+}
+
+vocabulary ex {
+	prefix "ex" "https://schema.example.org/"
+
+	classes
+	Person
+
+	properties
+		address
+		city
+		postalCode
+		ssn
+		worksFor
+		
+}
+
