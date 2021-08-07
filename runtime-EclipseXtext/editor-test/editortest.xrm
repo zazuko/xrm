@@ -61,7 +61,7 @@ logical-source EMPLOYEE {
 	// TODO uncomment next line --> error because of sourceType==xml
 	// null "nullX"
 	// TODO uncomment next line --> error because of sourceType==xml
-	// dialect MyDialect
+	// dialect SomeDialect
 	iterator "/Employees/Employee"
 
 	referenceables
@@ -76,7 +76,7 @@ vocabulary employee {
 
 	classes
 		Employee {
-			"foobar" : "some additional description",
+			"foobar": "some additional description",
 			"label": "Worker",
 			"comment": "a person employed for wages or salary, especially at non-executive level",
 			"similar": "labourer"
@@ -87,12 +87,10 @@ vocabulary employee {
 		yes {
 			"comment": "an English progressive rock band formed in London in 1968 by singer Jon Anderson"
 			// TODO add a ',' then do code completion - get proposal "label" (among others, but not "comment", since this is already in place)
-
-			// TODO uncomment next line --> error on duplicated comment
+		// TODO uncomment next line --> error on duplicated comment
 //			, "comment" : "duplicated comment"
-
-			// TODO uncomment next line --> error on key with whitespaces & quickfix to trim
-			//, " whitspaced" : "whitespaces are bad"
+		// TODO uncomment next line --> error on key with whitespaces & quickfix to trim
+		// , " whitespaced" : "whitespaces are bad"
 		}
 
 	datatypes
