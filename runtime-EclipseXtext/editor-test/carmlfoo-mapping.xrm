@@ -18,6 +18,7 @@ logical-source KEYWORDSOURCE {
 	type xml
 	source "KWS"
 	// TODO code completion sourceType==xml: yield 'xml-namespace-extension', but not 'dialect'
+	
 	xml-namespace-extension SomeXmlNsExtension
 
 	referenceables
