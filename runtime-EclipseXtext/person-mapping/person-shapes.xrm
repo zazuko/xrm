@@ -1,4 +1,4 @@
-// TODO base "https://schema.example.org/"
+base "https://schema.example.org/"
 
 // this sample is inspired by https://w3c.github.io/shacl/shacl-compact-syntax/#example
 

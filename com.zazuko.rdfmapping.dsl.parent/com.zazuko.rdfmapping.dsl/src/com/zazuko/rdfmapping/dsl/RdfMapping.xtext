@@ -3,6 +3,7 @@ grammar com.zazuko.rdfmapping.dsl.RdfMapping with org.eclipse.xtext.common.Termi
 generate rdfMapping "http://www.zazuko.com/rdfmapping/dsl/RdfMapping"
 
 Domainmodel:
+	('base' base=STRING)?
 	('output' outputType=OutputTypeRef)?
     (elements+=Element)*;
   
