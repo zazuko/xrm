@@ -14,25 +14,22 @@ node-shape PersonNodeShape {
 		rdf.^type
 	
 	properties
-		ex.ssn node-kind Literal {
-//		ex.ssn node-kind Literal [0..1] {
+		ex.ssn node-kind Literal [0..1] {
 			datatype xsd.string
 			pattern "^\\d{3}-\\d{2}-\\d{4}$"
 		}
 		// sh:NodeKind: sh:BlankNode, sh:IRI, sh:Literal sh:BlankNodeOrIRI, sh:BlankNodeOrLiteral and sh:IRIOrLiteral. A shape has at most one value for sh:nodeKind.
 		
-		ex.worksFor node-kind IRI {
-//		ex.worksFor node-kind IRI [0..*] {
+		ex.worksFor node-kind IRI [0..*] {
 			classes ex.Company
 			pattern "^https://data.example.org/"
 		}
 	
-		ex.address node-kind BlankNode {
-//		ex.address node-kind BlankNode [0..1] {
+		ex.address node-kind BlankNode [0..1] {
 			node-shapes AddressNodeShape
 		}
 	
-		ex.hasAnything node-kind Any {
+		ex.hasAnything node-kind Any [0..*] {
 			classes ex.Company
 			datatype xsd.string
 			node-shapes EmptyNodeShape
@@ -45,13 +42,11 @@ node-shape PersonNodeShape {
 
 node-shape AddressNodeShape {
 	properties
-		ex.city node-kind Literal {
-//		ex.city node-kind Literal [1..1] {
+		ex.city node-kind Literal [1..1] {
 			datatype xsd.string
 		}
 
-		ex.postalCode node-kind Literal {
-//		ex.postalCode node-kind Literal [1..1] {
+		ex.postalCode node-kind Literal [1..1] {
 			datatype xsd.string
 		}
 }

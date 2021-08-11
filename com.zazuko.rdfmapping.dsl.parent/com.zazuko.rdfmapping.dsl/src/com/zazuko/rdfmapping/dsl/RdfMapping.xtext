@@ -258,7 +258,7 @@ EmbeddedPropertyShape:
 	
 // sh:IRI
 EmbeddedPropertyShapeIRI:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'IRI'
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'IRI' cardinality=Cardinality
 	(LINE_END |
 	(BLOCK_BEGIN
 		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
@@ -269,7 +269,7 @@ EmbeddedPropertyShapeIRI:
 	
 // sh:BlankNode
 EmbeddedPropertyShapeBlankNode:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNode'
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNode' cardinality=Cardinality
 	(LINE_END |
 	(BLOCK_BEGIN
 		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
@@ -279,7 +279,7 @@ EmbeddedPropertyShapeBlankNode:
 	
 // sh:BlankNodeOrIRI
 EmbeddedPropertyShapeBlankNodeOrIRI:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNodeOrIRI'
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNodeOrIRI' cardinality=Cardinality
 	(LINE_END |
 	(BLOCK_BEGIN
 		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
@@ -289,7 +289,7 @@ EmbeddedPropertyShapeBlankNodeOrIRI:
 
 // sh:Literal	
 EmbeddedPropertyShapeLiteral:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'Literal'
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'Literal' cardinality=Cardinality
 	(LINE_END |
 	(BLOCK_BEGIN
 		('datatype' datatype=[Datatype|RdfPrefixedName])?
@@ -299,7 +299,7 @@ EmbeddedPropertyShapeLiteral:
 	
 // sh:IRIOrLiteral	
 EmbeddedPropertyShapeIRIOrLiteral:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'IRIOrLiteral'
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'IRIOrLiteral' cardinality=Cardinality
 	(LINE_END |
 	(BLOCK_BEGIN
 		('pattern' pattern=STRING)?
@@ -308,12 +308,12 @@ EmbeddedPropertyShapeIRIOrLiteral:
 
 // sh:BlankNodeOrLiteral
 EmbeddedPropertyShapeBlankNodeOrLiteral:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNodeOrLiteral'
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNodeOrLiteral' cardinality=Cardinality
 	LINE_END;
 	
 // "Any" means there is no constraint on sh:nodeKind	
 EmbeddedPropertyShapeAny:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'Any'
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'Any' cardinality=Cardinality
 	(LINE_END |
 	(BLOCK_BEGIN
 		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
@@ -322,6 +322,10 @@ EmbeddedPropertyShapeAny:
 		('pattern' pattern=STRING)?
 	BLOCK_END)
 	);
+
+Cardinality:
+	'[' min=INT '..' max=INT ']' |
+	'[' min=INT '..' '*' ']';
 
 PropertyShape:
 	'property-shape' name=ID BLOCK_BEGIN
