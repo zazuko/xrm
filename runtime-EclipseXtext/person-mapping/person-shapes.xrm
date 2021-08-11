@@ -54,8 +54,7 @@ node-shape AddressNodeShape {
 node-shape EmptyNodeShape {
 }
 
-property-shape AddressPropertyShape {
-//property-shape AddressPropertyShape node-kind BlankNode [0..1] {
+property-shape AddressPropertyShape node-kind BlankNode [0..1] {
 	deactivated
 
 	path ex.address

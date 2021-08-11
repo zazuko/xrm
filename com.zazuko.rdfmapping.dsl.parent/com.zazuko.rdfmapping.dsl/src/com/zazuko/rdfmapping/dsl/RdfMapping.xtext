@@ -298,7 +298,7 @@ EmbeddedPropertyShapeLiteral:
 	BLOCK_END)
 	);
 	
-// sh:IRIOrLiteral	
+// sh:IRIOrLiteral
 EmbeddedPropertyShapeIRIOrLiteral:
 	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'IRIOrLiteral' cardinality=Cardinality
 	(LINE_END |
@@ -328,9 +328,75 @@ Cardinality:
 	'[' min=INT '..' max=INT ']' |
 	'[' min=INT '..' '*' ']';
 
-PropertyShape:
-	'property-shape' name=ID BLOCK_BEGIN
+PropertyShape:	
+	PropertyShapeIRI
+	| PropertyShapeBlankNode
+	| PropertyShapeBlankNodeOrIRI
+	| PropertyShapeLiteral
+	| PropertyShapeIRIOrLiteral
+	| PropertyShapeBlankNodeOrLiteral
+	| PropertyShapeAny
+	;
+
+// sh:IRI
+PropertyShapeIRI:
+	'property-shape' name=ID 'node-kind' 'IRI' cardinality=Cardinality BLOCK_BEGIN
     	(deactivated ?= 'deactivated')?
     	('path' property=[RdfProperty|RdfPrefixedName])?
-    	('node-shapes' (nodeShapes+=[NodeShape])+)?
+    	('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
+		('node-shapes' (nodeShapes+=[NodeShape])+)?
+		('pattern' pattern=STRING)?
+    BLOCK_END;
+
+// sh:BlankNode
+PropertyShapeBlankNode:
+	'property-shape' name=ID 'node-kind' 'BlankNode' cardinality=Cardinality BLOCK_BEGIN
+    	(deactivated ?= 'deactivated')?
+    	('path' property=[RdfProperty|RdfPrefixedName])?
+    	('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
+		('node-shapes' (nodeShapes+=[NodeShape])+)?
+    BLOCK_END;
+
+// sh:BlankNodeOrIRI
+PropertyShapeBlankNodeOrIRI:
+	'property-shape' name=ID 'node-kind' 'BlankNodeOrIRI' cardinality=Cardinality BLOCK_BEGIN
+    	(deactivated ?= 'deactivated')?
+    	('path' property=[RdfProperty|RdfPrefixedName])?
+    	('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
+		('node-shapes' (nodeShapes+=[NodeShape])+)?
+    BLOCK_END;
+
+// sh:Literal
+PropertyShapeLiteral:
+	'property-shape' name=ID 'node-kind' 'Literal' cardinality=Cardinality BLOCK_BEGIN
+    	(deactivated ?= 'deactivated')?
+    	('path' property=[RdfProperty|RdfPrefixedName])?
+		('datatype' datatype=[Datatype|RdfPrefixedName])?
+		('pattern' pattern=STRING)?
+    BLOCK_END;
+
+// sh:IRIOrLiteral
+PropertyShapeIRIOrLiteral:
+	'property-shape' name=ID 'node-kind' 'IRIOrLiteral' cardinality=Cardinality BLOCK_BEGIN
+    	(deactivated ?= 'deactivated')?
+    	('path' property=[RdfProperty|RdfPrefixedName])?
+		('pattern' pattern=STRING)?
+    BLOCK_END;
+
+// sh:BlankNodeOrLiteral
+PropertyShapeBlankNodeOrLiteral:
+	'property-shape' name=ID 'node-kind' 'BlankNodeOrLiteral' cardinality=Cardinality BLOCK_BEGIN
+    	(deactivated ?= 'deactivated')?
+    	('path' property=[RdfProperty|RdfPrefixedName])?
+    BLOCK_END;
+
+// "Any" means there is no constraint on sh:nodeKind
+PropertyShapeAny:
+	'property-shape' name=ID 'node-kind' 'Any' cardinality=Cardinality BLOCK_BEGIN
+    	(deactivated ?= 'deactivated')?
+    	('path' property=[RdfProperty|RdfPrefixedName])?
+    	('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
+		('datatype' datatype=[Datatype|RdfPrefixedName])?
+		('node-shapes' (nodeShapes+=[NodeShape])+)?
+		('pattern' pattern=STRING)?
     BLOCK_END;
