@@ -24,11 +24,19 @@ node-shape PersonNodeShape {
 		ex.worksFor node-kind IRI {
 //		ex.worksFor node-kind IRI [0..*] {
 			classes ex.Company
+			pattern "^https://data.example.org/"
 		}
 	
 		ex.address node-kind BlankNode {
 //		ex.address node-kind BlankNode [0..1] {
 			node-shapes AddressNodeShape
+		}
+	
+		ex.hasAnything node-kind Any {
+			classes ex.Company
+			datatype xsd.string
+			node-shapes EmptyNodeShape
+			pattern "^https://data.example.org/"
 		}
 		
 		// alternatively to embedded property shapes, also support using externalized property shapes
@@ -46,6 +54,9 @@ node-shape AddressNodeShape {
 //		ex.postalCode node-kind Literal [1..1] {
 			datatype xsd.string
 		}
+}
+
+node-shape EmptyNodeShape {
 }
 
 property-shape AddressPropertyShape {

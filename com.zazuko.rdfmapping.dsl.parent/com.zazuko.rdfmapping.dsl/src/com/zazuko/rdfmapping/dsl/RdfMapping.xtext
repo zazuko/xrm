@@ -247,14 +247,39 @@ NodeShape:
     BLOCK_END;
 
 EmbeddedPropertyShape:
-	EmbeddedPropertyShapeNode
+	EmbeddedPropertyShapeIRI
+	| EmbeddedPropertyShapeBlankNode
+	| EmbeddedPropertyShapeBlankNodeOrIRI
 	| EmbeddedPropertyShapeLiteral
-	| EmbeddedPropertyShapeNodeOrLiteral
+	| EmbeddedPropertyShapeIRIOrLiteral
+	| EmbeddedPropertyShapeBlankNodeOrLiteral
+	| EmbeddedPropertyShapeAny
 	;
 	
-// sh:BlankNode, sh:IRI, sh:BlankNodeOrIRI
-EmbeddedPropertyShapeNode:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' nodeKind=NodeKindNodeRef
+// sh:IRI
+EmbeddedPropertyShapeIRI:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'IRI'
+	(LINE_END |
+	(BLOCK_BEGIN
+		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
+		('node-shapes' (nodeShapes+=[NodeShape])+)?
+		('pattern' pattern=STRING)?
+	BLOCK_END)
+	);
+	
+// sh:BlankNode
+EmbeddedPropertyShapeBlankNode:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNode'
+	(LINE_END |
+	(BLOCK_BEGIN
+		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
+		('node-shapes' (nodeShapes+=[NodeShape])+)?
+	BLOCK_END)
+	);
+	
+// sh:BlankNodeOrIRI
+EmbeddedPropertyShapeBlankNodeOrIRI:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNodeOrIRI'
 	(LINE_END |
 	(BLOCK_BEGIN
 		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
@@ -266,33 +291,37 @@ EmbeddedPropertyShapeNode:
 EmbeddedPropertyShapeLiteral:
 	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'Literal'
 	(LINE_END |
-	(BLOCK_BEGIN		
+	(BLOCK_BEGIN
 		('datatype' datatype=[Datatype|RdfPrefixedName])?
-		('pattern' pattern=STRING)?		
+		('pattern' pattern=STRING)?
+	BLOCK_END)
+	);
+	
+// sh:IRIOrLiteral	
+EmbeddedPropertyShapeIRIOrLiteral:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'IRIOrLiteral'
+	(LINE_END |
+	(BLOCK_BEGIN
+		('pattern' pattern=STRING)?
 	BLOCK_END)
 	);
 
-// sh:BlankNodeOrLiteral and sh:IRIOrLiteral
-EmbeddedPropertyShapeNodeOrLiteral:
-	property=[RdfProperty|RdfPrefixedName] 'node-kind' nodeKind=NodeKindNodeOrLiteralRef
+// sh:BlankNodeOrLiteral
+EmbeddedPropertyShapeBlankNodeOrLiteral:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'BlankNodeOrLiteral'
 	LINE_END;
 	
-enum NodeKindNode:
-	BlankNode = 'BlankNode'
-	| IRI = 'IRI'
-	| BlankNodeOrIRI = 'BlankNodeOrIRI'
-	;
-	
-NodeKindNodeRef:
-	type=NodeKindNode;
-	
-enum NodeKindNodeOrLiteral:
-	BlankNodeOrLiteral = 'BlankNodeOrLiteral'
-	| IRIOrLiteral = 'IRIOrLiteral'
-	;	
-
-NodeKindNodeOrLiteralRef:
-	type=NodeKindNodeOrLiteral;
+// "Any" means there is no constraint on sh:nodeKind	
+EmbeddedPropertyShapeAny:
+	property=[RdfProperty|RdfPrefixedName] 'node-kind' 'Any'
+	(LINE_END |
+	(BLOCK_BEGIN
+		('classes' (classes+=[RdfClass|RdfPrefixedName])+)?
+		('datatype' datatype=[Datatype|RdfPrefixedName])?
+		('node-shapes' (nodeShapes+=[NodeShape])+)?
+		('pattern' pattern=STRING)?
+	BLOCK_END)
+	);
 
 PropertyShape:
 	'property-shape' name=ID BLOCK_BEGIN

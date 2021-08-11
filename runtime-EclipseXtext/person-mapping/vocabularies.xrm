@@ -26,5 +26,6 @@ vocabulary ex {
 		postalCode
 		ssn
 		worksFor
+		hasAnything
 }
 
