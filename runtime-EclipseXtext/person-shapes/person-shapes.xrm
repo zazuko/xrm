@@ -3,7 +3,7 @@ base "https://schema.example.org/"
 // this sample is inspired by https://w3c.github.io/shacl/shacl-compact-syntax/#example
 
 node-shape PersonNodeShape {
-	deactivated
+//	deactivated
  
 	target-classes
 		ex.Person
@@ -16,9 +16,8 @@ node-shape PersonNodeShape {
 	properties
 		ex.ssn node-kind Literal [0..1] {
 			datatype xsd.string
-			pattern "^\\d{3}-\\d{2}-\\d{4}$"
+			pattern "^\\\\d{3}-\\\\d{2}-\\\\d{4}$"
 		}
-		// sh:NodeKind: sh:BlankNode, sh:IRI, sh:Literal sh:BlankNodeOrIRI, sh:BlankNodeOrLiteral and sh:IRIOrLiteral. A shape has at most one value for sh:nodeKind.
 		
 		ex.worksFor node-kind IRI [0..*] {
 			classes ex.Company
@@ -36,7 +35,7 @@ node-shape PersonNodeShape {
 			pattern "^https://data.example.org/"
 		}
 		
-		// alternatively to embedded property shapes, also support using externalized property shapes
+		// alternatively to embedded property shapes, also support the use of externalized property shapes
 		AddressPropertyShape
 }
 

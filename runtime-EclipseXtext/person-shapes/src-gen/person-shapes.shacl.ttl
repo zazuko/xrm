@@ -5,7 +5,6 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 <PersonNodeShape> a sh:NodeShape .
-<PersonNodeShape> sh:deactivated true .
 <PersonNodeShape> sh:targetClass ex:Person .
 <PersonNodeShape> sh:closed true .
 <PersonNodeShape> sh:ignoredProperties (rdf:type) .
@@ -14,7 +13,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	sh:nodeKind sh:Literal ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:string ;
-	sh:pattern "^\d{3}-\d{2}-\d{4}$" ;
+	sh:pattern "^\\d{3}-\\d{2}-\\d{4}$" ;
 ] .
 <PersonNodeShape> sh:property [
 	sh:path ex:worksFor ;
@@ -35,6 +34,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	sh:class ex:Company ;
 	sh:node <EmptyNodeShape> ;
 ] .
+<PersonNodeShape> sh:property <AddressPropertyShape> .
 
 <AddressNodeShape> a sh:NodeShape .
 <AddressNodeShape> sh:property [
@@ -56,3 +56,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 <AddressPropertyShape> a sh:PropertyShape .
 <AddressPropertyShape> sh:deactivated true .
+<AddressPropertyShape> sh:path ex:address .
+<AddressPropertyShape> sh:nodeKind sh:BlankNode .
+<AddressPropertyShape> sh:maxCount 1 .
+<AddressPropertyShape> sh:node <AddressNodeShape> .

@@ -38,8 +38,6 @@ class ShapeModelAccess {
 		result.addAll(targetClasses.map[cls|cls.vocabulary]);
 		result.addAll(ignoredProperties.map[p|p.vocabulary]);
 
-		// TODO: descend into 'propertyShapes". detect cyclic references betweend NodeShapes and PropertyShapes
-		// TODO: descend into 'embeddedPropertyShapes". detect cyclic references betweend NodeShapes and PropertyShapes		
 		for (EmbeddedPropertyShape eps : embeddedPropertyShapes) {
 			result.add(eps.property.vocabulary);
 
@@ -48,11 +46,26 @@ class ShapeModelAccess {
 			}
 
 			result.addAll(eps.classes.map[cls|cls.vocabulary]);
-
-		// TODO: handle 'eps.nodeShapes'
 		}
 
 		return result
+	}
+
+	def dispatch Set<Vocabulary> prefixesUsedInShape(PropertyShape it) {
+		val Set<Vocabulary> result = new LinkedHashSet();
+		result.add(property.vocabulary);
+
+		if (datatype !== null) {
+			result.add(datatype.vocabulary);
+		}
+
+		result.addAll(classes.map[cls|cls.vocabulary]);
+
+		return result
+	}
+
+	def Set<Vocabulary> prefixesUsed(Iterable<Shape> shapes) {
+		return shapes.map[m|m.prefixesUsedInShape].flatten.toSet;
 	}
 
 	def EList<RdfClass> classes(EmbeddedPropertyShape it) {
@@ -132,7 +145,7 @@ class ShapeModelAccess {
 			default: throw new RuntimeException("unexpected type " + class)
 		}
 	}
-	
+
 	def String pattern(EmbeddedPropertyShape it) {
 		switch it {
 			EmbeddedPropertyShapeIRI: pattern
@@ -145,7 +158,7 @@ class ShapeModelAccess {
 			default: throw new RuntimeException("unexpected type " + class)
 		}
 	}
-	
+
 	def String pattern(PropertyShape it) {
 		switch it {
 			PropertyShapeIRI: pattern
@@ -158,7 +171,7 @@ class ShapeModelAccess {
 			default: throw new RuntimeException("unexpected type " + class)
 		}
 	}
-	
+
 	def nodeKind(EmbeddedPropertyShape it) {
 		switch it {
 			EmbeddedPropertyShapeIRI: "sh:IRI"
@@ -172,22 +185,17 @@ class ShapeModelAccess {
 		}
 	}
 
-	def dispatch Set<Vocabulary> prefixesUsedInShape(PropertyShape it) {
-		val Set<Vocabulary> result = new LinkedHashSet();
-		result.add(property.vocabulary);
-
-		if (datatype !== null) {
-			result.add(datatype.vocabulary);
+	def nodeKind(PropertyShape it) {
+		switch it {
+			PropertyShapeIRI: "sh:IRI"
+			PropertyShapeBlankNode: "sh:BlankNode"
+			PropertyShapeBlankNodeOrIRI: "sh:BlankNodeOrIRI"
+			PropertyShapeLiteral: "sh:Literal"
+			PropertyShapeIRIOrLiteral: "sh:IRIOrLiteral"
+			PropertyShapeBlankNodeOrLiteral: "sh:BlankNodeOrLiteral"
+//intentionally unexpected:	PropertyShapeAny: null
+			default: throw new RuntimeException("unexpected type " + class)
 		}
-
-		result.addAll(classes.map[cls|cls.vocabulary]);
-
-		// TODO: descend into 'nodeShapes". detect cyclic references betweend NodeShapes and PropertyShapes		
-		return result
-	}
-
-	def Set<Vocabulary> prefixesUsed(Iterable<Shape> shapes) {
-		return shapes.map[m|m.prefixesUsedInShape].flatten.toSet;
 	}
 
 }

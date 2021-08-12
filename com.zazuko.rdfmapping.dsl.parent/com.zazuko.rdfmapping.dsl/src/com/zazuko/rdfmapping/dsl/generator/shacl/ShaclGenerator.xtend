@@ -7,6 +7,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Shape
 import javax.inject.Inject
 import com.zazuko.rdfmapping.dsl.rdfMapping.EmbeddedPropertyShape
 import com.zazuko.rdfmapping.dsl.rdfMapping.EmbeddedPropertyShapeAny
+import com.zazuko.rdfmapping.dsl.rdfMapping.PropertyShapeAny
 
 class ShaclGenerator {
 
@@ -30,7 +31,6 @@ class ShaclGenerator {
 		
 	'''
 
-// TODO: also include externalized propertyshapes
 	def dispatch shape(NodeShape it) '''
 		<«name»> a sh:NodeShape .
 		«IF deactivated»<«name»> sh:deactivated true .«ENDIF»
@@ -43,6 +43,9 @@ class ShaclGenerator {
 		«ENDIF»
 		«FOR p : embeddedPropertyShapes»
 			«p.propertyConstraint(it)»
+		«ENDFOR»
+		«FOR p : propertyShapes»
+			<«name»> sh:property <«p.name»> .
 		«ENDFOR»
 	'''
 	
@@ -61,11 +64,23 @@ class ShaclGenerator {
 				sh:node <«nodeShape.name»> ;
 			«ENDFOR»
 		] .
-	'''
+	'''	
 
 	def dispatch shape(PropertyShape it) '''
 		 <«name»> a sh:PropertyShape .
 		 «IF deactivated»<«name»> sh:deactivated true .«ENDIF»
+		 <«name»> sh:path «property.vocabulary.prefix.label»:«property.valueResolved» .
+		 «IF ! (it instanceof PropertyShapeAny)»<«name»> sh:nodeKind «nodeKind» .«ENDIF»
+		 «IF cardinality.min > 0»<«name»> sh:minCount «cardinality.min» .«ENDIF»
+		 «IF cardinality.max != 0»<«name»> sh:maxCount «cardinality.max» .«ENDIF»
+		 «IF datatype !== null»<«name»> sh:datatype «datatype.vocabulary.prefix.label»:«datatype.valueResolved» .«ENDIF»
+		 «IF pattern !== null»<«name»> sh:pattern "«pattern»" .«ENDIF»
+		 «FOR cls : classes»
+		 	<«name»> sh:class «cls.vocabulary.prefix.label»:«cls.valueResolved» .
+		 «ENDFOR»
+		 «FOR nodeShape : nodeShapes»
+		 	<«name»> sh:node <«nodeShape.name»> .
+		 «ENDFOR»
 	'''
 
 	def staticPrefixes() '''
