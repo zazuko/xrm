@@ -132,6 +132,45 @@ class ShapeModelAccess {
 			default: throw new RuntimeException("unexpected type " + class)
 		}
 	}
+	
+	def String pattern(EmbeddedPropertyShape it) {
+		switch it {
+			EmbeddedPropertyShapeIRI: pattern
+			EmbeddedPropertyShapeBlankNode: null
+			EmbeddedPropertyShapeBlankNodeOrIRI: null
+			EmbeddedPropertyShapeLiteral: pattern
+			EmbeddedPropertyShapeIRIOrLiteral: pattern
+			EmbeddedPropertyShapeBlankNodeOrLiteral: null
+			EmbeddedPropertyShapeAny: pattern
+			default: throw new RuntimeException("unexpected type " + class)
+		}
+	}
+	
+	def String pattern(PropertyShape it) {
+		switch it {
+			PropertyShapeIRI: pattern
+			PropertyShapeBlankNode: null
+			PropertyShapeBlankNodeOrIRI: null
+			PropertyShapeLiteral: pattern
+			PropertyShapeIRIOrLiteral: pattern
+			PropertyShapeBlankNodeOrLiteral: null
+			PropertyShapeAny: pattern
+			default: throw new RuntimeException("unexpected type " + class)
+		}
+	}
+	
+	def nodeKind(EmbeddedPropertyShape it) {
+		switch it {
+			EmbeddedPropertyShapeIRI: "sh:IRI"
+			EmbeddedPropertyShapeBlankNode: "sh:BlankNode"
+			EmbeddedPropertyShapeBlankNodeOrIRI: "sh:BlankNodeOrIRI"
+			EmbeddedPropertyShapeLiteral: "sh:Literal"
+			EmbeddedPropertyShapeIRIOrLiteral: "sh:IRIOrLiteral"
+			EmbeddedPropertyShapeBlankNodeOrLiteral: "sh:BlankNodeOrLiteral"
+//intentionally unexpected:	EmbeddedPropertyShapeAny: null
+			default: throw new RuntimeException("unexpected type " + class)
+		}
+	}
 
 	def dispatch Set<Vocabulary> prefixesUsedInShape(PropertyShape it) {
 		val Set<Vocabulary> result = new LinkedHashSet();

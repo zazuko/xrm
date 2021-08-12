@@ -5,10 +5,54 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 <PersonNodeShape> a sh:NodeShape .
+<PersonNodeShape> sh:deactivated true .
 <PersonNodeShape> sh:targetClass ex:Person .
+<PersonNodeShape> sh:closed true .
+<PersonNodeShape> sh:ignoredProperties (rdf:type) .
+<PersonNodeShape> sh:property [
+	sh:path ex:ssn ;
+	sh:nodeKind sh:Literal ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:pattern "^\d{3}-\d{2}-\d{4}$" ;
+] .
+<PersonNodeShape> sh:property [
+	sh:path ex:worksFor ;
+	sh:nodeKind sh:IRI ;
+	sh:pattern "^https://data.example.org/" ;
+	sh:class ex:Company ;
+] .
+<PersonNodeShape> sh:property [
+	sh:path ex:address ;
+	sh:nodeKind sh:BlankNode ;
+	sh:maxCount 1 ;
+	sh:node <AddressNodeShape> ;
+] .
+<PersonNodeShape> sh:property [
+	sh:path ex:hasAnything ;
+	sh:datatype xsd:string ;
+	sh:pattern "^https://data.example.org/" ;
+	sh:class ex:Company ;
+	sh:node <EmptyNodeShape> ;
+] .
 
 <AddressNodeShape> a sh:NodeShape .
+<AddressNodeShape> sh:property [
+	sh:path ex:city ;
+	sh:nodeKind sh:Literal ;
+	sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+] .
+<AddressNodeShape> sh:property [
+	sh:path ex:postalCode ;
+	sh:nodeKind sh:Literal ;
+	sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+] .
 
 <EmptyNodeShape> a sh:NodeShape .
 
 <AddressPropertyShape> a sh:PropertyShape .
+<AddressPropertyShape> sh:deactivated true .
