@@ -43,7 +43,7 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 	RdfMappingPackage pkg = RdfMappingPackage.eINSTANCE;
 
 	def dispatch void format(Domainmodel it, extension IFormattableDocument document) {
-		regionFor.keyword(ga.domainmodelAccess.outputKeyword_0_0).append[oneSpace];
+		regionFor.keyword(ga.domainmodelAccess.outputKeyword_1_0).append[oneSpace];
 		outputType?.format;
 		elements.forEach[format];
 	}
