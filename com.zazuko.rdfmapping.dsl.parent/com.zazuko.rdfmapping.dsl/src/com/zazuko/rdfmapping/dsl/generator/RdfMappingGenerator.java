@@ -21,9 +21,11 @@ import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.generator.csvw.CsvwDialectContext;
 import com.zazuko.rdfmapping.dsl.generator.csvw.CsvwDialectGenerator;
 import com.zazuko.rdfmapping.dsl.generator.rml.RmlDialectGenerator;
+import com.zazuko.rdfmapping.dsl.generator.shacl.ShaclGenerator;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
+import com.zazuko.rdfmapping.dsl.rdfMapping.Shape;
 
 /**
  * Generates code from your model files on save.
@@ -51,6 +53,9 @@ public class RdfMappingGenerator extends AbstractGenerator {
 	@Inject
 	private CsvwDialectGenerator csvwGenerator;
 
+	@Inject
+	private ShaclGenerator shaclGenerator;
+
 	@Override
 	public void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		Domainmodel model = resource.getContents().stream().filter(current -> current instanceof Domainmodel)
@@ -59,6 +64,22 @@ public class RdfMappingGenerator extends AbstractGenerator {
 		if (model == null) {
 			return;
 		}
+
+		// TODO: this needs cleanup later on -- ATM if their is a 'base' declared, we
+		// only look for shapes, ignore mappings and generate SHACL
+		if (model.getBase() != null) {
+			String base = model.getBase();
+
+			List<Shape> shapes = all(resource, Shape.class);
+
+			String dslFileName = resource.getURI().lastSegment().toString();
+			String outFileBase = dslFileName.substring(0, dslFileName.lastIndexOf("."));
+
+			fsa.generateFile(outFileBase + ".shacl.ttl", shaclGenerator.generateTurtle(shapes, base));
+
+			return;
+		}
+
 		if (model.getOutputType() == null) {
 			return;
 		}

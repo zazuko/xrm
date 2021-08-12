@@ -1,0 +1,14 @@
+BASE <https://schema.example.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX ex: <https://schema.example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+<PersonNodeShape> a sh:NodeShape .
+<PersonNodeShape> sh:targetClass ex:Person .
+
+<AddressNodeShape> a sh:NodeShape .
+
+<EmptyNodeShape> a sh:NodeShape .
+
+<AddressPropertyShape> a sh:PropertyShape .
