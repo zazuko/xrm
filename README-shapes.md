@@ -1,5 +1,20 @@
 # Expressive RDF Mapper (XRM) - Shapes Prototype
 
+*Note:* Shapes are described in `.xrm` files, same as mappings. But shapes and mappings cannot be mixed within the same file ATM. To get shapes generated, the first line in the file must be a `base`, for example `base "https://schema.example.org/"`. 
+
+
+## Limitations
+
+Only a subset of what can be described with SHACL is supported. To jump the gap, empty shapes can be declared in XRM and triples for these empty shapes mixed in outside of XRM.
+
+Incomplete list of known limitations:
+
+* Target declaration only class-based (`sh:targetClass`)
+* No support for SHACL paths. Only for single property
+* No support for Logical Constraint Components (`sh:not`, `sh:or`, ...)
+* It's not possible to declare `sh:maxCount 0`
+* Attributes are expected in specific order. See the [person-shapes](runtime-EclipseXtext/person-shapes) example project for reference
+
 
 ## Installation instructions for the Shapes Prototype
 
@@ -20,9 +35,9 @@
 If you receive an error message about missing dependencies, then make sure that the option *"Contact all update sites during install to find required software"* is selected in the install dialog.
 
 
-## Shapes examples
+## Shapes example
 
-For examples, have a look at the [person-shapes](runtime-EclipseXtext/person-shapes) project folder.
+Have a look at the [person-shapes](runtime-EclipseXtext/person-shapes) example project folder.
 
 1. Clone this repository.
 2. In Eclipse, click _File > Import_.
