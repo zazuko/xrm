@@ -35,6 +35,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	sh:node <EmptyNodeShape> ;
 ] .
 <PersonNodeShape> sh:property <AddressPropertyShape> .
+<PersonNodeShape> sh:property <EmptyPropertyShape> .
 
 <AddressNodeShape> a sh:NodeShape .
 <AddressNodeShape> sh:property [
@@ -54,9 +55,19 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 <EmptyNodeShape> a sh:NodeShape .
 
+<EmptyPropertyShape> a sh:PropertyShape .
+
 <AddressPropertyShape> a sh:PropertyShape .
 <AddressPropertyShape> sh:deactivated true .
 <AddressPropertyShape> sh:path ex:address .
 <AddressPropertyShape> sh:nodeKind sh:BlankNode .
 <AddressPropertyShape> sh:maxCount 1 .
 <AddressPropertyShape> sh:node <AddressNodeShape> .
+
+<AnythingPropertyShape> a sh:PropertyShape .
+<AnythingPropertyShape> sh:deactivated true .
+<AnythingPropertyShape> sh:path ex:worksFor .
+<AnythingPropertyShape> sh:datatype xsd:string .
+<AnythingPropertyShape> sh:pattern "^https://data.example.org/" .
+<AnythingPropertyShape> sh:class ex:Company .
+<AnythingPropertyShape> sh:node <EmptyNodeShape> .

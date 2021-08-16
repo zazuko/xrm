@@ -53,7 +53,10 @@ class ShapeModelAccess {
 
 	def dispatch Set<Vocabulary> prefixesUsedInShape(PropertyShape it) {
 		val Set<Vocabulary> result = new LinkedHashSet();
-		result.add(property.vocabulary);
+		
+		if (property !== null) {
+			result.add(property.vocabulary);
+		}
 
 		if (datatype !== null) {
 			result.add(datatype.vocabulary);

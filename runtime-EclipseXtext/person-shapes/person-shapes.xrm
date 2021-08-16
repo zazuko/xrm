@@ -27,7 +27,8 @@ node-shape PersonNodeShape {
 		ex.address node-kind BlankNode [0..1] {
 			node-shapes AddressNodeShape
 		}
-	
+		
+		// this shows the union of all attributes in the expected order of appearance. note that combining all attributes like this doesn't make much sense.
 		ex.hasAnything node-kind Any [0..*] {
 			classes ex.Company
 			datatype xsd.string
@@ -36,7 +37,8 @@ node-shape PersonNodeShape {
 		}
 		
 		// alternatively to embedded property shapes, also support the use of externalized property shapes
-		AddressPropertyShape
+		AddressPropertyShape;
+		EmptyPropertyShape;
 }
 
 node-shape AddressNodeShape {
@@ -53,10 +55,25 @@ node-shape AddressNodeShape {
 node-shape EmptyNodeShape {
 }
 
+property-shape EmptyPropertyShape node-kind Any [0..*] {
+}
+
 property-shape AddressPropertyShape node-kind BlankNode [0..1] {
 	deactivated
 
 	path ex.address
 
 	node-shapes AddressNodeShape	
+}
+
+// this shows the union of all attributes in the expected order of appearance. note that combining all attributes like this doesn't make much sense.
+property-shape AnythingPropertyShape node-kind Any [0..*] {
+	deactivated
+
+	path ex.worksFor
+	
+	classes ex.Company
+	datatype xsd.string
+	node-shapes EmptyNodeShape
+	pattern "^https://data.example.org/"
 }

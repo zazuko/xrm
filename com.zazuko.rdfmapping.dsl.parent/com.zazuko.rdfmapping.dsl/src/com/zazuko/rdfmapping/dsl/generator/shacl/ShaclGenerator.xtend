@@ -69,7 +69,7 @@ class ShaclGenerator {
 	def dispatch shape(PropertyShape it) '''
 		 <«name»> a sh:PropertyShape .
 		 «IF deactivated»<«name»> sh:deactivated true .«ENDIF»
-		 <«name»> sh:path «property.vocabulary.prefix.label»:«property.valueResolved» .
+		 «IF property !== null»<«name»> sh:path «property.vocabulary.prefix.label»:«property.valueResolved» .«ENDIF»
 		 «IF ! (it instanceof PropertyShapeAny)»<«name»> sh:nodeKind «nodeKind» .«ENDIF»
 		 «IF cardinality.min > 0»<«name»> sh:minCount «cardinality.min» .«ENDIF»
 		 «IF cardinality.max != 0»<«name»> sh:maxCount «cardinality.max» .«ENDIF»

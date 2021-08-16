@@ -244,7 +244,7 @@ NodeShape:
     	('target-classes' (targetClasses+=[RdfClass|RdfPrefixedName])+)?
     	(closed ?= 'closed')?
     	('ignored-properties' (ignoredProperties+=[RdfProperty|RdfPrefixedName])+)?
-    	('properties' (propertyShapes+=[PropertyShape] | embeddedPropertyShapes+=EmbeddedPropertyShape)+)?
+    	('properties' ((propertyShapes+=[PropertyShape] LINE_END)| (embeddedPropertyShapes+=EmbeddedPropertyShape))+)?
     BLOCK_END;
 
 EmbeddedPropertyShape:
