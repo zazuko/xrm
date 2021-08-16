@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="com.zazuko.rdfmapping.dsl.feature"
-      label="Expressive RDF Mapper (XRM)"
-      version="1.0.0.qualifier"
+      label="Expressive RDF Mapper (XRM) - Shapes Prototype"
+      version="1.1.0.qualifier"
       provider-name="zazuko.com">
 
    <description url="https://github.com/zazuko/expressive-rdf-mapper">
