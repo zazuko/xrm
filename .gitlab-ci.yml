@@ -1,4 +1,4 @@
-image: maven:3-jdk-8
+image: maven:3-jdk-11
 
 before_script:
   - apt-get update -qq && apt-get install -y -qq python-pip && pip install -q s3cmd
