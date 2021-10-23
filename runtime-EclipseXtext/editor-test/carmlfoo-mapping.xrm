@@ -17,8 +17,7 @@ map CarmlFooMapping from KEYWORDSOURCE {
 logical-source KEYWORDSOURCE {
 	type xml
 	source "KWS"
-	// TODO code completion sourceType==xml: yield 'xml-namespace-extension', but not 'dialect'
-	
+	// AUTOTEST xmlNamespaceExtensionButNotDialect
 	xml-namespace-extension SomeXmlNsExtension
 
 	referenceables
