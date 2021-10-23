@@ -10,6 +10,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
+import javax.inject.Inject;
+
 import org.apache.log4j.Logger;
 import org.eclipse.lsp4j.jsonrpc.Launcher;
 import org.eclipse.lsp4j.jsonrpc.MessageConsumer;
@@ -25,8 +27,18 @@ public class RunPlainTcpServer {
 
 	private static final Logger logger = Logger.getLogger(RunPlainTcpServer.class);
 	
+	@Inject
+	private Injector injector;
+	
 	public static void main(String[] args) throws InterruptedException, IOException {
+		System.out.println("hi!");
 		Injector injector = Guice.createInjector(new ServerModule());
+		RunPlainTcpServer me = injector.getInstance(RunPlainTcpServer.class);
+		me.work();
+		System.out.println("bye!");
+	}
+	
+	private void work() throws InterruptedException, IOException {
 		ServerSocket serverSocket = new ServerSocket(4389);
 
 		logger.info("Language Server started.");
@@ -38,7 +50,7 @@ public class RunPlainTcpServer {
 				Socket socket = serverSocket.accept();
 				try {
 					logger.info("Connected.");
-					LanguageServerImpl languageServer = injector.getInstance(LanguageServerImpl.class);
+					LanguageServerImpl languageServer = this.injector.getInstance(LanguageServerImpl.class);
 					Function<MessageConsumer, MessageConsumer> wrapper = Functions.identity();
 
 					Launcher<LanguageClient> launcher = createSocketLauncher(languageServer, LanguageClient.class,
@@ -46,12 +58,27 @@ public class RunPlainTcpServer {
 							socket.getOutputStream());
 					languageServer.connect(launcher.getRemoteProxy());
 					Future<?> future = launcher.startListening();
-					while (!future.isDone()) {
-						if (future.isDone()) {
-							socket.close();
-							languageServer.shutdown();
+					
+					Thread housekeeper = new Thread(new Runnable() {
+						
+						@Override
+						public void run() {
+							try {
+								future.get();
+							} catch (Exception e) {
+								e.printStackTrace();
+							} finally {
+								try {
+									socket.close();
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+								languageServer.shutdown();
+							}
 						}
-					}
+					});
+					housekeeper.setDaemon(true);
+					housekeeper.start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,7 +89,7 @@ public class RunPlainTcpServer {
 		}
 	}
 
-	private static Launcher<LanguageClient> createSocketLauncher(//
+	private Launcher<LanguageClient> createSocketLauncher(//
 			Object localService, //
 			Class<LanguageClient> remoteInterface, //
 			ExecutorService executorService, //
