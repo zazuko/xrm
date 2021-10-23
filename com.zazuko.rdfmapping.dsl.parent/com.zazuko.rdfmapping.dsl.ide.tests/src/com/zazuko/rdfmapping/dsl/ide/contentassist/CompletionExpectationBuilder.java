@@ -3,7 +3,7 @@ package com.zazuko.rdfmapping.dsl.ide.contentassist;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.zazuko.rdfmapping.dsl.ide.contentassist.EditorTestProjectDrivenTest.MarkerContext.PositionContext;
+import com.zazuko.rdfmapping.dsl.ide.contentassist.util.PositionContext;
 
 public class CompletionExpectationBuilder {
 
