@@ -28,6 +28,7 @@ public class PositionContext {
 	}
 
 	public void configure(TestCompletionConfiguration it) {
+		it.setFilesInScope(this.fileContext.getOtherFilesInScope());
 		it.setModel(this.fileContext.getFileContent());
 		it.setLine(this.line);
 		it.setColumn(this.column);

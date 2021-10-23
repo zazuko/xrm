@@ -18,14 +18,26 @@ public class MarkerContext {
 		return new PositionContext(this.fileContext, this.lineNo, 0);
 	}
 
-	public PositionContext nextLineAfter(String fragment) {
+	public PositionContext nextLineWithTextAfter(String fragment) {
+		return this.nextLineWithText(fragment, index -> index + fragment.length() + 1);
+	}
+
+	public PositionContext nextLineWithTextAtStart(String fragment) {
+		return this.nextLineWithText(fragment, index -> index);
+	}
+
+	interface IndexCalculation {
+		int calculateIndex(int foundIndex);
+	}
+
+	private PositionContext nextLineWithText(String fragment, IndexCalculation indexBuilder) {
 		for (int a = this.lineNo + 1; a < this.fileContext.getAllLines().size(); a++) {
 			String candidate = this.fileContext.getAllLines().get(a);
 			int index = candidate.indexOf(fragment);
 			if (index >= 0) {
-				int endIndex = index + fragment.length() + 1;
-				FileContext.checkLength(candidate, endIndex);
-				return new PositionContext(this.fileContext, a, endIndex);
+				int finalIndex = indexBuilder.calculateIndex(index);
+				FileContext.checkLength(candidate, finalIndex);
+				return new PositionContext(this.fileContext, a, finalIndex);
 			}
 		}
 		throw new RuntimeException("fragment not found '" + fragment + "'");

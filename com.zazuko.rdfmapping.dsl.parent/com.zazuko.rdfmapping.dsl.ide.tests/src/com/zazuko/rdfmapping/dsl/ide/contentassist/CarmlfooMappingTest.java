@@ -14,7 +14,7 @@ public class CarmlfooMappingTest extends EditorTestProjectDrivenTest {
 
 	@Test
 	public void xmlNamespaceExtensionButNotDialectTest() {
-		MarkerContext ctx = this.getFileContext().getMarker("xmlNamespaceExtensionButNotDialect");
+		MarkerContext ctx = this.marker("xmlNamespaceExtensionButNotDialect");
 		PositionContext position = ctx.first();
 
 		CompletionExpectationBuilder b = new CompletionExpectationBuilder();
@@ -35,8 +35,8 @@ public class CarmlfooMappingTest extends EditorTestProjectDrivenTest {
 
 	@Test
 	public void multiRefDueAndParentMapToCarmlTest() {
-		MarkerContext ctx = this.getFileContext().getMarker("multiRefDueAndParentMapToCarml");
-		PositionContext position = ctx.nextLineAfter("thing.weight");
+		MarkerContext ctx = this.marker("multiRefDueAndParentMapToCarml");
+		PositionContext position = ctx.nextLineWithTextAfter("thing.weight");
 
 		CompletionExpectationBuilder b = new CompletionExpectationBuilder();
 

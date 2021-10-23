@@ -1,10 +1,7 @@
 package com.zazuko.rdfmapping.dsl.ide.contentassist;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.stream.Collectors;
-
 import com.zazuko.rdfmapping.dsl.ide.contentassist.util.FileContext;
+import com.zazuko.rdfmapping.dsl.ide.contentassist.util.MarkerContext;
 
 public abstract class EditorTestProjectDrivenTest extends AbstractServerTest {
 
@@ -13,12 +10,15 @@ public abstract class EditorTestProjectDrivenTest extends AbstractServerTest {
 	private final FileContext fileContext;
 
 	public EditorTestProjectDrivenTest(String fileName) {
-		Path xrmFile = Paths.get(PATH, fileName);
-		this.fileContext = new FileContext(xrmFile);
+		this.fileContext = new FileContext(PATH, fileName);
 	}
 
 	public FileContext getFileContext() {
 		return this.fileContext;
+	}
+
+	public MarkerContext marker(String marker) {
+		return this.fileContext.getMarker(marker);
 	}
 
 }
