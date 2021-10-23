@@ -18,10 +18,28 @@ public class MarkerContext {
 		return new PositionContext(this.fileContext, this.lineNo, 0);
 	}
 
+	/**
+	 * @param fragment
+	 * @return position after fragment + one character
+	 */
 	public PositionContext nextLineWithTextAfter(String fragment) {
 		return this.nextLineWithText(fragment, index -> index + fragment.length() + 1);
 	}
+	
+	/**
+	 * 
+	 * @param fragment
+	 * @return position after fragment
+	 */
+	public PositionContext nextLineWithTextAtEnd(String fragment) {
+		return this.nextLineWithText(fragment, index -> index + fragment.length());
+	}
 
+	/**
+	 * 
+	 * @param fragment
+	 * @return position at fragment
+	 */
 	public PositionContext nextLineWithTextAtStart(String fragment) {
 		return this.nextLineWithText(fragment, index -> index);
 	}

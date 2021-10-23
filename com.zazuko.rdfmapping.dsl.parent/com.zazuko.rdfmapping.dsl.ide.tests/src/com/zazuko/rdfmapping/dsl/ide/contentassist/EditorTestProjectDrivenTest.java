@@ -60,7 +60,9 @@ public abstract class EditorTestProjectDrivenTest extends AbstractServerTest {
 
 	static enum AssertEqualsMode {
 		IDENTITCAL, //
+		/** if you don't want to list everything (e.g. too many references) */
 		EXPECTED_FOUND_IN_ACTUAL, //
+		/** only use if needed*/
 		EXPECTED_ABSENT_IN_ACTUAL, //
 		;
 	}

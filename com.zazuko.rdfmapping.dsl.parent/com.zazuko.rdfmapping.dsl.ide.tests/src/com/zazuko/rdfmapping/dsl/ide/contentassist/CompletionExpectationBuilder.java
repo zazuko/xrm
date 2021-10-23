@@ -12,8 +12,8 @@ public class CompletionExpectationBuilder {
 	private final List<String> expectations = new LinkedList<>();
 
 	public void keyword(String keyword, PositionContext position) {
-		this.expectations
-				.add(String.format("%1$s -> %1$s [%2$s .. %2$s]", keyword, position.toExpectationDescription()));
+		this.expectations.add(String.format("%1$s -> %1$s [%2$s .. %3$s]", keyword,
+				position.toExpectationDescriptionLeft(), position.toExpectationDescriptionRight()));
 	}
 
 	public String toExpectedCompletionItems() {
@@ -27,13 +27,15 @@ public class CompletionExpectationBuilder {
 
 	public void ref(String name, Class<? extends EObject> clazz, PositionContext position) {
 		// airportIri (TemplateDeclaration) -> airportIri [[19, 18] .. [19, 18]]
-		this.expectations.add(String.format("%1$s (%2$s) -> %1$s [%3$s .. %3$s]", name, clazz.getSimpleName(), position.toExpectationDescription()));
-		
+		this.expectations.add(String.format("%1$s (%2$s) -> %1$s [%3$s .. %4$s]", name, clazz.getSimpleName(),
+				position.toExpectationDescriptionLeft(), position.toExpectationDescriptionRight()));
+
 	}
 
 	public void string(String string, PositionContext position) {
 		// "templateValue" (STRING) -> "templateValue" [[19, 18] .. [19, 18]]
-		this.expectations.add(String.format("\"%1$s\" (STRING) -> \"%1$s\" [%2$s .. %2$s]", string, position.toExpectationDescription()));
-		
+		this.expectations.add(String.format("\"%1$s\" (STRING) -> \"%1$s\" [%2$s .. %3$s]", string,
+				position.toExpectationDescriptionLeft(), position.toExpectationDescriptionRight()));
+
 	}
 }
