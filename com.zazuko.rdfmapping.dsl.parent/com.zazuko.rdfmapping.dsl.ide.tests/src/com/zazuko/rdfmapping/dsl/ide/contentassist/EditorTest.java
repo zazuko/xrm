@@ -24,7 +24,7 @@ public class EditorTest extends EditorTestProjectDrivenTest {
 		b.ref("airportIri", TemplateDeclaration.class, position);
 		b.ref("anyTemplate", TemplateDeclaration.class, position);
 		b.ref("exampleIri", TemplateDeclaration.class, position);
-		b.ref("UniqTemplate", TemplateDeclaration.class, position);
+		b.ref("UniqTemplate", TemplateDeclaration.class, position); // also from other file #88
 		b.string("templateValue", position);
 		
 		testCompletion((TestCompletionConfiguration it) -> {
