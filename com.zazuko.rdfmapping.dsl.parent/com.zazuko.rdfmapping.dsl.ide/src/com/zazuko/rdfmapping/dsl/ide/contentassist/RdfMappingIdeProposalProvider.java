@@ -17,6 +17,7 @@ import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalProvider;
 
 import com.zazuko.rdfmapping.dsl.ide.contentassist.keywordfilter.KeywordFilter;
 import com.zazuko.rdfmapping.dsl.ide.contentassist.omnimap.OmniMapKeyProposalGenerator;
+import com.zazuko.rdfmapping.dsl.ide.debug.Debugger;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
@@ -42,12 +43,12 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 	private OmniMapKeyProposalGenerator omniMapKeyProposalGenerator;
 
 	public RdfMappingIdeProposalProvider() {
-		debug("RdfMappingIdeProposalProvider init");
+		Debugger.debug("RdfMappingIdeProposalProvider init");
 	}
 
 	@Override
 	public void createProposals(Collection<ContentAssistContext> contexts, IIdeContentProposalAcceptor acceptor) {
-		debug("createProposals hook called");
+		Debugger.debug("createProposals hook called");
 		// set a breakpoint here in order see when this is invoked
 
 		IIdeContentProposalAcceptor delegate = new IIdeContentProposalAcceptor() {
@@ -65,13 +66,6 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 
 		};
 		super.createProposals(contexts, delegate);
-	}
-
-	// in VS-code, this is visible in the tab "OUTPUT" for Xtext Server
-	@Deprecated
-	// TODO remove this
-	public static void debug(String message) {
-		System.err.println("############### " + message);
 	}
 
 	@Override
