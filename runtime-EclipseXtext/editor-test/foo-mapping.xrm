@@ -1,6 +1,7 @@
 output rml
 
 map FooMapping from KEYWORDSOURCEfoo {
+	// TODO remove ';' on next line, do code completion, get ';' offered reason: _createProposals(RuleCall ruleCall, ContentAssistContext context, IIdeContentProposalAcceptor acceptor)
 	subject template UniqTemplate;
 
 	types
@@ -9,7 +10,7 @@ map FooMapping from KEYWORDSOURCEfoo {
 	properties
 		thing.color constant "blue";
 		keyword.no from ^map;
-		// TODO remove ';' on next line, do code completion, get ';' offered
+		// TODO remove ';' on next line, do code completion, get ';' offered reason: createProposals(Assignment assignment, ContentAssistContext context, IIdeContentProposalAcceptor acceptor)
 		keyword.^map from ^map;
 
 		// TODO uncomment. error --> quickfix 'Add' --> vocabulary 'keyword' gets modified --> error for missing Term

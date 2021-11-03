@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.ui.contentassist
+package com.zazuko.rdfmapping.dsl.ide.contentassist.omnimap
 
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype

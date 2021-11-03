@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.hover.html.DefaultHoverDocumentationProvider;
 
 import com.google.inject.Inject;
+import com.zazuko.rdfmapping.dsl.ide.contentassist.omnimap.OmniMapKeyDefinition;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMapEntry;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
-import com.zazuko.rdfmapping.dsl.ui.contentassist.OmniMapKeyDefinition;
 
 public class RdfHoverDocumentationProvider extends DefaultHoverDocumentationProvider {
 	

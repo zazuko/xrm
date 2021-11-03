@@ -23,11 +23,13 @@
 	<modules>
 		<module>com.zazuko.rdfmapping.dsl</module>
 		<module>com.zazuko.rdfmapping.dsl.ide</module>
+		<module>com.zazuko.rdfmapping.dsl.ide.tests</module>
 		<module>com.zazuko.rdfmapping.dsl.ui</module>
 		<module>com.zazuko.rdfmapping.dsl.target</module>
 		<module>com.zazuko.rdfmapping.dsl.feature</module>
 		<module>com.zazuko.rdfmapping.dsl.repository</module>
 		<module>com.zazuko.rdfmapping.dsl.tests</module>
+                <module>com.zazuko.rdfmapping.dsl.websockets</module>
 		<module>com.zazuko.rdfmapping.dsl.ui.tests</module>
 	</modules>
 	<dependencyManagement>

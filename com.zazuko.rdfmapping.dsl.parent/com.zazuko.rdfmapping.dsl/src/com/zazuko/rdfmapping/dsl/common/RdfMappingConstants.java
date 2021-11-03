@@ -9,10 +9,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 
 public interface RdfMappingConstants {
 	
-	public static final String TOKEN_BLOCK_BEGIN = "{";
-	public static final String TOKEN_BLOCK_END = "}";
-	public static final String TOKEN_LINE_END = ";";
-
 	public static final String TOKEN_QNAME_SEPARATOR_DEFAULT = ".";
 	public static final char TOKEN_QNAME_SEPARATOR_DEFAULT_CHAR = TOKEN_QNAME_SEPARATOR_DEFAULT.charAt(0);
 	

@@ -2,7 +2,7 @@ source-group SomeSourceGroup {
 	// TODO move line 'dialect' into logicalSource below 'source' --> expect no changes in generated files' (on a project.clean())
 	dialect SomeDialect
 	logical-source foo {
-		type xml
+		type csv
 		source "http://www.example.com/Foo.xml"
 
 		referenceables
