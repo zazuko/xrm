@@ -20,7 +20,7 @@ public class CompletionExpectationBuilder {
 		StringBuilder b = new StringBuilder();
 		for (String current : expectations) {
 			b.append(current);
-			b.append('\n');
+			b.append(System.lineSeparator());
 		}
 		return b.toString();
 	}
