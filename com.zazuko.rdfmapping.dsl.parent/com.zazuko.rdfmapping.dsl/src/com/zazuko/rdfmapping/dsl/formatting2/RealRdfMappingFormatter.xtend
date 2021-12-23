@@ -154,19 +154,19 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(RdfClass it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.feature(pkg.rdfClass_Value).prepend[oneSpace];
+		regionFor.feature(pkg.vocabularyElement_Value).prepend[oneSpace];
 		omniMap?.format;
 	}
 
 	def dispatch void format(RdfProperty it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.feature(pkg.rdfProperty_Value).prepend[oneSpace];
+		regionFor.feature(pkg.vocabularyElement_Value).prepend[oneSpace];
 		omniMap?.format;
 	}
 	
 	def dispatch void format(Datatype it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.feature(pkg.datatype_Value).prepend[oneSpace];
+		regionFor.feature(pkg.vocabularyElement_Value).prepend[oneSpace];
 		omniMap?.format;
 	}
 	

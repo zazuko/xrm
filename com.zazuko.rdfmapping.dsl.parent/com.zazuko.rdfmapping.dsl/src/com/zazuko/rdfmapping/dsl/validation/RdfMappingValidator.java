@@ -96,19 +96,19 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 	@Check(CheckType.NORMAL)
 	public void checkDuplicatedRdfClass(RdfClass it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.RDF_CLASS,
-				msg -> error(msg, RdfMappingPackage.Literals.RDF_CLASS__NAME));
+				msg -> error(msg, RdfMappingPackage.Literals.VOCABULARY_ELEMENT__NAME));
 	}
 
 	@Check(CheckType.NORMAL)
 	public void checkDuplicatedRdfProperty(RdfProperty it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.RDF_PROPERTY,
-				msg -> error(msg, RdfMappingPackage.Literals.RDF_PROPERTY__NAME));
+				msg -> error(msg, RdfMappingPackage.Literals.VOCABULARY_ELEMENT__NAME));
 	}
 
 	@Check(CheckType.NORMAL)
 	public void checkDuplicatedDatatype(Datatype it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.DATATYPE,
-				msg -> error(msg, RdfMappingPackage.Literals.DATATYPE__NAME));
+				msg -> error(msg, RdfMappingPackage.Literals.VOCABULARY_ELEMENT__NAME));
 	}
 
 	@Check(CheckType.NORMAL)
