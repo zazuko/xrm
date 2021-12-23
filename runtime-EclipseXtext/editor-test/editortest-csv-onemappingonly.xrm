@@ -4,17 +4,17 @@ output csvw
 //// editortest-csv-onemappingonly.csv.meta.json
 //// editortest-csv.csv.meta.json
 //// --> onemapping does not show field "tables"
-map EmployeeMapping from EMPLOYEE {
+map EmployeeMappingCsvOneMapping from EMPLOYEEcsvOneMapping {
 	subject template "http://airport.example.com/{0}" with id;
 
 	types
-		employee.Employee
+		employeeCsvOneMapping.Employee
 
 	properties
-		employee.no from EMPNO;
+		employeeCsvOneMapping.no from EMPNO;
 }
 
-logical-source EMPLOYEE {
+logical-source EMPLOYEEcsvOneMapping {
 	type csv
 	// TODO code completion sourceType==csv: yield 'dialect', but not 'xml-namespace-extension'
 	source "EMP"
@@ -25,7 +25,7 @@ logical-source EMPLOYEE {
 		EMPNO
 }
 
-vocabulary employee {
+vocabulary employeeCsvOneMapping {
 	prefix "employee" "http://example.com/employee"
 
 	classes

@@ -16,9 +16,6 @@ Element:
     | XmlNamespaceExtension
     | TemplateDeclaration
 ;
-
-Datatype:
-	name=ID (value=STRING)?;
 	
 LanguageTagDefinition: {LanguageTagDefinition}
 	'language-tags' BLOCK_BEGIN
@@ -121,10 +118,13 @@ Prefix:
 	'prefix' label=STRING iri=STRING;
     
 RdfProperty:
-	name=ID (value=STRING)?;
+	name=ID (value=STRING)? ( omniMap=OmniMap )?;
 
 RdfClass:
-	name=ID (value=STRING)?;
+	name=ID (value=STRING)? ( omniMap=OmniMap )?;
+
+Datatype:
+	name=ID (value=STRING)? ( omniMap=OmniMap )?;
 
 TemplateDeclaration:
 	'template' name=ID value=TemplateValueDeclaration
@@ -162,7 +162,7 @@ PredicateObjectMapping:
 	property=[RdfProperty|RdfPrefixedName] 
 	term=ValuedTerm? // must be optional in order to get the quickfix working (must be serializable on missing term) --> manual validation for term === null
 	// see: com.zazuko.rdfmapping.dsl.ui.quickfix.RealRdfMappingQuickfixProvider.missingRdfProperty(Issue, IssueResolutionAcceptor)
-	lineEnd?=LINE_END // hack in order to improve code completion - see com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.complete_LINE_END(EObject, RuleCall, ContentAssistContext, ICompletionProposalAcceptor) --> isLineEnd
+	lineEnd?=LINE_END // hack in order to improve code completion - see com.zazuko.rdfmapping.dsl.ide.contentassist.RdfMappingIdeProposalProvider._createProposals(Assignment, ContentAssistContext, IIdeContentProposalAcceptor) --> isLineEnd
 ;
 	
 ValuedTerm:
@@ -222,4 +222,16 @@ enum TermType:
 // reference with the first entry of the enum instead of null.
 TermTypeRef:
 	type=TermType
+;
+
+OmniMap:
+	BLOCK_BEGIN
+	  entries+=OmniMapEntry(','
+	  	entries+=OmniMapEntry
+	  )*
+	BLOCK_END
+;
+
+OmniMapEntry:
+	key=STRING':' value=STRING
 ;

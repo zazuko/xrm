@@ -35,6 +35,12 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			rr:template "{EMPNO}" ;
 			rr:termType rr:Literal ;
 		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate employee:yes ;
+		rr:objectMap [
+			rr:constant "constant-yes" ;
+		];
 	]
 .
 <#EmployeeMapping2>
@@ -65,6 +71,13 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:predicate thing:color ;
 		rr:objectMap [
 			rr:template "http://manualstuff.com/colors/{id}" ;
+		];
+	];
+	rr:predicateObjectMap [
+		rr:predicate thing:size ;
+		rr:objectMap [
+			rml:reference "EMPNO" ;
+			rr:datatype employee:myDatatype ;
 		];
 	]
 .

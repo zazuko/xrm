@@ -1,6 +1,6 @@
 output carml
 
-map FooMapping from KEYWORDSOURCE {
+map CarmlFooMapping from KEYWORDSOURCE {
 	subject template "http://foo.example.com/{0}" with id;
 
 	types
@@ -18,6 +18,7 @@ logical-source KEYWORDSOURCE {
 	type xml
 	source "KWS"
 	// TODO code completion sourceType==xml: yield 'xml-namespace-extension', but not 'dialect'
+	
 	xml-namespace-extension SomeXmlNsExtension
 
 	referenceables
@@ -30,9 +31,9 @@ xml-namespace-extension SomeXmlNsExtension {
 	prefix "employee" "http://www.example.com/audios/1.0/"
 	prefix "exb" "http://www.example.com/books/1.0/"
 
-	// TODO uncomment next line --> two errors for duplcated label on all prefixes with "exa"
+	// TODO uncomment next line --> two errors for duplicated label on all prefixes with "exa"
 // prefix "exa" "http://www.example.com/audios/1.0/"
 // TODO uncomment next line --> error because of ':' in label
-// prefix "exb" "http://www.example.com/books/1.0/"
+// prefix "exb:" "http://www.example.com/books/1.0/"
 }
 

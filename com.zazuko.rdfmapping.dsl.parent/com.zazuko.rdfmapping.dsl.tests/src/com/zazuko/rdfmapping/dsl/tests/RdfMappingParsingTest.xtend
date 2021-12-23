@@ -17,8 +17,6 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 
-import static org.junit.Assert.assertEquals
-
 @ExtendWith(InjectionExtension)
 @InjectWith(RdfMappingInjectorProvider)
 class RdfMappingParsingTest {
@@ -61,7 +59,7 @@ class RdfMappingParsingTest {
 		
 		val List<Issue> issues = resourceValidator.validate(result.eResource,
             CheckMode.ALL, CancelIndicator.NullImpl)
-        assertEquals(0, issues.size);
+        Assertions.assertEquals(0, issues.size);
         
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
@@ -82,8 +80,8 @@ class RdfMappingParsingTest {
 		
 		val List<Issue> issues = resourceValidator.validate(result.eResource,
             CheckMode.ALL, CancelIndicator.NullImpl)
-        assertEquals(1, issues.size);
-        assertEquals("Type 'csv' required for null value declaration, but was 'rdb'", issues.get(0).message);
+        Assertions.assertEquals(1, issues.size);
+       	Assertions.assertEquals("Type 'csv' required for null value declaration, but was 'rdb'", issues.get(0).message);
         
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')

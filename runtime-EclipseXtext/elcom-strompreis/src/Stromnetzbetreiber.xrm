@@ -1,7 +1,7 @@
 output csvw
 // http://rml.io/spec.html#example-CSV
 
-logical-source stromnetz {
+logical-source stromnetzA {
 	type csv
 	source "http://www.example.com/Schweizerische Gemeinden und zust�ndige Stromnetzbetreiber (Stand 07.09.2018).csv"
 
@@ -18,7 +18,7 @@ logical-source stromnetz {
 		kanton
 }
 
-map StromnetzMapping from stromnetz {
+map StromnetzMapping from stromnetzA {
 	subject template "http://elcom.zazuko.com/stormnetz/{0}" with NameUrl;
 
 	types

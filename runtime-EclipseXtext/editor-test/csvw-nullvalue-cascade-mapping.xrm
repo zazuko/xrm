@@ -1,7 +1,7 @@
 output csvw
 
 // TODO check null-value-statements in csvw-nullvalue-cascade-mapping.csv.meta.json
-map FooMapping from CsvSourceGroupWithNullValueCascade.fooSourceWithNullValue {
+map CsvwFooMapping from CsvSourceGroupWithNullValueCascade.fooSourceWithNullValue {
 	subject template "http://airport.example.com/{0}" with id;
 
 	properties

@@ -1,0 +1,71 @@
+output csvw
+
+// TODO copy this file, get a duplication error on every declaration (on this file, the errors come on a refresh) 
+template UniqTemplate "foo"
+
+logical-source UniqLogicalSource {
+	type csv
+	source "http://www.example.com/UniqLogicalSource.csv"
+
+	referenceables
+		uniqId
+}
+
+source-group UniqSourceGroup {
+	logical-source UniqGroupedLogicalSource {
+		type csv
+		source "http://www.example.com/UniqLogicalSource.csv"
+
+		referenceables
+			uniqId
+	}
+}
+
+vocabulary UniqVocabulary {
+	prefix "uniq" "http://foobar.com/uniq/"
+
+	classes
+		UniqClass
+
+	properties
+		uniqProperty
+
+	datatypes
+		uniqDatatype
+}
+
+map UniqMapping from SomeSourceGroup.fooCsv {
+	subject template "http://foo.example.com/{0}" with id;
+
+	types
+		employee.Employee
+
+	properties
+		thing.color constant "uniqColor";
+}
+
+language-tags {
+	EN
+	DE
+}
+
+dialect UniqDialect {
+	delimiter ","
+	commentPrefix "#"
+	doubleQuote true
+	encoding "utf-8"
+	header true
+	headerRowCount 1
+	lineTerminators "\\r\\n"
+	quoteChar '\\"'
+	skipBlankRows false
+	skipColumns 0
+	skipInitialSpace false
+	skipRows 0
+	trim false
+}
+
+xml-namespace-extension UniqXmlNsExtension {
+	prefix "foobar" "http://www.example.com/foo/1.0/"
+}
+
