@@ -71,7 +71,6 @@ class RmlDialectGenerator {
 			«IF subjectIriMapping.termTypeRef?.type !== null»
 				rr:termType rr:«subjectIriMapping.termTypeRef.type» ;
 			«ENDIF»
-			
 			«FOR graphMapping : graphMappings»
 				«graphMap(graphMapping)» ;
 			«ENDFOR»

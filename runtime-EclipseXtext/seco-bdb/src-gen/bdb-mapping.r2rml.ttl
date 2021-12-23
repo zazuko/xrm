@@ -4,7 +4,7 @@ PREFIX ex: <http://schema.example.org/>
 PREFIX schema: <https://schema.org/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-<#Amt>
+<#Amt> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "t_amt" ];
 	
 	rr:subjectMap [
@@ -69,7 +69,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Bewilligung>
+<#Bewilligung> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "t_bewilligung" ];
 	
 	rr:subjectMap [
@@ -226,7 +226,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#KontaktAusBewilligung>
+<#KontaktAusBewilligung> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "t_bewilligung" ];
 	
 	rr:subjectMap [
@@ -317,7 +317,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#KantonInfo>
+<#KantonInfo> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "t_kt_info" ];
 	
 	rr:subjectMap [
@@ -344,7 +344,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#KontaktAusKantonInfo>
+<#KontaktAusKantonInfo> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "t_kt_info" ];
 	
 	rr:subjectMap [
@@ -383,7 +383,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Gemeinde>
+<#Gemeinde> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "t_gemeinde" ];
 	
 	rr:subjectMap [

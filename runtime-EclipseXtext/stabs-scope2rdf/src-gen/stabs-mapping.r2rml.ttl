@@ -7,7 +7,7 @@ PREFIX schema: <http://schema.org/>
 PREFIX stabs: <http://data.staatsarchiv-bs.ch/vocab/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-<#RecordSet>
+<#RecordSet> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_VRZNG_ENHT_1" ];
 	
 	rr:subjectMap [
@@ -924,7 +924,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Deskriptor>
+<#Deskriptor> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_1" ];
 	
 	rr:subjectMap [
@@ -1006,7 +1006,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Ablieferung>
+<#Ablieferung> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_ABLFR_1" ];
 	
 	rr:subjectMap [
@@ -1075,7 +1075,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Partner>
+<#Partner> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_PRTNR_1" ];
 	
 	rr:subjectMap [
@@ -1144,7 +1144,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Verzeichnungseinheiten_Ablieferungen_Verknuepfungen>
+<#Verzeichnungseinheiten_Ablieferungen_Verknuepfungen> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_ABLFR_BZHNG_1" ];
 	
 	rr:subjectMap [
@@ -1158,7 +1158,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen>
+<#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
@@ -1172,7 +1172,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen_Annotation>
+<#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen_Annotation> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
@@ -1211,7 +1211,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Deskriptoren_Verweise>
+<#Deskriptoren_Verweise> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
@@ -1226,7 +1226,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Deskriptoren_Verweise_Annotation>
+<#Deskriptoren_Verweise_Annotation> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
@@ -1265,7 +1265,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Verzeichnungseinheiten_Verweise_Annotation>
+<#Verzeichnungseinheiten_Verweise_Annotation> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_VRZNG_ENHT_BZHNG_1" ];
 	
 	rr:subjectMap [
@@ -1304,7 +1304,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Verzeichnungeinheiten_Partner_Verknuepfungen>
+<#Verzeichnungeinheiten_Partner_Verknuepfungen> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_PRTNR_BZHNG_1" ];
 	
 	rr:subjectMap [
@@ -1318,7 +1318,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		];
 	]
 .
-<#Partner_Verweise>
+<#Partner_Verweise> a rr:TriplesMap ;
 	rr:logicalTable [ rr:tableName "MVK_OGD_PRTNR_BZHNG_1" ];
 	
 	rr:subjectMap [

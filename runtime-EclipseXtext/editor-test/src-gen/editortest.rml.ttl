@@ -5,7 +5,7 @@ PREFIX employee: <http://example.com/employee>
 PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
-<#EmployeeMapping>
+<#EmployeeMapping> a rr:TriplesMap ;
 	rml:logicalSource [
 		rml:query """EMP""" ;
 		rml:referenceFormulation ql:XPath ;
@@ -43,7 +43,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		];
 	]
 .
-<#EmployeeMapping2>
+<#EmployeeMapping2> a rr:TriplesMap ;
 	rml:logicalSource [
 		rml:query """EMP""" ;
 		rml:referenceFormulation ql:XPath ;
