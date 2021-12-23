@@ -243,7 +243,7 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 
 		interior(
 			regionFor.ruleCall(ga.mappingAccess.BLOCK_BEGINTerminalRuleCall_4),
-			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
+			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_11)
 		)[indent];
 		regionFor.ruleCall(ga.mappingAccess.BLOCK_BEGINTerminalRuleCall_4).append[setNewLines(1)];
 
@@ -254,23 +254,23 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 		// 'types'
 		if (!poMappings.empty) {
 			interior(
-				regionFor.keyword(ga.mappingAccess.typesKeyword_8_0),
-				regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0)
+				regionFor.keyword(ga.mappingAccess.typesKeyword_9_0),
+				regionFor.keyword(ga.mappingAccess.propertiesKeyword_10_0)
 			)[indent];
 		} else {
 			interior(
-				regionFor.keyword(ga.mappingAccess.typesKeyword_8_0),
-				regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
+				regionFor.keyword(ga.mappingAccess.typesKeyword_9_0),
+				regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_11)
 			)[indent];
 		}
-		regionFor.keyword(ga.mappingAccess.typesKeyword_8_0).prepend[setNewLines(2)];
+		regionFor.keyword(ga.mappingAccess.typesKeyword_9_0).prepend[setNewLines(2)];
 		subjectTypeMappings.forEach[format];
 
 		// 'properties'
-		regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0).prepend[setNewLines(2)];
+		regionFor.keyword(ga.mappingAccess.propertiesKeyword_10_0).prepend[setNewLines(2)];
 		interior(
-			regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0),
-			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
+			regionFor.keyword(ga.mappingAccess.propertiesKeyword_10_0),
+			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_11)
 		)[indent];
 		poMappings.forEach[format];
 	}
