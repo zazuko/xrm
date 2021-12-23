@@ -1,0 +1,30 @@
+output r2rml
+
+map ThingIntoGraphmapsMapping from ThingIntoGraphmapsSource {
+	subject template "http://example.org/thing/{0}" with id;
+	
+	graphs
+		constant "http://example.org/graph/omnigraph" ;
+		template "http://example.org/graph/thing-{0}" with id;
+		// TODO: the following two lines should not be valid. as only termType 'IRI' is valid for graphmaps, it doesn't make sense to offer "as ..." in this context
+		// template "http://example.org/graph/thing-{0}" with id as Literal;
+		// template "http://example.org/graph/thing-{0}" with id as BlankNode;
+		constant thing.Thing ;
+		constant thing.color ;
+		constant employee.myDatatype ;
+
+	types
+		thing.Thing
+
+	properties
+		thing.color constant "blue";
+		thing.color constant thing.color ;
+}
+
+logical-source ThingIntoGraphmapsSource {
+	type rdb
+	source "THINGS"
+
+	referenceables
+		id
+}
