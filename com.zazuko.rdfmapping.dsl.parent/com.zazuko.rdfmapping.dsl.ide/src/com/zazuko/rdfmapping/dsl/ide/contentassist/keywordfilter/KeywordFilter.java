@@ -52,6 +52,8 @@ public class KeywordFilter {
 			// make sure we really have subjetIriMapping in our hands
 			if (mapping.getSubjectIriMapping() == in) {
 				filter = filter.and(new BlacklistedCompletionProposalPredicate("Literal"));
+			} else if (mapping.getGraphMappings().contains(in)) {
+				filter = filter.and(new BlacklistedCompletionProposalPredicate("as2"));
 			}
 		}
 
