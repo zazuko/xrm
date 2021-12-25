@@ -43,6 +43,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary;
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension;
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility;
@@ -425,6 +426,24 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 		if (data.getUsedKeys().size() != it.getReferences().size()) {
 			warning("Pattern '" + templateValue + "' requires " + data.getUsedKeys().size()
 					+ " argument(s), but there are " + it.getReferences().size(), it, null);
+		}
+	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	@Check
+	public void termTypeRef_notIn_MappingGraphMappings(TermTypeRef it) {
+		if (!(it.eContainer() instanceof ValuedTerm)) {
+			return;
+		}
+		ValuedTerm valuedTerm = (ValuedTerm) it.eContainer();
+		
+		if (!(valuedTerm.eContainer() instanceof Mapping)) {
+			return;
+		}
+		Mapping mapping = (Mapping) valuedTerm.eContainer();
+		
+		if (mapping.getGraphMappings().contains(valuedTerm)) {
+			error("No TermTypeRef in a GraphMapping", it, null);
 		}
 	}
 

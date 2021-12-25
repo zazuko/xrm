@@ -8,8 +8,9 @@ map ThingIntoGraphmapsMapping from ThingIntoGraphmapsSource {
 		// AUTOTEST noAsOnTemplateValueInGraphMappings
 		template "http://example.org/graph/thing-{0}" with id // keep this comment for aut0-test
 		;
-		// TODO: the following two lines should not be valid. as only termType 'IRI' is valid for graphmaps, it doesn't make sense to offer "as ..." in this context
+		// TODO uncomment next line --> error on 'Literal' (only termType 'IRI' is valid for graphmaps)
 		// template "http://example.org/graph/thing-{0}" with id as Literal;
+		// TODO uncomment next line --> error on 'BlankNode' (only termType 'IRI' is valid for graphmaps)
 		// template "http://example.org/graph/thing-{0}" with id as BlankNode;
 		constant thing.Thing ;
 		constant thing.color ;
