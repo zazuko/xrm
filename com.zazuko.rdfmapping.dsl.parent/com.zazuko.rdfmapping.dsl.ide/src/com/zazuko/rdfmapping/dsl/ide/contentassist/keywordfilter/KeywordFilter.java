@@ -70,6 +70,11 @@ public class KeywordFilter {
 				in.getTypeRef() != null ? in.getTypeRef().getType() : null);
 	}
 
+	public boolean filter(Mapping in, Keyword keyword, ContentAssistContext context) {
+		OutputType type = this.modelAccess.outputType(in);
+		return new RmlishOutputTypeCompletionProposalPredicate("graphs", type).test(keyword);
+	}
+
 	private boolean completeKeywordForSourceDefinition(Keyword keyword, SourceType type) {
 		Predicate<Keyword> filter = //
 				new WhitelistedEnumTypeCompletionProposalPredicate<SourceType>("xml-namespace-extension", //
