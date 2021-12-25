@@ -116,6 +116,18 @@ class RmlDialectGenerator {
 		rr:constant «toConstantValue» ;
 	'''
 	
+	def String toConstantValue(ConstantValuedTerm it) {
+		if(constant !== null) {
+			if (constant.isValidURI()) {
+				return '''<«constant»>'''
+			} else {
+				return '''"«constant»"'''
+			}
+		} else if (constantVocabularyElement !== null){
+			return '''«constantVocabularyElement.vocabulary.prefix.label»:«constantVocabularyElement.valueResolved»''' 
+		}
+	}
+	
 	def dispatch objectTermMap(TemplateValuedTerm it) '''
 		rr:template "«toTemplateString»" ;
 		«IF termTypeRef?.type !== null»

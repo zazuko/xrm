@@ -111,18 +111,6 @@ class ModelAccess {
 		return eContainer as Vocabulary;
 	}
 
-	def String toConstantValue(ConstantValuedTerm it) {
-		if(constant !== null) {
-			if (constant.isValidURI()) {
-				return '''<«constant»>'''
-			} else {
-				return '''"«constant»"'''
-			}
-		} else if (constantVocabularyElement !== null){
-			return '''«constantVocabularyElement.vocabulary.prefix.label»:«constantVocabularyElement.valueResolved»''' 
-		}
-	}
-
 	def boolean isValidURI(String url) {
 		try {
 			new URL(url).toURI();
