@@ -309,6 +309,10 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 							RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE);
 				}
 			}
+			
+			if (!it.getGraphMappings().isEmpty()) {
+				onlyOnRmlishType(domainModel.getOutputType().getType(), RdfMappingPackage.eINSTANCE.getMapping_GraphMappings());
+			}
 		}
 
 		// no literal on subjectIriMapping
@@ -317,27 +321,29 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 			error("Literal is invalid on the subject", it.getSubjectIriMapping().getTermTypeRef(),
 					RdfMappingPackage.Literals.TERM_TYPE_REF__TYPE);
 		}
+		
+		
 	}
 
 	@Check
 	public void check(ParentTriplesMapTerm it) {
-		onlyOnRmlishType(this.modelAccess.outputType(it));
+		onlyOnRmlishType(this.modelAccess.outputType(it), null);
 	}
 
-	private void onlyOnRmlishType(OutputType outputType) {
+	private void onlyOnRmlishType(OutputType outputType, EStructuralFeature feature) {
 		if (outputType == null) {
 			return;
 		}
 		if (!RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(outputType)) {
 			warning("Not on output of type '" + outputType.getLiteral() + "' - only valid on "
-					+ this.inputOutputCompatibility.serialize2Message(RdfMappingConstants.RMLISH_OUTPUTTYPES), null,
+					+ this.inputOutputCompatibility.serialize2Message(RdfMappingConstants.RMLISH_OUTPUTTYPES), feature,
 					RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS);
 		}
 	}
 
 	@Check
 	public void check(TermTypeRef it) {
-		onlyOnRmlishType(this.modelAccess.outputType(it));
+		onlyOnRmlishType(this.modelAccess.outputType(it), null);
 	}
 
 	@Check

@@ -3,6 +3,9 @@ output csvw
 map TestImpactMappingCsv from SomeSourceGroup.fooCsv {
 	subject template "http://foo.example.com/{0}" with id;
 
+	// TODO uncomment next two lines --> warning (no graphs on CSVW)
+//	graphs 
+// 		constant "blubb"
 	types
 		employee.Employee
 
