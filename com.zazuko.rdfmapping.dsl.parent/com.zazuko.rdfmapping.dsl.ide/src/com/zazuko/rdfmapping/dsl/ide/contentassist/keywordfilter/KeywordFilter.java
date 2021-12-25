@@ -53,7 +53,7 @@ public class KeywordFilter {
 			if (mapping.getSubjectIriMapping() == in) {
 				filter = filter.and(new BlacklistedCompletionProposalPredicate("Literal"));
 			} else if (mapping.getGraphMappings().contains(in)) {
-				filter = filter.and(new BlacklistedCompletionProposalPredicate("as2"));
+				filter = filter.and(new BlacklistedCompletionProposalPredicate("as"));
 			}
 		}
 

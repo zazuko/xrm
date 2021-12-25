@@ -48,7 +48,9 @@ map EmployeeMapping2 from EMPLOYEE {
 
 	properties
 		employee.no from EMPNO;
-		thing.color template airportIri with id;
+		// AUTOTEST asOnTemplateValueInProperties
+		thing.color template airportIri with id // keep this comment for aut0-test
+		;
 		thing.color template "http://manualstuff.com/colors/{0}" with id;
 		thing.size from EMPNO with datatype employee.myDatatype;
 }

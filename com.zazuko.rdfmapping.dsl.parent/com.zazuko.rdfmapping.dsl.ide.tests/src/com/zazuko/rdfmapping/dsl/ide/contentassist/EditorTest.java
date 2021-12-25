@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import com.zazuko.rdfmapping.dsl.ide.contentassist.util.MarkerContext;
 import com.zazuko.rdfmapping.dsl.ide.contentassist.util.PositionContext;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
+import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration;
 
 public class EditorTest extends EditorTestProjectDrivenTest {
@@ -26,6 +27,23 @@ public class EditorTest extends EditorTestProjectDrivenTest {
 		b.ref("exampleIri", TemplateDeclaration.class, position);
 		b.ref("UniqTemplate", TemplateDeclaration.class, position); // also from other file #88
 		b.string("templateValue", position);
+		
+		testCompletion((TestCompletionConfiguration it) -> {
+			position.configure(it);
+			it.setExpectedCompletionItems(b.toExpectedCompletionItems());
+		});
+	}
+	
+	@Test
+	public void asOnTemplateValueInPropertiesTest() {
+		MarkerContext ctx = this.marker("asOnTemplateValueInProperties");
+		PositionContext position =  ctx.nextLineWithTextAfter("id");
+		
+		CompletionExpectationBuilder b = new CompletionExpectationBuilder();
+		
+		b.ref("EMPNO", Referenceable.class, position);
+		b.ref("id", Referenceable.class, position);
+		b.keyword("as", position);
 		
 		testCompletion((TestCompletionConfiguration it) -> {
 			position.configure(it);
