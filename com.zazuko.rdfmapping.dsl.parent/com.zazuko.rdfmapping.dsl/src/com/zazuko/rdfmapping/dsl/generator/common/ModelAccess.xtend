@@ -114,7 +114,7 @@ class ModelAccess {
 	def String toConstantValue(ConstantValuedTerm it) {
 		if(constant !== null) {
 			if (constant.isValidURI()) {
-				return '''"<«constant»>"'''
+				return '''<«constant»>'''
 			} else {
 				return '''"«constant»"'''
 			}

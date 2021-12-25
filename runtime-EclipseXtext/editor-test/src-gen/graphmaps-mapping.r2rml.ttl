@@ -8,7 +8,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:template "http://example.org/thing/{id}" ;
 		rr:class thing:Thing ;
 		rr:graphMap [
-		  rr:constant "<http://example.org/graph/omnigraph>";
+		  rr:constant <http://example.org/graph/omnigraph>;
 		]
 		 ;
 		rr:graphMap [
