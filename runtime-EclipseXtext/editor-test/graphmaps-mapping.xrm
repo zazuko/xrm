@@ -5,6 +5,7 @@ map ThingIntoGraphmapsMapping from ThingIntoGraphmapsSource {
 	
 	graphs
 		constant "http://example.org/graph/omnigraph";
+		constant thing.size;
 		// AUTOTEST noAsOnTemplateValueInGraphMappings
 		template "http://example.org/graph/thing-{0}" with id // keep this comment for aut0-test
 		;

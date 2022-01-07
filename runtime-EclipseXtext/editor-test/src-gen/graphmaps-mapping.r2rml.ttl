@@ -12,6 +12,10 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		]
 		 ;
 		rr:graphMap [
+		  rr:constant thing:size;
+		]
+		 ;
+		rr:graphMap [
 		  rr:template "http://example.org/graph/thing-{id}" ;
 		]
 		 ;
