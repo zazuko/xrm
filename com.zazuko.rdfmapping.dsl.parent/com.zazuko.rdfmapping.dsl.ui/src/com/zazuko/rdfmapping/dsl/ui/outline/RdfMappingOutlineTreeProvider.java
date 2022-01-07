@@ -7,6 +7,7 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 
+import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable;
@@ -36,6 +37,10 @@ public class RdfMappingOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	protected void _createNode(IOutlineNode parentNode, TemplateValuedTerm modelElement) {
 
+	}
+
+	protected void _createNode(IOutlineNode parentNode, GraphMapping modelElement) {
+		
 	}
 
 	protected boolean _isLeaf(TemplateDeclaration it) {
