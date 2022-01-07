@@ -1,6 +1,7 @@
 package com.zazuko.rdfmapping.dsl.ide.contentassist;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 
 import com.zazuko.rdfmapping.dsl.ide.contentassist.util.FileContext;
 import com.zazuko.rdfmapping.dsl.ide.contentassist.util.MarkerContext;
@@ -62,9 +63,18 @@ public abstract class EditorTestProjectDrivenTest extends AbstractServerTest {
 		IDENTITCAL, //
 		/** if you don't want to list everything (e.g. too many references) */
 		EXPECTED_FOUND_IN_ACTUAL, //
-		/** only use if needed*/
+		/** only use if needed */
 		EXPECTED_ABSENT_IN_ACTUAL, //
 		;
+	}
+
+
+	// annotation in super-class is not seen by mvn build
+	// --> re-bind JUnit5 annotation here
+	// also don't forget to setup the IDE service in META-INF/services/org.eclipse.xtext.ISetup --> com.zazuko.rdfmapping.dsl.ide.RdfMappingIdeSetup
+	@BeforeEach  
+	public void setup() {
+		super.setup();
 	}
 
 }
