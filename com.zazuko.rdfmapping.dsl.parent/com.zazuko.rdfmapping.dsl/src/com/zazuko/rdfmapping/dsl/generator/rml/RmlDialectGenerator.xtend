@@ -3,6 +3,7 @@ package com.zazuko.rdfmapping.dsl.generator.rml
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
+import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
@@ -75,15 +76,24 @@ class RmlDialectGenerator {
 				«graphMap(graphMapping)» ;
 			«ENDFOR»
 		]'''
-		
-	def dispatch graphMap(TemplateValuedTerm it) '''
+	
+	def graphMap(GraphMapping it) {
+		if (template !== null) {
+			return graphMap(template);
+		} else if (constant !== null) {
+			return graphMap(constant);
+		} 
+		return "";
+	}
+	
+	def graphMap(TemplateValuedTerm it) '''
 		rr:graphMap [
 		  rr:template "«toTemplateString»" ;
 		]
 	'''
 	
 	
-	def dispatch graphMap(ConstantValuedTerm it) '''
+	def graphMap(ConstantValuedTerm it) '''
 		rr:graphMap [
 		  rr:constant «toConstantValue»;
 		]

@@ -158,7 +158,7 @@ SubjectTypeMapping:
 ;
 
 GraphMapping:
-	(TemplateValuedTerm | ConstantValuedTerm) LINE_END
+	(template=TemplateValuedTerm | constant=ConstantValuedTerm) LINE_END
 ;
 
 PredicateObjectMapping:	
