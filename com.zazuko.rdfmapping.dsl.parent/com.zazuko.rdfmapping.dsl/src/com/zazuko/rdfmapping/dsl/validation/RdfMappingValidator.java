@@ -21,6 +21,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype;
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Element;
+import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
@@ -43,6 +44,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary;
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension;
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility;
@@ -96,19 +98,19 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 	@Check(CheckType.NORMAL)
 	public void checkDuplicatedRdfClass(RdfClass it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.RDF_CLASS,
-				msg -> error(msg, RdfMappingPackage.Literals.RDF_CLASS__NAME));
+				msg -> error(msg, RdfMappingPackage.Literals.VOCABULARY_ELEMENT__NAME));
 	}
 
 	@Check(CheckType.NORMAL)
 	public void checkDuplicatedRdfProperty(RdfProperty it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.RDF_PROPERTY,
-				msg -> error(msg, RdfMappingPackage.Literals.RDF_PROPERTY__NAME));
+				msg -> error(msg, RdfMappingPackage.Literals.VOCABULARY_ELEMENT__NAME));
 	}
 
 	@Check(CheckType.NORMAL)
 	public void checkDuplicatedDatatype(Datatype it) {
 		duplicatedQNameValidator.validate(it, RdfMappingPackage.Literals.DATATYPE,
-				msg -> error(msg, RdfMappingPackage.Literals.DATATYPE__NAME));
+				msg -> error(msg, RdfMappingPackage.Literals.VOCABULARY_ELEMENT__NAME));
 	}
 
 	@Check(CheckType.NORMAL)
@@ -308,6 +310,10 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 							RdfMappingValidationCodes.MAPPING_OUTPUTTYPE_INCOMPATIBLE);
 				}
 			}
+			
+			if (!it.getGraphMappings().isEmpty()) {
+				onlyOnRmlishType(domainModel.getOutputType().getType(), RdfMappingPackage.eINSTANCE.getMapping_GraphMappings());
+			}
 		}
 
 		// no literal on subjectIriMapping
@@ -316,27 +322,29 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 			error("Literal is invalid on the subject", it.getSubjectIriMapping().getTermTypeRef(),
 					RdfMappingPackage.Literals.TERM_TYPE_REF__TYPE);
 		}
+		
+		
 	}
 
 	@Check
 	public void check(ParentTriplesMapTerm it) {
-		onlyOnRmlishType(this.modelAccess.outputType(it));
+		onlyOnRmlishType(this.modelAccess.outputType(it), null);
 	}
 
-	private void onlyOnRmlishType(OutputType outputType) {
+	private void onlyOnRmlishType(OutputType outputType, EStructuralFeature feature) {
 		if (outputType == null) {
 			return;
 		}
 		if (!RdfMappingConstants.RMLISH_OUTPUTTYPES.contains(outputType)) {
 			warning("Not on output of type '" + outputType.getLiteral() + "' - only valid on "
-					+ this.inputOutputCompatibility.serialize2Message(RdfMappingConstants.RMLISH_OUTPUTTYPES), null,
+					+ this.inputOutputCompatibility.serialize2Message(RdfMappingConstants.RMLISH_OUTPUTTYPES), feature,
 					RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS);
 		}
 	}
 
 	@Check
 	public void check(TermTypeRef it) {
-		onlyOnRmlishType(this.modelAccess.outputType(it));
+		onlyOnRmlishType(this.modelAccess.outputType(it), null);
 	}
 
 	@Check
@@ -426,6 +434,20 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 			warning("Pattern '" + templateValue + "' requires " + data.getUsedKeys().size()
 					+ " argument(s), but there are " + it.getReferences().size(), it, null);
 		}
+	}
+
+	@Check
+	public void termTypeRef_notIn_MappingGraphMappings(TermTypeRef it) {
+		if (!(it.eContainer() instanceof ValuedTerm)) {
+			return;
+		}
+		ValuedTerm valuedTerm = (ValuedTerm) it.eContainer();
+
+		if (!(valuedTerm.eContainer() instanceof GraphMapping)) {
+			return;
+		}
+
+		error("TermType specification not valid for Graphmap", it, null);
 	}
 
 	@Check

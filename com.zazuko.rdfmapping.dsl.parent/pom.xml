@@ -29,7 +29,8 @@
 		<module>com.zazuko.rdfmapping.dsl.feature</module>
 		<module>com.zazuko.rdfmapping.dsl.repository</module>
 		<module>com.zazuko.rdfmapping.dsl.tests</module>
-                <module>com.zazuko.rdfmapping.dsl.websockets</module>
+		
+		<module>com.zazuko.rdfmapping.dsl.websockets</module>
 		<module>com.zazuko.rdfmapping.dsl.ui.tests</module>
 	</modules>
 	<dependencyManagement>

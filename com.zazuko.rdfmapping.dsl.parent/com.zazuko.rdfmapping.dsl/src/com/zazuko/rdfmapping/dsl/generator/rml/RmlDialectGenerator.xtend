@@ -3,6 +3,7 @@ package com.zazuko.rdfmapping.dsl.generator.rml
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
+import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
@@ -52,7 +53,7 @@ class RmlDialectGenerator {
 	'''
 	
 	def triplesMap(Mapping it) '''
-		<«localId»>
+		<«localId»> a rr:TriplesMap ;
 			«logicalSource»
 			
 			«subjectMap()»«IF ! poMappings.empty»;«ENDIF»
@@ -71,7 +72,32 @@ class RmlDialectGenerator {
 			«IF subjectIriMapping.termTypeRef?.type !== null»
 				rr:termType rr:«subjectIriMapping.termTypeRef.type» ;
 			«ENDIF»
+			«FOR graphMapping : graphMappings»
+				«graphMap(graphMapping)» ;
+			«ENDFOR»
 		]'''
+	
+	def graphMap(GraphMapping it) {
+		if (template !== null) {
+			return graphMap(template);
+		} else if (constant !== null) {
+			return graphMap(constant);
+		} 
+		return "";
+	}
+	
+	def graphMap(TemplateValuedTerm it) '''
+		rr:graphMap [
+		  rr:template "«toTemplateString»" ;
+		]
+	'''
+	
+	
+	def graphMap(ConstantValuedTerm it) '''
+		rr:graphMap [
+		  rr:constant «toConstantValue»;
+		]
+	'''	
 	
 	def predicateObjectMap(PredicateObjectMapping it) '''
 		rr:predicateObjectMap [
@@ -99,6 +125,18 @@ class RmlDialectGenerator {
 	def dispatch objectTermMap(ConstantValuedTerm it) '''
 		rr:constant «toConstantValue» ;
 	'''
+	
+	def String toConstantValue(ConstantValuedTerm it) {
+		if(constant !== null) {
+			if (constant.isValidURI()) {
+				return '''<«constant»>'''
+			} else {
+				return '''"«constant»"'''
+			}
+		} else if (constantVocabularyElement !== null){
+			return '''«constantVocabularyElement.vocabulary.prefix.label»:«constantVocabularyElement.valueResolved»''' 
+		}
+	}
 	
 	def dispatch objectTermMap(TemplateValuedTerm it) '''
 		rr:template "«toTemplateString»" ;

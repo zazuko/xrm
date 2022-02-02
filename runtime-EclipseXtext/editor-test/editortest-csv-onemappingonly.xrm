@@ -16,7 +16,7 @@ map EmployeeMappingCsvOneMapping from EMPLOYEEcsvOneMapping {
 
 logical-source EMPLOYEEcsvOneMapping {
 	type csv
-	// TODO code completion sourceType==csv: yield 'dialect', but not 'xml-namespace-extension'
+	// AUTOTEST onCsvYiealdDialectButNotXmlNameSpaceExtension
 	source "EMP"
 	iterator "/Employees/Employee"
 

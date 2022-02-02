@@ -10,6 +10,7 @@ import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ide.editor.contentassist.ContentAssistContext;
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
+import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
@@ -45,14 +46,20 @@ public class KeywordFilter {
 	public boolean filter(TemplateValuedTerm in, Keyword keyword, ContentAssistContext context) {
 		Predicate<Keyword> filter = this.referencedValueTermFilter(in);
 
-		// #30 for a subjectIriMapping, don't offer 'Literal'
 		EObject container = in.eContainer();
+
+		// #30 for a subjectIriMapping, don't offer 'Literal'
 		if (container instanceof Mapping) {
 			Mapping mapping = (Mapping) container;
 			// make sure we really have subjetIriMapping in our hands
 			if (mapping.getSubjectIriMapping() == in) {
 				filter = filter.and(new BlacklistedCompletionProposalPredicate("Literal"));
 			}
+		}
+
+		if (container instanceof GraphMapping) {
+			// within a graphMapping, 'as' is not a viable option for a TemplateValuedTerm
+			filter = filter.and(new BlacklistedCompletionProposalPredicate("as"));
 		}
 
 		return filter.test(keyword);
@@ -66,6 +73,11 @@ public class KeywordFilter {
 	public boolean filter(LogicalSource in, Keyword keyword, ContentAssistContext context) {
 		return this.completeKeywordForSourceDefinition(keyword,
 				in.getTypeRef() != null ? in.getTypeRef().getType() : null);
+	}
+
+	public boolean filter(Mapping in, Keyword keyword, ContentAssistContext context) {
+		OutputType type = this.modelAccess.outputType(in);
+		return new RmlishOutputTypeCompletionProposalPredicate("graphs", type).test(keyword);
 	}
 
 	private boolean completeKeywordForSourceDefinition(Keyword keyword, SourceType type) {

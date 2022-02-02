@@ -116,6 +116,9 @@ Vocabulary:
    
 Prefix:
 	'prefix' label=STRING iri=STRING;
+
+VocabularyElement:
+	RdfProperty | RdfClass | Datatype;
     
 RdfProperty:
 	name=ID (value=STRING)? ( omniMap=OmniMap )?;
@@ -145,12 +148,17 @@ TemplateValueRef:
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
 		'subject' subjectIriMapping=TemplateValuedTerm LINE_END
+		 ('graphs' (graphMappings+=GraphMapping)+)?
 		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
 	BLOCK_END;
 	
 SubjectTypeMapping:	
 	type=[RdfClass|RdfPrefixedName]
+;
+
+GraphMapping:
+	(template=TemplateValuedTerm | constant=ConstantValuedTerm) LINE_END
 ;
 
 PredicateObjectMapping:	
@@ -181,7 +189,7 @@ MultiReferenceValuedTerm:
 ;
 
 ConstantValuedTerm:
-	'constant' constant=STRING
+	'constant' ( constant=STRING | constantVocabularyElement=[VocabularyElement|RdfPrefixedName] )
 ;
 
 TemplateValuedTerm:

@@ -26,7 +26,6 @@ map FooMapping from KEYWORDSOURCEfoo {
 }
 
 map ReferenceTemplateFromOtherFile from EMPLOYEE {
-	// TODO code completion at airportIri - get proposal for e.g. airportIri (from another file #88) 
 	subject template airportIri with EMPNO;
 }
 

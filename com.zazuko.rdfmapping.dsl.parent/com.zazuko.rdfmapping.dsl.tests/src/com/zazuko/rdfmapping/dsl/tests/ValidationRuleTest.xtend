@@ -340,6 +340,17 @@ class ValidationRuleTest {
 	}
 	
 	@Test
+	def void mapping_graphMap_templateWithTermType() {
+		val result = parseHelper.parse(mappingSnippets.graphMap_templateWithTermType());
+
+		validationTester.assertError(result,
+			RdfMappingPackage.eINSTANCE.termTypeRef,
+			null,
+			"TermType specification not valid for Graphmap"
+		);
+	}
+	
+	@Test
 	def void logicalSource_xml_withNullValueDeclaration() {
 		val result = parseHelper.parse(logicalSourceSnippets.nullValueDeclarationOnXml());
 		

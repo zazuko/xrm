@@ -19,6 +19,7 @@ import com.zazuko.rdfmapping.dsl.ide.contentassist.keywordfilter.KeywordFilter;
 import com.zazuko.rdfmapping.dsl.ide.contentassist.omnimap.OmniMapKeyProposalGenerator;
 import com.zazuko.rdfmapping.dsl.ide.debug.Debugger;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
+import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
@@ -84,6 +85,10 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 
 		} else if (context.getCurrentModel() instanceof LogicalSource) {
 			return this.keywordFilter.filter((LogicalSource) context.getCurrentModel(), keyword, context);
+		
+		} else if (context.getCurrentModel() instanceof Mapping) {
+			return this.keywordFilter.filter((Mapping) context.getCurrentModel(), keyword, context);
+			
 		}
 		return true;
 	}

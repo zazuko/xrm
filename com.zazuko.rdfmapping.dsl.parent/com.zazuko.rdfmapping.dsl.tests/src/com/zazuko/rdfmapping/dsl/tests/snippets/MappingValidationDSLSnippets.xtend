@@ -184,4 +184,24 @@ class MappingValidationDSLSnippets {
 				one
 		}
 	'''
+	
+	def graphMap_templateWithTermType() '''
+		output r2rml
+		
+		map ThingIntoGraphmapsMapping2 from ThingIntoGraphmapsSource2 {
+			subject template "http://example.org/thing/{0}" with id;
+		
+			graphs
+				constant "http://example.org/graph/omnigraph";
+				template "http://example.org/graph/thing-{0}" with id as Literal;
+		}
+		
+		logical-source ThingIntoGraphmapsSource2 {
+			type rdb
+			source "THINGS"
+		
+			referenceables
+				id
+		}
+	'''
 }

@@ -14,8 +14,8 @@ template exampleIri "http://example.com/"
 // template skippingKeysIsPointless "http://airport.example.com/{0}/{3}"
 
 map EmployeeMapping from EMPLOYEE {
-	// TODO code complete on airportIri - get proposals of templates declared within this file
 	// TODO add 'EMPNO' after id --> warn nr of arguments not matching with pattern
+	// AUTOTEST getProposalOfTemplatesDefinedInThisFile
 	subject template airportIri with id;
 
 	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
@@ -25,18 +25,17 @@ map EmployeeMapping from EMPLOYEE {
 		employee.Employee
 
 	properties
-		// TODO code completion before the next line - get references like 'thing.size' offered
+		// AUTOTEST refToRdfPropertThingSizeOffered
 		// TODO code completion on the next line between 'employee.no' and 'from' - keywords will be offered (no references to RdfProperties)
 		employee.no from EMPNO;
-		// TODO (reloaded) code completion before the next line - get references like 'thing.size' offered
+		// AUTOTEST refToRdfPropertThingSizeOffered2
 		// TODO uncomment next line (error is fine), code completion at end of line offers keywords
 		// thing.size 
 		thing.color parent-map EmployeeMapping2; // ok for rml, r2rml
 		// TODO 'as' must be offered by code completion (this is r2rml)
 		keyword.^map template "{0}" with EMPNO as Literal; // ok for rml, r2rml 
 		// TODO uncomment next line --> error
-		// TODO code completion: no suggestion 'multi-reference'
-		// keyword.^map multi-reference from EMPNO ;
+		// AUTOTEST noProposalForMultiRef
 		// TODO hover over '.yes', see the description of the property 'yes' in the tooltip
 		employee.yes constant "constant-yes";
 }
@@ -49,7 +48,9 @@ map EmployeeMapping2 from EMPLOYEE {
 
 	properties
 		employee.no from EMPNO;
-		thing.color template airportIri with id;
+		// AUTOTEST asOnTemplateValueInProperties
+		thing.color template airportIri with id // keep this comment for aut0-test
+		;
 		thing.color template "http://manualstuff.com/colors/{0}" with id;
 		thing.size from EMPNO with datatype employee.myDatatype;
 }

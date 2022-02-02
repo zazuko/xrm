@@ -16,8 +16,6 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass
-import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup
@@ -27,6 +25,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
+import com.zazuko.rdfmapping.dsl.rdfMapping.VocabularyElement
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
 import java.net.URL
 import java.util.LinkedHashSet
@@ -108,20 +107,8 @@ class ModelAccess {
 		return dialectExtractor.extractP(it);
 	}
 
-	def Vocabulary vocabulary(RdfClass it) {
+	def Vocabulary vocabulary(VocabularyElement it) {
 		return eContainer as Vocabulary;
-	}
-
-	def Vocabulary vocabulary(RdfProperty it) {
-		return eContainer as Vocabulary;
-	}
-
-	def String toConstantValue(ConstantValuedTerm it) {
-		if (constant.isValidURI()) {
-			return '''<«constant»>'''
-		} else {
-			return '''"«constant»"'''
-		}
 	}
 
 	def boolean isValidURI(String url) {
@@ -158,10 +145,6 @@ class ModelAccess {
 		return prefixHolders.toSet.toList.sortBy[s|s.prefix.label];
 	}
 
-	def Vocabulary vocabulary(Datatype it) {
-		return eContainer as Vocabulary;
-	}
-
 	def Prefix prefix(Datatype it) {
 		return vocabulary.prefix;
 	}
@@ -174,23 +157,7 @@ class ModelAccess {
 		}
 	}
 
-	def String valueResolved(RdfClass it) {
-		if (value !== null) {
-			return value;
-		} else {
-			return name;
-		}
-	}
-
-	def String valueResolved(RdfProperty it) {
-		if (value !== null) {
-			return value;
-		} else {
-			return name;
-		}
-	}
-
-	def String valueResolved(Datatype it) {
+	def String valueResolved(VocabularyElement it) {
 		if (value !== null) {
 			return value;
 		} else {
