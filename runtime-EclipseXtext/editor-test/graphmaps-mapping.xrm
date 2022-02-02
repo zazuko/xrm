@@ -2,20 +2,20 @@ output r2rml
 
 map ThingIntoGraphmapsMapping from ThingIntoGraphmapsSource {
 	subject template "http://example.org/thing/{0}" with id;
-	
+
 	graphs
 		constant "http://example.org/graph/omnigraph";
 		constant thing.size;
 		// AUTOTEST noAsOnTemplateValueInGraphMappings
 		template "http://example.org/graph/thing-{0}" with id // keep this comment for aut0-test
 		;
-		// TODO uncomment next line --> error on 'Literal' (only termType 'IRI' is valid for graphmaps)
+		// TODO uncomment next line --> error on 'Literal' (termType specification not valid for graphmaps)
 		// template "http://example.org/graph/thing-{0}" with id as Literal;
-		// TODO uncomment next line --> error on 'BlankNode' (only termType 'IRI' is valid for graphmaps)
+		// TODO uncomment next line --> error on 'BlankNode' (termType specification not valid for graphmaps)
 		// template "http://example.org/graph/thing-{0}" with id as BlankNode;
-		constant thing.Thing ;
-		constant thing.color ;
-		constant employee.myDatatype ;
+		constant thing.Thing;
+		constant thing.color;
+		constant employee.myDatatype;
 
 	types
 		thing.Thing

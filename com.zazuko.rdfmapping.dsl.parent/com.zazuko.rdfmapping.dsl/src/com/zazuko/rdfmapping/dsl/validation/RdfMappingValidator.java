@@ -21,6 +21,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype;
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Element;
+import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag;
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
@@ -434,23 +435,19 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 					+ " argument(s), but there are " + it.getReferences().size(), it, null);
 		}
 	}
-	
-	@SuppressWarnings("unlikely-arg-type")
+
 	@Check
 	public void termTypeRef_notIn_MappingGraphMappings(TermTypeRef it) {
 		if (!(it.eContainer() instanceof ValuedTerm)) {
 			return;
 		}
 		ValuedTerm valuedTerm = (ValuedTerm) it.eContainer();
-		
-		if (!(valuedTerm.eContainer() instanceof Mapping)) {
+
+		if (!(valuedTerm.eContainer() instanceof GraphMapping)) {
 			return;
 		}
-		Mapping mapping = (Mapping) valuedTerm.eContainer();
-		
-		if (mapping.getGraphMappings().contains(valuedTerm)) {
-			error("No TermTypeRef in a GraphMapping", it, null);
-		}
+
+		error("TermType specification not valid for Graphmap", it, null);
 	}
 
 	@Check
