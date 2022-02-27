@@ -11,7 +11,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	a rr:TriplesMap;
 	
 	rml:logicalSource [
-		rml:source "http://www.example.com/Airport.csv" ;
+		rml:source "http://www.example.com/Airport.csv";
 		rml:referenceFormulation ql:CSV
 	];
 	
@@ -60,7 +60,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	a rr:TriplesMap;
 	
 	rml:logicalSource [
-		rml:source "http://www.example.com/City.csv" ;
+		rml:source "http://www.example.com/City.csv";
 		rml:referenceFormulation ql:CSV
 	];
 	

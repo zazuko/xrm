@@ -9,7 +9,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	a rr:TriplesMap;
 	
 	rml:logicalSource [
-		rml:source "KWS" ;
+		rml:source "KWS";
 		rml:referenceFormulation ql:XPath
 	];
 	
@@ -43,9 +43,9 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	a rr:TriplesMap;
 	
 	rml:logicalSource [
-		rml:query """EMP""" ;
-		rml:referenceFormulation ql:XPath ;
-		rml:iterator "/Employees/Employee" ;
+		rml:query """EMP""";
+		rml:referenceFormulation ql:XPath;
+		rml:iterator "/Employees/Employee"
 	];
 	
 	rr:subjectMap [
@@ -56,7 +56,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	a rr:TriplesMap;
 	
 	rml:logicalSource [
-		rml:source "http://www.example.com/Foo.xml" ;
+		rml:source "http://www.example.com/Foo.xml";
 		rml:referenceFormulation ql:CSV
 	];
 	

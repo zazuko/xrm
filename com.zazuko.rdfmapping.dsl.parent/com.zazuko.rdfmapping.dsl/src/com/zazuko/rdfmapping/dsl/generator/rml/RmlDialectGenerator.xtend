@@ -65,12 +65,12 @@ class RmlDialectGenerator {
 		<«localId»>
 			a rr:TriplesMap«jc.acquireMarker»
 			
-			«logicalSource»«jc.acquireMarker»
+			«logicalSource(jc.newContext)»«jc.acquireMarker»
 			
-			«subjectMap(jc.newContext())»«jc.acquireMarker»
+			«subjectMap(jc.newContext)»«jc.acquireMarker»
 			
 			«FOR pom : poMappings»
-				«pom.predicateObjectMap(jc.newContext())»«jc.acquireMarker»
+				«pom.predicateObjectMap(jc.newContext)»«jc.acquireMarker»
 				
 			«ENDFOR»
 		'''

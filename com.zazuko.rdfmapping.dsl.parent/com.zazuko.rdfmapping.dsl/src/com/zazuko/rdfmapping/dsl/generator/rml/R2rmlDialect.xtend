@@ -1,6 +1,7 @@
 package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
+import com.zazuko.rdfmapping.dsl.generator.rml.statefuljoiner.IJoinContext
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import javax.inject.Inject
@@ -14,7 +15,7 @@ class R2rmlDialect implements IRmlDialect {
 		PREFIX rr: <http://www.w3.org/ns/r2rml#>
 	'''
 
-	override logicalSource(Mapping it) '''rr:logicalTable [ «source.sourceStatement» ]'''
+	override logicalSource(Mapping it, IJoinContext jc) '''rr:logicalTable [ «source.sourceStatement» ]'''
 
 	def sourceStatement(
 		LogicalSource it) '''«IF sourceIsQueryResolved»rr:sqlQuery """«sourceResolved»"""«ELSE»rr:tableName "«sourceResolved»"«ENDIF»'''
