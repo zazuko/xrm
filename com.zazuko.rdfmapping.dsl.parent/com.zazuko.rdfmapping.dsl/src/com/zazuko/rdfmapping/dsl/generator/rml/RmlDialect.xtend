@@ -1,7 +1,7 @@
 package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
-import com.zazuko.rdfmapping.dsl.generator.rml.statefuljoiner.IJoinContext
+import com.zazuko.rdfmapping.dsl.generator.common.statefuljoiner.IJoinContext
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
 import javax.inject.Inject

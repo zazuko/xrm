@@ -1,8 +1,8 @@
 package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
-import com.zazuko.rdfmapping.dsl.generator.rml.statefuljoiner.IJoinContext
-import com.zazuko.rdfmapping.dsl.generator.rml.statefuljoiner.JoinContextManager
+import com.zazuko.rdfmapping.dsl.generator.common.statefuljoiner.IJoinContext
+import com.zazuko.rdfmapping.dsl.generator.common.statefuljoiner.JoinContextManager
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping

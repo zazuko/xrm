@@ -1,6 +1,6 @@
 package com.zazuko.rdfmapping.dsl.generator.rml;
 
-import com.zazuko.rdfmapping.dsl.generator.rml.statefuljoiner.IJoinContext;
+import com.zazuko.rdfmapping.dsl.generator.common.statefuljoiner.IJoinContext;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 
 public interface IRmlDialect {

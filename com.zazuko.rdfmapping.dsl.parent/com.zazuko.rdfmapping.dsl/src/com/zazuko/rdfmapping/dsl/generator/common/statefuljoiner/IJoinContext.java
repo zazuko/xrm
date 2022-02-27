@@ -1,4 +1,4 @@
-package com.zazuko.rdfmapping.dsl.generator.rml.statefuljoiner;
+package com.zazuko.rdfmapping.dsl.generator.common.statefuljoiner;
 
 public interface IJoinContext {
 
