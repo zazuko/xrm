@@ -4,10 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Set;
 
-import com.zazuko.rdfmapping.dsl.generator.common.GlueingContext;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
@@ -20,35 +18,10 @@ public class CsvwDialectContext {
 	private final ModelAccess access;
 
 	private final LazyMap<Mapping, Set<Referenceable>> unusedReferenceables;
-	private final Map<Mapping, GlueingContext> columnsGlueing;
 
 	public CsvwDialectContext(ModelAccess access, Collection<Mapping> mappings) {
 		this.access = access;
 		this.unusedReferenceables = buildUnusedReferenceables(mappings);
-		this.columnsGlueing = buildColumnsGlueingCtx(mappings);
-	}
-	
-	public boolean needsColumnsGlueing(Mapping m) {
-		return this.columnsGlueing.get(m).needsGlueing();
-	}
-	
-	private Map<Mapping, GlueingContext> buildColumnsGlueingCtx(Collection<Mapping> mappings) {
-		Map<Mapping, GlueingContext> result = new HashMap<>();
-		
-		for (Mapping mapping : mappings) {
-			boolean hasSubjects = !mapping.getSubjectTypeMappings().isEmpty();
-			boolean hasColumns =  !mapping.getPoMappings().isEmpty();
-			boolean hasSuppressedOutput = !this.notUsedReferencables(mapping).isEmpty();
-			
-			GlueingContext ctx = new GlueingContext();
-			result.put(mapping, ctx);
-			
-			ctx.registerSegmentMetadata(hasSubjects);
-			ctx.registerSegmentMetadata(hasColumns);
-			ctx.registerSegmentMetadata(hasSuppressedOutput);
-		}
-		
-		return result;
 	}
 
 	public Set<Referenceable> notUsedReferencables(Mapping mapping) {

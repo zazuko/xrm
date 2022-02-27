@@ -46,7 +46,7 @@ class RmlDialectGenerator {
 		return result;	
 	}
 	
-	def generateTurtle(Iterable<Mapping> mappings, IJoinContext jc) '''
+	def generateTurtle(Iterable<Mapping> mappings, JoinContextManager jc) '''
 		«prefixes(mappings)»
 		«FOR Mapping current: mappings»
 		«triplesMap(current, jc.newContext(";", "."))»

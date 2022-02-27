@@ -8,8 +8,7 @@
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 				"valueUrl": "https://schema.org/Organization"
-			}
-			,
+			},
 			{
 				"propertyUrl": "http://www.w3.org/2000/01/rdf-schema#label",
 				"titles": "Name"
@@ -31,8 +30,7 @@
 				"propertyUrl": "https://schema.org/areaServed",
 				"titles": "Gde-Nr.",
 				"valueUrl": "http://classifications.data.admin.ch/municipality/{Gde-Nr.}"
-			}
-			,
+			},
 			{
 				"suppressOutput": true,
 				"titles": "NameUrl"
@@ -61,6 +59,6 @@
 				"suppressOutput": true,
 				"titles": "kanton"
 			}
-		] 
+		]
 	}
 }
