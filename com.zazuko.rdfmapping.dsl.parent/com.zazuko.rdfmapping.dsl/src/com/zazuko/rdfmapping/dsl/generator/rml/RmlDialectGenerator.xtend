@@ -85,31 +85,29 @@ class RmlDialectGenerator {
 				rr:termType rr:«subjectIriMapping.termTypeRef.type»«jc.acquireMarker»
 			«ENDIF»
 			«FOR graphMapping : graphMappings»
-				«graphMap(graphMapping)»«jc.acquireMarker»
+				«graphMap(graphMapping, jc.newContext)»«jc.acquireMarker»
 			«ENDFOR»
 		]'''
 	
-	def graphMap(GraphMapping it) {
+	def graphMap(GraphMapping it, IJoinContext jc) {
 		if (template !== null) {
-			return graphMap(template);
+			return graphMap(template, jc);
 		} else if (constant !== null) {
-			return graphMap(constant);
+			return graphMap(constant, jc);
 		} 
 		return "";
 	}
 	
-	def graphMap(TemplateValuedTerm it) '''
+	def graphMap(TemplateValuedTerm it, IJoinContext jc) '''
 		rr:graphMap [
-		  rr:template "«toTemplateString»" ;
-		]
-	'''
+		  rr:template "«toTemplateString»"«jc.acquireMarker»
+		]'''
 	
 	
-	def graphMap(ConstantValuedTerm it) '''
+	def graphMap(ConstantValuedTerm it, IJoinContext jc) '''
 		rr:graphMap [
-		  rr:constant «toConstantValue»;
-		]
-	'''	
+		  rr:constant «toConstantValue»«jc.acquireMarker»
+		]'''	
 	
 	def predicateObjectMap(PredicateObjectMapping it, IJoinContext jc) '''
 		rr:predicateObjectMap [
