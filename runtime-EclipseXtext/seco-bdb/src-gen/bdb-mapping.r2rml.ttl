@@ -69,8 +69,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:column "AMT_NAME_IT" ;
 			rr:language "it" ;
 		];
-	]
-.
+	].
+	
 <#Bewilligung>
 	a rr:TriplesMap;
 	
@@ -228,8 +228,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:template "http://example.org/gemeinde/{BEW_GEMEINDE}" ;
 		];
-	]
-.
+	].
+	
 <#KontaktAusBewilligung>
 	a rr:TriplesMap;
 	
@@ -321,8 +321,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "BEW_KONTAKT_TEL" ;
 		];
-	]
-.
+	].
+	
 <#KantonInfo>
 	a rr:TriplesMap;
 	
@@ -350,8 +350,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "KTI_KANTON" ;
 		];
-	]
-.
+	].
+	
 <#KontaktAusKantonInfo>
 	a rr:TriplesMap;
 	
@@ -391,8 +391,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "KTI_TELEPHONE" ;
 		];
-	]
-.
+	].
+	
 <#Gemeinde>
 	a rr:TriplesMap;
 	
@@ -421,5 +421,5 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "GDE_ORT_PA" ;
 		];
-	]
-.
+	].
+	

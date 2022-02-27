@@ -16,5 +16,5 @@ PREFIX ex: <http://example.com/ns#>
 		rr:objectMap [
 			rr:column "ENAME" ;
 		];
-	]
-.
+	].
+	

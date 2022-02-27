@@ -924,8 +924,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "ZUGAENGLICHKEIT" ;
 		];
-	]
-.
+	].
+	
 <#Deskriptor>
 	a rr:TriplesMap;
 	
@@ -1008,8 +1008,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "VIAF" ;
 		];
-	]
-.
+	].
+	
 <#Ablieferung>
 	a rr:TriplesMap;
 	
@@ -1079,8 +1079,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "ID_NAME" ;
 		];
-	]
-.
+	].
+	
 <#Partner>
 	a rr:TriplesMap;
 	
@@ -1150,8 +1150,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "AUFNAHMEDATUM" ;
 		];
-	]
-.
+	].
+	
 <#Verzeichnungseinheiten_Ablieferungen_Verknuepfungen>
 	a rr:TriplesMap;
 	
@@ -1166,8 +1166,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:template "http://data.staatsarchiv-bs.ch/id/ablieferung/{ID_NR_ABLFR}" ;
 		];
-	]
-.
+	].
+	
 <#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen>
 	a rr:TriplesMap;
 	
@@ -1182,8 +1182,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}" ;
 		];
-	]
-.
+	].
+	
 <#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen_Annotation>
 	a rr:TriplesMap;
 	
@@ -1223,8 +1223,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "NOTIZ" ;
 		];
-	]
-.
+	].
+	
 <#Deskriptoren_Verweise>
 	a rr:TriplesMap;
 	
@@ -1240,8 +1240,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_2}" ;
 		];
-	]
-.
+	].
+	
 <#Deskriptoren_Verweise_Annotation>
 	a rr:TriplesMap;
 	
@@ -1281,8 +1281,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "NOTIZ" ;
 		];
-	]
-.
+	].
+	
 <#Verzeichnungseinheiten_Verweise_Annotation>
 	a rr:TriplesMap;
 	
@@ -1322,8 +1322,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "NOTIZ" ;
 		];
-	]
-.
+	].
+	
 <#Verzeichnungeinheiten_Partner_Verknuepfungen>
 	a rr:TriplesMap;
 	
@@ -1338,8 +1338,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:template "http://data.staatsarchiv-bs.ch/id/partner/{ID_NR_PRTNR}" ;
 		];
-	]
-.
+	].
+	
 <#Partner_Verweise>
 	a rr:TriplesMap;
 	
@@ -1379,5 +1379,5 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:column "NOTIZ" ;
 		];
-	]
-.
+	].
+	

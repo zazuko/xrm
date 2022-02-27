@@ -39,15 +39,17 @@ class RmlDialectGenerator {
 		this.dialect = dialect;
 	}
 	
-	def generateTurtle(Iterable<Mapping> mappings) {
+	def CharSequence generateTurtle(Iterable<Mapping> mappings) {
 		val JoinContextManager jc = new JoinContextManager();
-		return jc.postProcess(generateTurtle(mappings, jc));	
+		val CharSequence template = generateTurtle(mappings, jc);
+		val CharSequence result = jc.postProcess(template.toString());
+		return result;	
 	}
 	
 	def generateTurtle(Iterable<Mapping> mappings, IJoinContext jc) '''
 		«prefixes(mappings)»
 		«FOR Mapping current: mappings»
-		«triplesMap(current)»
+		«triplesMap(current, jc.newContext(";", "."))»
 		«ENDFOR»
 	'''
 	
@@ -59,18 +61,18 @@ class RmlDialectGenerator {
 		
 	'''
 	
-	def triplesMap(Mapping it) '''
+	def triplesMap(Mapping it, IJoinContext jc) '''
 		<«localId»>
-			a rr:TriplesMap;
+			a rr:TriplesMap«jc.acquireMarker»
 			
-			«logicalSource»
+			«logicalSource»«jc.acquireMarker»
 			
-			«subjectMap()»«IF ! poMappings.empty»;«ENDIF»
+			«subjectMap()»«jc.acquireMarker»
 			
-			«FOR pom : poMappings SEPARATOR ";"»
-				«pom.predicateObjectMap»
+			«FOR pom : poMappings»
+				«pom.predicateObjectMap»«jc.acquireMarker»
 			«ENDFOR»
-		.
+			
 		'''
 	
 	def subjectMap(Mapping it) '''
@@ -115,8 +117,7 @@ class RmlDialectGenerator {
 			rr:objectMap [
 				«term.objectTermMap»
 			];
-		]
-	'''
+		]'''
 	
 	def dispatch objectTermMap(ValuedTerm it) '''
 		# TODO: implementation missing for «class.name»

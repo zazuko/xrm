@@ -50,5 +50,5 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:objectMap [
 			carml:multiReference "map" ;
 		];
-	]
-.
+	].
+	

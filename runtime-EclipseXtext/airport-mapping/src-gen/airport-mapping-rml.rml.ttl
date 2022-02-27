@@ -50,8 +50,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:objectMap [
 			rr:constant "foobar" ;
 		];
-	]
-.
+	].
+	
 <#CityMappingRml>
 	a rr:TriplesMap;
 	
@@ -63,6 +63,6 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:subjectMap [
 		rr:template "http://city.example.com/{continent}/{country}/{city}" ;
 		rr:class schema:City ;
-	]
+	].
 	
-.
+	

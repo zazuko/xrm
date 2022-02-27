@@ -43,8 +43,8 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:objectMap [
 			rr:constant "constant-yes" ;
 		];
-	]
-.
+	].
+	
 <#EmployeeMapping2>
 	a rr:TriplesMap;
 	
@@ -83,5 +83,5 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			rml:reference "EMPNO" ;
 			rr:datatype employee:myDatatype ;
 		];
-	]
-.
+	].
+	

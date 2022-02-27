@@ -35,8 +35,8 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:objectMap [
 			rml:reference "map" ;
 		];
-	]
-.
+	].
+	
 <#ReferenceTemplateFromOtherFile>
 	a rr:TriplesMap;
 	
@@ -48,9 +48,9 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	
 	rr:subjectMap [
 		rr:template "http://airport.example.com/{EMPNO}" ;
-	]
+	].
 	
-.
+	
 <#TestImpactMapping>
 	a rr:TriplesMap;
 	
@@ -75,5 +75,5 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:objectMap [
 			rml:reference "bar" ;
 		];
-	]
-.
+	].
+	

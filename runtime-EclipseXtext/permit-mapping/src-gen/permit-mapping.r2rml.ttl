@@ -67,8 +67,8 @@ PREFIX schema: <https://schema.org/>
 			rr:column "AGENCY_ABBREV_IT" ;
 			rr:language "it" ;
 		];
-	]
-.
+	].
+	
 <#Permit>
 	a rr:TriplesMap;
 	
@@ -124,5 +124,5 @@ PREFIX schema: <https://schema.org/>
 		rr:objectMap [
 			rr:template "https://permits.example.org/agencies/{PERMIT_AGENCY_FK}" ;
 		];
-	]
-.
+	].
+	

@@ -21,8 +21,7 @@ class RmlDialect implements IRmlDialect {
 			«source.sourceStatement»
 			rml:referenceFormulation «source.typeResolved?.referenceFormulation»«IF source.iterator !== null» ;
 			rml:iterator "«source.iterator»" ;«ENDIF»
-		];
-	'''
+		]'''
 
 	def sourceStatement(LogicalSource it) '''
 		«IF sourceIsQueryResolved»
