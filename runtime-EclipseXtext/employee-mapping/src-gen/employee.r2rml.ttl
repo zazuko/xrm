@@ -7,8 +7,8 @@ PREFIX ex: <http://example.com/ns#>
 	rr:logicalTable [ rr:tableName "EMP" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.example.com/employee/{EMPNO}" ;
-		rr:class ex:Employee ;
+		rr:template "http://data.example.com/employee/{EMPNO}";
+		rr:class ex:Employee
 	];
 	
 	rr:predicateObjectMap [

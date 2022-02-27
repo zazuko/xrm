@@ -14,8 +14,8 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:subjectMap [
-		rr:template "foo" ;
-		rr:class employee:Employee ;
+		rr:template "foo";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [
@@ -47,7 +47,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://airport.example.com/{EMPNO}" ;
+		rr:template "http://airport.example.com/{EMPNO}"
 	].
 	
 	
@@ -60,8 +60,8 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://foo.example.com/{id}" ;
-		rr:class employee:Employee ;
+		rr:template "http://foo.example.com/{id}";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [

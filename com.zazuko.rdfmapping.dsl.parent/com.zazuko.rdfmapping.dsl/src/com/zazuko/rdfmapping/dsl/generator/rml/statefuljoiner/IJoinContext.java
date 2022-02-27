@@ -4,7 +4,7 @@ public interface IJoinContext {
 
 	
 	default IJoinContext newContext() {
-		return this.newContext(";", ".");
+		return this.newContext(";", "");
 	}
 	
 	IJoinContext newContext(String separator, String postfix);

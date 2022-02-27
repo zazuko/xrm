@@ -15,8 +15,8 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://airport.example.com/{id}" ;
-		rr:class employee:Employee ;
+		rr:template "http://airport.example.com/{id}";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [
@@ -55,8 +55,8 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://airport.example.com/{id}" ;
-		rr:class employee:Employee ;
+		rr:template "http://airport.example.com/{id}";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [

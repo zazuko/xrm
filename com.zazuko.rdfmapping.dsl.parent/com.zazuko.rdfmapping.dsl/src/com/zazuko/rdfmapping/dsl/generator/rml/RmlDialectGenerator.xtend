@@ -67,7 +67,7 @@ class RmlDialectGenerator {
 			
 			«logicalSource»«jc.acquireMarker»
 			
-			«subjectMap()»«jc.acquireMarker»
+			«subjectMap(jc.newContext())»«jc.acquireMarker»
 			
 			«FOR pom : poMappings»
 				«pom.predicateObjectMap»«jc.acquireMarker»
@@ -75,17 +75,17 @@ class RmlDialectGenerator {
 			
 		'''
 	
-	def subjectMap(Mapping it) '''
+	def subjectMap(Mapping it, IJoinContext jc) '''
 		rr:subjectMap [
-			rr:template "«subjectIri»" ;
+			rr:template "«subjectIri»"«jc.acquireMarker»
 			«FOR stm : subjectTypeMappings»
-				rr:class «stm.type.vocabulary.prefix.label»:«stm.type.valueResolved» ;
+				rr:class «stm.type.vocabulary.prefix.label»:«stm.type.valueResolved»«jc.acquireMarker»
 			«ENDFOR»
 			«IF subjectIriMapping.termTypeRef?.type !== null»
-				rr:termType rr:«subjectIriMapping.termTypeRef.type» ;
+				rr:termType rr:«subjectIriMapping.termTypeRef.type»«jc.acquireMarker»
 			«ENDIF»
 			«FOR graphMapping : graphMappings»
-				«graphMap(graphMapping)» ;
+				«graphMap(graphMapping)»«jc.acquireMarker»
 			«ENDFOR»
 		]'''
 	

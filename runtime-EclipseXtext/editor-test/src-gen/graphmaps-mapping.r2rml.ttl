@@ -7,32 +7,32 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	rr:logicalTable [ rr:tableName "THINGS" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/thing/{id}" ;
-		rr:class thing:Thing ;
+		rr:template "http://example.org/thing/{id}";
+		rr:class thing:Thing;
 		rr:graphMap [
 		  rr:constant <http://example.org/graph/omnigraph>;
 		]
-		 ;
+		;
 		rr:graphMap [
 		  rr:constant thing:size;
 		]
-		 ;
+		;
 		rr:graphMap [
 		  rr:template "http://example.org/graph/thing-{id}" ;
 		]
-		 ;
+		;
 		rr:graphMap [
 		  rr:constant thing:Thing;
 		]
-		 ;
+		;
 		rr:graphMap [
 		  rr:constant thing:color;
 		]
-		 ;
+		;
 		rr:graphMap [
 		  rr:constant employee:myDatatype;
 		]
-		 ;
+		
 	];
 	
 	rr:predicateObjectMap [

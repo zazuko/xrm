@@ -10,8 +10,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "t_amt" ];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/agencies/{AMT_ID}" ;
-		rr:class schema:GovernmentOrganization ;
+		rr:template "https://permits.zazukoians.org/agencies/{AMT_ID}";
+		rr:class schema:GovernmentOrganization
 	];
 	
 	rr:predicateObjectMap [
@@ -77,8 +77,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "t_bewilligung" ];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/permits/{BEW_ID}" ;
-		rr:class schema:GovernmentPermit ;
+		rr:template "https://permits.zazukoians.org/permits/{BEW_ID}";
+		rr:class schema:GovernmentPermit
 	];
 	
 	rr:predicateObjectMap [
@@ -236,8 +236,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "t_bewilligung" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kontaktbew/{BEW_ID}" ;
-		rr:class ex:KontaktAusBewilligung ;
+		rr:template "http://example.org/kontaktbew/{BEW_ID}";
+		rr:class ex:KontaktAusBewilligung
 	];
 	
 	rr:predicateObjectMap [
@@ -329,8 +329,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "t_kt_info" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}" ;
-		rr:class ex:KantonInfo ;
+		rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}";
+		rr:class ex:KantonInfo
 	];
 	
 	rr:predicateObjectMap [
@@ -358,8 +358,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "t_kt_info" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kontaktkantoninfo/{KTI_ID}" ;
-		rr:class ex:KontaktKantonInfo ;
+		rr:template "http://example.org/kontaktkantoninfo/{KTI_ID}";
+		rr:class ex:KontaktKantonInfo
 	];
 	
 	rr:predicateObjectMap [
@@ -399,8 +399,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	rr:logicalTable [ rr:tableName "t_gemeinde" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/gemeinde/{GDE_PLZ}" ;
-		rr:class ex:Gemeinde ;
+		rr:template "http://example.org/gemeinde/{GDE_PLZ}";
+		rr:class ex:Gemeinde
 	];
 	
 	rr:predicateObjectMap [
