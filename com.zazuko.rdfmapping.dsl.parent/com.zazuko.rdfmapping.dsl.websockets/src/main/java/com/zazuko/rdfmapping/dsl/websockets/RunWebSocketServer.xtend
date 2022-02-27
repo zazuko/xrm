@@ -4,7 +4,6 @@ import com.google.inject.Guice
 import com.google.inject.Injector
 import com.pmeade.websocket.net.WebSocket
 import com.pmeade.websocket.net.WebSocketServerSocket
-import com.zazuko.rdfmapping.dsl.RdfMappingStandaloneSetup
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
