@@ -5,7 +5,9 @@ PREFIX carml: <http://carml.taxonic.com/carml/>
 PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
-<#CarmlFooMapping> a rr:TriplesMap ;
+<#CarmlFooMapping>
+	a rr:TriplesMap;
+	
 	rml:logicalSource [
 		rml:source [
 			a carml:Stream ;

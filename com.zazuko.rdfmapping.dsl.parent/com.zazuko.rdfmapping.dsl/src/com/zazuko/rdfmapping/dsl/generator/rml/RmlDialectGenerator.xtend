@@ -1,6 +1,8 @@
 package com.zazuko.rdfmapping.dsl.generator.rml
 
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
+import com.zazuko.rdfmapping.dsl.generator.rml.statefuljoiner.IJoinContext
+import com.zazuko.rdfmapping.dsl.generator.rml.statefuljoiner.JoinContextManager
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping
@@ -38,11 +40,16 @@ class RmlDialectGenerator {
 	}
 	
 	def generateTurtle(Iterable<Mapping> mappings) {
-		mappings.prefixes +
-		mappings
-			.map[triplesMap]
-			.join('\n')
+		val JoinContextManager jc = new JoinContextManager();
+		return jc.postProcess(generateTurtle(mappings, jc));	
 	}
+	
+	def generateTurtle(Iterable<Mapping> mappings, IJoinContext jc) '''
+		«prefixes(mappings)»
+		«FOR Mapping current: mappings»
+		«triplesMap(current)»
+		«ENDFOR»
+	'''
 	
 	def prefixes(Iterable<Mapping> mappings) '''
 		«staticPrefixes»
@@ -53,7 +60,9 @@ class RmlDialectGenerator {
 	'''
 	
 	def triplesMap(Mapping it) '''
-		<«localId»> a rr:TriplesMap ;
+		<«localId»>
+			a rr:TriplesMap;
+			
 			«logicalSource»
 			
 			«subjectMap()»«IF ! poMappings.empty»;«ENDIF»
@@ -61,7 +70,8 @@ class RmlDialectGenerator {
 			«FOR pom : poMappings SEPARATOR ";"»
 				«pom.predicateObjectMap»
 			«ENDFOR»
-		.'''
+		.
+		'''
 	
 	def subjectMap(Mapping it) '''
 		rr:subjectMap [

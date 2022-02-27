@@ -1,7 +1,9 @@
 PREFIX rr: <http://www.w3.org/ns/r2rml#>
 PREFIX thing: <http://foobar.com/things/thing/>
 
-<#ThingIntoGraphmapsMapping> a rr:TriplesMap ;
+<#ThingIntoGraphmapsMapping>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "THINGS" ];
 	
 	rr:subjectMap [

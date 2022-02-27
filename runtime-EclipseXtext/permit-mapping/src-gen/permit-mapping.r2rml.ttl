@@ -2,7 +2,9 @@ PREFIX rr: <http://www.w3.org/ns/r2rml#>
 PREFIX ex: <https://schema.example.org/>
 PREFIX schema: <https://schema.org/>
 
-<#Agency> a rr:TriplesMap ;
+<#Agency>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "t_agency" ];
 	
 	rr:subjectMap [
@@ -67,7 +69,9 @@ PREFIX schema: <https://schema.org/>
 		];
 	]
 .
-<#Permit> a rr:TriplesMap ;
+<#Permit>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "t_permit" ];
 	
 	rr:subjectMap [
