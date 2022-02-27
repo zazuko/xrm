@@ -34,21 +34,21 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:constant "blue" ;
-		];
+			rr:constant "blue"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate thing:size ;
+		rr:predicate thing:size;
 		rr:objectMap [
-			rml:reference "map" ;
-		];
+			rml:reference "map"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate thing:weight ;
+		rr:predicate thing:weight;
 		rr:objectMap [
-			carml:multiReference "map" ;
-		];
+			carml:multiReference "map"
+		]
 	].
 	

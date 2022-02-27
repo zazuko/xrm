@@ -19,22 +19,22 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:constant "blue" ;
-		];
+			rr:constant "blue"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate employee:no ;
+		rr:predicate employee:no;
 		rr:objectMap [
-			rml:reference "map" ;
-		];
+			rml:reference "map"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate employee:map ;
+		rr:predicate employee:map;
 		rr:objectMap [
-			rml:reference "map" ;
-		];
+			rml:reference "map"
+		]
 	].
 	
 <#ReferenceTemplateFromOtherFile>
@@ -65,15 +65,15 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:constant "blue" ;
-		];
+			rr:constant "blue"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate employee:map ;
+		rr:predicate employee:map;
 		rr:objectMap [
-			rml:reference "bar" ;
-		];
+			rml:reference "bar"
+		]
 	].
 	

@@ -36,15 +36,15 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:constant "blue" ;
-		];
+			rr:constant "blue"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:constant thing:color ;
-		];
+			rr:constant thing:color
+		]
 	].
 	

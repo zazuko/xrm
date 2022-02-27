@@ -70,7 +70,7 @@ class RmlDialectGenerator {
 			«subjectMap(jc.newContext())»«jc.acquireMarker»
 			
 			«FOR pom : poMappings»
-				«pom.predicateObjectMap»«jc.acquireMarker»
+				«pom.predicateObjectMap(jc.newContext())»«jc.acquireMarker»
 			«ENDFOR»
 			
 		'''
@@ -111,30 +111,30 @@ class RmlDialectGenerator {
 		]
 	'''	
 	
-	def predicateObjectMap(PredicateObjectMapping it) '''
+	def predicateObjectMap(PredicateObjectMapping it, IJoinContext jc) '''
 		rr:predicateObjectMap [
-			rr:predicate «property.vocabulary.prefix.label»:«property.valueResolved» ;
+			rr:predicate «property.vocabulary.prefix.label»:«property.valueResolved»«jc.acquireMarker»
 			rr:objectMap [
-				«term.objectTermMap»
-			];
+				«term.objectTermMap(jc.newContext)»
+			]«jc.acquireMarker»
 		]'''
 	
-	def dispatch objectTermMap(ValuedTerm it) '''
+	def dispatch objectTermMap(ValuedTerm it, IJoinContext jc) '''
 		# TODO: implementation missing for «class.name»
 	'''
 	
-	def dispatch objectTermMap(ReferenceValuedTerm it) '''
-		«objectMapReferencePredicate» "«reference.valueResolved»" ;
-		«termMapAnnex»
+	def dispatch objectTermMap(ReferenceValuedTerm it, IJoinContext jc) '''
+		«objectMapReferencePredicate» "«reference.valueResolved»"«jc.acquireMarker»
+		«termMapAnnex(jc)»
 	'''
 	
-	def dispatch objectTermMap(MultiReferenceValuedTerm it) '''
-		«objectMapMultiReferencePredicate» "«reference.valueResolved»" ;
-		«termMapAnnex»
+	def dispatch objectTermMap(MultiReferenceValuedTerm it, IJoinContext jc) '''
+		«objectMapMultiReferencePredicate» "«reference.valueResolved»"«jc.acquireMarker»
+		«termMapAnnex(jc)»
 	'''
 	
-	def dispatch objectTermMap(ConstantValuedTerm it) '''
-		rr:constant «toConstantValue» ;
+	def dispatch objectTermMap(ConstantValuedTerm it, IJoinContext jc) '''
+		rr:constant «toConstantValue»«jc.acquireMarker»
 	'''
 	
 	def String toConstantValue(ConstantValuedTerm it) {
@@ -149,33 +149,33 @@ class RmlDialectGenerator {
 		}
 	}
 	
-	def dispatch objectTermMap(TemplateValuedTerm it) '''
-		rr:template "«toTemplateString»" ;
+	def dispatch objectTermMap(TemplateValuedTerm it, IJoinContext jc) '''
+		rr:template "«toTemplateString»"«jc.acquireMarker»
 		«IF termTypeRef?.type !== null»
-			rr:termType rr:«termTypeRef.type» ;
+			rr:termType rr:«termTypeRef.type»«jc.acquireMarker»
 		«ENDIF»
 	'''
 	
-	def dispatch objectTermMap(ParentTriplesMapTerm it) '''
-		rr:parentTriplesMap  <«mapping.localId»> ;
+	def dispatch objectTermMap(ParentTriplesMapTerm it, IJoinContext jc) '''
+		rr:parentTriplesMap  <«mapping.localId»>«jc.acquireMarker»
 	'''
 	
-	def termMapAnnex(ReferenceValuedTerm it)  {
-		termMapAnnex(languageTag, datatype, termTypeRef);
+	def termMapAnnex(ReferenceValuedTerm it, IJoinContext jc) {
+		termMapAnnex(languageTag, datatype, termTypeRef, jc);
 	}
 	
-	def termMapAnnex(MultiReferenceValuedTerm it) {
-		termMapAnnex(languageTag, datatype, termTypeRef);
+	def termMapAnnex(MultiReferenceValuedTerm it, IJoinContext jc) {
+		termMapAnnex(languageTag, datatype, termTypeRef, jc);
 	}
 	
-	def termMapAnnex(LanguageTag languageTag, Datatype datatype, TermTypeRef termTypeRef) '''
+	def termMapAnnex(LanguageTag languageTag, Datatype datatype, TermTypeRef termTypeRef, IJoinContext jc) '''
 		«IF languageTag !== null»
-			rr:language "«languageTag.name»" ;
+			rr:language "«languageTag.name»"«jc.acquireMarker»
 		«ELSEIF datatype !== null»
-			rr:datatype «datatype.prefix.label»:«datatype.valueResolved» ;
+			rr:datatype «datatype.prefix.label»:«datatype.valueResolved»«jc.acquireMarker»
 		«ENDIF»
 		«IF termTypeRef?.type !== null»
-			rr:termType rr:«termTypeRef.type» ;
+			rr:termType rr:«termTypeRef.type»«jc.acquireMarker»
 		«ENDIF»
 	'''
 	

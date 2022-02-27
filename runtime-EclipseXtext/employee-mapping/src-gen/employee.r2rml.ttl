@@ -12,9 +12,9 @@ PREFIX ex: <http://example.com/ns#>
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate ex:name ;
+		rr:predicate ex:name;
 		rr:objectMap [
-			rr:column "ENAME" ;
-		];
+			rr:column "ENAME"
+		]
 	].
 	

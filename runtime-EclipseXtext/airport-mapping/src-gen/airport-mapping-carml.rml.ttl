@@ -21,35 +21,35 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate transit:route ;
+		rr:predicate transit:route;
 		rr:objectMap [
-			rml:reference "flop" ;
-			rr:datatype xsd:int ;
-		];
+			rml:reference "flop";
+			rr:datatype xsd:int
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate wgs84_pos:lat ;
+		rr:predicate wgs84_pos:lat;
 		rr:objectMap [
-			rml:reference "latitude" ;
-		];
+			rml:reference "latitude"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate wgs84_pos:long ;
+		rr:predicate wgs84_pos:long;
 		rr:objectMap [
-			rml:reference "longitude" ;
-		];
+			rml:reference "longitude"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate ex:owner ;
+		rr:predicate ex:owner;
 		rr:objectMap [
-			rml:reference "airport öwnership" ;
-		];
+			rml:reference "airport öwnership"
+		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate ex:marker ;
+		rr:predicate ex:marker;
 		rr:objectMap [
-			rr:constant "foobar" ;
-		];
+			rr:constant "foobar"
+		]
 	].
 	
 <#CityMappingCarml>
