@@ -21,6 +21,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:alternateName;
 		rr:objectMap [
@@ -28,6 +29,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:alternateName;
 		rr:objectMap [
@@ -35,6 +37,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:alternateName;
 		rr:objectMap [
@@ -42,6 +45,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "it"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -49,6 +53,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -56,6 +61,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -63,6 +69,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -88,6 +95,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:description;
 		rr:objectMap [
@@ -95,6 +103,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:description;
 		rr:objectMap [
@@ -102,6 +111,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:description;
 		rr:objectMap [
@@ -109,24 +119,28 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "it"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:permitAudience;
 		rr:objectMap [
 			rr:template "https://permits.zazukoians.org/permitaudiences/{BEW_BET_PERS_EVENT}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:permitLevel;
 		rr:objectMap [
 			rr:template "https://permits.zazukoians.org/permitlevels/{BEW_TYPE}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:status;
 		rr:objectMap [
 			rr:template "https://permits.zazukoians.org/statuses/{BEW_STATUS}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:url;
 		rr:objectMap [
@@ -134,6 +148,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:url;
 		rr:objectMap [
@@ -141,6 +156,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:url;
 		rr:objectMap [
@@ -148,6 +164,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:url;
 		rr:objectMap [
@@ -155,6 +172,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "it"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -162,6 +180,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -169,6 +188,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -176,6 +196,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -183,6 +204,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "it"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:legalFoundation;
 		rr:objectMap [
@@ -190,6 +212,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:legalFoundation;
 		rr:objectMap [
@@ -197,6 +220,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:legalFoundation;
 		rr:objectMap [
@@ -204,6 +228,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:legalFoundation;
 		rr:objectMap [
@@ -211,18 +236,21 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "it"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:dateModified;
 		rr:objectMap [
 			rr:column "BEW_LAST_CHANGED"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:agency;
 		rr:objectMap [
 			rr:template "https://permits.zazukoians.org/agencies/{BEW_AMT_LNK}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:gemeinde;
 		rr:objectMap [
@@ -246,6 +274,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:template "https://permits.zazukoians.org/permits/{BEW_ID}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:contact;
 		rr:objectMap [
@@ -253,6 +282,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:contact;
 		rr:objectMap [
@@ -260,6 +290,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:contact;
 		rr:objectMap [
@@ -267,6 +298,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:contact;
 		rr:objectMap [
@@ -274,48 +306,56 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:language "it"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:kontaktDE;
 		rr:objectMap [
 			rr:column "BEW_KONTAKT_DE"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:kontaktFR;
 		rr:objectMap [
 			rr:column "BEW_KONTAKT_FR"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:kontaktEN;
 		rr:objectMap [
 			rr:column "BEW_KONTAKT_EN"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:kontaktIT;
 		rr:objectMap [
 			rr:column "BEW_KONTAKT_IT"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:address;
 		rr:objectMap [
 			rr:column "BEW_KONTAKT_ADR"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:faxNumber;
 		rr:objectMap [
 			rr:column "BEW_KONTAKT_FAX"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:email;
 		rr:objectMap [
 			rr:column "BEW_KONTAKT_MAIL"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:telephone;
 		rr:objectMap [
@@ -339,12 +379,14 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:template "https://permits.zazukoians.org/permits/{KTI_BEW_LNK}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:url;
 		rr:objectMap [
 			rr:column "KTI_INTERNET"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:kanton;
 		rr:objectMap [
@@ -368,24 +410,28 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:kanton;
 		rr:objectMap [
 			rr:column "KTI_KANTON"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate bdb:contact;
 		rr:objectMap [
 			rr:column "KTI_OFFICE"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:email;
 		rr:objectMap [
 			rr:column "KTI_EMAIL"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:telephone;
 		rr:objectMap [
@@ -409,6 +455,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:column "GDE_PLZ"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:plz;
 		rr:objectMap [
@@ -416,6 +463,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:datatype xsd:int
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:ort;
 		rr:objectMap [

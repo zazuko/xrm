@@ -27,24 +27,28 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 			rr:datatype xsd:int
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate wgs84_pos:lat;
 		rr:objectMap [
 			rml:reference "latitude"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate wgs84_pos:long;
 		rr:objectMap [
 			rml:reference "longitude"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:owner;
 		rr:objectMap [
 			rml:reference "airport öwnership"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:marker;
 		rr:objectMap [
@@ -64,5 +68,4 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		rr:template "http://city.example.com/{continent}/{country}/{city}";
 		rr:class schema:City
 	].
-	
 	

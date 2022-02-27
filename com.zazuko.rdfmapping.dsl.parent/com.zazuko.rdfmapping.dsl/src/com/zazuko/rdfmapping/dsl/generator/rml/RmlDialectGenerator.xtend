@@ -71,8 +71,8 @@ class RmlDialectGenerator {
 			
 			«FOR pom : poMappings»
 				«pom.predicateObjectMap(jc.newContext())»«jc.acquireMarker»
+				
 			«ENDFOR»
-			
 		'''
 	
 	def subjectMap(Mapping it, IJoinContext jc) '''

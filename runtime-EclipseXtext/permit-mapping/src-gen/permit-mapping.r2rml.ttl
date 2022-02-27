@@ -19,6 +19,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -26,6 +27,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -33,6 +35,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:name;
 		rr:objectMap [
@@ -40,6 +43,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "it"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:alternateName;
 		rr:objectMap [
@@ -47,6 +51,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:alternateName;
 		rr:objectMap [
@@ -54,6 +59,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:alternateName;
 		rr:objectMap [
@@ -61,6 +67,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:alternateName;
 		rr:objectMap [
@@ -86,6 +93,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "de"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:description;
 		rr:objectMap [
@@ -93,6 +101,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "fr"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:description;
 		rr:objectMap [
@@ -100,6 +109,7 @@ PREFIX schema: <https://schema.org/>
 			rr:language "en"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate schema:description;
 		rr:objectMap [
@@ -107,18 +117,21 @@ PREFIX schema: <https://schema.org/>
 			rr:language "it"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:permitLevel;
 		rr:objectMap [
 			rr:template "https://permits.example.org/permitlevels/{PERMIT_LEVEL}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:status;
 		rr:objectMap [
 			rr:template "https://permits.example.org/statuses/{PERMIT_STATUS}"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate ex:agency;
 		rr:objectMap [

@@ -35,6 +35,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			rr:constant "blue"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate thing:color;
 		rr:objectMap [

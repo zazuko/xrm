@@ -24,12 +24,14 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			rr:constant "blue"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate employee:no;
 		rr:objectMap [
 			rml:reference "map"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate employee:map;
 		rr:objectMap [
@@ -50,7 +52,6 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		rr:template "http://airport.example.com/{EMPNO}"
 	].
 	
-	
 <#TestImpactMapping>
 	a rr:TriplesMap;
 	
@@ -70,6 +71,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			rr:constant "blue"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate employee:map;
 		rr:objectMap [

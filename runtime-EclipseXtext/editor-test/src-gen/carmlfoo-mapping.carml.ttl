@@ -39,12 +39,14 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			rr:constant "blue"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate thing:size;
 		rr:objectMap [
 			rml:reference "map"
 		]
 	];
+	
 	rr:predicateObjectMap [
 		rr:predicate thing:weight;
 		rr:objectMap [
