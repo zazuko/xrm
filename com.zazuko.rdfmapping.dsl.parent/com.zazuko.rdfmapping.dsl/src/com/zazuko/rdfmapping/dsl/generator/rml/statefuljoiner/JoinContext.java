@@ -17,6 +17,12 @@ public class JoinContext implements IJoinContext {
 		
 		this.markers = new LinkedList<>();
 	}
+	
+
+	@Override
+	public IJoinContext newContext() {
+		return this.parent.newContext();
+	}
 
 	@Override
 	public IJoinContext newContext(String separator, String postfix) {
@@ -42,4 +48,5 @@ public class JoinContext implements IJoinContext {
 		this.markers.add(marker);
 		return marker;
 	}
+
 }

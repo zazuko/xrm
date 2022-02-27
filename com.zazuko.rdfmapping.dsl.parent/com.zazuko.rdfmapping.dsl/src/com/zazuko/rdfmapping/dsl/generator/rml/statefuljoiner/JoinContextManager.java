@@ -5,10 +5,16 @@ import java.util.List;
 
 public class JoinContextManager implements IJoinContext {
 
+	private final String defaultSeparator;
+	private final String defaultPostfix;
+	
 	private List<JoinContext> children;
 	private int counter;
 
-	public JoinContextManager() {
+	public JoinContextManager(String defaultSeparator, String defaultPostfix) {
+		this.defaultSeparator = defaultSeparator;
+		this.defaultPostfix = defaultPostfix;
+		
 		this.children = new ArrayList<>();
 	}
 
@@ -19,6 +25,11 @@ public class JoinContextManager implements IJoinContext {
 			result = child.postProcess(result);
 		}
 		return result;
+	}
+	
+	@Override
+	public IJoinContext newContext() {
+		return this.newContext(this.defaultSeparator, this.defaultPostfix);
 	}
 
 	@Override
@@ -32,4 +43,6 @@ public class JoinContextManager implements IJoinContext {
 	public String acquireMarker() {
 		return "###replaceme___" + this.counter++ + "___replaceme###";
 	}
+
+	
 }

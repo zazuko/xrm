@@ -40,7 +40,7 @@ class RmlDialectGenerator {
 	}
 	
 	def CharSequence generateTurtle(Iterable<Mapping> mappings) {
-		val JoinContextManager jc = new JoinContextManager();
+		val JoinContextManager jc = new JoinContextManager(";", "");
 		val CharSequence template = generateTurtle(mappings, jc);
 		val CharSequence result = jc.postProcess(template.toString());
 		return result;	
