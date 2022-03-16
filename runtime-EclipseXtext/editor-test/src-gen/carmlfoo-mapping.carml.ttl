@@ -23,7 +23,7 @@ PREFIX thing: <http://foobar.com/things/thing/>
 			carml:declaresNamespace [
 				carml:namespacePrefix "exb";
 				carml:namespaceName "http://www.example.com/books/1.0/"
-			];
+			]
 		];
 		rml:referenceFormulation ql:XPath
 	];

@@ -20,17 +20,20 @@ class CarmlDialect extends RmlDialect implements IRmlDialect {
 		«IF sourceIsQueryResolved»
 			rml:query """«sourceResolved»"""«jc.acquireMarker»
 		«ELSE»
-			rml:source [
-				a carml:Stream«jc.acquireMarker»
-				carml:streamName "«sourceResolved»"«jc.acquireMarker»
-				«IF xmlNamespaceExtension !== null»
-				«FOR Prefix p : xmlNamespaceExtension.prefixes»
-				«p.declareNamespace(jc.newContext)»«jc.acquireMarker»
-				«ENDFOR»
-				«ENDIF»
-			]«jc.acquireMarker»
+			«sourceCarmlStream(jc.newContext)»«jc.acquireMarker»
 		«ENDIF»
 	'''
+	
+	def private sourceCarmlStream(LogicalSource it, IJoinContext jc) '''
+		rml:source [
+			a carml:Stream«jc.acquireMarker»
+			carml:streamName "«sourceResolved»"«jc.acquireMarker»
+			«IF xmlNamespaceExtension !== null»
+			«FOR Prefix p : xmlNamespaceExtension.prefixes»
+			«p.declareNamespace(jc.newContext)»«jc.acquireMarker»
+			«ENDFOR»
+			«ENDIF»
+		]'''
 	
 	def private declareNamespace(Prefix it, IJoinContext jc) '''
 		 carml:declaresNamespace [
