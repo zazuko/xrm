@@ -5,7 +5,6 @@ import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtract
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.XmlNamespaceExtensionExtractor
-import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel

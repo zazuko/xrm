@@ -10,14 +10,12 @@
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 						"valueUrl": "http://example.org/Department"
-					}
-					,
+					},
 					{
 						"propertyUrl": "http://example.org/location",
 						"virtual": true,
 						"valueUrl": "Foo"
-					}
-					,
+					},
 					{
 						"suppressOutput": true,
 						"titles": "DEPTNO"
@@ -26,10 +24,9 @@
 						"suppressOutput": true,
 						"titles": "LOC"
 					}
-				] 
+				]
 			}
 		},
-		
 		{
 			"url": "DEPT",
 			"tableSchema": {
@@ -39,18 +36,16 @@
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 						"valueUrl": "http://example.org/Site"
-					}
-					,
+					},
 					{
 						"propertyUrl": "http://example.org/siteName",
 						"titles": "LOC"
-					}
-					,
+					},
 					{
 						"suppressOutput": true,
 						"titles": "DEPTNO"
 					}
-				] 
+				]
 			}
 		}
 	]

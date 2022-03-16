@@ -4,410 +4,470 @@ PREFIX ex: <http://schema.example.org/>
 PREFIX schema: <https://schema.org/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-<#Amt> a rr:TriplesMap ;
+<#Amt>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "t_amt" ];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/agencies/{AMT_ID}" ;
-		rr:class schema:GovernmentOrganization ;
+		rr:template "https://permits.zazukoians.org/agencies/{AMT_ID}";
+		rr:class schema:GovernmentOrganization
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate schema:alternateName ;
+		rr:predicate schema:alternateName;
 		rr:objectMap [
-			rr:column "AMT_ABK_DE" ;
-			rr:language "de" ;
-		];
+			rr:column "AMT_ABK_DE";
+			rr:language "de"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:alternateName ;
+		rr:predicate schema:alternateName;
 		rr:objectMap [
-			rr:column "AMT_ABK_FR" ;
-			rr:language "fr" ;
-		];
+			rr:column "AMT_ABK_FR";
+			rr:language "fr"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:alternateName ;
+		rr:predicate schema:alternateName;
 		rr:objectMap [
-			rr:column "AMT_ABK_EN" ;
-			rr:language "en" ;
-		];
+			rr:column "AMT_ABK_EN";
+			rr:language "en"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:alternateName ;
+		rr:predicate schema:alternateName;
 		rr:objectMap [
-			rr:column "AMT_ABK_IT" ;
-			rr:language "it" ;
-		];
+			rr:column "AMT_ABK_IT";
+			rr:language "it"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:name ;
+		rr:predicate schema:name;
 		rr:objectMap [
-			rr:column "AMT_NAME_DE" ;
-			rr:language "de" ;
-		];
+			rr:column "AMT_NAME_DE";
+			rr:language "de"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:name ;
+		rr:predicate schema:name;
 		rr:objectMap [
-			rr:column "AMT_NAME_FR" ;
-			rr:language "fr" ;
-		];
+			rr:column "AMT_NAME_FR";
+			rr:language "fr"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:name ;
+		rr:predicate schema:name;
 		rr:objectMap [
-			rr:column "AMT_NAME_EN" ;
-			rr:language "en" ;
-		];
+			rr:column "AMT_NAME_EN";
+			rr:language "en"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:name ;
+		rr:predicate schema:name;
 		rr:objectMap [
-			rr:column "AMT_NAME_IT" ;
-			rr:language "it" ;
-		];
-	]
-.
-<#Bewilligung> a rr:TriplesMap ;
+			rr:column "AMT_NAME_IT";
+			rr:language "it"
+		]
+	].
+	
+<#Bewilligung>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "t_bewilligung" ];
 	
 	rr:subjectMap [
-		rr:template "https://permits.zazukoians.org/permits/{BEW_ID}" ;
-		rr:class schema:GovernmentPermit ;
+		rr:template "https://permits.zazukoians.org/permits/{BEW_ID}";
+		rr:class schema:GovernmentPermit
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate schema:description ;
+		rr:predicate schema:description;
 		rr:objectMap [
-			rr:column "BEW_BESCHR_DE" ;
-			rr:language "de" ;
-		];
+			rr:column "BEW_BESCHR_DE";
+			rr:language "de"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:description ;
+		rr:predicate schema:description;
 		rr:objectMap [
-			rr:column "BEW_BESCHR_FR" ;
-			rr:language "fr" ;
-		];
+			rr:column "BEW_BESCHR_FR";
+			rr:language "fr"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:description ;
+		rr:predicate schema:description;
 		rr:objectMap [
-			rr:column "BEW_BESCHR_EN" ;
-			rr:language "en" ;
-		];
+			rr:column "BEW_BESCHR_EN";
+			rr:language "en"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:description ;
+		rr:predicate schema:description;
 		rr:objectMap [
-			rr:column "BEW_BESCHR_IT" ;
-			rr:language "it" ;
-		];
+			rr:column "BEW_BESCHR_IT";
+			rr:language "it"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:permitAudience ;
+		rr:predicate schema:permitAudience;
 		rr:objectMap [
-			rr:template "https://permits.zazukoians.org/permitaudiences/{BEW_BET_PERS_EVENT}" ;
-		];
+			rr:template "https://permits.zazukoians.org/permitaudiences/{BEW_BET_PERS_EVENT}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:permitLevel ;
+		rr:predicate bdb:permitLevel;
 		rr:objectMap [
-			rr:template "https://permits.zazukoians.org/permitlevels/{BEW_TYPE}" ;
-		];
+			rr:template "https://permits.zazukoians.org/permitlevels/{BEW_TYPE}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:status ;
+		rr:predicate bdb:status;
 		rr:objectMap [
-			rr:template "https://permits.zazukoians.org/statuses/{BEW_STATUS}" ;
-		];
+			rr:template "https://permits.zazukoians.org/statuses/{BEW_STATUS}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:url ;
+		rr:predicate schema:url;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_URL_DE" ;
-			rr:language "de" ;
-		];
+			rr:column "BEW_KONTAKT_URL_DE";
+			rr:language "de"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:url ;
+		rr:predicate schema:url;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_URL_FR" ;
-			rr:language "fr" ;
-		];
+			rr:column "BEW_KONTAKT_URL_FR";
+			rr:language "fr"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:url ;
+		rr:predicate schema:url;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_URL_EN" ;
-			rr:language "en" ;
-		];
+			rr:column "BEW_KONTAKT_URL_EN";
+			rr:language "en"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:url ;
+		rr:predicate schema:url;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_URL_IT" ;
-			rr:language "it" ;
-		];
+			rr:column "BEW_KONTAKT_URL_IT";
+			rr:language "it"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:name ;
+		rr:predicate schema:name;
 		rr:objectMap [
-			rr:column "BEW_TITLE_DE" ;
-			rr:language "de" ;
-		];
+			rr:column "BEW_TITLE_DE";
+			rr:language "de"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:name ;
+		rr:predicate schema:name;
 		rr:objectMap [
-			rr:column "BEW_TITLE_FR" ;
-			rr:language "fr" ;
-		];
+			rr:column "BEW_TITLE_FR";
+			rr:language "fr"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:name ;
+		rr:predicate schema:name;
 		rr:objectMap [
-			rr:column "BEW_TITLE_EN" ;
-			rr:language "en" ;
-		];
+			rr:column "BEW_TITLE_EN";
+			rr:language "en"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:name ;
+		rr:predicate schema:name;
 		rr:objectMap [
-			rr:column "BEW_TITLE_IT" ;
-			rr:language "it" ;
-		];
+			rr:column "BEW_TITLE_IT";
+			rr:language "it"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:legalFoundation ;
+		rr:predicate bdb:legalFoundation;
 		rr:objectMap [
-			rr:column "BEW_RECHT_GRUND_DE" ;
-			rr:language "de" ;
-		];
+			rr:column "BEW_RECHT_GRUND_DE";
+			rr:language "de"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:legalFoundation ;
+		rr:predicate bdb:legalFoundation;
 		rr:objectMap [
-			rr:column "BEW_RECHT_GRUND_FR" ;
-			rr:language "fr" ;
-		];
+			rr:column "BEW_RECHT_GRUND_FR";
+			rr:language "fr"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:legalFoundation ;
+		rr:predicate bdb:legalFoundation;
 		rr:objectMap [
-			rr:column "BEW_RECHT_GRUND_EN" ;
-			rr:language "en" ;
-		];
+			rr:column "BEW_RECHT_GRUND_EN";
+			rr:language "en"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:legalFoundation ;
+		rr:predicate bdb:legalFoundation;
 		rr:objectMap [
-			rr:column "BEW_RECHT_GRUND_IT" ;
-			rr:language "it" ;
-		];
+			rr:column "BEW_RECHT_GRUND_IT";
+			rr:language "it"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:dateModified ;
+		rr:predicate schema:dateModified;
 		rr:objectMap [
-			rr:column "BEW_LAST_CHANGED" ;
-		];
+			rr:column "BEW_LAST_CHANGED"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:agency ;
+		rr:predicate bdb:agency;
 		rr:objectMap [
-			rr:template "https://permits.zazukoians.org/agencies/{BEW_AMT_LNK}" ;
-		];
+			rr:template "https://permits.zazukoians.org/agencies/{BEW_AMT_LNK}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:gemeinde ;
+		rr:predicate ex:gemeinde;
 		rr:objectMap [
-			rr:template "http://example.org/gemeinde/{BEW_GEMEINDE}" ;
-		];
-	]
-.
-<#KontaktAusBewilligung> a rr:TriplesMap ;
+			rr:template "http://example.org/gemeinde/{BEW_GEMEINDE}"
+		]
+	].
+	
+<#KontaktAusBewilligung>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "t_bewilligung" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kontaktbew/{BEW_ID}" ;
-		rr:class ex:KontaktAusBewilligung ;
+		rr:template "http://example.org/kontaktbew/{BEW_ID}";
+		rr:class ex:KontaktAusBewilligung
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate ex:bewilligung ;
+		rr:predicate ex:bewilligung;
 		rr:objectMap [
-			rr:template "https://permits.zazukoians.org/permits/{BEW_ID}" ;
-		];
+			rr:template "https://permits.zazukoians.org/permits/{BEW_ID}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:contact ;
+		rr:predicate bdb:contact;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_DE" ;
-			rr:language "de" ;
-		];
+			rr:column "BEW_KONTAKT_DE";
+			rr:language "de"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:contact ;
+		rr:predicate bdb:contact;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_FR" ;
-			rr:language "fr" ;
-		];
+			rr:column "BEW_KONTAKT_FR";
+			rr:language "fr"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:contact ;
+		rr:predicate bdb:contact;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_EN" ;
-			rr:language "en" ;
-		];
+			rr:column "BEW_KONTAKT_EN";
+			rr:language "en"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:contact ;
+		rr:predicate bdb:contact;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_IT" ;
-			rr:language "it" ;
-		];
+			rr:column "BEW_KONTAKT_IT";
+			rr:language "it"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:kontaktDE ;
+		rr:predicate ex:kontaktDE;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_DE" ;
-		];
+			rr:column "BEW_KONTAKT_DE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:kontaktFR ;
+		rr:predicate ex:kontaktFR;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_FR" ;
-		];
+			rr:column "BEW_KONTAKT_FR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:kontaktEN ;
+		rr:predicate ex:kontaktEN;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_EN" ;
-		];
+			rr:column "BEW_KONTAKT_EN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:kontaktIT ;
+		rr:predicate ex:kontaktIT;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_IT" ;
-		];
+			rr:column "BEW_KONTAKT_IT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:address ;
+		rr:predicate schema:address;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_ADR" ;
-		];
+			rr:column "BEW_KONTAKT_ADR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:faxNumber ;
+		rr:predicate schema:faxNumber;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_FAX" ;
-		];
+			rr:column "BEW_KONTAKT_FAX"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:email ;
+		rr:predicate schema:email;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_MAIL" ;
-		];
+			rr:column "BEW_KONTAKT_MAIL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:telephone ;
+		rr:predicate schema:telephone;
 		rr:objectMap [
-			rr:column "BEW_KONTAKT_TEL" ;
-		];
-	]
-.
-<#KantonInfo> a rr:TriplesMap ;
+			rr:column "BEW_KONTAKT_TEL"
+		]
+	].
+	
+<#KantonInfo>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "t_kt_info" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}" ;
-		rr:class ex:KantonInfo ;
+		rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}";
+		rr:class ex:KantonInfo
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate ex:bewilligung ;
+		rr:predicate ex:bewilligung;
 		rr:objectMap [
-			rr:template "https://permits.zazukoians.org/permits/{KTI_BEW_LNK}" ;
-		];
+			rr:template "https://permits.zazukoians.org/permits/{KTI_BEW_LNK}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:url ;
+		rr:predicate schema:url;
 		rr:objectMap [
-			rr:column "KTI_INTERNET" ;
-		];
+			rr:column "KTI_INTERNET"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:kanton ;
+		rr:predicate ex:kanton;
 		rr:objectMap [
-			rr:column "KTI_KANTON" ;
-		];
-	]
-.
-<#KontaktAusKantonInfo> a rr:TriplesMap ;
+			rr:column "KTI_KANTON"
+		]
+	].
+	
+<#KontaktAusKantonInfo>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "t_kt_info" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/kontaktkantoninfo/{KTI_ID}" ;
-		rr:class ex:KontaktKantonInfo ;
+		rr:template "http://example.org/kontaktkantoninfo/{KTI_ID}";
+		rr:class ex:KontaktKantonInfo
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate ex:kantonInfo ;
+		rr:predicate ex:kantonInfo;
 		rr:objectMap [
-			rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}" ;
-		];
+			rr:template "http://example.org/kantoninfo/{KTI_KANTON}{KTI_ID}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:kanton ;
+		rr:predicate ex:kanton;
 		rr:objectMap [
-			rr:column "KTI_KANTON" ;
-		];
+			rr:column "KTI_KANTON"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate bdb:contact ;
+		rr:predicate bdb:contact;
 		rr:objectMap [
-			rr:column "KTI_OFFICE" ;
-		];
+			rr:column "KTI_OFFICE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:email ;
+		rr:predicate schema:email;
 		rr:objectMap [
-			rr:column "KTI_EMAIL" ;
-		];
+			rr:column "KTI_EMAIL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:telephone ;
+		rr:predicate schema:telephone;
 		rr:objectMap [
-			rr:column "KTI_TELEPHONE" ;
-		];
-	]
-.
-<#Gemeinde> a rr:TriplesMap ;
+			rr:column "KTI_TELEPHONE"
+		]
+	].
+	
+<#Gemeinde>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "t_gemeinde" ];
 	
 	rr:subjectMap [
-		rr:template "http://example.org/gemeinde/{GDE_PLZ}" ;
-		rr:class ex:Gemeinde ;
+		rr:template "http://example.org/gemeinde/{GDE_PLZ}";
+		rr:class ex:Gemeinde
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate ex:id ;
+		rr:predicate ex:id;
 		rr:objectMap [
-			rr:column "GDE_PLZ" ;
-		];
+			rr:column "GDE_PLZ"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:plz ;
+		rr:predicate ex:plz;
 		rr:objectMap [
-			rr:column "GDE_PLZ_PA" ;
-			rr:datatype xsd:int ;
-		];
+			rr:column "GDE_PLZ_PA";
+			rr:datatype xsd:int
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ex:ort ;
+		rr:predicate ex:ort;
 		rr:objectMap [
-			rr:column "GDE_ORT_PA" ;
-		];
-	]
-.
+			rr:column "GDE_ORT_PA"
+		]
+	].
+	

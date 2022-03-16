@@ -5,69 +5,77 @@ PREFIX employee: <http://example.com/employee>
 PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
-<#FooMapping> a rr:TriplesMap ;
+<#FooMapping>
+	a rr:TriplesMap;
+	
 	rml:logicalSource [
-		rml:source "KWS" ;
+		rml:source "KWS";
 		rml:referenceFormulation ql:XPath
 	];
 	
 	rr:subjectMap [
-		rr:template "foo" ;
-		rr:class employee:Employee ;
+		rr:template "foo";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:constant "blue" ;
-		];
+			rr:constant "blue"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate employee:no ;
+		rr:predicate employee:no;
 		rr:objectMap [
-			rml:reference "map" ;
-		];
+			rml:reference "map"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate employee:map ;
+		rr:predicate employee:map;
 		rr:objectMap [
-			rml:reference "map" ;
-		];
-	]
-.
-<#ReferenceTemplateFromOtherFile> a rr:TriplesMap ;
+			rml:reference "map"
+		]
+	].
+	
+<#ReferenceTemplateFromOtherFile>
+	a rr:TriplesMap;
+	
 	rml:logicalSource [
-		rml:query """EMP""" ;
-		rml:referenceFormulation ql:XPath ;
-		rml:iterator "/Employees/Employee" ;
+		rml:query """EMP""";
+		rml:referenceFormulation ql:XPath;
+		rml:iterator "/Employees/Employee"
 	];
 	
 	rr:subjectMap [
-		rr:template "http://airport.example.com/{EMPNO}" ;
-	]
+		rr:template "http://airport.example.com/{EMPNO}"
+	].
 	
-.
-<#TestImpactMapping> a rr:TriplesMap ;
+<#TestImpactMapping>
+	a rr:TriplesMap;
+	
 	rml:logicalSource [
-		rml:source "http://www.example.com/Foo.xml" ;
+		rml:source "http://www.example.com/Foo.xml";
 		rml:referenceFormulation ql:CSV
 	];
 	
 	rr:subjectMap [
-		rr:template "http://foo.example.com/{id}" ;
-		rr:class employee:Employee ;
+		rr:template "http://foo.example.com/{id}";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:constant "blue" ;
-		];
+			rr:constant "blue"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate employee:map ;
+		rr:predicate employee:map;
 		rr:objectMap [
-			rml:reference "bar" ;
-		];
-	]
-.
+			rml:reference "bar"
+		]
+	].
+	

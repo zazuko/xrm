@@ -8,8 +8,7 @@
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 				"valueUrl": "http://schema.example.org/Ort"
-			}
-			,
+			},
 			{
 				"propertyUrl": "http://schema.example.org/onrp",
 				"datatype": "int",
@@ -38,6 +37,6 @@
 				"propertyUrl": "http://schema.example.org/bezeichnung",
 				"titles": "ORTBEZ27"
 			}
-		] 
+		]
 	}
 }

@@ -7,1353 +7,1572 @@ PREFIX schema: <http://schema.org/>
 PREFIX stabs: <http://data.staatsarchiv-bs.ch/vocab/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-<#RecordSet> a rr:TriplesMap ;
+<#RecordSet>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_VRZNG_ENHT_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR}" ;
-		rr:class stabs:Verzeichnungseinheit ;
-		rr:class ric:Record ;
-		rr:class dc:BibliographicResource ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR}";
+		rr:class stabs:Verzeichnungseinheit;
+		rr:class ric:Record;
+		rr:class dc:BibliographicResource
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TITEL ;
+		rr:predicate stabs:TITEL;
 		rr:objectMap [
-			rr:column "TITEL" ;
-		];
+			rr:column "TITEL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate dc:title ;
+		rr:predicate dc:title;
 		rr:objectMap [
-			rr:column "TITEL" ;
-		];
+			rr:column "TITEL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate ric:title ;
+		rr:predicate ric:title;
 		rr:objectMap [
-			rr:column "TITEL" ;
-		];
+			rr:column "TITEL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:SIGNATUR ;
+		rr:predicate stabs:SIGNATUR;
 		rr:objectMap [
-			rr:column "SIGNATUR" ;
-		];
+			rr:column "SIGNATUR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:GEBURTSDATUM ;
+		rr:predicate stabs:GEBURTSDATUM;
 		rr:objectMap [
-			rr:column "GEBURTSDATUM" ;
-		];
+			rr:column "GEBURTSDATUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TODESDATUM ;
+		rr:predicate stabs:TODESDATUM;
 		rr:objectMap [
-			rr:column "TODESDATUM" ;
-		];
+			rr:column "TODESDATUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:STUFE ;
+		rr:predicate stabs:STUFE;
 		rr:objectMap [
-			rr:column "STUFE" ;
-		];
+			rr:column "STUFE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ENTSTEHUNGSZEITRAUM ;
+		rr:predicate stabs:ENTSTEHUNGSZEITRAUM;
 		rr:objectMap [
-			rr:column "ENTSTEHUNGSZEITRAUM" ;
-		];
+			rr:column "ENTSTEHUNGSZEITRAUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:DARIN ;
+		rr:predicate stabs:DARIN;
 		rr:objectMap [
-			rr:column "DARIN" ;
-		];
+			rr:column "DARIN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BILD_ANSICHT ;
+		rr:predicate stabs:BILD_ANSICHT;
 		rr:objectMap [
-			rr:column "BILD_ANSICHT" ;
-		];
+			rr:column "BILD_ANSICHT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FINDHILFSMITTEL ;
+		rr:predicate stabs:FINDHILFSMITTEL;
 		rr:objectMap [
-			rr:column "FINDHILFSMITTEL" ;
-		];
+			rr:column "FINDHILFSMITTEL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VE_ZUGANG_LINK ;
+		rr:predicate stabs:VE_ZUGANG_LINK;
 		rr:objectMap [
-			rr:column "VE_ZUGANG_LINK" ;
-		];
+			rr:column "VE_ZUGANG_LINK"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ERSCHLIESSUNGSGRAD ;
+		rr:predicate stabs:ERSCHLIESSUNGSGRAD;
 		rr:objectMap [
-			rr:column "ERSCHLIESSUNGSGRAD" ;
-		];
+			rr:column "ERSCHLIESSUNGSGRAD"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ARCHIVALIENART ;
+		rr:predicate stabs:ARCHIVALIENART;
 		rr:objectMap [
-			rr:column "ARCHIVALIENART" ;
-		];
+			rr:column "ARCHIVALIENART"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FRUEHERE_STABS_SIGNATUR ;
+		rr:predicate stabs:FRUEHERE_STABS_SIGNATUR;
 		rr:objectMap [
-			rr:column "FRUEHERE_STABS_SIGNATUR" ;
-		];
+			rr:column "FRUEHERE_STABS_SIGNATUR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ABSPIELDAUER ;
+		rr:predicate stabs:ABSPIELDAUER;
 		rr:objectMap [
-			rr:column "ABSPIELDAUER" ;
-		];
+			rr:column "ABSPIELDAUER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ANZAHL ;
+		rr:predicate stabs:ANZAHL;
 		rr:objectMap [
-			rr:column "ANZAHL" ;
-		];
+			rr:column "ANZAHL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:LAUFMETER ;
+		rr:predicate stabs:LAUFMETER;
 		rr:objectMap [
-			rr:column "LAUFMETER" ;
-		];
+			rr:column "LAUFMETER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ENTHAELT ;
+		rr:predicate stabs:ENTHAELT;
 		rr:objectMap [
-			rr:column "ENTHAELT" ;
-		];
+			rr:column "ENTHAELT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VE_AKTENBILDNER_LINK ;
+		rr:predicate stabs:VE_AKTENBILDNER_LINK;
 		rr:objectMap [
-			rr:column "VE_AKTENBILDNER_LINK" ;
-		];
+			rr:column "VE_AKTENBILDNER_LINK"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VE_ABLIEFERUNG_LINK ;
+		rr:predicate stabs:VE_ABLIEFERUNG_LINK;
 		rr:objectMap [
-			rr:column "VE_ABLIEFERUNG_LINK" ;
-		];
+			rr:column "VE_ABLIEFERUNG_LINK"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AKTENBILDNER_PROVENIENZ_TEXT ;
+		rr:predicate stabs:AKTENBILDNER_PROVENIENZ_TEXT;
 		rr:objectMap [
-			rr:column "AKTENBILDNER_PROVENIENZ_TEXT" ;
-		];
+			rr:column "AKTENBILDNER_PROVENIENZ_TEXT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:IDENTIFIKATION ;
+		rr:predicate stabs:IDENTIFIKATION;
 		rr:objectMap [
-			rr:column "IDENTIFIKATION" ;
-		];
+			rr:column "IDENTIFIKATION"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERWEISE ;
+		rr:predicate stabs:VERWEISE;
 		rr:objectMap [
-			rr:column "VERWEISE" ;
-		];
+			rr:column "VERWEISE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:INHALT ;
+		rr:predicate stabs:INHALT;
 		rr:objectMap [
-			rr:column "INHALT" ;
-		];
+			rr:column "INHALT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:KONTEXT ;
+		rr:predicate stabs:KONTEXT;
 		rr:objectMap [
-			rr:column "KONTEXT" ;
-		];
+			rr:column "KONTEXT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate schema:place ;
+		rr:predicate schema:place;
 		rr:objectMap [
-			rr:column "ORT" ;
-		];
+			rr:column "ORT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:UMFANG ;
+		rr:predicate stabs:UMFANG;
 		rr:objectMap [
-			rr:column "UMFANG" ;
-		];
+			rr:column "UMFANG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BEHAELTNISSE ;
+		rr:predicate stabs:BEHAELTNISSE;
 		rr:objectMap [
-			rr:column "BEHAELTNISSE" ;
-		];
+			rr:column "BEHAELTNISSE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BEHAELTNISTYP_HOEFLINGER ;
+		rr:predicate stabs:BEHAELTNISTYP_HOEFLINGER;
 		rr:objectMap [
-			rr:column "BEHAELTNISTYP_HOEFLINGER" ;
-		];
+			rr:column "BEHAELTNISTYP_HOEFLINGER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BIBLIOTHEKSKATALOG ;
+		rr:predicate stabs:BIBLIOTHEKSKATALOG;
 		rr:objectMap [
-			rr:column "BIBLIOTHEKSKATALOG" ;
-		];
+			rr:column "BIBLIOTHEKSKATALOG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERWALTUNGSGESCHICHTE_BIOGRAFI ;
+		rr:predicate stabs:VERWALTUNGSGESCHICHTE_BIOGRAFI;
 		rr:objectMap [
-			rr:column "VERWALTUNGSGESCHICHTE_BIOGRAFI" ;
-		];
+			rr:column "VERWALTUNGSGESCHICHTE_BIOGRAFI"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZEITRAUM_DER_MATERIALZUSAMMENS ;
+		rr:predicate stabs:ZEITRAUM_DER_MATERIALZUSAMMENS;
 		rr:objectMap [
-			rr:column "ZEITRAUM_DER_MATERIALZUSAMMENS" ;
-		];
+			rr:column "ZEITRAUM_DER_MATERIALZUSAMMENS"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BESTANDSGESCHICHTE ;
+		rr:predicate stabs:BESTANDSGESCHICHTE;
 		rr:objectMap [
-			rr:column "BESTANDSGESCHICHTE" ;
-		];
+			rr:column "BESTANDSGESCHICHTE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:INHALT_UND_INNERE_ORDNUNG ;
+		rr:predicate stabs:INHALT_UND_INNERE_ORDNUNG;
 		rr:objectMap [
-			rr:column "INHALT_UND_INNERE_ORDNUNG" ;
-		];
+			rr:column "INHALT_UND_INNERE_ORDNUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:NEUZUGAENGE ;
+		rr:predicate stabs:NEUZUGAENGE;
 		rr:objectMap [
-			rr:column "NEUZUGAENGE" ;
-		];
+			rr:column "NEUZUGAENGE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZUGANGS_UND_BENUTZUNGSBEDINGUN ;
+		rr:predicate stabs:ZUGANGS_UND_BENUTZUNGSBEDINGUN;
 		rr:objectMap [
-			rr:column "ZUGANGS_UND_BENUTZUNGSBEDINGUN" ;
-		];
+			rr:column "ZUGANGS_UND_BENUTZUNGSBEDINGUN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:RECHTSSTATUS ;
+		rr:predicate stabs:RECHTSSTATUS;
 		rr:objectMap [
-			rr:column "RECHTSSTATUS" ;
-		];
+			rr:column "RECHTSSTATUS"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZUGANGSBESTIMMUNGEN ;
+		rr:predicate stabs:ZUGANGSBESTIMMUNGEN;
 		rr:objectMap [
-			rr:column "ZUGANGSBESTIMMUNGEN" ;
-		];
+			rr:column "ZUGANGSBESTIMMUNGEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:COPYRIGHT_REPORDUKTIONSBESTIMM ;
+		rr:predicate stabs:COPYRIGHT_REPORDUKTIONSBESTIMM;
 		rr:objectMap [
-			rr:column "COPYRIGHT_REPORDUKTIONSBESTIMM" ;
-		];
+			rr:column "COPYRIGHT_REPORDUKTIONSBESTIMM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:SPRACHE ;
+		rr:predicate stabs:SPRACHE;
 		rr:objectMap [
-			rr:column "SPRACHE" ;
-		];
+			rr:column "SPRACHE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:SACHVERWANDTE_UNTERLAGEN ;
+		rr:predicate stabs:SACHVERWANDTE_UNTERLAGEN;
 		rr:objectMap [
-			rr:column "SACHVERWANDTE_UNTERLAGEN" ;
-		];
+			rr:column "SACHVERWANDTE_UNTERLAGEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUFBEWAHRUNGSORT_DER_ORIGINALE ;
+		rr:predicate stabs:AUFBEWAHRUNGSORT_DER_ORIGINALE;
 		rr:objectMap [
-			rr:column "AUFBEWAHRUNGSORT_DER_ORIGINALE" ;
-		];
+			rr:column "AUFBEWAHRUNGSORT_DER_ORIGINALE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:KOPIEN_BZW_REPRODUKTIONEN ;
+		rr:predicate stabs:KOPIEN_BZW_REPRODUKTIONEN;
 		rr:objectMap [
-			rr:column "KOPIEN_BZW_REPRODUKTIONEN" ;
-		];
+			rr:column "KOPIEN_BZW_REPRODUKTIONEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERWANDTE_VE_NICHT_IN_SCOPEARC ;
+		rr:predicate stabs:VERWANDTE_VE_NICHT_IN_SCOPEARC;
 		rr:objectMap [
-			rr:column "VERWANDTE_VE_NICHT_IN_SCOPEARC" ;
-		];
+			rr:column "VERWANDTE_VE_NICHT_IN_SCOPEARC"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERWANDTES_MATERIAL ;
+		rr:predicate stabs:VERWANDTES_MATERIAL;
 		rr:objectMap [
-			rr:column "VERWANDTES_MATERIAL" ;
-		];
+			rr:column "VERWANDTES_MATERIAL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ANMERKUNGEN ;
+		rr:predicate stabs:ANMERKUNGEN;
 		rr:objectMap [
-			rr:column "ANMERKUNGEN" ;
-		];
+			rr:column "ANMERKUNGEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:MASSSTAB ;
+		rr:predicate stabs:MASSSTAB;
 		rr:objectMap [
-			rr:column "MASSSTAB" ;
-		];
+			rr:column "MASSSTAB"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERFERTIGERIN ;
+		rr:predicate stabs:VERFERTIGERIN;
 		rr:objectMap [
-			rr:column "VERFERTIGERIN" ;
-		];
+			rr:column "VERFERTIGERIN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUSSTELLUNGSDATUM ;
+		rr:predicate stabs:AUSSTELLUNGSDATUM;
 		rr:objectMap [
-			rr:column "AUSSTELLUNGSDATUM" ;
-		];
+			rr:column "AUSSTELLUNGSDATUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:UNTERZEICHNERIN ;
+		rr:predicate stabs:UNTERZEICHNERIN;
 		rr:objectMap [
-			rr:column "UNTERZEICHNERIN" ;
-		];
+			rr:column "UNTERZEICHNERIN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TECHNIK ;
+		rr:predicate stabs:TECHNIK;
 		rr:objectMap [
-			rr:column "TECHNIK" ;
-		];
+			rr:column "TECHNIK"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ORIGINALTITEL_AUF_HUELLE ;
+		rr:predicate stabs:ORIGINALTITEL_AUF_HUELLE;
 		rr:objectMap [
-			rr:column "ORIGINALTITEL_AUF_HUELLE" ;
-		];
+			rr:column "ORIGINALTITEL_AUF_HUELLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:POSITIV_IN_SCHACHTEL ;
+		rr:predicate stabs:POSITIV_IN_SCHACHTEL;
 		rr:objectMap [
-			rr:column "POSITIV_IN_SCHACHTEL" ;
-		];
+			rr:column "POSITIV_IN_SCHACHTEL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AKTEN_ZUM_AUFTRAG ;
+		rr:predicate stabs:AKTEN_ZUM_AUFTRAG;
 		rr:objectMap [
-			rr:column "AKTEN_ZUM_AUFTRAG" ;
-		];
+			rr:column "AKTEN_ZUM_AUFTRAG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:REPRODUKTION ;
+		rr:predicate stabs:REPRODUKTION;
 		rr:objectMap [
-			rr:column "REPRODUKTION" ;
-		];
+			rr:column "REPRODUKTION"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ALTE_SIGNATUREN ;
+		rr:predicate stabs:ALTE_SIGNATUREN;
 		rr:objectMap [
-			rr:column "ALTE_SIGNATUREN" ;
-		];
+			rr:column "ALTE_SIGNATUREN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMAT_DER_UNTERLAGE ;
+		rr:predicate stabs:FORMAT_DER_UNTERLAGE;
 		rr:objectMap [
-			rr:column "FORMAT_DER_UNTERLAGE" ;
-		];
+			rr:column "FORMAT_DER_UNTERLAGE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERFERTIGER_ERSCHLOSSEN ;
+		rr:predicate stabs:VERFERTIGER_ERSCHLOSSEN;
 		rr:objectMap [
-			rr:column "VERFERTIGER_ERSCHLOSSEN" ;
-		];
+			rr:column "VERFERTIGER_ERSCHLOSSEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ORIGINALBEZEICHNUNG ;
+		rr:predicate stabs:ORIGINALBEZEICHNUNG;
 		rr:objectMap [
-			rr:column "ORIGINALBEZEICHNUNG" ;
-		];
+			rr:column "ORIGINALBEZEICHNUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMAT_BILD_PLAN ;
+		rr:predicate stabs:FORMAT_BILD_PLAN;
 		rr:objectMap [
-			rr:column "FORMAT_BILD_PLAN" ;
-		];
+			rr:column "FORMAT_BILD_PLAN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ANMERKUNGEN_ ;
+		rr:predicate stabs:ANMERKUNGEN_;
 		rr:objectMap [
-			rr:column "ANMERKUNGEN" ;
-		];
+			rr:column "ANMERKUNGEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERTRAGSPARTNER ;
+		rr:predicate stabs:VERTRAGSPARTNER;
 		rr:objectMap [
-			rr:column "VERTRAGSPARTNER" ;
-		];
+			rr:column "VERTRAGSPARTNER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERTRAGSGEGENSTAND ;
+		rr:predicate stabs:VERTRAGSGEGENSTAND;
 		rr:objectMap [
-			rr:column "VERTRAGSGEGENSTAND" ;
-		];
+			rr:column "VERTRAGSGEGENSTAND"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ARCHIVSIGEL ;
+		rr:predicate stabs:ARCHIVSIGEL;
 		rr:objectMap [
-			rr:column "ARCHIVSIGEL" ;
-		];
+			rr:column "ARCHIVSIGEL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:WIRKUNGSFELD ;
+		rr:predicate stabs:WIRKUNGSFELD;
 		rr:objectMap [
-			rr:column "WIRKUNGSFELD" ;
-		];
+			rr:column "WIRKUNGSFELD"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:UMFANG_GESCHAETZT ;
+		rr:predicate stabs:UMFANG_GESCHAETZT;
 		rr:objectMap [
-			rr:column "UMFANG_GESCHAETZT" ;
-		];
+			rr:column "UMFANG_GESCHAETZT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ENTSTEHUNGSZEIT_SCHWERGEWICHT_ ;
+		rr:predicate stabs:ENTSTEHUNGSZEIT_SCHWERGEWICHT_;
 		rr:objectMap [
-			rr:column "ENTSTEHUNGSZEIT_SCHWERGEWICHT_" ;
-		];
+			rr:column "ENTSTEHUNGSZEIT_SCHWERGEWICHT_"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BEWERTUNG_UND_KASSATION ;
+		rr:predicate stabs:BEWERTUNG_UND_KASSATION;
 		rr:objectMap [
-			rr:column "BEWERTUNG_UND_KASSATION" ;
-		];
+			rr:column "BEWERTUNG_UND_KASSATION"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VEROEFFENTLICHUNGEN ;
+		rr:predicate stabs:VEROEFFENTLICHUNGEN;
 		rr:objectMap [
-			rr:column "VEROEFFENTLICHUNGEN" ;
-		];
+			rr:column "VEROEFFENTLICHUNGEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:PRIORITAETSKLASSE ;
+		rr:predicate stabs:PRIORITAETSKLASSE;
 		rr:objectMap [
-			rr:column "PRIORITAETSKLASSE" ;
-		];
+			rr:column "PRIORITAETSKLASSE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:DIREKTUEBERNAHME_VON_PROVENIEN ;
+		rr:predicate stabs:DIREKTUEBERNAHME_VON_PROVENIEN;
 		rr:objectMap [
-			rr:column "DIREKTUEBERNAHME_VON_PROVENIEN" ;
-		];
+			rr:column "DIREKTUEBERNAHME_VON_PROVENIEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORM_UND_INHALT ;
+		rr:predicate stabs:FORM_UND_INHALT;
 		rr:objectMap [
-			rr:column "FORM_UND_INHALT" ;
-		];
+			rr:column "FORM_UND_INHALT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ORDNUNG_UND_KLASSIFIKATION ;
+		rr:predicate stabs:ORDNUNG_UND_KLASSIFIKATION;
 		rr:objectMap [
-			rr:column "ORDNUNG_UND_KLASSIFIKATION" ;
-		];
+			rr:column "ORDNUNG_UND_KLASSIFIKATION"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ENTSTEHUNGSZEITRAUM_STREUDATEN ;
+		rr:predicate stabs:ENTSTEHUNGSZEITRAUM_STREUDATEN;
 		rr:objectMap [
-			rr:column "ENTSTEHUNGSZEITRAUM_STREUDATEN" ;
-		];
+			rr:column "ENTSTEHUNGSZEITRAUM_STREUDATEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FRUEHERE_SIGNATUR ;
+		rr:predicate stabs:FRUEHERE_SIGNATUR;
 		rr:objectMap [
-			rr:column "FRUEHERE_SIGNATUR" ;
-		];
+			rr:column "FRUEHERE_SIGNATUR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ARCHIVGESCHICHTE ;
+		rr:predicate stabs:ARCHIVGESCHICHTE;
 		rr:objectMap [
-			rr:column "ARCHIVGESCHICHTE" ;
-		];
+			rr:column "ARCHIVGESCHICHTE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:LITERATUR_BEST_INSG ;
+		rr:predicate stabs:LITERATUR_BEST_INSG;
 		rr:objectMap [
-			rr:column "LITERATUR_BEST_INSG" ;
-		];
+			rr:column "LITERATUR_BEST_INSG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMAT_NEGATIV_HOEFLINGER ;
+		rr:predicate stabs:FORMAT_NEGATIV_HOEFLINGER;
 		rr:objectMap [
-			rr:column "FORMAT_NEGATIV_HOEFLINGER" ;
-		];
+			rr:column "FORMAT_NEGATIV_HOEFLINGER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:NICHT_IDENTIFIZIERT ;
+		rr:predicate stabs:NICHT_IDENTIFIZIERT;
 		rr:objectMap [
-			rr:column "NICHT_IDENTIFIZIERT" ;
-		];
+			rr:column "NICHT_IDENTIFIZIERT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:REPRO_HOEFLINGER ;
+		rr:predicate stabs:REPRO_HOEFLINGER;
 		rr:objectMap [
-			rr:column "REPRO_HOEFLINGER" ;
-		];
+			rr:column "REPRO_HOEFLINGER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUFNAHMEDATUM ;
+		rr:predicate stabs:AUFNAHMEDATUM;
 		rr:objectMap [
-			rr:column "AUFNAHMEDATUM" ;
-		];
+			rr:column "AUFNAHMEDATUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:REVISIONSDATUM ;
+		rr:predicate stabs:REVISIONSDATUM;
 		rr:objectMap [
-			rr:column "REVISIONSDATUM" ;
-		];
+			rr:column "REVISIONSDATUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:POSITIV_IN_ZEIGBUCH_NR ;
+		rr:predicate stabs:POSITIV_IN_ZEIGBUCH_NR;
 		rr:objectMap [
-			rr:column "POSITIV_IN_ZEIGBUCH_NR" ;
-		];
+			rr:column "POSITIV_IN_ZEIGBUCH_NR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:REPRO_NR_HOEFLINGER_ ;
+		rr:predicate stabs:REPRO_NR_HOEFLINGER_;
 		rr:objectMap [
-			rr:column "REPRO_NR_HOEFLINGER_" ;
-		];
+			rr:column "REPRO_NR_HOEFLINGER_"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:REPRO_NR_ANDERE ;
+		rr:predicate stabs:REPRO_NR_ANDERE;
 		rr:objectMap [
-			rr:column "REPRO_NR_ANDERE" ;
-		];
+			rr:column "REPRO_NR_ANDERE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:KOMMENTAR_ZUM_UMFANG ;
+		rr:predicate stabs:KOMMENTAR_ZUM_UMFANG;
 		rr:objectMap [
-			rr:column "KOMMENTAR_ZUM_UMFANG" ;
-		];
+			rr:column "KOMMENTAR_ZUM_UMFANG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:PHYSISCHE_BESCHAFFENHEIT ;
+		rr:predicate stabs:PHYSISCHE_BESCHAFFENHEIT;
 		rr:objectMap [
-			rr:column "PHYSISCHE_BESCHAFFENHEIT" ;
-		];
+			rr:column "PHYSISCHE_BESCHAFFENHEIT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUFTRAGGEBERIN ;
+		rr:predicate stabs:AUFTRAGGEBERIN;
 		rr:objectMap [
-			rr:column "AUFTRAGGEBERIN" ;
-		];
+			rr:column "AUFTRAGGEBERIN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMAT_FOTONEGATIV ;
+		rr:predicate stabs:FORMAT_FOTONEGATIV;
 		rr:objectMap [
-			rr:column "FORMAT_FOTONEGATIV" ;
-		];
+			rr:column "FORMAT_FOTONEGATIV"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUFNAHMERICHTUNG ;
+		rr:predicate stabs:AUFNAHMERICHTUNG;
 		rr:objectMap [
-			rr:column "AUFNAHMERICHTUNG" ;
-		];
+			rr:column "AUFNAHMERICHTUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUFNAHMEHOEHE ;
+		rr:predicate stabs:AUFNAHMEHOEHE;
 		rr:objectMap [
-			rr:column "AUFNAHMEHOEHE" ;
-		];
+			rr:column "AUFNAHMEHOEHE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VE_BEI_PROVENIENZSTELLE_VORHAN ;
+		rr:predicate stabs:VE_BEI_PROVENIENZSTELLE_VORHAN;
 		rr:objectMap [
-			rr:column "VE_BEI_PROVENIENZSTELLE_VORHAN" ;
-		];
+			rr:column "VE_BEI_PROVENIENZSTELLE_VORHAN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VE_IM_ARCHIV_VORHANDEN ;
+		rr:predicate stabs:VE_IM_ARCHIV_VORHANDEN;
 		rr:objectMap [
-			rr:column "VE_IM_ARCHIV_VORHANDEN" ;
-		];
+			rr:column "VE_IM_ARCHIV_VORHANDEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:IMMATRIKULATIONSNUMMER_FLUGZEU ;
+		rr:predicate stabs:IMMATRIKULATIONSNUMMER_FLUGZEU;
 		rr:objectMap [
-			rr:column "IMMATRIKULATIONSNUMMER_FLUGZEU" ;
-		];
+			rr:column "IMMATRIKULATIONSNUMMER_FLUGZEU"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TYPENBEZEICHNUNG_FLUGZEUG ;
+		rr:predicate stabs:TYPENBEZEICHNUNG_FLUGZEUG;
 		rr:objectMap [
-			rr:column "TYPENBEZEICHNUNG_FLUGZEUG" ;
-		];
+			rr:column "TYPENBEZEICHNUNG_FLUGZEUG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:EINGANGSNUMMER_PLANARCHIV ;
+		rr:predicate stabs:EINGANGSNUMMER_PLANARCHIV;
 		rr:objectMap [
-			rr:column "EINGANGSNUMMER_PLANARCHIV" ;
-		];
+			rr:column "EINGANGSNUMMER_PLANARCHIV"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:EINGANGSNUMMER_PLANARCHIV_ZUSA ;
+		rr:predicate stabs:EINGANGSNUMMER_PLANARCHIV_ZUSA;
 		rr:objectMap [
-			rr:column "EINGANGSNUMMER_PLANARCHIV_ZUSA" ;
-		];
+			rr:column "EINGANGSNUMMER_PLANARCHIV_ZUSA"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:INHALT_ ;
+		rr:predicate stabs:INHALT_;
 		rr:objectMap [
-			rr:column "INHALT_" ;
-		];
+			rr:column "INHALT_"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:PHYSISCHE_BESCHREIBUNG ;
+		rr:predicate stabs:PHYSISCHE_BESCHREIBUNG;
 		rr:objectMap [
-			rr:column "PHYSISCHE_BESCHREIBUNG" ;
-		];
+			rr:column "PHYSISCHE_BESCHREIBUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BESCHREIBSTOFF ;
+		rr:predicate stabs:BESCHREIBSTOFF;
 		rr:objectMap [
-			rr:column "BESCHREIBSTOFF" ;
-		];
+			rr:column "BESCHREIBSTOFF"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FARBE_BILDBEARBEITUNG ;
+		rr:predicate stabs:FARBE_BILDBEARBEITUNG;
 		rr:objectMap [
-			rr:column "FARBE_BILDBEARBEITUNG" ;
-		];
+			rr:column "FARBE_BILDBEARBEITUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:HAUSNAME ;
+		rr:predicate stabs:HAUSNAME;
 		rr:objectMap [
-			rr:column "HAUSNAME" ;
-		];
+			rr:column "HAUSNAME"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ALTE_HAUSNUMMER ;
+		rr:predicate stabs:ALTE_HAUSNUMMER;
 		rr:objectMap [
-			rr:column "ALTE_HAUSNUMMER" ;
-		];
+			rr:column "ALTE_HAUSNUMMER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ENTSTEHUNGSSTUFE ;
+		rr:predicate stabs:ENTSTEHUNGSSTUFE;
 		rr:objectMap [
-			rr:column "ENTSTEHUNGSSTUFE" ;
-		];
+			rr:column "ENTSTEHUNGSSTUFE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMALBEGRIFF_HOEFLINGER ;
+		rr:predicate stabs:FORMALBEGRIFF_HOEFLINGER;
 		rr:objectMap [
-			rr:column "FORMALBEGRIFF_HOEFLINGER" ;
-		];
+			rr:column "FORMALBEGRIFF_HOEFLINGER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:REPRO ;
+		rr:predicate stabs:REPRO;
 		rr:objectMap [
-			rr:column "REPRO" ;
-		];
+			rr:column "REPRO"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMAT_FOTO_BILD ;
+		rr:predicate stabs:FORMAT_FOTO_BILD;
 		rr:objectMap [
-			rr:column "FORMAT_FOTO_BILD" ;
-		];
+			rr:column "FORMAT_FOTO_BILD"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TECHNIK_PLANARCHIV ;
+		rr:predicate stabs:TECHNIK_PLANARCHIV;
 		rr:objectMap [
-			rr:column "TECHNIK_PLANARCHIV" ;
-		];
+			rr:column "TECHNIK_PLANARCHIV"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ENTSTEHUNGSSTUFE_AUSWAHLLISTE ;
+		rr:predicate stabs:ENTSTEHUNGSSTUFE_AUSWAHLLISTE;
 		rr:objectMap [
-			rr:column "ENTSTEHUNGSSTUFE_AUSWAHLLISTE" ;
-		];
+			rr:column "ENTSTEHUNGSSTUFE_AUSWAHLLISTE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORM_DER_DARSTELLUNG_AUSWAHLLI ;
+		rr:predicate stabs:FORM_DER_DARSTELLUNG_AUSWAHLLI;
 		rr:objectMap [
-			rr:column "FORM_DER_DARSTELLUNG_AUSWAHLLI" ;
-		];
+			rr:column "FORM_DER_DARSTELLUNG_AUSWAHLLI"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:WEBLINK ;
+		rr:predicate stabs:WEBLINK;
 		rr:objectMap [
-			rr:column "WEBLINK" ;
-		];
+			rr:column "WEBLINK"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:SIEGEL ;
+		rr:predicate stabs:SIEGEL;
 		rr:objectMap [
-			rr:column "SIEGEL" ;
-		];
+			rr:column "SIEGEL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERMERK ;
+		rr:predicate stabs:VERMERK;
 		rr:objectMap [
-			rr:column "VERMERK" ;
-		];
+			rr:column "VERMERK"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:SCHLAGWORT ;
+		rr:predicate stabs:SCHLAGWORT;
 		rr:objectMap [
-			rr:column "SCHLAGWORT" ;
-		];
+			rr:column "SCHLAGWORT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUTOR ;
+		rr:predicate stabs:AUTOR;
 		rr:objectMap [
-			rr:column "AUTOR" ;
-		];
+			rr:column "AUTOR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:EMPFAENGER ;
+		rr:predicate stabs:EMPFAENGER;
 		rr:objectMap [
-			rr:column "EMPFAENGER" ;
-		];
+			rr:column "EMPFAENGER"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:DOKUMENTART ;
+		rr:predicate stabs:DOKUMENTART;
 		rr:objectMap [
-			rr:column "DOKUMENTART" ;
-		];
+			rr:column "DOKUMENTART"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:GATTUNG ;
+		rr:predicate stabs:GATTUNG;
 		rr:objectMap [
-			rr:column "GATTUNG" ;
-		];
+			rr:column "GATTUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AV_MEDIUM ;
+		rr:predicate stabs:AV_MEDIUM;
 		rr:objectMap [
-			rr:column "AV_MEDIUM" ;
-		];
+			rr:column "AV_MEDIUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:KONTROLLE ;
+		rr:predicate stabs:KONTROLLE;
 		rr:objectMap [
-			rr:column "KONTROLLE" ;
-		];
+			rr:column "KONTROLLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMAT_FILM ;
+		rr:predicate stabs:FORMAT_FILM;
 		rr:objectMap [
-			rr:column "FORMAT_FILM" ;
-		];
+			rr:column "FORMAT_FILM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ABSPIELGESCHWINDIGKEIT ;
+		rr:predicate stabs:ABSPIELGESCHWINDIGKEIT;
 		rr:objectMap [
-			rr:column "ABSPIELGESCHWINDIGKEIT" ;
-		];
+			rr:column "ABSPIELGESCHWINDIGKEIT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TRAEGERMATERIAL ;
+		rr:predicate stabs:TRAEGERMATERIAL;
 		rr:objectMap [
-			rr:column "TRAEGERMATERIAL" ;
-		];
+			rr:column "TRAEGERMATERIAL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BILDFORMAT_FILM ;
+		rr:predicate stabs:BILDFORMAT_FILM;
 		rr:objectMap [
-			rr:column "BILDFORMAT_FILM" ;
-		];
+			rr:column "BILDFORMAT_FILM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:DIGITALISIERUNG ;
+		rr:predicate stabs:DIGITALISIERUNG;
 		rr:objectMap [
-			rr:column "DIGITALISIERUNG" ;
-		];
+			rr:column "DIGITALISIERUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:DIGITALISIERUNGSQUALITAET ;
+		rr:predicate stabs:DIGITALISIERUNGSQUALITAET;
 		rr:objectMap [
-			rr:column "DIGITALISIERUNGSQUALITAET" ;
-		];
+			rr:column "DIGITALISIERUNGSQUALITAET"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMAT_VIDEO ;
+		rr:predicate stabs:FORMAT_VIDEO;
 		rr:objectMap [
-			rr:column "FORMAT_VIDEO" ;
-		];
+			rr:column "FORMAT_VIDEO"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ORIGINALDATIERUNG ;
+		rr:predicate stabs:ORIGINALDATIERUNG;
 		rr:objectMap [
-			rr:column "ORIGINALDATIERUNG" ;
-		];
+			rr:column "ORIGINALDATIERUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AKTENZEICHEN ;
+		rr:predicate stabs:AKTENZEICHEN;
 		rr:objectMap [
-			rr:column "AKTENZEICHEN" ;
-		];
+			rr:column "AKTENZEICHEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BEARBEITER_IN ;
+		rr:predicate stabs:BEARBEITER_IN;
 		rr:objectMap [
-			rr:column "BEARBEITER_IN" ;
-		];
+			rr:column "BEARBEITER_IN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FORMAT_TON ;
+		rr:predicate stabs:FORMAT_TON;
 		rr:objectMap [
-			rr:column "FORMAT_TON" ;
-		];
+			rr:column "FORMAT_TON"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FILMELEMENT ;
+		rr:predicate stabs:FILMELEMENT;
 		rr:objectMap [
-			rr:column "FILMELEMENT" ;
-		];
+			rr:column "FILMELEMENT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:CODIERUNG ;
+		rr:predicate stabs:CODIERUNG;
 		rr:objectMap [
-			rr:column "CODIERUNG" ;
-		];
+			rr:column "CODIERUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:DIGITALISAT ;
+		rr:predicate stabs:DIGITALISAT;
 		rr:objectMap [
-			rr:column "DIGITALISAT" ;
-		];
+			rr:column "DIGITALISAT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BENUTZUNGSHINWEIS ;
+		rr:predicate stabs:BENUTZUNGSHINWEIS;
 		rr:objectMap [
-			rr:column "BENUTZUNGSHINWEIS" ;
-		];
+			rr:column "BENUTZUNGSHINWEIS"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:DIGITALISAT_VORHANDEN ;
+		rr:predicate stabs:DIGITALISAT_VORHANDEN;
 		rr:objectMap [
-			rr:column "DIGITALISAT_VORHANDEN" ;
-		];
+			rr:column "DIGITALISAT_VORHANDEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:GESCHICHTE ;
+		rr:predicate stabs:GESCHICHTE;
 		rr:objectMap [
-			rr:column "GESCHICHTE" ;
-		];
+			rr:column "GESCHICHTE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ORGANISATIONSZUGEHOERIGKEIT ;
+		rr:predicate stabs:ORGANISATIONSZUGEHOERIGKEIT;
 		rr:objectMap [
-			rr:column "ORGANISATIONSZUGEHOERIGKEIT" ;
-		];
+			rr:column "ORGANISATIONSZUGEHOERIGKEIT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:DATENVOLUMEN_MB ;
+		rr:predicate stabs:DATENVOLUMEN_MB;
 		rr:objectMap [
-			rr:column "DATENVOLUMEN_MB" ;
-		];
+			rr:column "DATENVOLUMEN_MB"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ANZAHL_DATEIEN ;
+		rr:predicate stabs:ANZAHL_DATEIEN;
 		rr:objectMap [
-			rr:column "ANZAHL_DATEIEN" ;
-		];
+			rr:column "ANZAHL_DATEIEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FUNKTION_UND_AKTIVITAET ;
+		rr:predicate stabs:FUNKTION_UND_AKTIVITAET;
 		rr:objectMap [
-			rr:column "FUNKTION_UND_AKTIVITAET" ;
-		];
+			rr:column "FUNKTION_UND_AKTIVITAET"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ALLGEMEINER_KONTEXT ;
+		rr:predicate stabs:ALLGEMEINER_KONTEXT;
 		rr:objectMap [
-			rr:column "ALLGEMEINER_KONTEXT" ;
-		];
+			rr:column "ALLGEMEINER_KONTEXT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VERWALTUNGSGESCHICHTE ;
+		rr:predicate stabs:VERWALTUNGSGESCHICHTE;
 		rr:objectMap [
-			rr:column "VERWALTUNGSGESCHICHTE" ;
-		];
+			rr:column "VERWALTUNGSGESCHICHTE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ID_NR ;
+		rr:predicate stabs:ID_NR;
 		rr:objectMap [
-			rr:column "ID_NR" ;
-		];
+			rr:column "ID_NR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:PARENT_ID_NR ;
+		rr:predicate stabs:PARENT_ID_NR;
 		rr:objectMap [
-			rr:column "PARENT_ID_NR" ;
-		];
+			rr:column "PARENT_ID_NR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:PARENT_ID ;
+		rr:predicate stabs:PARENT_ID;
 		rr:objectMap [
-			rr:template "http://data.staatsarchiv-bs.ch/id/record/{PARENT_ID_NR}" ;
-		];
+			rr:template "http://data.staatsarchiv-bs.ch/id/record/{PARENT_ID_NR}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:SCHUTZFRISTENDE ;
+		rr:predicate stabs:SCHUTZFRISTENDE;
 		rr:objectMap [
-			rr:column "SCHUTZFRISTENDE" ;
-		];
+			rr:column "SCHUTZFRISTENDE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BEWILLIGUNG ;
+		rr:predicate stabs:BEWILLIGUNG;
 		rr:objectMap [
-			rr:column "BEWILLIGUNG" ;
-		];
+			rr:column "BEWILLIGUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:PHYSISCHE_BENUETZBARKEIT ;
+		rr:predicate stabs:PHYSISCHE_BENUETZBARKEIT;
 		rr:objectMap [
-			rr:column "PHYSISCHE_BENUETZBARKEIT" ;
-		];
+			rr:column "PHYSISCHE_BENUETZBARKEIT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZUGAENGLICHKEIT ;
+		rr:predicate stabs:ZUGAENGLICHKEIT;
 		rr:objectMap [
-			rr:column "ZUGAENGLICHKEIT" ;
-		];
-	]
-.
-<#Deskriptor> a rr:TriplesMap ;
+			rr:column "ZUGAENGLICHKEIT"
+		]
+	].
+	
+<#Deskriptor>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR}" ;
-		rr:class stabs:Deskriptor ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR}";
+		rr:class stabs:Deskriptor
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:THESAURUS ;
+		rr:predicate stabs:THESAURUS;
 		rr:objectMap [
-			rr:column "THESAURUS" ;
-		];
+			rr:column "THESAURUS"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BEZEICHNUNG ;
+		rr:predicate stabs:BEZEICHNUNG;
 		rr:objectMap [
-			rr:column "BEZEICHNUNG" ;
-		];
+			rr:column "BEZEICHNUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:FREMDSPRACHIGE_BEZEICHNUNGEN ;
+		rr:predicate stabs:FREMDSPRACHIGE_BEZEICHNUNGEN;
 		rr:objectMap [
-			rr:column "FREMDSPRACHIGE_BEZEICHNUNGEN" ;
-		];
+			rr:column "FREMDSPRACHIGE_BEZEICHNUNGEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:QUELLE ;
+		rr:predicate stabs:QUELLE;
 		rr:objectMap [
-			rr:column "QUELLE" ;
-		];
+			rr:column "QUELLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BESCHREIBUNG ;
+		rr:predicate stabs:BESCHREIBUNG;
 		rr:objectMap [
-			rr:column "BESCHREIBUNG" ;
-		];
+			rr:column "BESCHREIBUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ID_NAME ;
+		rr:predicate stabs:ID_NAME;
 		rr:objectMap [
-			rr:column "ID_NAME" ;
-		];
+			rr:column "ID_NAME"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ID_NR ;
+		rr:predicate stabs:ID_NR;
 		rr:objectMap [
-			rr:column "ID_NR" ;
-			rr:datatype xsd:int ;
-		];
+			rr:column "ID_NR";
+			rr:datatype xsd:int
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ANZAHL_VERKNUEPFUNGEN ;
+		rr:predicate stabs:ANZAHL_VERKNUEPFUNGEN;
 		rr:objectMap [
-			rr:column "ANZAHL_VERKNUEPFUNGEN" ;
-		];
+			rr:column "ANZAHL_VERKNUEPFUNGEN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:GEBURTSDATUM ;
+		rr:predicate stabs:GEBURTSDATUM;
 		rr:objectMap [
-			rr:column "GEBURTSDATUM" ;
-		];
+			rr:column "GEBURTSDATUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TODESDATUM ;
+		rr:predicate stabs:TODESDATUM;
 		rr:objectMap [
-			rr:column "TODESDATUM" ;
-		];
+			rr:column "TODESDATUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:GND ;
+		rr:predicate stabs:GND;
 		rr:objectMap [
-			rr:column "GND" ;
-		];
+			rr:column "GND"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:VIAF ;
+		rr:predicate stabs:VIAF;
 		rr:objectMap [
-			rr:column "VIAF" ;
-		];
-	]
-.
-<#Ablieferung> a rr:TriplesMap ;
+			rr:column "VIAF"
+		]
+	].
+	
+<#Ablieferung>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_ABLFR_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/ablieferung/{ID_NR}" ;
-		rr:class stabs:Ablieferung ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/ablieferung/{ID_NR}";
+		rr:class stabs:Ablieferung
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TYP ;
+		rr:predicate stabs:TYP;
 		rr:objectMap [
-			rr:column "TYP" ;
-		];
+			rr:column "TYP"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:SUBTYP ;
+		rr:predicate stabs:SUBTYP;
 		rr:objectMap [
-			rr:column "SUBTYP" ;
-		];
+			rr:column "SUBTYP"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ABLIEFERNDE_STELLE ;
+		rr:predicate stabs:ABLIEFERNDE_STELLE;
 		rr:objectMap [
-			rr:column "ABLIEFERNDE_STELLE" ;
-		];
+			rr:column "ABLIEFERNDE_STELLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AKTENBILDENDE_STELLE ;
+		rr:predicate stabs:AKTENBILDENDE_STELLE;
 		rr:objectMap [
-			rr:column "AKTENBILDENDE_STELLE" ;
-		];
+			rr:column "AKTENBILDENDE_STELLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BETREFF_TITEL ;
+		rr:predicate stabs:BETREFF_TITEL;
 		rr:objectMap [
-			rr:column "BETREFF_TITEL" ;
-		];
+			rr:column "BETREFF_TITEL"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZEITRAUM_PERIODE ;
+		rr:predicate stabs:ZEITRAUM_PERIODE;
 		rr:objectMap [
-			rr:column "ZEITRAUM_PERIODE" ;
-		];
+			rr:column "ZEITRAUM_PERIODE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:BESCHREIBUNG ;
+		rr:predicate stabs:BESCHREIBUNG;
 		rr:objectMap [
-			rr:column "BESCHREIBUNG" ;
-		];
+			rr:column "BESCHREIBUNG"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:JAHR_LAUF_NR ;
+		rr:predicate stabs:JAHR_LAUF_NR;
 		rr:objectMap [
-			rr:column "JAHR_LAUF_NR" ;
-		];
+			rr:column "JAHR_LAUF_NR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ID_NR ;
+		rr:predicate stabs:ID_NR;
 		rr:objectMap [
-			rr:column "ID_NR" ;
-		];
+			rr:column "ID_NR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ID_NAME ;
+		rr:predicate stabs:ID_NAME;
 		rr:objectMap [
-			rr:column "ID_NAME" ;
-		];
-	]
-.
-<#Partner> a rr:TriplesMap ;
+			rr:column "ID_NAME"
+		]
+	].
+	
+<#Partner>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_PRTNR_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/partner/{ID_NR}" ;
-		rr:class stabs:Partner ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/partner/{ID_NR}";
+		rr:class stabs:Partner
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ID_NR ;
+		rr:predicate stabs:ID_NR;
 		rr:objectMap [
-			rr:column "ID_NR" ;
-		];
+			rr:column "ID_NR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate foaf:openid ;
+		rr:predicate foaf:openid;
 		rr:objectMap [
-			rr:column "ID_NR" ;
-		];
+			rr:column "ID_NR"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ID_NAME ;
+		rr:predicate stabs:ID_NAME;
 		rr:objectMap [
-			rr:column "ID_NAME" ;
-		];
+			rr:column "ID_NAME"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:TYP_DER_EINHEIT ;
+		rr:predicate stabs:TYP_DER_EINHEIT;
 		rr:objectMap [
-			rr:column "TYP_DER_EINHEIT" ;
-		];
+			rr:column "TYP_DER_EINHEIT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUTORISIERTE_NAMENSFORM_EN ;
+		rr:predicate stabs:AUTORISIERTE_NAMENSFORM_EN;
 		rr:objectMap [
-			rr:column "AUTORISIERTE_NAMENSFORM_EN" ;
-		];
+			rr:column "AUTORISIERTE_NAMENSFORM_EN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:PARALLELE_NAMENSFORM_EN ;
+		rr:predicate stabs:PARALLELE_NAMENSFORM_EN;
 		rr:objectMap [
-			rr:column "PARALLELE_NAMENSFORM_EN" ;
-		];
+			rr:column "PARALLELE_NAMENSFORM_EN"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:EXISTENZ_ZEITRAUM ;
+		rr:predicate stabs:EXISTENZ_ZEITRAUM;
 		rr:objectMap [
-			rr:column "EXISTENZ_ZEITRAUM" ;
-		];
+			rr:column "EXISTENZ_ZEITRAUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:RECHTSFORM ;
+		rr:predicate stabs:RECHTSFORM;
 		rr:objectMap [
-			rr:column "RECHTSFORM" ;
-		];
+			rr:column "RECHTSFORM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:RECHTLICHE_GRUNDLAGE ;
+		rr:predicate stabs:RECHTLICHE_GRUNDLAGE;
 		rr:objectMap [
-			rr:column "RECHTLICHE_GRUNDLAGE" ;
-		];
+			rr:column "RECHTLICHE_GRUNDLAGE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:AUFNAHMEDATUM ;
+		rr:predicate stabs:AUFNAHMEDATUM;
 		rr:objectMap [
-			rr:column "AUFNAHMEDATUM" ;
-		];
-	]
-.
-<#Verzeichnungseinheiten_Ablieferungen_Verknuepfungen> a rr:TriplesMap ;
+			rr:column "AUFNAHMEDATUM"
+		]
+	].
+	
+<#Verzeichnungseinheiten_Ablieferungen_Verknuepfungen>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_ABLFR_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}" ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}"
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ablieferung ;
+		rr:predicate stabs:ablieferung;
 		rr:objectMap [
-			rr:template "http://data.staatsarchiv-bs.ch/id/ablieferung/{ID_NR_ABLFR}" ;
-		];
-	]
-.
-<#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen> a rr:TriplesMap ;
+			rr:template "http://data.staatsarchiv-bs.ch/id/ablieferung/{ID_NR_ABLFR}"
+		]
+	].
+	
+<#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_DSKRP}" ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_DSKRP}"
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:deskriptor_ve ;
+		rr:predicate stabs:deskriptor_ve;
 		rr:objectMap [
-			rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}" ;
-		];
-	]
-.
-<#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen_Annotation> a rr:TriplesMap ;
+			rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}"
+		]
+	].
+	
+<#Verzeichnungseinheiten_Deskriptoren_Verknuepfungen_Annotation>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_deskriptor/{ID_NR_DSKRP}/{ID_NR_VRZNG_ENHT}" ;
-		rr:class oa:Annotation ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_deskriptor/{ID_NR_DSKRP}/{ID_NR_VRZNG_ENHT}";
+		rr:class oa:Annotation
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:oaSource ;
+		rr:predicate stabs:oaSource;
 		rr:objectMap [
-			rr:column "ID_NR_DSKRP" ;
-		];
+			rr:column "ID_NR_DSKRP"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:oaTarget ;
+		rr:predicate stabs:oaTarget;
 		rr:objectMap [
-			rr:column "ID_NR_VRZNG_ENHT" ;
-		];
+			rr:column "ID_NR_VRZNG_ENHT"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ROLLE ;
+		rr:predicate stabs:ROLLE;
 		rr:objectMap [
-			rr:column "ROLLE" ;
-		];
+			rr:column "ROLLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZEITRAUM ;
+		rr:predicate stabs:ZEITRAUM;
 		rr:objectMap [
-			rr:column "ZEITRAUM" ;
-		];
+			rr:column "ZEITRAUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:NOTIZ ;
+		rr:predicate stabs:NOTIZ;
 		rr:objectMap [
-			rr:column "NOTIZ" ;
-		];
-	]
-.
-<#Deskriptoren_Verweise> a rr:TriplesMap ;
+			rr:column "NOTIZ"
+		]
+	].
+	
+<#Deskriptoren_Verweise>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_1}" ;
-		rr:class oa:Annotation ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_1}";
+		rr:class oa:Annotation
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:deskriptor_deskriptor ;
+		rr:predicate stabs:deskriptor_deskriptor;
 		rr:objectMap [
-			rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_2}" ;
-		];
-	]
-.
-<#Deskriptoren_Verweise_Annotation> a rr:TriplesMap ;
+			rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor/{ID_NR_2}"
+		]
+	].
+	
+<#Deskriptoren_Verweise_Annotation>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_DSKRP_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor_deskriptor/{ID_NR_1}/{ID_NR_2}" ;
-		rr:class oa:Annotation ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/deskriptor_deskriptor/{ID_NR_1}/{ID_NR_2}";
+		rr:class oa:Annotation
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:oaSource ;
+		rr:predicate stabs:oaSource;
 		rr:objectMap [
-			rr:column "ID_NR_1" ;
-		];
+			rr:column "ID_NR_1"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:oaTarget ;
+		rr:predicate stabs:oaTarget;
 		rr:objectMap [
-			rr:column "ID_NR_2" ;
-		];
+			rr:column "ID_NR_2"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ROLLE ;
+		rr:predicate stabs:ROLLE;
 		rr:objectMap [
-			rr:column "ROLLE" ;
-		];
+			rr:column "ROLLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZEITRAUM ;
+		rr:predicate stabs:ZEITRAUM;
 		rr:objectMap [
-			rr:column "ZEITRAUM" ;
-		];
+			rr:column "ZEITRAUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:NOTIZ ;
+		rr:predicate stabs:NOTIZ;
 		rr:objectMap [
-			rr:column "NOTIZ" ;
-		];
-	]
-.
-<#Verzeichnungseinheiten_Verweise_Annotation> a rr:TriplesMap ;
+			rr:column "NOTIZ"
+		]
+	].
+	
+<#Verzeichnungseinheiten_Verweise_Annotation>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_VRZNG_ENHT_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_verweis/{ID_NR_1}/{ID_NR_2}" ;
-		rr:class oa:Annotation ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/verzeichnungseinheit_verweis/{ID_NR_1}/{ID_NR_2}";
+		rr:class oa:Annotation
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:oaSource ;
+		rr:predicate stabs:oaSource;
 		rr:objectMap [
-			rr:column "ID_NR_1" ;
-		];
+			rr:column "ID_NR_1"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:oaTarget ;
+		rr:predicate stabs:oaTarget;
 		rr:objectMap [
-			rr:column "ID_NR_2" ;
-		];
+			rr:column "ID_NR_2"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ROLLE ;
+		rr:predicate stabs:ROLLE;
 		rr:objectMap [
-			rr:column "ROLLE" ;
-		];
+			rr:column "ROLLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZEITRAUM ;
+		rr:predicate stabs:ZEITRAUM;
 		rr:objectMap [
-			rr:column "ZEITRAUM" ;
-		];
+			rr:column "ZEITRAUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:NOTIZ ;
+		rr:predicate stabs:NOTIZ;
 		rr:objectMap [
-			rr:column "NOTIZ" ;
-		];
-	]
-.
-<#Verzeichnungeinheiten_Partner_Verknuepfungen> a rr:TriplesMap ;
+			rr:column "NOTIZ"
+		]
+	].
+	
+<#Verzeichnungeinheiten_Partner_Verknuepfungen>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_VE_PRTNR_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}" ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/record/{ID_NR_VRZNG_ENHT}"
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:partner ;
+		rr:predicate stabs:partner;
 		rr:objectMap [
-			rr:template "http://data.staatsarchiv-bs.ch/id/partner/{ID_NR_PRTNR}" ;
-		];
-	]
-.
-<#Partner_Verweise> a rr:TriplesMap ;
+			rr:template "http://data.staatsarchiv-bs.ch/id/partner/{ID_NR_PRTNR}"
+		]
+	].
+	
+<#Partner_Verweise>
+	a rr:TriplesMap;
+	
 	rr:logicalTable [ rr:tableName "MVK_OGD_PRTNR_BZHNG_1" ];
 	
 	rr:subjectMap [
-		rr:template "http://data.staatsarchiv-bs.ch/id/partner_verweis/{ID_NR_1}/{ID_NR_2}" ;
-		rr:class oa:Annotation ;
+		rr:template "http://data.staatsarchiv-bs.ch/id/partner_verweis/{ID_NR_1}/{ID_NR_2}";
+		rr:class oa:Annotation
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate stabs:oaSource ;
+		rr:predicate stabs:oaSource;
 		rr:objectMap [
-			rr:column "ID_NR_1" ;
-		];
+			rr:column "ID_NR_1"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:oaTarget ;
+		rr:predicate stabs:oaTarget;
 		rr:objectMap [
-			rr:column "ID_NR_2" ;
-		];
+			rr:column "ID_NR_2"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ROLLE ;
+		rr:predicate stabs:ROLLE;
 		rr:objectMap [
-			rr:column "ROLLE" ;
-		];
+			rr:column "ROLLE"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:ZEITRAUM ;
+		rr:predicate stabs:ZEITRAUM;
 		rr:objectMap [
-			rr:column "ZEITRAUM" ;
-		];
+			rr:column "ZEITRAUM"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate stabs:NOTIZ ;
+		rr:predicate stabs:NOTIZ;
 		rr:objectMap [
-			rr:column "NOTIZ" ;
-		];
-	]
-.
+			rr:column "NOTIZ"
+		]
+	].
+	

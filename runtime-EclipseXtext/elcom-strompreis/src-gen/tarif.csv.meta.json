@@ -8,8 +8,7 @@
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 				"valueUrl": "http://purl.org/linked-data/cube#Observation"
-			}
-			,
+			},
 			{
 				"propertyUrl": "http://elcom.zazuko.com/attribute/kategorie",
 				"titles": "Kategorie",
@@ -40,8 +39,7 @@
 				"propertyUrl": "http://elcom.zazuko.com/attribute/refYear",
 				"virtual": true,
 				"valueUrl": "http://reference.data.gov.uk/id/year/2019"
-			}
-			,
+			},
 			{
 				"suppressOutput": true,
 				"titles": "ID"
@@ -62,6 +60,6 @@
 				"suppressOutput": true,
 				"titles": "Netznutzung"
 			}
-		] 
+		]
 	}
 }
