@@ -1,6 +1,6 @@
 image: maven:3-jdk-11
 before_script:
-  - apt-get update -qq && apt-get install -y -qq python-pip && pip install -q s3cmd
+  - apt-get update -qq && apt-get install -y -qq python3-pip && pip install -q s3cmd
 
 variables: 
   MAVEN_CLI_OPTS: "-f com.zazuko.rdfmapping.dsl.parent --batch-mode"
