@@ -10,22 +10,19 @@
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 						"valueUrl": "http://example.com/employeeEmployee"
-					}
-					,
+					},
 					{
 						"propertyUrl": "http://example.com/employeeno",
 						"titles": "EMPNO",
 						"null": "X"
-					}
-					,
+					},
 					{
 						"suppressOutput": true,
 						"titles": "id"
 					}
-				] 
+				]
 			}
 		},
-		
 		{
 			"url": "EMP",
 			"tableSchema": {
@@ -35,8 +32,7 @@
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 						"valueUrl": "http://example.com/employeeEmployee"
-					}
-					,
+					},
 					{
 						"propertyUrl": "http://example.com/employeeno",
 						"titles": "EMPNO",
@@ -46,16 +42,14 @@
 						"propertyUrl": "http://example.com/employeemap",
 						"titles": "EMPNO",
 						"valueUrl": "{EMPNO}"
-					}
-					,
+					},
 					{
 						"suppressOutput": true,
 						"titles": "id"
 					}
-				] 
+				]
 			}
 		},
-		
 		{
 			"url": "http://www.example.com/Foo.csv",
 			"tableSchema": {
@@ -66,8 +60,7 @@
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 						"valueUrl": "http://example.com/employeeEmployee"
-					}
-					,
+					},
 					{
 						"propertyUrl": "http://foobar.com/things/thing/color",
 						"titles": "id"
@@ -77,10 +70,9 @@
 						"titles": "foo",
 						"null": "nullValue@referenceable"
 					}
-				] 
+				]
 			}
 		},
-		
 		{
 			"url": "http://www.example.com/Foo.csv",
 			"tableSchema": {
@@ -91,13 +83,12 @@
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 						"valueUrl": "http://example.com/employeeEmployee"
-					}
-					,
+					},
 					{
 						"propertyUrl": "http://foobar.com/things/thing/color",
 						"titles": "thing"
 					}
-				] 
+				]
 			}
 		}
 	]

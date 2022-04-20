@@ -4,11 +4,14 @@
 package com.zazuko.rdfmapping.dsl.formatting2
 
 import com.google.inject.Inject
+import com.zazuko.rdfmapping.dsl.formatting2.smuggler.ConstantValuedTermSmuggler
+import com.zazuko.rdfmapping.dsl.formatting2.smuggler.TemplateValuedTermSmuggler
 import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroupDescription
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
+import com.zazuko.rdfmapping.dsl.rdfMapping.GraphMapping
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTag
 import com.zazuko.rdfmapping.dsl.rdfMapping.LanguageTagDefinition
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
@@ -154,19 +157,19 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(RdfClass it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.feature(pkg.rdfClass_Value).prepend[oneSpace];
+		regionFor.feature(pkg.vocabularyElement_Value).prepend[oneSpace];
 		omniMap?.format;
 	}
 
 	def dispatch void format(RdfProperty it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.feature(pkg.rdfProperty_Value).prepend[oneSpace];
+		regionFor.feature(pkg.vocabularyElement_Value).prepend[oneSpace];
 		omniMap?.format;
 	}
 	
 	def dispatch void format(Datatype it, extension IFormattableDocument document) {
 		prepend[setNewLines(1)];
-		regionFor.feature(pkg.datatype_Value).prepend[oneSpace];
+		regionFor.feature(pkg.vocabularyElement_Value).prepend[oneSpace];
 		omniMap?.format;
 	}
 	
@@ -243,7 +246,7 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 
 		interior(
 			regionFor.ruleCall(ga.mappingAccess.BLOCK_BEGINTerminalRuleCall_4),
-			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
+			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_11)
 		)[indent];
 		regionFor.ruleCall(ga.mappingAccess.BLOCK_BEGINTerminalRuleCall_4).append[setNewLines(1)];
 
@@ -251,30 +254,60 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 		subjectIriMapping?.format;
 		regionFor.ruleCall(ga.mappingAccess.LINE_ENDTerminalRuleCall_7).prepend[noSpace];
 
-		// 'types'
-		if (!poMappings.empty) {
+		// 'graphs'
+		if (!subjectTypeMappings.empty) {
 			interior(
-				regionFor.keyword(ga.mappingAccess.typesKeyword_8_0),
-				regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0)
+				regionFor.keyword(ga.mappingAccess.graphsKeyword_8_0),
+				regionFor.keyword(ga.mappingAccess.typesKeyword_9_0)
+			)[indent];
+		} else if (!poMappings.empty) {
+			interior(
+				regionFor.keyword(ga.mappingAccess.graphsKeyword_8_0),
+				regionFor.keyword(ga.mappingAccess.propertiesKeyword_10_0)
 			)[indent];
 		} else {
 			interior(
-				regionFor.keyword(ga.mappingAccess.typesKeyword_8_0),
-				regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
+				regionFor.keyword(ga.mappingAccess.graphsKeyword_8_0),
+				regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_11)
 			)[indent];
 		}
-		regionFor.keyword(ga.mappingAccess.typesKeyword_8_0).prepend[setNewLines(2)];
+		regionFor.keyword(ga.mappingAccess.graphsKeyword_8_0).prepend[setNewLines(2)];
+		graphMappings.forEach[format];
+		
+		// 'types'
+		if (!poMappings.empty) {
+			interior(
+				regionFor.keyword(ga.mappingAccess.typesKeyword_9_0),
+				regionFor.keyword(ga.mappingAccess.propertiesKeyword_10_0)
+			)[indent];
+		} else {
+			interior(
+				regionFor.keyword(ga.mappingAccess.typesKeyword_9_0),
+				regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_11)
+			)[indent];
+		}
+		regionFor.keyword(ga.mappingAccess.typesKeyword_9_0).prepend[setNewLines(2)];
 		subjectTypeMappings.forEach[format];
 
 		// 'properties'
-		regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0).prepend[setNewLines(2)];
+		regionFor.keyword(ga.mappingAccess.propertiesKeyword_10_0).prepend[setNewLines(2)];
 		interior(
-			regionFor.keyword(ga.mappingAccess.propertiesKeyword_9_0),
-			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_10)
+			regionFor.keyword(ga.mappingAccess.propertiesKeyword_10_0),
+			regionFor.ruleCall(ga.mappingAccess.BLOCK_ENDTerminalRuleCall_11)
 		)[indent];
 		poMappings.forEach[format];
 	}
 
+	def dispatch void format(GraphMapping it, extension IFormattableDocument document) {
+		if (template !== null) {
+			new TemplateValuedTermSmuggler(template).onNewLine().format;
+		}
+		if (constant !== null) {
+			new ConstantValuedTermSmuggler(constant).onNewLine().format;
+		}
+		regionFor.ruleCall(ga.graphMappingAccess.LINE_ENDTerminalRuleCall_1).prepend[noSpace];
+	}
+	
 	def dispatch void format(SubjectTypeMapping it, extension IFormattableDocument document) {
 		regionFor.assignment(ga.subjectTypeMappingAccess.typeAssignment).prepend[setNewLines(1, 1, 2)];
 	}
@@ -315,14 +348,30 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(ConstantValuedTerm it, extension IFormattableDocument document) {
-		regionFor.keyword(ga.constantValuedTermAccess.constantKeyword_0).append[oneSpace];
+		new ConstantValuedTermSmuggler(it).format;
+	}
+	
+	def dispatch void format(ConstantValuedTermSmuggler it, extension IFormattableDocument document) {
+		if (isOnNewLine) {
+			target.regionFor.keyword(ga.constantValuedTermAccess.constantKeyword_0).append[oneSpace].prepend[setNewLines(1, 1, 2)];
+		} else {
+			target.regionFor.keyword(ga.constantValuedTermAccess.constantKeyword_0).append[oneSpace];
+		}
 	}
 
 	def dispatch void format(TemplateValuedTerm it, extension IFormattableDocument document) {
-		regionFor.keyword(ga.templateValuedTermAccess.templateKeyword_0).surround[oneSpace];
-		regionFor.keyword(ga.templateValuedTermAccess.withKeyword_2_0).prepend[oneSpace];
-		regionFor.assignment(ga.templateValuedTermAccess.referencesAssignment_2_1).prepend[oneSpace];
-		regionFor.keyword(ga.templateValuedTermAccess.asKeyword_3_0).surround[oneSpace];
+		new TemplateValuedTermSmuggler(it).format;
+	}
+	
+	def dispatch void format(TemplateValuedTermSmuggler it, extension IFormattableDocument document) {
+		if (isOnNewLine) {
+			target.regionFor.keyword(ga.templateValuedTermAccess.templateKeyword_0).prepend[setNewLines(1,1,2)].append[oneSpace];
+		} else {
+			target.regionFor.keyword(ga.templateValuedTermAccess.templateKeyword_0).surround[oneSpace];
+		}
+		target.regionFor.keyword(ga.templateValuedTermAccess.withKeyword_2_0).prepend[oneSpace];
+		target.regionFor.assignment(ga.templateValuedTermAccess.referencesAssignment_2_1).prepend[oneSpace];
+		target.regionFor.keyword(ga.templateValuedTermAccess.asKeyword_3_0).surround[oneSpace];
 	}
 
 	def dispatch void format(ParentTriplesMapTerm it, extension IFormattableDocument document) {

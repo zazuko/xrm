@@ -119,6 +119,9 @@ Vocabulary:
    
 Prefix:
 	'prefix' label=STRING iri=STRING;
+
+VocabularyElement:
+	RdfProperty | RdfClass | Datatype;
     
 RdfProperty:
 	name=ID (value=STRING)? ( omniMap=OmniMap )?;
@@ -148,6 +151,7 @@ TemplateValueRef:
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
 		'subject' subjectIriMapping=TemplateValuedTerm LINE_END
+		 ('graphs' (graphMappings+=GraphMapping)+)?
 		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
 	BLOCK_END;
@@ -156,11 +160,15 @@ SubjectTypeMapping:
 	type=[RdfClass|RdfPrefixedName]
 ;
 
+GraphMapping:
+	(template=TemplateValuedTerm | constant=ConstantValuedTerm) LINE_END
+;
+
 PredicateObjectMapping:	
 	property=[RdfProperty|RdfPrefixedName] 
 	term=ValuedTerm? // must be optional in order to get the quickfix working (must be serializable on missing term) --> manual validation for term === null
 	// see: com.zazuko.rdfmapping.dsl.ui.quickfix.RealRdfMappingQuickfixProvider.missingRdfProperty(Issue, IssueResolutionAcceptor)
-	lineEnd?=LINE_END // hack in order to improve code completion - see com.zazuko.rdfmapping.dsl.ui.contentassist.RealRdfMappingProposalProvider.complete_LINE_END(EObject, RuleCall, ContentAssistContext, ICompletionProposalAcceptor) --> isLineEnd
+	lineEnd?=LINE_END // hack in order to improve code completion - see com.zazuko.rdfmapping.dsl.ide.contentassist.RdfMappingIdeProposalProvider._createProposals(Assignment, ContentAssistContext, IIdeContentProposalAcceptor) --> isLineEnd
 ;
 	
 ValuedTerm:
@@ -184,7 +192,7 @@ MultiReferenceValuedTerm:
 ;
 
 ConstantValuedTerm:
-	'constant' constant=STRING
+	'constant' ( constant=STRING | constantVocabularyElement=[VocabularyElement|RdfPrefixedName] )
 ;
 
 TemplateValuedTerm:

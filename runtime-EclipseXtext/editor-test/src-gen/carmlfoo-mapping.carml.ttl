@@ -6,47 +6,51 @@ PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
 <#CarmlFooMapping>
+	a rr:TriplesMap;
+	
 	rml:logicalSource [
 		rml:source [
-			a carml:Stream ;
-			carml:streamName "KWS" ;
+			a carml:Stream;
+			carml:streamName "KWS";
 			carml:declaresNamespace [
-				carml:namespacePrefix "exa" ;
-				carml:namespaceName "http://www.example.com/audios/1.0/" ;
-			] ;
+				carml:namespacePrefix "exa";
+				carml:namespaceName "http://www.example.com/audios/1.0/"
+			];
 			carml:declaresNamespace [
-				carml:namespacePrefix "employee" ;
-				carml:namespaceName "http://www.example.com/audios/1.0/" ;
-			] ;
+				carml:namespacePrefix "employee";
+				carml:namespaceName "http://www.example.com/audios/1.0/"
+			];
 			carml:declaresNamespace [
-				carml:namespacePrefix "exb" ;
-				carml:namespaceName "http://www.example.com/books/1.0/" ;
-			] ;
-		] ;
+				carml:namespacePrefix "exb";
+				carml:namespaceName "http://www.example.com/books/1.0/"
+			]
+		];
 		rml:referenceFormulation ql:XPath
 	];
 	
 	rr:subjectMap [
-		rr:template "http://foo.example.com/{id}" ;
-		rr:class employee:Employee ;
+		rr:template "http://foo.example.com/{id}";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:constant "blue" ;
-		];
+			rr:constant "blue"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate thing:size ;
+		rr:predicate thing:size;
 		rr:objectMap [
-			rml:reference "map" ;
-		];
+			rml:reference "map"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate thing:weight ;
+		rr:predicate thing:weight;
 		rr:objectMap [
-			carml:multiReference "map" ;
-		];
-	]
-.
+			carml:multiReference "map"
+		]
+	].
+	

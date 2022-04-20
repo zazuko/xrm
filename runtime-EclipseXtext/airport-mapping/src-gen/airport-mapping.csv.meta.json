@@ -10,8 +10,7 @@
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 						"valueUrl": "http://vocab.org/transit/terms/Stop"
-					}
-					,
+					},
 					{
 						"propertyUrl": "http://vocab.org/transit/terms/route",
 						"datatype": "int",
@@ -35,16 +34,14 @@
 						"propertyUrl": "https://schema.example.org/marker",
 						"virtual": true,
 						"valueUrl": "foobar"
-					}
-					,
+					},
 					{
 						"suppressOutput": true,
 						"titles": "id"
 					}
-				] 
+				]
 			}
 		},
-		
 		{
 			"url": "http://www.example.com/City.csv",
 			"tableSchema": {
@@ -54,8 +51,7 @@
 						"virtual": true,
 						"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 						"valueUrl": "https://schema.org/City"
-					}
-					,
+					},
 					{
 						"suppressOutput": true,
 						"titles": "continent"
@@ -68,7 +64,7 @@
 						"suppressOutput": true,
 						"titles": "city"
 					}
-				] 
+				]
 			}
 		}
 	]

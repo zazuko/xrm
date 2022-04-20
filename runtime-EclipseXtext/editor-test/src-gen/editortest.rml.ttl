@@ -6,78 +6,88 @@ PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
 <#EmployeeMapping>
+	a rr:TriplesMap;
+	
 	rml:logicalSource [
-		rml:query """EMP""" ;
-		rml:referenceFormulation ql:XPath ;
-		rml:iterator "/Employees/Employee" ;
+		rml:query """EMP""";
+		rml:referenceFormulation ql:XPath;
+		rml:iterator "/Employees/Employee"
 	];
 	
 	rr:subjectMap [
-		rr:template "http://airport.example.com/{id}" ;
-		rr:class employee:Employee ;
+		rr:template "http://airport.example.com/{id}";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate employee:no ;
+		rr:predicate employee:no;
 		rr:objectMap [
-			rml:reference "EMPNO" ;
-		];
+			rml:reference "EMPNO"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:parentTriplesMap  <#EmployeeMapping2> ;
-		];
+			rr:parentTriplesMap  <#EmployeeMapping2>
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate employee:map ;
+		rr:predicate employee:map;
 		rr:objectMap [
-			rr:template "{EMPNO}" ;
-			rr:termType rr:Literal ;
-		];
+			rr:template "{EMPNO}";
+			rr:termType rr:Literal
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate employee:yes ;
+		rr:predicate employee:yes;
 		rr:objectMap [
-			rr:constant "constant-yes" ;
-		];
-	]
-.
+			rr:constant "constant-yes"
+		]
+	].
+	
 <#EmployeeMapping2>
+	a rr:TriplesMap;
+	
 	rml:logicalSource [
-		rml:query """EMP""" ;
-		rml:referenceFormulation ql:XPath ;
-		rml:iterator "/Employees/Employee" ;
+		rml:query """EMP""";
+		rml:referenceFormulation ql:XPath;
+		rml:iterator "/Employees/Employee"
 	];
 	
 	rr:subjectMap [
-		rr:template "http://airport.example.com/{id}" ;
-		rr:class employee:Employee ;
+		rr:template "http://airport.example.com/{id}";
+		rr:class employee:Employee
 	];
 	
 	rr:predicateObjectMap [
-		rr:predicate employee:no ;
+		rr:predicate employee:no;
 		rr:objectMap [
-			rml:reference "EMPNO" ;
-		];
+			rml:reference "EMPNO"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:template "http://airport.example.com/{id}" ;
-		];
+			rr:template "http://airport.example.com/{id}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate thing:color ;
+		rr:predicate thing:color;
 		rr:objectMap [
-			rr:template "http://manualstuff.com/colors/{id}" ;
-		];
+			rr:template "http://manualstuff.com/colors/{id}"
+		]
 	];
+	
 	rr:predicateObjectMap [
-		rr:predicate thing:size ;
+		rr:predicate thing:size;
 		rr:objectMap [
-			rml:reference "EMPNO" ;
-			rr:datatype employee:myDatatype ;
-		];
-	]
-.
+			rml:reference "EMPNO";
+			rr:datatype employee:myDatatype
+		]
+	].
+	

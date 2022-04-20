@@ -14,8 +14,8 @@ template exampleIri "http://example.com/"
 // template skippingKeysIsPointless "http://airport.example.com/{0}/{3}"
 
 map EmployeeMapping from EMPLOYEE {
-	// TODO code complete on airportIri - get proposals of templates declared within this file
 	// TODO add 'EMPNO' after id --> warn nr of arguments not matching with pattern
+	// AUTOTEST getProposalOfTemplatesDefinedInThisFile
 	subject template airportIri with id;
 
 	// TODO uncomment next line (and comment the old subject-line) --> error + 'Literal' is not offered by code completion (offered are 'BlankNode' and 'IRI')
@@ -25,18 +25,17 @@ map EmployeeMapping from EMPLOYEE {
 		employee.Employee
 
 	properties
-		// TODO code completion before the next line - get references like 'thing.size' offered
+		// AUTOTEST refToRdfPropertThingSizeOffered
 		// TODO code completion on the next line between 'employee.no' and 'from' - keywords will be offered (no references to RdfProperties)
 		employee.no from EMPNO;
-		// TODO (reloaded) code completion before the next line - get references like 'thing.size' offered
+		// AUTOTEST refToRdfPropertThingSizeOffered2
 		// TODO uncomment next line (error is fine), code completion at end of line offers keywords
 		// thing.size 
 		thing.color parent-map EmployeeMapping2; // ok for rml, r2rml
 		// TODO 'as' must be offered by code completion (this is r2rml)
 		keyword.^map template "{0}" with EMPNO as Literal; // ok for rml, r2rml 
 		// TODO uncomment next line --> error
-		// TODO code completion: no suggestion 'multi-reference'
-		// keyword.^map multi-reference from EMPNO ;
+		// AUTOTEST noProposalForMultiRef
 		// TODO hover over '.yes', see the description of the property 'yes' in the tooltip
 		employee.yes constant "constant-yes";
 }
@@ -49,7 +48,9 @@ map EmployeeMapping2 from EMPLOYEE {
 
 	properties
 		employee.no from EMPNO;
-		thing.color template airportIri with id;
+		// AUTOTEST asOnTemplateValueInProperties
+		thing.color template airportIri with id // keep this comment for aut0-test
+		;
 		thing.color template "http://manualstuff.com/colors/{0}" with id;
 		thing.size from EMPNO with datatype employee.myDatatype;
 }
@@ -61,7 +62,7 @@ logical-source EMPLOYEE {
 	// TODO uncomment next line --> error because of sourceType==xml
 	// null "nullX"
 	// TODO uncomment next line --> error because of sourceType==xml
-	// dialect MyDialect
+	// dialect SomeDialect
 	iterator "/Employees/Employee"
 
 	referenceables
@@ -76,7 +77,7 @@ vocabulary employee {
 
 	classes
 		Employee {
-			"foobar" : "some additional description",
+			"foobar": "some additional description",
 			"label": "Worker",
 			"comment": "a person employed for wages or salary, especially at non-executive level",
 			"similar": "labourer"
@@ -85,14 +86,12 @@ vocabulary employee {
 	properties
 		no
 		yes {
-			"comment": "an English progressive rock band formed in London in 1968 by singer Jon Anderson"			
+			"comment": "an English progressive rock band formed in London in 1968 by singer Jon Anderson"
 			// TODO add a ',' then do code completion - get proposal "label" (among others, but not "comment", since this is already in place)
-			
-			// TODO uncomment next line --> error on duplicated comment
+		// TODO uncomment next line --> error on duplicated comment
 //			, "comment" : "duplicated comment"
-
-			// TODO uncomment next line --> error on key with whitespaces & quickfix to trim
-			//, " whitspaced" : "whitespaces are bad"
+		// TODO uncomment next line --> error on key with whitespaces & quickfix to trim
+		// , " whitespaced" : "whitespaces are bad"
 		}
 
 	datatypes

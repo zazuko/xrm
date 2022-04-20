@@ -3,7 +3,7 @@ Automatic-Module-Name: com.zazuko.rdfmapping.dsl.ide
 Bundle-ManifestVersion: 2
 Bundle-Name: com.zazuko.rdfmapping.dsl.ide
 Bundle-Vendor: zazuko.com
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-SymbolicName: com.zazuko.rdfmapping.dsl.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.zazuko.rdfmapping.dsl,
@@ -11,5 +11,8 @@ Require-Bundle: com.zazuko.rdfmapping.dsl,
  org.eclipse.xtext.xbase.ide,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: com.zazuko.rdfmapping.dsl.ide.contentassist.antlr,
- com.zazuko.rdfmapping.dsl.ide.contentassist.antlr.internal
+Export-Package: com.zazuko.rdfmapping.dsl.ide,
+ com.zazuko.rdfmapping.dsl.ide.contentassist,
+ com.zazuko.rdfmapping.dsl.ide.contentassist.antlr,
+ com.zazuko.rdfmapping.dsl.ide.contentassist.antlr.internal,
+ com.zazuko.rdfmapping.dsl.ide.contentassist.omnimap

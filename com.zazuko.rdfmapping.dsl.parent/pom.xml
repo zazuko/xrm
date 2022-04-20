@@ -1,33 +1,35 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.zazuko.rdfmapping.dsl</groupId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.2.0-SNAPSHOT</version>
 	<artifactId>com.zazuko.rdfmapping.dsl.parent</artifactId>
 	<packaging>pom</packaging>
 
 	<properties>
-		<xtextVersion>2.25.0</xtextVersion>
-		<mwe2Version>2.12.1</mwe2Version>
+		<xtextVersion>2.26.0</xtextVersion>
+		<mwe2Version>2.12.2</mwe2Version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<!--  Tycho settings  -->
-		<tycho-version>2.3.0</tycho-version>
+		<tycho-version>2.6.0</tycho-version>
 		<!--  Define overridable properties for tycho-surefire-plugin  -->
-		<platformSystemProperties/>
-		<moduleProperties/>
-		<systemProperties/>
-		<additionalTestArguments/>
+		<platformSystemProperties />
+		<moduleProperties />
+		<systemProperties />
+		<additionalTestArguments />
 	</properties>
 	<modules>
 		<module>com.zazuko.rdfmapping.dsl</module>
 		<module>com.zazuko.rdfmapping.dsl.ide</module>
+		<module>com.zazuko.rdfmapping.dsl.ide.tests</module>
 		<module>com.zazuko.rdfmapping.dsl.ui</module>
 		<module>com.zazuko.rdfmapping.dsl.target</module>
 		<module>com.zazuko.rdfmapping.dsl.feature</module>
 		<module>com.zazuko.rdfmapping.dsl.repository</module>
 		<module>com.zazuko.rdfmapping.dsl.tests</module>
+
+		<module>com.zazuko.rdfmapping.dsl.websockets</module>
 		<module>com.zazuko.rdfmapping.dsl.ui.tests</module>
 	</modules>
 	<dependencyManagement>
@@ -112,16 +114,29 @@
 								<id>org.eclipse.xtext.logging</id>
 								<versionRange>1.2.15</versionRange>
 							</requirement>
-						<!--  to get the org.eclipse.osgi.compatibility.state plugin if the target 
-														platform is Luna or later. (backward compatible with kepler and previous 
-														versions) see https://bugs.eclipse.org/bugs/show_bug.cgi?id=492149  -->
+							<!--  to get the org.eclipse.osgi.compatibility.state plugin if the target 
+								platform is Luna or later. (backward compatible with kepler and previous 
+								versions) see https://bugs.eclipse.org/bugs/show_bug.cgi?id=492149  -->
 							<requirement>
 								<type>eclipse-feature</type>
 								<id>org.eclipse.rcp</id>
 								<versionRange>0.0.0</versionRange>
 							</requirement>
+							<!-- to force the same version of jdt.compiler.apt and jdt.core
+								(for xtext-maven-plugin)
+								see https://github.com/eclipse/xtext-maven/issues/146 -->
+							<requirement>
+								<type>eclipse-plugin</type>
+								<id>org.eclipse.jdt.compiler.apt</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+							<requirement>
+								<type>eclipse-plugin</type>
+								<id>org.eclipse.jdt.compiler.tool</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
 						</extraRequirements>
-						</dependency-resolution>
+					</dependency-resolution>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -167,53 +182,67 @@
 					<version>1.0.0</version>
 					<configuration>
 						<lifecycleMappingMetadata>
-						<pluginExecutions>
-							<pluginExecution>
-								<pluginExecutionFilter>
-								<groupId> org.codehaus.mojo </groupId>
-								<artifactId> build-helper-maven-plugin </artifactId>
-								<versionRange> [1.9.1,) </versionRange>
-								<goals>
-									<goal>add-resource</goal>
-									<goal>add-source</goal>
-									<goal>add-test-resource</goal>
-									<goal>add-test-source</goal>
-								</goals>
-							</pluginExecutionFilter>
-							<action>
-								<ignore/>
-							</action>
-							</pluginExecution>
-							<pluginExecution>
-								<pluginExecutionFilter>
-									<groupId> org.eclipse.tycho </groupId>
-									<artifactId> tycho-compiler-plugin </artifactId>
-									<versionRange> [0.23.1,) </versionRange>
-									<goals>
-										<goal>compile</goal>
-									</goals>
-								</pluginExecutionFilter>
-								<action>
-									<ignore/>
-								</action>
-							</pluginExecution>
-							<pluginExecution>
-								<pluginExecutionFilter>
-									<groupId> org.eclipse.tycho </groupId>
-									<artifactId> tycho-packaging-plugin </artifactId>
-									<versionRange> [0.23.1,) </versionRange>
-									<goals>
-										<goal>build-qualifier</goal>
-										<goal>build-qualifier-aggregator</goal>
-										<goal>validate-id</goal>
-										<goal>validate-version</goal>
-									</goals>
-								</pluginExecutionFilter>
-								<action>
-									<ignore/>
-								</action>
-							</pluginExecution>
-						</pluginExecutions>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId> org.codehaus.mojo </groupId>
+										<artifactId> build-helper-maven-plugin </artifactId>
+										<versionRange> [1.9.1,) </versionRange>
+										<goals>
+											<goal>add-resource</goal>
+											<goal>add-source</goal>
+											<goal>add-test-resource</goal>
+											<goal>add-test-source</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId> org.eclipse.tycho </groupId>
+										<artifactId> tycho-compiler-plugin </artifactId>
+										<versionRange> [0.23.1,) </versionRange>
+										<goals>
+											<goal>compile</goal>
+											<goal>testCompile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId> org.eclipse.tycho </groupId>
+										<artifactId> tycho-packaging-plugin </artifactId>
+										<versionRange> [0.23.1,) </versionRange>
+										<goals>
+											<goal>build-qualifier</goal>
+											<goal>build-qualifier-aggregator</goal>
+											<goal>validate-id</goal>
+											<goal>validate-version</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.eclipse.tycho</groupId>
+										<artifactId>target-platform-configuration</artifactId>
+										<versionRange>[2.4.0,)</versionRange>
+										<goals>
+											<goal>target-platform</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
@@ -298,6 +327,5 @@
 		</profile>
 	</profiles>
 
-	<dependencies>
-	</dependencies>
+	<dependencies></dependencies>
 </project>

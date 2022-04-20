@@ -13,8 +13,7 @@
 				"virtual": true,
 				"propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 				"valueUrl": "http://www.w3.org/2004/02/skos/core#Concept"
-			}
-			,
+			},
 			{
 				"propertyUrl": "http://schema.example.org/internalKey",
 				"datatype": "int",
@@ -60,6 +59,6 @@
 				"lang": "it",
 				"titles": "IT"
 			}
-		] 
+		]
 	}
 }

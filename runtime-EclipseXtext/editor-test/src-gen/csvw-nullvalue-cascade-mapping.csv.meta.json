@@ -15,16 +15,14 @@
 						"propertyUrl": "http://foobar.com/things/thing/color",
 						"titles": "foo2",
 						"null": "nullValue@referenceable"
-					}
-					,
+					},
 					{
 						"suppressOutput": true,
 						"titles": "id"
 					}
-				] 
+				]
 			}
 		},
-		
 		{
 			"url": "http://www.example.com/Bar.csv",
 			"tableSchema": {
@@ -39,13 +37,12 @@
 						"propertyUrl": "http://foobar.com/things/thing/color",
 						"titles": "bar2",
 						"null": "nullValue@referenceable"
-					}
-					,
+					},
 					{
 						"suppressOutput": true,
 						"titles": "id"
 					}
-				] 
+				]
 			}
 		}
 	]
