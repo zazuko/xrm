@@ -1,4 +1,8 @@
-image: maven:3-jdk-11
+default:
+  image: maven:3-jdk-11
+  tags:
+    - kubernetes
+
 before_script:
   - apt-get update -qq && apt-get install -y -qq python3-pip && pip install -q s3cmd
 
