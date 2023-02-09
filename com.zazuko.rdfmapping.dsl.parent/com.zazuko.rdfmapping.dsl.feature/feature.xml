@@ -2,7 +2,7 @@
 <feature
       id="com.zazuko.rdfmapping.dsl.feature"
       label="Expressive RDF Mapper (XRM)"
-      version="1.2.0.qualifier"
+      version="1.3.0.qualifier"
       provider-name="zazuko.com">
 
    <description url="https://github.com/zazuko/expressive-rdf-mapper">
