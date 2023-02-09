@@ -51,6 +51,7 @@ enum SourceType:
 	XML='xml' 
 	| RDB = 'rdb'
 	| CSV = 'csv'
+	| JSON = 'json'
 	;
 
 // do not reference an enum directly - if no value is declared, EMF will initialize the 

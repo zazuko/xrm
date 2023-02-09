@@ -1,0 +1,6 @@
+output rml
+// inspired by https://rml.io/docs/rml/tutorials/json/
+
+map CharacterRml from characters {
+	subject template "http://example.org/character/{0}" with id;
+}

@@ -1,0 +1,17 @@
+PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
+PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
+
+<#CharacterRml>
+	a rr:TriplesMap;
+	
+	rml:logicalSource [
+		rml:source "characters.json";
+		rml:referenceFormulation ql:JSONPath;
+		rml:iterator "$.characters[*]"
+	];
+	
+	rr:subjectMap [
+		rr:template "http://example.org/character/{id}"
+	].
+	

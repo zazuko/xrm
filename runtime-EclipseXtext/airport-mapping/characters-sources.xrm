@@ -1,0 +1,12 @@
+logical-source characters {
+	type json
+	source "characters.json"
+	iterator "$.characters[*]"
+
+	referenceables
+		id
+		firstname
+		lastname
+		hair
+}
+

@@ -35,6 +35,7 @@ public class InputOutputCompatibility {
 			Map<SourceType, Set<OutputType>> tmp = new LinkedHashMap<>();
 			register(tmp, SourceType.RDB, OutputType.RML, OutputType.R2RML);
 			register(tmp, SourceType.XML, OutputType.RML, OutputType.CARML);
+			register(tmp, SourceType.JSON, OutputType.RML, OutputType.CARML);
 			register(tmp, SourceType.CSV, OutputType.RML, OutputType.R2RML, OutputType.CSVW);
 			this.src2Out = Collections.unmodifiableMap(tmp);
 		}
@@ -77,7 +78,7 @@ public class InputOutputCompatibility {
 	public Set<OutputType> getCompatibleOutputTypes(SourceType type) {
 		return this.src2Out.getOrDefault(type, this.allOutputTypes);
 	}
-	
+
 	public String serialize2Message(OutputType type) {
 		return serialize2Message(Collections.singleton(type));
 	}

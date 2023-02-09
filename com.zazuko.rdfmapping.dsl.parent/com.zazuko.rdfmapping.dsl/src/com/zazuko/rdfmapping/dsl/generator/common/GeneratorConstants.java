@@ -5,7 +5,7 @@ import com.zazuko.rdfmapping.dsl.util.EnumMapper;
 import com.zazuko.rdfmapping.dsl.util.EnumMapperBuilder;
 
 public class GeneratorConstants {
-	
+
 	public static final String DIALECT_RML = "RML";
 	public static final String DIALECT_R2RML = "R2RML";
 	public static final String DIALECT_CARML = "CARML";
@@ -14,5 +14,6 @@ public class GeneratorConstants {
 			.add("ql:XPath", SourceType.XML) //
 			.add("rr:SQL2008", SourceType.RDB) //
 			.add("ql:CSV", SourceType.CSV) //
+			.add("ql:JSONPath", SourceType.JSON) //
 			.build();
 }
