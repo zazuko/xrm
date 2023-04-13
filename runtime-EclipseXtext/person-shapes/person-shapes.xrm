@@ -2,7 +2,7 @@ base "https://schema.example.org/"
 
 // this sample is inspired by https://w3c.github.io/shacl/shacl-compact-syntax/#example
 
-node-shape PersonNodeShape {
+node-shape PersonNodeShape from PersonMapping {
 //	deactivated
  
 	target-classes
@@ -14,26 +14,29 @@ node-shape PersonNodeShape {
 		rdf.^type
 	
 	properties
-		ex.ssn node-kind Literal [0..1] {
+		ex.ssn {
+			cardinality [0..1]
 			datatype xsd.string
 			pattern "^\\\\d{3}-\\\\d{2}-\\\\d{4}$"
 		}
 		
-		ex.worksFor node-kind IRI [0..*] {
+		ex.worksFor {
+			cardinality [0..*]
 			classes ex.Company
-			pattern "^https://data.example.org/"
 		}
 	
-		ex.address node-kind BlankNode [0..1] {
+		ex.address {
+			cardinality [0..1]
 			node-shapes AddressNodeShape
 		}
 		
 		// this shows the union of all attributes in the expected order of appearance. note that combining all attributes like this doesn't make much sense.
-		ex.hasAnything node-kind Any [0..*] {
+		ex.hasAnything {
+			node-kind Any
+			cardinality [0..*]
 			classes ex.Company
 			datatype xsd.string
 			node-shapes EmptyNodeShape
-			pattern "^https://data.example.org/"
 		}
 		
 		// alternatively to embedded property shapes, also support the use of externalized property shapes
@@ -43,11 +46,15 @@ node-shape PersonNodeShape {
 
 node-shape AddressNodeShape {
 	properties
-		ex.city node-kind Literal [1..1] {
+		ex.city {
+			node-kind Literal
+			cardinality [1..1]
 			datatype xsd.string
 		}
 
-		ex.postalCode node-kind Literal [1..1] {
+		ex.postalCode {
+			node-kind Literal
+			cardinality [1..1]
 			datatype xsd.string
 		}
 }
@@ -55,11 +62,16 @@ node-shape AddressNodeShape {
 node-shape EmptyNodeShape {
 }
 
-property-shape EmptyPropertyShape node-kind Any [0..*] {
+property-shape EmptyPropertyShape {
+	node-kind Any
+	cardinality [0..*]
 }
 
-property-shape AddressPropertyShape node-kind BlankNode [0..1] {
+property-shape AddressPropertyShape {
 	deactivated
+
+	node-kind BlankNode
+	cardinality [0..1]
 
 	path ex.address
 
