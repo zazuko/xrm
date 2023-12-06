@@ -3,7 +3,7 @@ package com.zazuko.rdfmapping.dsl.ide.contentassist;
 import java.util.Collection;
 import java.util.Set;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;

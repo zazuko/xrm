@@ -15,7 +15,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValue
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import java.text.MessageFormat
 import java.util.List
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 class CsvwDialectGenerator {
 

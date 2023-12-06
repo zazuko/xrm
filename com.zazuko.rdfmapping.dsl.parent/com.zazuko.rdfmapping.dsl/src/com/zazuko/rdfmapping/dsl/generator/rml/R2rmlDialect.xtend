@@ -4,7 +4,7 @@ import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.generator.common.statefuljoiner.IJoinContext
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 class R2rmlDialect implements IRmlDialect {
 

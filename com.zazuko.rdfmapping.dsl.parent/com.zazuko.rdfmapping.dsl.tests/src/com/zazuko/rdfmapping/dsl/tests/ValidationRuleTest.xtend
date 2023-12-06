@@ -10,7 +10,7 @@ import com.zazuko.rdfmapping.dsl.tests.snippets.OutputTypeValidationDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.PrefixSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.SourceGroupDSLSnippets
 import com.zazuko.rdfmapping.dsl.tests.snippets.XmlNamespaceExtensionDSLSnippets
-import javax.inject.Inject
+import jakarta.inject.Inject
 import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension

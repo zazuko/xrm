@@ -1,6 +1,6 @@
 package com.zazuko.rdfmapping.dsl.resource;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage;
 

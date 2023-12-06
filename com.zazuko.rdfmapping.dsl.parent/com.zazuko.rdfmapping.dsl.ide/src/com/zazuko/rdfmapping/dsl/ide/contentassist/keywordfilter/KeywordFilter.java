@@ -3,7 +3,7 @@ package com.zazuko.rdfmapping.dsl.ide.contentassist.keywordfilter;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.Keyword;

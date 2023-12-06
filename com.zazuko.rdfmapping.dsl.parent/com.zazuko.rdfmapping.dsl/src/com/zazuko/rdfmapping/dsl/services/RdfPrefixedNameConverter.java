@@ -1,6 +1,6 @@
 package com.zazuko.rdfmapping.dsl.services;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;

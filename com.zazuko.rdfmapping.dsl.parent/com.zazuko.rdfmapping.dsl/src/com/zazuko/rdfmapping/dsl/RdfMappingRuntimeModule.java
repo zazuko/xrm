@@ -1,6 +1,6 @@
 package com.zazuko.rdfmapping.dsl;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.formatting2.IFormatter2;

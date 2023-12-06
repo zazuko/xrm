@@ -4,7 +4,7 @@ import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess
 import com.zazuko.rdfmapping.dsl.generator.common.statefuljoiner.IJoinContext
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 class CarmlDialect extends RmlDialect implements IRmlDialect {
 

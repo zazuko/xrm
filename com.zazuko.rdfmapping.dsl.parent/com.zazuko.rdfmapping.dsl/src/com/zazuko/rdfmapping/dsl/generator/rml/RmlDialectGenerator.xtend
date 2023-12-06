@@ -19,7 +19,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import java.text.MessageFormat
 import java.util.List
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 class RmlDialectGenerator {
 
