@@ -200,6 +200,11 @@ TemplateValuedTerm:
 	
 ParentTriplesMapTerm:
 	'parent-map' mapping=[Mapping]
+	(joinConditions+=ParentTriplesMapJoinCondition)*
+;
+
+ParentTriplesMapJoinCondition:
+    'join' child=[Referenceable] 'with' parent=[Referenceable]
 ;
 
 QualifiedName:

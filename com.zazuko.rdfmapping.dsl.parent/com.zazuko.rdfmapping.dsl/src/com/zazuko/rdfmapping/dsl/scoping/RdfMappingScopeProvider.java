@@ -9,6 +9,8 @@ import org.eclipse.xtext.scoping.Scopes;
 
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapJoinCondition;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ParentTriplesMapTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage;
 import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
@@ -40,6 +42,16 @@ public class RdfMappingScopeProvider extends AbstractRdfMappingScopeProvider {
 				&& reference == RdfMappingPackage.Literals.TEMPLATE_VALUED_TERM__REFERENCES) {
 			return scopeForReferenceables(this.rootFinder.findRoot(context, Mapping.class));
 
+		} else if (context instanceof ParentTriplesMapJoinCondition
+				&& reference == RdfMappingPackage.Literals.PARENT_TRIPLES_MAP_JOIN_CONDITION__CHILD) {
+			return scopeForReferenceables(this.rootFinder.findRoot(context, Mapping.class));
+
+		} else if (context instanceof ParentTriplesMapJoinCondition
+				&& reference == RdfMappingPackage.Literals.PARENT_TRIPLES_MAP_JOIN_CONDITION__PARENT) {
+			final ParentTriplesMapTerm term = this.rootFinder.findRoot(context, ParentTriplesMapTerm.class);
+			if (term !=null && term.getMapping() != null && term.getMapping().getSource() != null) {
+				return scopeForReferenceables(term.getMapping());				
+			}
 		}
 		return super.getScope(context, reference);
 	}

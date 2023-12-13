@@ -156,6 +156,12 @@ class RmlDialectGenerator {
 	
 	def dispatch objectTermMap(ParentTriplesMapTerm it, IJoinContext jc) '''
 		rr:parentTriplesMap  <«mapping.localId»>«jc.acquireMarker»
+		«FOR join : joinConditions»
+			rr:joinCondition [
+				rr:child "«join.child.valueResolved»"«jc.acquireMarker»
+				rr:parent "«join.parent.valueResolved»"«jc.acquireMarker»
+			]«jc.acquireMarker»
+		«ENDFOR»
 	'''
 	
 	def termMapAnnex(ReferenceValuedTerm it, IJoinContext jc) {

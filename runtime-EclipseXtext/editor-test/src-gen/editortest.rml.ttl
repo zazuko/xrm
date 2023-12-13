@@ -34,6 +34,21 @@ PREFIX thing: <http://foobar.com/things/thing/>
 	];
 	
 	rr:predicateObjectMap [
+		rr:predicate thing:color;
+		rr:objectMap [
+			rr:parentTriplesMap  <#FooMapping>;
+			rr:joinCondition [
+				rr:child "id";
+				rr:parent "id";
+			];
+			rr:joinCondition [
+				rr:child "EMPNO";
+				rr:parent "map";
+			]
+		]
+	];
+	
+	rr:predicateObjectMap [
 		rr:predicate employee:map;
 		rr:objectMap [
 			rr:template "{EMPNO}";
