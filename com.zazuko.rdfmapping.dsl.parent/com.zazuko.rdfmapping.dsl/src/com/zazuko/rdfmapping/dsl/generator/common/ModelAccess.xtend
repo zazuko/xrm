@@ -32,6 +32,7 @@ import java.util.List
 import java.util.Set
 import jakarta.inject.Inject
 import org.eclipse.emf.ecore.EObject
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 
 class ModelAccess {
 
@@ -123,12 +124,20 @@ class ModelAccess {
 		val Set<Vocabulary> result = new LinkedHashSet();
 		result.addAll(subjectTypeMappings.map[m|m.type.vocabulary]);
 		result.addAll(poMappings.map[m|m.property.vocabulary]);
+		
+		result.addAll(graphMappings.map[m|m.constant?.constantVocabularyElement?.vocabulary]);
+		result.removeIf(e|e === null);
 
 		for (PredicateObjectMapping poMapping : poMappings) {
 			val ValuedTerm term = poMapping.term
 			if (term instanceof ReferenceValuedTerm) {
 				if (term.datatype !== null) {
 					result.add(term.datatype.vocabulary)
+				}
+			}
+			if (term instanceof ConstantValuedTerm) {
+				if (term.constantVocabularyElement !== null) {
+					result.add(term.constantVocabularyElement.vocabulary)
 				}
 			}
 		}
