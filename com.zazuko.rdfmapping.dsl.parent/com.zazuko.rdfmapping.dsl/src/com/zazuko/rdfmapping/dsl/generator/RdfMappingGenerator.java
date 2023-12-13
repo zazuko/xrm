@@ -54,7 +54,7 @@ public class RdfMappingGenerator extends AbstractGenerator {
 	@Override
 	public void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		Domainmodel model = resource.getContents().stream().filter(current -> current instanceof Domainmodel)
-				.map(current -> (Domainmodel) current).findFirst().get();
+				.map(current -> (Domainmodel) current).findFirst().orElse(null);
 
 		if (model == null) {
 			return;
