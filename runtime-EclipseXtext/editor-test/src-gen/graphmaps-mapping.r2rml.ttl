@@ -1,4 +1,5 @@
 PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX employee: <http://example.com/employee>
 PREFIX thing: <http://foobar.com/things/thing/>
 
 <#ThingIntoGraphmapsMapping>
