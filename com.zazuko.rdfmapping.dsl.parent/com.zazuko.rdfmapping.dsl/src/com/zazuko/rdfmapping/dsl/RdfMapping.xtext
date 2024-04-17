@@ -148,7 +148,7 @@ TemplateValueRef:
     
 Mapping:
 	'map' name=ID 'from' source=[LogicalSource|QualifiedName] BLOCK_BEGIN
-		'subject' subjectIriMapping=TemplateValuedTerm LINE_END
+		'subject' subjectMapping=SubjectMapping LINE_END
 		 ('graphs' (graphMappings+=GraphMapping)+)?
 		 ('types' (subjectTypeMappings+=SubjectTypeMapping)+)?
 		 ('properties' (poMappings+=PredicateObjectMapping)+)?
@@ -158,8 +158,14 @@ SubjectTypeMapping:
 	type=[RdfClass|RdfPrefixedName]
 ;
 
+SubjectMapping returns ValuedTerm:
+    TemplateValuedTerm
+  | ConstantValuedTerm
+  | SubjectReferenceValuedTerm
+;
+
 GraphMapping:
-	(template=TemplateValuedTerm | constant=ConstantValuedTerm) LINE_END
+	(template=TemplateValuedTerm | constant=ConstantValuedTerm | reference=GraphMappingReferenceValuedTerm) LINE_END
 ;
 
 PredicateObjectMapping:	
@@ -181,6 +187,15 @@ ReferenceValuedTerm:
 	'from' reference=[Referenceable]
 	('with' 'datatype' datatype=[Datatype|RdfPrefixedName] | 'with' 'language-tag' languageTag=[LanguageTag])?
 	('as' termTypeRef=TermTypeRef)?
+;
+
+SubjectReferenceValuedTerm returns ReferenceValuedTerm:
+	'from' reference=[Referenceable]
+	('as' termTypeRef=TermTypeRef)?
+;
+
+GraphMappingReferenceValuedTerm returns ReferenceValuedTerm:
+	'from' reference=[Referenceable]
 ;
 
 MultiReferenceValuedTerm:

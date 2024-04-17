@@ -5,12 +5,14 @@ import com.zazuko.rdfmapping.dsl.generator.common.extractors.DialectGroupExtract
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.IsQueryResolvedExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.SourceExtractor
 import com.zazuko.rdfmapping.dsl.generator.common.extractors.XmlNamespaceExtensionExtractor
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel
 import com.zazuko.rdfmapping.dsl.rdfMapping.Element
 import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping
+import com.zazuko.rdfmapping.dsl.rdfMapping.MultiReferenceValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.NullValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping
@@ -22,17 +24,18 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueDeclaration
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValueRef
+import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
+import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary
 import com.zazuko.rdfmapping.dsl.rdfMapping.VocabularyElement
 import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension
+import jakarta.inject.Inject
 import java.net.URL
 import java.util.LinkedHashSet
 import java.util.List
 import java.util.Set
-import jakarta.inject.Inject
 import org.eclipse.emf.ecore.EObject
-import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm
 
 class ModelAccess {
 
@@ -206,6 +209,15 @@ class ModelAccess {
 
 	def String csvNullValue(LogicalSource it) {
 		return csvNullValueExtractor.extractC(it);
+	}
+	
+	def TermTypeRef termTypeRef0(ValuedTerm it) {
+		switch it {
+			ReferenceValuedTerm : termTypeRef
+			MultiReferenceValuedTerm : termTypeRef
+			TemplateValuedTerm : termTypeRef
+		    default : null
+  		}
 	}
 
 }

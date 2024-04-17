@@ -16,6 +16,7 @@ map ThingIntoGraphmapsMapping from ThingIntoGraphmapsSource {
 		constant thing.Thing;
 		constant thing.color;
 		constant employee.myDatatype;
+		from someIri;
 
 	types
 		thing.Thing
@@ -31,4 +32,5 @@ logical-source ThingIntoGraphmapsSource {
 
 	referenceables
 		id
+		someIri
 }

@@ -16,6 +16,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import java.text.MessageFormat
 import java.util.List
 import jakarta.inject.Inject
+import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
 
 class CsvwDialectGenerator {
 
@@ -128,8 +129,15 @@ class CsvwDialectGenerator {
 			}«jc.acquireMarker»
 			«ENDFOR»
 	'''
+
+	def subjectMap(Mapping it) '''"aboutUrl": "«subjectMapping.aboutUrl»"'''
 	
-	def subjectMap(Mapping it) '''"aboutUrl": "«subjectIri»"'''
+	def dispatch aboutUrl(TemplateValuedTerm it) {
+		return toTemplateString;
+	}
+	
+	def dispatch aboutUrl(ValuedTerm it) '''
+		«class.name» not supported'''
 	
 	def columns(Mapping it, IJoinContext jc) '''
 		«FOR pom : poMappings»
@@ -173,10 +181,6 @@ class CsvwDialectGenerator {
 			"datatype": "«datatype.valueResolved»"«jc.acquireMarker»
 		«ENDIF»
 	'''
-	
-	def subjectIri(Mapping it) {
-		subjectIriMapping.toTemplateString
-	}
 	
 	def toTemplateString(TemplateValuedTerm it) {		
 		template.apply(references);

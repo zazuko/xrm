@@ -267,7 +267,7 @@ class ValidationRuleTest {
 	}
 	
 	@Test
-	def void rmp_parentMap_ok() {
+	def void rml_parentMap_ok() {
 		val result = parseHelper.parse(outputTypeSnippets.outputType_propertiesmapping("rml", '''employee.one parent-map EmployeeMapping2;'''));
 		
 		validationTester.assertNoErrors(result);
@@ -336,6 +336,42 @@ class ValidationRuleTest {
 			RdfMappingPackage.eINSTANCE.termTypeRef, 
 			null, 
 			"Literal is invalid on the subject"
+		);
+	}
+	
+	@Test
+	def void rml_subjectFrom_ok() {
+		val result = parseHelper.parse(outputTypeSnippets.outputType_subjectMapping("rml", '''from id'''));
+		
+		validationTester.assertNoErrors(result);
+	}
+	
+	@Test
+	def void csv_subjectFrom_onRmlishOnly() {
+		val result = parseHelper.parse(outputTypeSnippets.outputType_subjectMapping("csvw", '''from id'''));
+		
+		validationTester.assertWarning(result, 
+			RdfMappingPackage.eINSTANCE.referenceValuedTerm, 
+			RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS, 
+			"Not on output of type 'csvw' - only valid on [rml, r2rml, carml]"
+		);
+	}
+	
+	@Test
+	def void rml_subjectConstant_ok() {
+		val result = parseHelper.parse(outputTypeSnippets.outputType_subjectMapping("rml", '''constant "http://airport.example.org/BIU"'''));
+		
+		validationTester.assertNoErrors(result);
+	}
+	
+	@Test
+	def void csv_subjectConstant_onRmlishOnly() {
+		val result = parseHelper.parse(outputTypeSnippets.outputType_subjectMapping("csvw", '''constant "http://airport.example.org/BIU"'''));
+		
+		validationTester.assertWarning(result, 
+			RdfMappingPackage.eINSTANCE.constantValuedTerm, 
+			RdfMappingValidationCodes.EOBJECT_SUPERFLUOUS, 
+			"Not on output of type 'csvw' - only valid on [rml, r2rml, carml]"
 		);
 	}
 	

@@ -251,7 +251,7 @@ class RealRdfMappingFormatter extends AbstractFormatter2 {
 		regionFor.ruleCall(ga.mappingAccess.BLOCK_BEGINTerminalRuleCall_4).append[setNewLines(1)];
 
 		regionFor.keyword(ga.mappingAccess.subjectKeyword_5).append[oneSpace];
-		subjectIriMapping?.format;
+		subjectMapping?.format;
 		regionFor.ruleCall(ga.mappingAccess.LINE_ENDTerminalRuleCall_7).prepend[noSpace];
 
 		// 'graphs'

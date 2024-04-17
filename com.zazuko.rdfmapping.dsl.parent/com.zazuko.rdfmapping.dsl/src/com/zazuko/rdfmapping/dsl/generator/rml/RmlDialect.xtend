@@ -32,11 +32,11 @@ class RmlDialect implements IRmlDialect {
 		«ENDIF»
 	'''
 
-	override objectMapReferencePredicate() '''rml:reference'''
+	override termMapReferencePredicate() '''rml:reference'''
 
 	// Plain RML does no support multiReference. CarmlDialect overrides this with 'carml:multiReference'   
 	override objectMapMultiReferencePredicate() {
-		return objectMapReferencePredicate()
+		return termMapReferencePredicate()
 	}
 
 }

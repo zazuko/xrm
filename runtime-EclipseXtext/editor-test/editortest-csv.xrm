@@ -4,6 +4,7 @@ output csvw
 template anyTemplate "foo2"
 
 map EmployeeMappingCsv from EMPLOYEEeditorTest {
+	// AUTOTEST noSubjectFromOrConstantOnCsv
 	subject template "http://airport.example.com/{0}" with id;
 
 	types

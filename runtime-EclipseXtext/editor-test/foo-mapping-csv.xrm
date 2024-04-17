@@ -7,7 +7,7 @@ map TestImpactMappingCsv from SomeSourceGroup.fooCsv {
 
 	// TODO uncomment next two lines --> warning (no graphs on CSVW)
 //	graphs 
-// 		constant "blubb"
+// 		constant "blubb";
 	types
 		employee.Employee
 

@@ -17,9 +17,9 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValue
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm
 import com.zazuko.rdfmapping.dsl.rdfMapping.TermTypeRef
 import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm
+import jakarta.inject.Inject
 import java.text.MessageFormat
 import java.util.List
-import jakarta.inject.Inject
 
 class RmlDialectGenerator {
 
@@ -77,13 +77,10 @@ class RmlDialectGenerator {
 	
 	def subjectMap(Mapping it, IJoinContext jc) '''
 		rr:subjectMap [
-			rr:template "«subjectIri»"«jc.acquireMarker»
+			«subjectMapping.termMap(jc)»
 			«FOR stm : subjectTypeMappings»
 				rr:class «stm.type.vocabulary.prefix.label»:«stm.type.valueResolved»«jc.acquireMarker»
 			«ENDFOR»
-			«IF subjectIriMapping.termTypeRef?.type !== null»
-				rr:termType rr:«subjectIriMapping.termTypeRef.type»«jc.acquireMarker»
-			«ENDIF»
 			«FOR graphMapping : graphMappings»
 				«graphMap(graphMapping, jc.newContext)»«jc.acquireMarker»
 			«ENDFOR»
@@ -94,6 +91,8 @@ class RmlDialectGenerator {
 			return graphMap(template, jc);
 		} else if (constant !== null) {
 			return graphMap(constant, jc);
+		} else if (reference !== null) {
+			return graphMap(reference, jc);
 		} 
 		return "";
 	}
@@ -107,31 +106,36 @@ class RmlDialectGenerator {
 	def graphMap(ConstantValuedTerm it, IJoinContext jc) '''
 		rr:graphMap [
 		  rr:constant «toConstantValue»«jc.acquireMarker»
-		]'''	
+		]'''
+		
+	def graphMap(ReferenceValuedTerm it, IJoinContext jc) '''
+		rr:graphMap [
+		  «termMapReferencePredicate» "«reference.valueResolved»"«jc.acquireMarker»
+		]'''
 	
 	def predicateObjectMap(PredicateObjectMapping it, IJoinContext jc) '''
 		rr:predicateObjectMap [
 			rr:predicate «property.vocabulary.prefix.label»:«property.valueResolved»«jc.acquireMarker»
 			rr:objectMap [
-				«term.objectTermMap(jc.newContext)»
+				«term.termMap(jc.newContext)»
 			]«jc.acquireMarker»
 		]'''
 	
-	def dispatch objectTermMap(ValuedTerm it, IJoinContext jc) '''
+	def dispatch termMap(ValuedTerm it, IJoinContext jc) '''
 		# TODO: implementation missing for «class.name»
 	'''
 	
-	def dispatch objectTermMap(ReferenceValuedTerm it, IJoinContext jc) '''
-		«objectMapReferencePredicate» "«reference.valueResolved»"«jc.acquireMarker»
+	def dispatch termMap(ReferenceValuedTerm it, IJoinContext jc) '''
+		«termMapReferencePredicate» "«reference.valueResolved»"«jc.acquireMarker»
 		«termMapAnnex(jc)»
 	'''
 	
-	def dispatch objectTermMap(MultiReferenceValuedTerm it, IJoinContext jc) '''
+	def dispatch termMap(MultiReferenceValuedTerm it, IJoinContext jc) '''
 		«objectMapMultiReferencePredicate» "«reference.valueResolved»"«jc.acquireMarker»
 		«termMapAnnex(jc)»
 	'''
 	
-	def dispatch objectTermMap(ConstantValuedTerm it, IJoinContext jc) '''
+	def dispatch termMap(ConstantValuedTerm it, IJoinContext jc) '''
 		rr:constant «toConstantValue»«jc.acquireMarker»
 	'''
 	
@@ -147,14 +151,14 @@ class RmlDialectGenerator {
 		}
 	}
 	
-	def dispatch objectTermMap(TemplateValuedTerm it, IJoinContext jc) '''
+	def dispatch termMap(TemplateValuedTerm it, IJoinContext jc) '''
 		rr:template "«toTemplateString»"«jc.acquireMarker»
 		«IF termTypeRef?.type !== null»
 			rr:termType rr:«termTypeRef.type»«jc.acquireMarker»
 		«ENDIF»
 	'''
 	
-	def dispatch objectTermMap(ParentTriplesMapTerm it, IJoinContext jc) '''
+	def dispatch termMap(ParentTriplesMapTerm it, IJoinContext jc) '''
 		rr:parentTriplesMap  <«mapping.localId»>«jc.acquireMarker»
 		«FOR join : joinConditions»
 			rr:joinCondition [
@@ -184,10 +188,6 @@ class RmlDialectGenerator {
 	'''
 	
 	def private localId(Mapping it) '''#«name»'''
-	
-	def subjectIri(Mapping it) {
-		subjectIriMapping.toTemplateString
-	}
 	
 	def toTemplateString(TemplateValuedTerm it) {
 		template.apply(references);

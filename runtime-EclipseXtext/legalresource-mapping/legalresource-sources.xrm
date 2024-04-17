@@ -1,0 +1,14 @@
+logical-source Work {
+	type xml
+	source "stdin"
+	xml-namespace-extension akomaNtoso
+	iterator "/akn:akomaNtoso/akn:act/akn:meta/akn:identification/akn:FRBRWork"
+
+	referenceables
+		legalResourceIri "concat('http://zrh.ch', akn:FRBRuri/@value)"
+		docdate "tokenize(akn:FRBRuri/@value, '/')[5]"
+}
+
+xml-namespace-extension akomaNtoso {
+	prefix "akn" "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+}

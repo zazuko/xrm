@@ -14,6 +14,40 @@ public class EditorTestCsvTest extends EditorTestProjectDrivenTest {
 	}
 	
 	@Test
+	public void noSubjectFromOnCsvTest() {
+		MarkerContext ctx = this.marker("noSubjectFromOrConstantOnCsv");
+		PositionContext position = ctx.nextLineWithTextAfter("subject");
+		
+		CompletionExpectationBuilder b = new CompletionExpectationBuilder();
+		
+		this.assertionMode(AssertEqualsMode.EXPECTED_ABSENT_IN_ACTUAL);
+		
+		b.keyword("from", position);
+		
+		testCompletion((TestCompletionConfiguration it) -> {
+			position.configure(it);
+			it.setExpectedCompletionItems(b.toExpectedCompletionItems());
+		});
+	}
+	
+	@Test
+	public void noSubjectConstantOnCsvTest() {
+		MarkerContext ctx = this.marker("noSubjectFromOrConstantOnCsv");
+		PositionContext position = ctx.nextLineWithTextAfter("subject");
+		
+		CompletionExpectationBuilder b = new CompletionExpectationBuilder();
+		
+		this.assertionMode(AssertEqualsMode.EXPECTED_ABSENT_IN_ACTUAL);
+		
+		b.keyword("constant", position);
+		
+		testCompletion((TestCompletionConfiguration it) -> {
+			position.configure(it);
+			it.setExpectedCompletionItems(b.toExpectedCompletionItems());
+		});
+	}
+	
+	@Test
 	public void noParentTriplesMapOnCsvTest() {
 		MarkerContext ctx = this.marker("noParentTriplesMapOnCsv");
 		PositionContext position = ctx.nextLineWithTextAfter("employeeEditorTestCsv.no");

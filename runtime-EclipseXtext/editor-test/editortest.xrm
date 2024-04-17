@@ -42,6 +42,7 @@ map EmployeeMapping from EMPLOYEE {
 }
 
 map EmployeeMapping2 from EMPLOYEE {
+	// AUTOTEST keywordsFromConstantTemplateOffered
 	subject template "http://airport.example.com/{0}" with id;
 
 	types

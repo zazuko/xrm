@@ -3,8 +3,6 @@ package com.zazuko.rdfmapping.dsl.ide.contentassist;
 import java.util.Collection;
 import java.util.Set;
 
-import jakarta.inject.Inject;
-
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
@@ -22,10 +20,11 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OmniMap;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
-import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm;
 import com.zazuko.rdfmapping.dsl.services.RdfMappingGrammarAccess;
+
+import jakarta.inject.Inject;
 
 public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 
@@ -74,11 +73,8 @@ public class RdfMappingIdeProposalProvider extends IdeContentProposalProvider {
 		if (context.getCurrentModel() instanceof PredicateObjectMapping) {
 			return this.keywordFilter.filter((PredicateObjectMapping) context.getCurrentModel(), keyword, context);
 
-		} else if (context.getCurrentModel() instanceof ReferenceValuedTerm) {
-			return this.keywordFilter.filter((ReferenceValuedTerm) context.getCurrentModel(), keyword, context);
-
-		} else if (context.getCurrentModel() instanceof TemplateValuedTerm) {
-			return this.keywordFilter.filter((TemplateValuedTerm) context.getCurrentModel(), keyword, context);
+		} else if (context.getCurrentModel() instanceof ValuedTerm) {
+			return this.keywordFilter.filter((ValuedTerm) context.getCurrentModel(), keyword, context);
 
 		} else if (context.getCurrentModel() instanceof SourceGroup) {
 			return this.keywordFilter.filter((SourceGroup) context.getCurrentModel(), keyword, context);

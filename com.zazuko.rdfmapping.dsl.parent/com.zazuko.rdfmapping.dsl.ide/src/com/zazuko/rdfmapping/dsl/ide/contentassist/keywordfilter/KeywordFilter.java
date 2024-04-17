@@ -3,8 +3,6 @@ package com.zazuko.rdfmapping.dsl.ide.contentassist.keywordfilter;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import jakarta.inject.Inject;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ide.editor.contentassist.ContentAssistContext;
@@ -15,10 +13,11 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.LogicalSource;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.OutputType;
 import com.zazuko.rdfmapping.dsl.rdfMapping.PredicateObjectMapping;
-import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType;
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm;
+
+import jakarta.inject.Inject;
 
 public class KeywordFilter {
 
@@ -33,36 +32,33 @@ public class KeywordFilter {
 		return filter.test(keyword);
 	}
 
-	public boolean filter(ReferenceValuedTerm in, Keyword keyword, ContentAssistContext context) {
-		Predicate<Keyword> filter = this.referencedValueTermFilter(in);
-		return filter.test(keyword);
-	}
-
-	private Predicate<Keyword> referencedValueTermFilter(EObject in) {
-		OutputType type = modelAccess.outputType(in);
-		return new RmlishOutputTypeCompletionProposalPredicate("as", type);
-	}
-
-	public boolean filter(TemplateValuedTerm in, Keyword keyword, ContentAssistContext context) {
-		Predicate<Keyword> filter = this.referencedValueTermFilter(in);
+	public boolean filter(ValuedTerm in, Keyword keyword, ContentAssistContext context) {
+		Predicate<Keyword> filter = this.valuedTermFilter(in);
 
 		EObject container = in.eContainer();
 
-		// #30 for a subjectIriMapping, don't offer 'Literal'
 		if (container instanceof Mapping) {
 			Mapping mapping = (Mapping) container;
-			// make sure we really have subjetIriMapping in our hands
-			if (mapping.getSubjectIriMapping() == in) {
+			
+			// make sure we really have subjetMapping in our hands
+			if (mapping.getSubjectMapping() == in) {
+				
+				// #30 for a subjectMapping, don't offer 'Literal'
 				filter = filter.and(new BlacklistedCompletionProposalPredicate("Literal"));
 			}
 		}
 
 		if (container instanceof GraphMapping) {
-			// within a graphMapping, 'as' is not a viable option for a TemplateValuedTerm
+			// within a graphMapping, 'as' is not a viable option for a ValuedTerm
 			filter = filter.and(new BlacklistedCompletionProposalPredicate("as"));
 		}
 
 		return filter.test(keyword);
+	}
+	
+	private Predicate<Keyword> valuedTermFilter(EObject in) {
+		OutputType type = modelAccess.outputType(in);
+		return new RmlishOutputTypeCompletionProposalPredicate("as", type);
 	}
 
 	public boolean filter(SourceGroup in, Keyword keyword, ContentAssistContext context) {
@@ -76,8 +72,13 @@ public class KeywordFilter {
 	}
 
 	public boolean filter(Mapping in, Keyword keyword, ContentAssistContext context) {
-		OutputType type = this.modelAccess.outputType(in);
-		return new RmlishOutputTypeCompletionProposalPredicate("graphs", type).test(keyword);
+		OutputType outputType = this.modelAccess.outputType(in);
+		
+		Predicate<Keyword> filter = new RmlishOutputTypeCompletionProposalPredicate("graphs", outputType);
+		filter = filter.and(new RmlishOutputTypeCompletionProposalPredicate("from", outputType));
+		filter = filter.and(new RmlishOutputTypeCompletionProposalPredicate("constant", outputType));
+		
+		return filter.test(keyword);
 	}
 
 	private boolean completeKeywordForSourceDefinition(Keyword keyword, SourceType type) {

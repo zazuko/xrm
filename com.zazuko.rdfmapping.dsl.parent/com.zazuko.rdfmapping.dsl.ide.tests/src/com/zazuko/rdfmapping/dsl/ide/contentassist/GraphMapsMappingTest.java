@@ -21,6 +21,7 @@ public class GraphMapsMappingTest extends EditorTestProjectDrivenTest {
 		CompletionExpectationBuilder b = new CompletionExpectationBuilder();
 		
 		b.ref("id", Referenceable.class, position);
+		b.ref("someIri", Referenceable.class, position);
 		b.keyword(";", position);
 		// NOT b.keyword("as", position);
 

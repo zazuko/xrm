@@ -12,7 +12,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Mapping;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable;
 import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateDeclaration;
-import com.zazuko.rdfmapping.dsl.rdfMapping.TemplateValuedTerm;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary;
 
 /**
@@ -24,7 +24,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Vocabulary;
 public class RdfMappingOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	protected void _createChildren(DocumentRootNode parentNode, Mapping mapping) {
-		createNode(parentNode, mapping.getSubjectIriMapping());
+		createNode(parentNode, mapping.getSubjectMapping());
 	}
 
 	protected void _createChildren(DocumentRootNode parentNode, Vocabulary v) {
@@ -35,7 +35,7 @@ public class RdfMappingOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	}
 
-	protected void _createNode(IOutlineNode parentNode, TemplateValuedTerm modelElement) {
+	protected void _createNode(IOutlineNode parentNode, ValuedTerm modelElement) {
 
 	}
 

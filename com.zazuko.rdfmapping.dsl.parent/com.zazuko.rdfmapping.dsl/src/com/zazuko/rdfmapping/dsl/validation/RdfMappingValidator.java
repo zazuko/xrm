@@ -7,8 +7,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import jakarta.inject.Inject;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
@@ -17,6 +15,7 @@ import org.eclipse.xtext.validation.CheckType;
 import com.zazuko.rdfmapping.dsl.common.RdfMappingConstants;
 import com.zazuko.rdfmapping.dsl.common.RdfMappingValidationCodes;
 import com.zazuko.rdfmapping.dsl.generator.common.ModelAccess;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ConstantValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Datatype;
 import com.zazuko.rdfmapping.dsl.rdfMapping.DialectGroup;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Domainmodel;
@@ -36,6 +35,7 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.Prefix;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfClass;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfMappingPackage;
 import com.zazuko.rdfmapping.dsl.rdfMapping.RdfProperty;
+import com.zazuko.rdfmapping.dsl.rdfMapping.ReferenceValuedTerm;
 import com.zazuko.rdfmapping.dsl.rdfMapping.Referenceable;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceGroup;
 import com.zazuko.rdfmapping.dsl.rdfMapping.SourceType;
@@ -50,6 +50,8 @@ import com.zazuko.rdfmapping.dsl.rdfMapping.XmlNamespaceExtension;
 import com.zazuko.rdfmapping.dsl.services.InputOutputCompatibility;
 import com.zazuko.rdfmapping.dsl.util.LazyMap;
 import com.zazuko.rdfmapping.dsl.validation.TemplateFormatAnalyzer.TemplateFormatAnalyzerException;
+
+import jakarta.inject.Inject;
 
 /**
  * This class contains custom validation rules.
@@ -316,14 +318,33 @@ public class RdfMappingValidator extends AbstractRdfMappingValidator {
 			}
 		}
 
-		// no literal on subjectIriMapping
-		if (it.getSubjectIriMapping() != null && it.getSubjectIriMapping().getTermTypeRef() != null
-				&& TermType.LITERAL.equals(it.getSubjectIriMapping().getTermTypeRef().getType())) {
-			error("Literal is invalid on the subject", it.getSubjectIriMapping().getTermTypeRef(),
-					RdfMappingPackage.Literals.TERM_TYPE_REF__TYPE);
+	}
+	
+	@Check
+	public void checkSubjectMapping(ValuedTerm it) {
+		if (!(it.eContainer() instanceof Mapping)) {
+			return;
+		}
+		Mapping mapping = (Mapping) it.eContainer();
+
+		// make sure we are looking at the subjectMapping
+		if (it.equals(mapping.getSubjectMapping())) {
+			
+			// no TermType literal on subjectMapping			
+			if (this.modelAccess.termTypeRef0(it) != null
+					&& TermType.LITERAL.equals(this.modelAccess.termTypeRef0(it).getType())) {
+				error("TermType Literal is invalid on the subject", this.modelAccess.termTypeRef0(it),
+						RdfMappingPackage.Literals.TERM_TYPE_REF__TYPE);
+			}
 		}
 		
+		if (it instanceof ReferenceValuedTerm) {			
+			onlyOnRmlishType(this.modelAccess.outputType(it), null);
+		}
 		
+		if (it instanceof ConstantValuedTerm) {
+			onlyOnRmlishType(this.modelAccess.outputType(it), null);
+		}		
 	}
 
 	@Check

@@ -46,6 +46,22 @@ class OutputTypeValidationDSLSnippets {
 			}
 		'''
 		
+	def outputType_subjectMapping(String outputType, String subjectMapping) '''
+		output «outputType»
+		
+		map EmployeeMapping1 from EMPLOYEE1 {
+			subject «subjectMapping»;
+		}
+		
+		logical-source EMPLOYEE1 {
+			type csv
+			source "EMP"
+		
+			referenceables
+				id
+		}
+	'''
+	
 	def outputTypeWithoutMapping() '''
 		output csvw
 		

@@ -7,6 +7,6 @@ public interface IRmlDialect {
 
 	CharSequence staticPrefixes();
 	CharSequence logicalSource(Mapping m, IJoinContext jc);
-	CharSequence objectMapReferencePredicate();
+	CharSequence termMapReferencePredicate();
 	CharSequence objectMapMultiReferencePredicate();
 }

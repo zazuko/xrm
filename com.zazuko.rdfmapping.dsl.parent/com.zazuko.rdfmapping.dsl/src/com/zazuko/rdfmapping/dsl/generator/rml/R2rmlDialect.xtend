@@ -20,10 +20,10 @@ class R2rmlDialect implements IRmlDialect {
 	def sourceStatement(
 		LogicalSource it) '''«IF sourceIsQueryResolved»rr:sqlQuery """«sourceResolved»"""«ELSE»rr:tableName "«sourceResolved»"«ENDIF»'''
 
-	override objectMapReferencePredicate() '''rr:column'''
+	override termMapReferencePredicate() '''rr:column'''
 
 	// R2ML does no support multiReference   
 	override objectMapMultiReferencePredicate() {
-		return objectMapReferencePredicate()
+		return termMapReferencePredicate()
 	}
 }

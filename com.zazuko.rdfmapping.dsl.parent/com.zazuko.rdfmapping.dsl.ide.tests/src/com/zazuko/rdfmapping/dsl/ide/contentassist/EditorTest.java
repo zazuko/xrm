@@ -16,6 +16,23 @@ public class EditorTest extends EditorTestProjectDrivenTest {
 	}
 	
 	@Test
+	public void keywordsFromConstantTemplateOffered() {
+		MarkerContext ctx = this.marker("keywordsFromConstantTemplateOffered");
+		PositionContext position = ctx.nextLineWithTextAfter("subject");
+		
+		CompletionExpectationBuilder b = new CompletionExpectationBuilder();
+		
+		b.keyword("constant", position);
+		b.keyword("from", position);
+		b.keyword("template", position);
+		
+		testCompletion((TestCompletionConfiguration it) -> {
+			position.configure(it);
+			it.setExpectedCompletionItems(b.toExpectedCompletionItems());
+		});
+	}
+	
+	@Test
 	public void getProposalOfTemplatesDefinedInThisFileTest() {
 		MarkerContext ctx = this.marker("getProposalOfTemplatesDefinedInThisFile");
 		PositionContext position = ctx.nextLineWithTextAtStart("airportIri");

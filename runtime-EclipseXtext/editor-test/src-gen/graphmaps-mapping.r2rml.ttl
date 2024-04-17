@@ -27,6 +27,9 @@ PREFIX thing: <http://foobar.com/things/thing/>
 		];
 		rr:graphMap [
 		  rr:constant employee:myDatatype
+		];
+		rr:graphMap [
+		  rr:column "someIri"
 		]
 	];
 	
