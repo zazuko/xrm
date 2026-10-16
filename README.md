@@ -28,11 +28,13 @@ Or with Java 11+, using `xrm-cli-<version>.jar` from the [GitHub releases](https
 java -jar xrm-cli.jar generate path/to/project
 ```
 
-The latest build of each branch is available at a stable URL (pre-release `<branch>-snapshot`):
+The latest build of each branch is available at a stable URL (pre-release `<branch>-snapshot`, replaced on every push):
 
 ```sh
 curl -LO https://github.com/zazuko/xrm/releases/download/main-snapshot/xrm-cli.jar
 ```
+
+Docker image tags: `ghcr.io/zazuko/xrm:<version>` and `:latest` for releases, `:<branch>` (e.g. `:main`) for the latest build of a branch. Select one with `XRM_IMAGE=ghcr.io/zazuko/xrm:main bin/xrm ...`.
 
 All `*.xrm` files below the given paths are loaded together, so references across files (vocabularies, sources) resolve like in Eclipse. Output file names match what the Eclipse plugin produces. Problems are reported as `file:line:column: severity: message`; files with errors are skipped. The exit code is `1` if there were errors.
 
