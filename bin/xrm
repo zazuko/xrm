@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Runs the XRM CLI via Docker. The current directory is mounted at the same
+# path inside the container, so paths in messages match the host.
+#
+# Uses the published image by default; for a local build:
+#   docker build -t xrm . && XRM_IMAGE=xrm bin/xrm ...
+set -euo pipefail
+exec docker run --rm -i \
+  -u "$(id -u):$(id -g)" \
+  -v "$PWD":"$PWD" -w "$PWD" \
+  "${XRM_IMAGE:-ghcr.io/zazuko/xrm:latest}" "$@"

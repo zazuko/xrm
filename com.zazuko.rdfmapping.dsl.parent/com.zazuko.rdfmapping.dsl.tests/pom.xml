@@ -15,6 +15,22 @@
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<configuration>
+					<!-- junit 4 is on the classpath via xtext.testing; without this hint
+						Tycho picks the junit 4 provider and silently runs no tests -->
+					<providerHint>junit5</providerHint>
+					<excludes>
+						<!-- parameterized tests need junit-jupiter-params 5.10 from the target
+							platform, but the Tycho 2.7 junit5 provider ships an older engine
+							(AbstractMethodError). Re-enable after upgrading Tycho. -->
+						<exclude>**/TemplateFormatAnalyzerTest.class</exclude>
+						<exclude>**/InputOutputCompatibilitySerializationTest.class</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
