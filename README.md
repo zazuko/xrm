@@ -28,6 +28,12 @@ Or with Java 11+, using `xrm-cli-<version>.jar` from the [GitHub releases](https
 java -jar xrm-cli.jar generate path/to/project
 ```
 
+The latest build of each branch is available at a stable URL (pre-release `<branch>-snapshot`):
+
+```sh
+curl -LO https://github.com/zazuko/xrm/releases/download/main-snapshot/xrm-cli.jar
+```
+
 All `*.xrm` files below the given paths are loaded together, so references across files (vocabularies, sources) resolve like in Eclipse. Output file names match what the Eclipse plugin produces. Problems are reported as `file:line:column: severity: message`; files with errors are skipped. The exit code is `1` if there were errors.
 
 `bin/xrm` mounts the current directory into the container, so paths given to it must be inside the current directory. To use a locally built image: `docker build -t xrm . && XRM_IMAGE=xrm bin/xrm ...`.
