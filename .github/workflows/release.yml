@@ -1,11 +1,11 @@
-name: Release CLI
+name: Publish CLI
 
 # Version tags (e.g. 1.7.0) publish the CLI jar on the GitHub release and the
 # Docker image as ghcr.io/zazuko/xrm:<version> and :latest.
-# Pushes to main publish ghcr.io/zazuko/xrm:main.
+# Branch pushes publish ghcr.io/zazuko/xrm:<branch> (e.g. :main).
 on:
   push:
-    branches: [main]
+    branches: ['**']
     tags: ['[0-9]+.[0-9]+.[0-9]+']
 
 permissions:
