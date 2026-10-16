@@ -50,14 +50,16 @@ jobs:
   jar:
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
+    # same image as the Dockerfile; Tycho 2.7 breaks with some newer Maven versions
+    container: maven:3.9.16-eclipse-temurin-17
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+      - uses: actions/cache@v4
         with:
-          distribution: temurin
-          java-version: 17
-          cache: maven
+          path: ~/.m2/repository
+          key: m2-${{ hashFiles('**/pom.xml', '**/*.target') }}
+          restore-keys: m2-
 
       - name: Build
         working-directory: com.zazuko.rdfmapping.dsl.parent
@@ -65,11 +67,9 @@ jobs:
           mvn -B package -DskipTests
           -pl com.zazuko.rdfmapping.dsl.target,com.zazuko.rdfmapping.dsl,com.zazuko.rdfmapping.dsl.ide
 
-      - name: Upload to GitHub release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
-        run: |
-          cp com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.ide/target/*-cli.jar "xrm-cli-$TAG.jar"
-          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "$TAG" --generate-notes
-          gh release upload "$TAG" "xrm-cli-$TAG.jar" --clobber
+      - name: Rename jar
+        run: cp com.zazuko.rdfmapping.dsl.parent/com.zazuko.rdfmapping.dsl.ide/target/*-cli.jar "xrm-cli-${{ github.ref_name }}.jar"
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: xrm-cli-${{ github.ref_name }}.jar

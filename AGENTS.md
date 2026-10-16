@@ -17,7 +17,7 @@ Xtext implementation of the Expressive RDF Mapper DSL. User docs live in
 cd com.zazuko.rdfmapping.dsl.parent
 docker volume create xrm-m2
 docker run --rm -v xrm-m2:/root/.m2 -v "$PWD/..":/src -w /src/com.zazuko.rdfmapping.dsl.parent \
-  maven:3.9-eclipse-temurin-17 mvn -B verify \
+  maven:3.9.16-eclipse-temurin-17 mvn -B verify \
   -pl com.zazuko.rdfmapping.dsl.target,com.zazuko.rdfmapping.dsl,com.zazuko.rdfmapping.dsl.ide,com.zazuko.rdfmapping.dsl.tests
 ```
 

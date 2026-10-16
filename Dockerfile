@@ -4,7 +4,7 @@
 #
 # The jar is platform independent, so it is built once on the build platform
 # and only the runtime stage differs per architecture.
-FROM --platform=$BUILDPLATFORM maven:3.9-eclipse-temurin-17 AS build
+FROM --platform=$BUILDPLATFORM maven:3.9.16-eclipse-temurin-17 AS build
 WORKDIR /src
 COPY com.zazuko.rdfmapping.dsl.parent ./com.zazuko.rdfmapping.dsl.parent
 RUN --mount=type=cache,target=/root/.m2 \
